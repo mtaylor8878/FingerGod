@@ -14,6 +14,11 @@
 		3DDB594D2035F39C0000E0C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DDB594B2035F39C0000E0C4 /* LaunchScreen.storyboard */; };
 		3DDB59582035F39C0000E0C4 /* FingerGodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB59572035F39C0000E0C4 /* FingerGodTests.swift */; };
 		3DDB59632035F39C0000E0C4 /* FingerGodUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB59622035F39C0000E0C4 /* FingerGodUITests.swift */; };
+		992762D72036B4BD00C73599 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992762D62036B4BD00C73599 /* Game.swift */; };
+		992762DB2036B9DD00C73599 /* GameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992762DA2036B9DD00C73599 /* GameObject.swift */; };
+		992762DD2036BA0200C73599 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992762DC2036BA0200C73599 /* Component.swift */; };
+		992762E32036D17A00C73599 /* CounterComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992762E22036D17A00C73599 /* CounterComponent.swift */; };
+		992762E52036E57200C73599 /* FingerGodGameObjectTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992762E42036E57200C73599 /* FingerGodGameObjectTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +52,11 @@
 		3DDB595E2035F39C0000E0C4 /* FingerGodUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FingerGodUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DDB59622035F39C0000E0C4 /* FingerGodUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodUITests.swift; sourceTree = "<group>"; };
 		3DDB59642035F39C0000E0C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		992762D62036B4BD00C73599 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		992762DA2036B9DD00C73599 /* GameObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObject.swift; sourceTree = "<group>"; };
+		992762DC2036BA0200C73599 /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
+		992762E22036D17A00C73599 /* CounterComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterComponent.swift; sourceTree = "<group>"; };
+		992762E42036E57200C73599 /* FingerGodGameObjectTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodGameObjectTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +113,9 @@
 				3DDB59492035F39C0000E0C4 /* Assets.xcassets */,
 				3DDB594B2035F39C0000E0C4 /* LaunchScreen.storyboard */,
 				3DDB594E2035F39C0000E0C4 /* Info.plist */,
+				992762D62036B4BD00C73599 /* Game.swift */,
+				992762DA2036B9DD00C73599 /* GameObject.swift */,
+				992762DC2036BA0200C73599 /* Component.swift */,
 			);
 			path = FingerGod;
 			sourceTree = "<group>";
@@ -110,6 +123,8 @@
 		3DDB59562035F39C0000E0C4 /* FingerGodTests */ = {
 			isa = PBXGroup;
 			children = (
+				992762E42036E57200C73599 /* FingerGodGameObjectTest.swift */,
+				992762E02036D15200C73599 /* TestClasses */,
 				3DDB59572035F39C0000E0C4 /* FingerGodTests.swift */,
 				3DDB59592035F39C0000E0C4 /* Info.plist */,
 			);
@@ -123,6 +138,14 @@
 				3DDB59642035F39C0000E0C4 /* Info.plist */,
 			);
 			path = FingerGodUITests;
+			sourceTree = "<group>";
+		};
+		992762E02036D15200C73599 /* TestClasses */ = {
+			isa = PBXGroup;
+			children = (
+				992762E22036D17A00C73599 /* CounterComponent.swift */,
+			);
+			path = TestClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,7 +283,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DDB59452035F39C0000E0C4 /* ViewController.swift in Sources */,
+				992762DD2036BA0200C73599 /* Component.swift in Sources */,
+				992762D72036B4BD00C73599 /* Game.swift in Sources */,
 				3DDB59432035F39C0000E0C4 /* AppDelegate.swift in Sources */,
+				992762DB2036B9DD00C73599 /* GameObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +294,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				992762E52036E57200C73599 /* FingerGodGameObjectTest.swift in Sources */,
+				992762E32036D17A00C73599 /* CounterComponent.swift in Sources */,
 				3DDB59582035F39C0000E0C4 /* FingerGodTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
