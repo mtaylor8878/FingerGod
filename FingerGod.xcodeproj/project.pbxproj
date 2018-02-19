@@ -19,6 +19,8 @@
 		992762DD2036BA0200C73599 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992762DC2036BA0200C73599 /* Component.swift */; };
 		992762E32036D17A00C73599 /* CounterComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992762E22036D17A00C73599 /* CounterComponent.swift */; };
 		992762E52036E57200C73599 /* FingerGodGameObjectTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992762E42036E57200C73599 /* FingerGodGameObjectTest.swift */; };
+		C9F4135E203AC2DC001C56E1 /* Subscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F4135D203AC2DC001C56E1 /* Subscriber.swift */; };
+		C9F41360203ACFFC001C56E1 /* EventDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F4135F203ACFFC001C56E1 /* EventDispatcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		992762DC2036BA0200C73599 /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 		992762E22036D17A00C73599 /* CounterComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterComponent.swift; sourceTree = "<group>"; };
 		992762E42036E57200C73599 /* FingerGodGameObjectTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodGameObjectTest.swift; sourceTree = "<group>"; };
+		C9F4135D203AC2DC001C56E1 /* Subscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscriber.swift; sourceTree = "<group>"; };
+		C9F4135F203ACFFC001C56E1 /* EventDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDispatcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +119,9 @@
 				3DDB594E2035F39C0000E0C4 /* Info.plist */,
 				992762D62036B4BD00C73599 /* Game.swift */,
 				992762DA2036B9DD00C73599 /* GameObject.swift */,
+				C9F4135D203AC2DC001C56E1 /* Subscriber.swift */,
 				992762DC2036BA0200C73599 /* Component.swift */,
+				C9F4135F203ACFFC001C56E1 /* EventDispatcher.swift */,
 			);
 			path = FingerGod;
 			sourceTree = "<group>";
@@ -285,6 +291,8 @@
 				3DDB59452035F39C0000E0C4 /* ViewController.swift in Sources */,
 				992762DD2036BA0200C73599 /* Component.swift in Sources */,
 				992762D72036B4BD00C73599 /* Game.swift in Sources */,
+				C9F4135E203AC2DC001C56E1 /* Subscriber.swift in Sources */,
+				C9F41360203ACFFC001C56E1 /* EventDispatcher.swift in Sources */,
 				3DDB59432035F39C0000E0C4 /* AppDelegate.swift in Sources */,
 				992762DB2036B9DD00C73599 /* GameObject.swift in Sources */,
 			);
