@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2338D49E203B8DAF009F353A /* Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2338D49D203B8DAF009F353A /* Hex.swift */; };
+		2338D4A0203B90E7009F353A /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2338D49F203B90E7009F353A /* Map.swift */; };
 		3DDB59432035F39C0000E0C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB59422035F39C0000E0C4 /* AppDelegate.swift */; };
 		3DDB59452035F39C0000E0C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB59442035F39C0000E0C4 /* ViewController.swift */; };
 		3DDB59482035F39C0000E0C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DDB59462035F39C0000E0C4 /* Main.storyboard */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2338D49D203B8DAF009F353A /* Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hex.swift; sourceTree = "<group>"; };
+		2338D49F203B90E7009F353A /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		3DDB593F2035F39C0000E0C4 /* FingerGod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FingerGod.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DDB59422035F39C0000E0C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3DDB59442035F39C0000E0C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +88,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2338D49C203B8D80009F353A /* TileSystem */ = {
+			isa = PBXGroup;
+			children = (
+				2338D49D203B8DAF009F353A /* Hex.swift */,
+				2338D49F203B90E7009F353A /* Map.swift */,
+			);
+			name = TileSystem;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		3DDB59362035F39C0000E0C4 = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +121,7 @@
 		3DDB59412035F39C0000E0C4 /* FingerGod */ = {
 			isa = PBXGroup;
 			children = (
+				2338D49C203B8D80009F353A /* TileSystem */,
 				3DDB59422035F39C0000E0C4 /* AppDelegate.swift */,
 				3DDB59442035F39C0000E0C4 /* ViewController.swift */,
 				3DDB59462035F39C0000E0C4 /* Main.storyboard */,
@@ -283,10 +298,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DDB59452035F39C0000E0C4 /* ViewController.swift in Sources */,
+				2338D4A0203B90E7009F353A /* Map.swift in Sources */,
 				992762DD2036BA0200C73599 /* Component.swift in Sources */,
 				992762D72036B4BD00C73599 /* Game.swift in Sources */,
 				3DDB59432035F39C0000E0C4 /* AppDelegate.swift in Sources */,
 				992762DB2036B9DD00C73599 /* GameObject.swift in Sources */,
+				2338D49E203B8DAF009F353A /* Hex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
