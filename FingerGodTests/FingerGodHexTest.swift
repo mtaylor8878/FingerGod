@@ -21,8 +21,4 @@ class FingerGodHexTest: XCTestCase {
         super.tearDown()
     }
     
-    func testSomething() {
-        
-    }
-    
 }
