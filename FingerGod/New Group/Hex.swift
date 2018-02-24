@@ -63,18 +63,27 @@ public class Hex {
         targetTile.type = tileType
     }
     
-    func getCoordinates(_ hex:Hex) -> [Int] {
+    /*
+     Gets a tiles coordinates
+     */
+    public func getCoordinates(_ hex:Hex) -> [Int] {
         let firstArray = hex.coordinates[0]
         let secondArray = hex.coordinates[1]
         let targetCoord = [firstArray[0], secondArray[0]]
         return targetCoord
     }
     
-    func hexDirection(_ direction:Int) -> [Int] {
+    /*
+     Returns the direction of a neighbour tile
+    */
+    public func hexDirection(_ direction:Int) -> [Int] {
         return axialDir[direction]
     }
     
-    func getNeighbour(hex:Hex, direction:Int) -> Hex {
+    /*
+     Find a specific neighbour of a hex tile
+    */
+    public func getNeighbour(hex:Hex, direction:Int) -> Hex {
         let dir = hexDirection(direction)
         let dir1 = dir[0]
         let dir2 = dir[1]
