@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2338D49E203B8DAF009F353A /* Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2338D49D203B8DAF009F353A /* Hex.swift */; };
 		2338D4A0203B90E7009F353A /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2338D49F203B90E7009F353A /* Map.swift */; };
+		233D7436203DF7EB0050CFAB /* FingerGodHexTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233D7435203DF7EB0050CFAB /* FingerGodHexTest.swift */; };
 		3DDB59432035F39C0000E0C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB59422035F39C0000E0C4 /* AppDelegate.swift */; };
 		3DDB59452035F39C0000E0C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB59442035F39C0000E0C4 /* ViewController.swift */; };
 		3DDB59482035F39C0000E0C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DDB59462035F39C0000E0C4 /* Main.storyboard */; };
@@ -45,6 +46,8 @@
 /* Begin PBXFileReference section */
 		2338D49D203B8DAF009F353A /* Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hex.swift; sourceTree = "<group>"; };
 		2338D49F203B90E7009F353A /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		233D7432203DF7A70050CFAB /* FingerGodTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FingerGodTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		233D7435203DF7EB0050CFAB /* FingerGodHexTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodHexTest.swift; sourceTree = "<group>"; };
 		3DDB593F2035F39C0000E0C4 /* FingerGod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FingerGod.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DDB59422035F39C0000E0C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3DDB59442035F39C0000E0C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -144,10 +147,12 @@
 		3DDB59562035F39C0000E0C4 /* FingerGodTests */ = {
 			isa = PBXGroup;
 			children = (
+				233D7435203DF7EB0050CFAB /* FingerGodHexTest.swift */,
 				992762E42036E57200C73599 /* FingerGodGameObjectTest.swift */,
 				992762E02036D15200C73599 /* TestClasses */,
 				3DDB59572035F39C0000E0C4 /* FingerGodTests.swift */,
 				3DDB59592035F39C0000E0C4 /* Info.plist */,
+				233D7432203DF7A70050CFAB /* FingerGodTests-Bridging-Header.h */,
 			);
 			path = FingerGodTests;
 			sourceTree = "<group>";
@@ -241,6 +246,7 @@
 					};
 					3DDB59522035F39C0000E0C4 = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 3DDB593E2035F39C0000E0C4;
 					};
@@ -322,6 +328,7 @@
 				992762E52036E57200C73599 /* FingerGodGameObjectTest.swift in Sources */,
 				992762E32036D17A00C73599 /* CounterComponent.swift in Sources */,
 				3DDB59582035F39C0000E0C4 /* FingerGodTests.swift in Sources */,
+				233D7436203DF7EB0050CFAB /* FingerGodHexTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,11 +515,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = FingerGodTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGodTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FingerGodTests/FingerGodTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FingerGod.app/FingerGod";
@@ -524,11 +534,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = FingerGodTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGodTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FingerGodTests/FingerGodTests-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FingerGod.app/FingerGod";
