@@ -14,6 +14,7 @@ class ViewController: GLKViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        Renderer.setup(view: self.view as! GLKView);
     }
 
     override func didReceiveMemoryWarning() {

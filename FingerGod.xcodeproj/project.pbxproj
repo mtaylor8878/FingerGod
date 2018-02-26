@@ -10,11 +10,8 @@
 		2338D49E203B8DAF009F353A /* Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2338D49D203B8DAF009F353A /* Hex.swift */; };
 		2338D4A0203B90E7009F353A /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2338D49F203B90E7009F353A /* Map.swift */; };
 		3D0DA07E203DF45A0050F708 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DA07D203DF45A0050F708 /* Renderer.swift */; };
-		3D0DA080203DF46E0050F708 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DA07F203DF46D0050F708 /* Model.swift */; };
 		3D0DA09E203E164D0050F708 /* FingerGodModelLoadingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DA09D203E164D0050F708 /* FingerGodModelLoadingTests.swift */; };
 		3D0DA0A0203E16870050F708 /* FingerGodModelLoadingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DA09F203E16870050F708 /* FingerGodModelLoadingTests.swift */; };
-		3D0DA0A4203E19100050F708 /* ModelReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DA091203DFD240050F708 /* ModelReader.swift */; };
-		3D0DA0A5203E19260050F708 /* ModelReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DA091203DFD240050F708 /* ModelReader.swift */; };
 		3D0DA0B3203E1C560050F708 /* CubeModel.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3D0DA0B1203E1C550050F708 /* CubeModel.mtl */; };
 		3D0DA0B4203E1C560050F708 /* CubeModel.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3D0DA0B1203E1C550050F708 /* CubeModel.mtl */; };
 		3D0DA0B5203E1C560050F708 /* CubeModel.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3D0DA0B1203E1C550050F708 /* CubeModel.mtl */; };
@@ -34,13 +31,19 @@
 		3DDB594D2035F39C0000E0C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DDB594B2035F39C0000E0C4 /* LaunchScreen.storyboard */; };
 		3DDB59582035F39C0000E0C4 /* FingerGodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB59572035F39C0000E0C4 /* FingerGodTests.swift */; };
 		3DDB59632035F39C0000E0C4 /* FingerGodUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB59622035F39C0000E0C4 /* FingerGodUITests.swift */; };
+		990EFF3120427EA4002FEBED /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DA07F203DF46D0050F708 /* Model.swift */; };
+		990EFF3520427EB0002FEBED /* ModelReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DA091203DFD240050F708 /* ModelReader.swift */; };
+		990EFF3720427EB2002FEBED /* ModelReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DA091203DFD240050F708 /* ModelReader.swift */; };
+		990EFF3820427EB7002FEBED /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DA07F203DF46D0050F708 /* Model.swift */; };
+		990EFF3920427EDB002FEBED /* EventDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F4135F203ACFFC001C56E1 /* EventDispatcher.swift */; };
 		992762D72036B4BD00C73599 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992762D62036B4BD00C73599 /* Game.swift */; };
 		992762DB2036B9DD00C73599 /* GameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992762DA2036B9DD00C73599 /* GameObject.swift */; };
 		992762DD2036BA0200C73599 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992762DC2036BA0200C73599 /* Component.swift */; };
 		992762E32036D17A00C73599 /* CounterComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992762E22036D17A00C73599 /* CounterComponent.swift */; };
 		992762E52036E57200C73599 /* FingerGodGameObjectTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992762E42036E57200C73599 /* FingerGodGameObjectTest.swift */; };
+		9934CBF52043E262007D82F1 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 9934CBF42043E262007D82F1 /* Shader.fsh */; };
+		9934CBF72043E26B007D82F1 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 9934CBF62043E26B007D82F1 /* Shader.vsh */; };
 		C9F4135E203AC2DC001C56E1 /* Subscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F4135D203AC2DC001C56E1 /* Subscriber.swift */; };
-		C9F41360203ACFFC001C56E1 /* EventDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F4135F203ACFFC001C56E1 /* EventDispatcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +101,8 @@
 		992762DC2036BA0200C73599 /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 		992762E22036D17A00C73599 /* CounterComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterComponent.swift; sourceTree = "<group>"; };
 		992762E42036E57200C73599 /* FingerGodGameObjectTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodGameObjectTest.swift; sourceTree = "<group>"; };
+		9934CBF42043E262007D82F1 /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
+		9934CBF62043E26B007D82F1 /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
 		C9F4135D203AC2DC001C56E1 /* Subscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscriber.swift; sourceTree = "<group>"; };
 		C9F4135F203ACFFC001C56E1 /* EventDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDispatcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,6 +142,7 @@
 		2338D49C203B8D80009F353A /* TileSystem */ = {
 			isa = PBXGroup;
 			children = (
+				9934CBF42043E262007D82F1 /* Shader.fsh */,
 				2338D49D203B8DAF009F353A /* Hex.swift */,
 				2338D49F203B90E7009F353A /* Map.swift */,
 			);
@@ -184,6 +190,7 @@
 				2338D49C203B8D80009F353A /* TileSystem */,
 				3DDB59422035F39C0000E0C4 /* AppDelegate.swift */,
 				3DDB59442035F39C0000E0C4 /* ViewController.swift */,
+				9934CBF62043E26B007D82F1 /* Shader.vsh */,
 				3DDB59462035F39C0000E0C4 /* Main.storyboard */,
 				3DDB59492035F39C0000E0C4 /* Assets.xcassets */,
 				3DDB594B2035F39C0000E0C4 /* LaunchScreen.storyboard */,
@@ -368,10 +375,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9934CBF52043E262007D82F1 /* Shader.fsh in Resources */,
 				3D0DA0BE203E1C5D0050F708 /* HexTile.obj in Resources */,
 				3D0DA0B3203E1C560050F708 /* CubeModel.mtl in Resources */,
 				3D0DA0BB203E1C5D0050F708 /* HexTile.mtl in Resources */,
 				3D0DA0B6203E1C560050F708 /* CubeModel.obj in Resources */,
+				9934CBF72043E26B007D82F1 /* Shader.vsh in Resources */,
 				3DDB594D2035F39C0000E0C4 /* LaunchScreen.storyboard in Resources */,
 				3DDB594A2035F39C0000E0C4 /* Assets.xcassets in Resources */,
 				3DDB59482035F39C0000E0C4 /* Main.storyboard in Resources */,
@@ -416,15 +425,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DDB59452035F39C0000E0C4 /* ViewController.swift in Sources */,
+				990EFF3920427EDB002FEBED /* EventDispatcher.swift in Sources */,
 				2338D4A0203B90E7009F353A /* Map.swift in Sources */,
 				992762DD2036BA0200C73599 /* Component.swift in Sources */,
+				990EFF3120427EA4002FEBED /* Model.swift in Sources */,
+				990EFF3520427EB0002FEBED /* ModelReader.swift in Sources */,
 				992762D72036B4BD00C73599 /* Game.swift in Sources */,
-				3D0DA0A4203E19100050F708 /* ModelReader.swift in Sources */,
 				C9F4135E203AC2DC001C56E1 /* Subscriber.swift in Sources */,
-				C9F41360203ACFFC001C56E1 /* EventDispatcher.swift in Sources */,
 				3DDB59432035F39C0000E0C4 /* AppDelegate.swift in Sources */,
 				992762DB2036B9DD00C73599 /* GameObject.swift in Sources */,
-				3D0DA080203DF46E0050F708 /* Model.swift in Sources */,
 				3D0DA07E203DF45A0050F708 /* Renderer.swift in Sources */,
 				2338D49E203B8DAF009F353A /* Hex.swift in Sources */,
 			);
@@ -434,9 +443,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D0DA0A5203E19260050F708 /* ModelReader.swift in Sources */,
+				990EFF3720427EB2002FEBED /* ModelReader.swift in Sources */,
 				3D0DA0A0203E16870050F708 /* FingerGodModelLoadingTests.swift in Sources */,
 				992762E52036E57200C73599 /* FingerGodGameObjectTest.swift in Sources */,
+				990EFF3820427EB7002FEBED /* Model.swift in Sources */,
 				992762E32036D17A00C73599 /* CounterComponent.swift in Sources */,
 				3DDB59582035F39C0000E0C4 /* FingerGodTests.swift in Sources */,
 			);

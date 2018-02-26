@@ -6,13 +6,15 @@
 //  Copyright © 2018 Ramen Interactive. All rights reserved.
 //
 
+import GLKit
+
 public class Model {
-    public var vertices: [Float]
-    public var normals: [Float]
-    public var texels: [Float]
-    public var faces: [Int]
+    public var vertices: [GLfloat]
+    public var normals: [GLfloat]
+    public var texels: [GLfloat]
+    public var faces: [GLint]
     
-    public init(vertices: [Float], normals: [Float], texels: [Float], faces: [Int]) {
+    public init(vertices: [GLfloat], normals: [GLfloat], texels: [GLfloat], faces: [GLint]) {
         self.vertices = vertices
         self.normals = normals
         self.texels = texels

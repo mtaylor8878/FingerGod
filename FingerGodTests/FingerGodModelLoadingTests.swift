@@ -35,9 +35,22 @@ class FingerGodModelLoadingTests: XCTestCase {
     
     func testModelLoadBasic() {
         do {
-            try ModelReader.read(objPath: "CubeModel")
+            let model = try ModelReader.read(objPath: "CubeModel")
+            XCTAssert(model.vertices[0] == -1.0)
+            XCTAssert(model.vertices[1] == -1.0)
+            XCTAssert(model.vertices[2] == 1.0)
+            XCTAssert(model.vertices[3] == -1.0)
+            XCTAssert(model.normals[0] == -0.0)
+            XCTAssert(model.normals[1] == -1.0)
+            XCTAssert(model.normals[2] == 0.0)
+            XCTAssert(model.normals[4] == 1.0)
+            XCTAssert(model.faces[0] == 2)
+            XCTAssert(model.faces[1] == 4)
+            XCTAssert(model.faces[2] == 1)
+            XCTAssert(model.faces[3] == 8)
         } catch {
             print("There was a problem: \(error)");
+            XCTAssert(false)
         }
     }
     
