@@ -91,13 +91,13 @@ public class ModelReader {
         var dec = Int(0.0)
         var vals = [GLint]()
         sc.scanInt(&dec)
-        vals.append(GLint(dec))
+        vals.append(GLint(dec - 1))
         sc.scanInt(nil)
         sc.scanInt(&dec)
-        vals.append(GLint(dec))
+        vals.append(GLint(dec - 1))
         sc.scanInt(nil)
         sc.scanInt(&dec)
-        vals.append(GLint(dec))
+        vals.append(GLint(dec - 1))
         return vals
     }
 }

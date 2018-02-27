@@ -8,6 +8,8 @@
 
 import GLKit
 
+// The pure model data.
+// Should only be created once if multiple objects use the same model
 public class Model {
     public var vertices: [GLfloat]
     public var normals: [GLfloat]

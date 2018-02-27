@@ -19,17 +19,19 @@ void main()
         v_color = color;
         v_normal = vec3(0, 0, 0);
     } else if (shadeInFrag) {
+        v_color = color;
         v_normal = normal;
     } else {
         // Diffuse shading
         vec3 eyeNormal = normalize(normalMatrix * normal);
         vec3 lightPosition = vec3(0.0, 0.0, 1.0);
-        vec4 diffuseColor = vec4(0.0, 1.0, 0.0, 1.0);
+        vec4 diffuseColor = color;
         
         float nDotVP = max(0.0, dot(eyeNormal, normalize(lightPosition)));
         
-        v_color = diffuseColor * nDotVP;
+        v_color = diffuseColor;
     }
-
+    
     gl_Position = modelViewProjectionMatrix * position;
 }
+
