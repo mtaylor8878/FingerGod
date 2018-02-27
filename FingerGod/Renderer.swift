@@ -9,6 +9,8 @@ import GLKit
 
 
 public class Renderer {
+    public static let perspectiveMatrix = GLKMatrix4MakePerspective(Float(60.0 * Double.pi / 180.0), Float(view.drawableWidth) / Float(view.drawableHeight), 1.0, 20.0)
+    
     private struct UniformContainer {
         var mvp: GLint!
         var normal: GLint!
@@ -20,6 +22,7 @@ public class Renderer {
     private static var program: GLuint!
     
     private static var modelInstances = [ModelInstance]()
+    
     public static func setup(view: GLKView) {
         let context = EAGLContext.init(api: EAGLRenderingAPI.openGLES3)
         if context == nil {
@@ -102,8 +105,6 @@ public class Renderer {
     public static func draw(drawRect: CGRect) {
         // We do this in multiple draw calls for now
         // Eventually it may be a good idea to make less draw calls
-        
-        let perspectiveMatrix = GLKMatrix4MakePerspective(Float(60.0 * Double.pi / 180.0), Float(view.drawableWidth) / Float(view.drawableHeight), 1.0, 20.0)
         
         for inst in modelInstances {
             var mvpMatrix = inst.transform
