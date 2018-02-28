@@ -11,11 +11,12 @@ import Foundation
 public class FingerGodGame : Game {
     public override func onGameStart() {
         super.onGameStart()
-        let sampleObj = GameObject(id: 0)
+        let map = GameObject(id: 0)
         
-        sampleObj.addComponent(type: RotatingCubeComponent.self)
-        self.addGameObject(gameObject: sampleObj)
+        map.addComponent(type: MapComponent.self)
+        self.addGameObject(gameObject: map)
         
-        Renderer.camera.move(x: 0, y: 0, z: 5)
+        Renderer.camera.move(x: 10, y: 20, z: -10)
+        Renderer.camera.rotate(angle: -Float.pi * 2 / 6, x: 1, y: 0, z: 0)
     }
 }
