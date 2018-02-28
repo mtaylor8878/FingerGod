@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2338D49E203B8DAF009F353A /* Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2338D49D203B8DAF009F353A /* Hex.swift */; };
-		2338D4A0203B90E7009F353A /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2338D49F203B90E7009F353A /* Map.swift */; };
 		233D7436203DF7EB0050CFAB /* FingerGodHexTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233D7435203DF7EB0050CFAB /* FingerGodHexTest.swift */; };
+		23655FE720455D5C00B9C304 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23655FE320455D5C00B9C304 /* Tile.swift */; };
+		23655FE820455D5C00B9C304 /* TileMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23655FE420455D5C00B9C304 /* TileMap.swift */; };
+		23655FEA2046166000B9C304 /* TileMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23655FE420455D5C00B9C304 /* TileMap.swift */; };
+		23655FEB2046166700B9C304 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23655FE320455D5C00B9C304 /* Tile.swift */; };
 		3DDB59432035F39C0000E0C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB59422035F39C0000E0C4 /* AppDelegate.swift */; };
 		3DDB59452035F39C0000E0C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB59442035F39C0000E0C4 /* ViewController.swift */; };
 		3DDB59482035F39C0000E0C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DDB59462035F39C0000E0C4 /* Main.storyboard */; };
@@ -44,10 +46,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2338D49D203B8DAF009F353A /* Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hex.swift; sourceTree = "<group>"; };
-		2338D49F203B90E7009F353A /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		233D7432203DF7A70050CFAB /* FingerGodTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FingerGodTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		233D7435203DF7EB0050CFAB /* FingerGodHexTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodHexTest.swift; sourceTree = "<group>"; };
+		23655FE320455D5C00B9C304 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
+		23655FE420455D5C00B9C304 /* TileMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileMap.swift; sourceTree = "<group>"; };
 		3DDB593F2035F39C0000E0C4 /* FingerGod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FingerGod.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DDB59422035F39C0000E0C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3DDB59442035F39C0000E0C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -95,14 +97,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2338D49C203B8D80009F353A /* TileSystem */ = {
+		23655FE120455D1F00B9C304 /* TileSystem */ = {
 			isa = PBXGroup;
 			children = (
-				2338D49D203B8DAF009F353A /* Hex.swift */,
-				2338D49F203B90E7009F353A /* Map.swift */,
+				23655FE320455D5C00B9C304 /* Tile.swift */,
+				23655FE420455D5C00B9C304 /* TileMap.swift */,
 			);
-			name = TileSystem;
-			path = "New Group";
+			path = TileSystem;
 			sourceTree = "<group>";
 		};
 		3DDB59362035F39C0000E0C4 = {
@@ -128,7 +129,7 @@
 		3DDB59412035F39C0000E0C4 /* FingerGod */ = {
 			isa = PBXGroup;
 			children = (
-				2338D49C203B8D80009F353A /* TileSystem */,
+				23655FE120455D1F00B9C304 /* TileSystem */,
 				3DDB59422035F39C0000E0C4 /* AppDelegate.swift */,
 				3DDB59442035F39C0000E0C4 /* ViewController.swift */,
 				3DDB59462035F39C0000E0C4 /* Main.storyboard */,
@@ -310,14 +311,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DDB59452035F39C0000E0C4 /* ViewController.swift in Sources */,
-				2338D4A0203B90E7009F353A /* Map.swift in Sources */,
 				992762DD2036BA0200C73599 /* Component.swift in Sources */,
+				23655FE720455D5C00B9C304 /* Tile.swift in Sources */,
+				23655FE820455D5C00B9C304 /* TileMap.swift in Sources */,
 				992762D72036B4BD00C73599 /* Game.swift in Sources */,
 				C9F4135E203AC2DC001C56E1 /* Subscriber.swift in Sources */,
 				C9F41360203ACFFC001C56E1 /* EventDispatcher.swift in Sources */,
 				3DDB59432035F39C0000E0C4 /* AppDelegate.swift in Sources */,
 				992762DB2036B9DD00C73599 /* GameObject.swift in Sources */,
-				2338D49E203B8DAF009F353A /* Hex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,8 +326,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23655FEA2046166000B9C304 /* TileMap.swift in Sources */,
 				992762E52036E57200C73599 /* FingerGodGameObjectTest.swift in Sources */,
 				992762E32036D17A00C73599 /* CounterComponent.swift in Sources */,
+				23655FEB2046166700B9C304 /* Tile.swift in Sources */,
 				3DDB59582035F39C0000E0C4 /* FingerGodTests.swift in Sources */,
 				233D7436203DF7EB0050CFAB /* FingerGodHexTest.swift in Sources */,
 			);

@@ -1,31 +1,28 @@
 //
-//  Map.swift
+//  HexMap.swift
 //  FingerGod
 //
-//  Created by Niko Lauron on 2018-02-19.
+//  Created by Niko Lauron on 2018-02-24.
 //  Copyright © 2018 Ramen Interactive. All rights reserved.
 //
 
 import Foundation
 
-/*
- The group of tiles making up the world
- */
-public class Map {
-    
+public class HexMap {
+
     //Number of columns
     var mapWidth : Int
     //Number of Rows
     var mapHeight : Int
-    
+
     /*
      Initialize the map
-    */
-    public init (mapWidth:Int, mapHeight:Int) {
+     */
+    public init (_ mapWidth:Int,_ mapHeight:Int) {
         self.mapWidth = mapWidth
         self.mapHeight = mapHeight
     }
-    
+
     /*
      Creates the array of hexes and their coordinates
      */
