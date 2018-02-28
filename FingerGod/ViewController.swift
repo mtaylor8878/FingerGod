@@ -12,6 +12,7 @@ import GLKit
 class ViewController: GLKViewController {
 
     private var i : ModelInstance!
+    private var i2 : ModelInstance!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -19,15 +20,16 @@ class ViewController: GLKViewController {
         
         do {
             let m = try ModelReader.read(objPath: "HexTile")
-            i = ModelInstance(model: m)
             
-            i.transform = GLKMatrix4Translate(i.transform, 0, 0, -5.0)
+            i = ModelInstance(model: m)
             i.color = [0.2, 0.95, 0.55, 1.0]
             
             Renderer.addInstance(inst: i)
+            
+            Renderer.camera.move(x: 0, y: 0, z: 5)
         }
         catch {
-            
+            print("Error info: \(error)")
         }
     }
 
