@@ -16,7 +16,6 @@ public class RotatingCubeComponent : Component {
             let model = try ModelReader.read(objPath: "CubeModel")
             modelInst = ModelInstance(model: model)
             modelInst.color = [0.8, 0.1, 0.0, 1.0]
-            modelInst.transform = GLKMatrix4Translate(modelInst.transform, 0, 0, -5)
             Renderer.addInstance(inst: modelInst)
         } catch {
             print("There was a problem: \(error)")

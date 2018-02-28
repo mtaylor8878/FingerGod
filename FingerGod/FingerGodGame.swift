@@ -15,5 +15,7 @@ public class FingerGodGame : Game {
         
         sampleObj.addComponent(type: RotatingCubeComponent.self)
         self.addGameObject(gameObject: sampleObj)
+        
+        Renderer.camera.move(x: 0, y: 0, z: 5)
     }
 }
