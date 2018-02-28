@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2338D49E203B8DAF009F353A /* Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2338D49D203B8DAF009F353A /* Hex.swift */; };
+		2338D4A0203B90E7009F353A /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2338D49F203B90E7009F353A /* Map.swift */; };
 		233D7436203DF7EB0050CFAB /* FingerGodHexTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233D7435203DF7EB0050CFAB /* FingerGodHexTest.swift */; };
-		236536732046A5C400E382CA /* TileSystem in Resources */ = {isa = PBXBuildFile; fileRef = 236536722046A5C400E382CA /* TileSystem */; };
 		3D0DA07E203DF45A0050F708 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DA07D203DF45A0050F708 /* Renderer.swift */; };
 		3D0DA0A0203E16870050F708 /* FingerGodModelLoadingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DA09F203E16870050F708 /* FingerGodModelLoadingTests.swift */; };
 		3D0DA0B3203E1C560050F708 /* CubeModel.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3D0DA0B1203E1C550050F708 /* CubeModel.mtl */; };
@@ -78,9 +79,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2338D49D203B8DAF009F353A /* Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hex.swift; sourceTree = "<group>"; };
+		2338D49F203B90E7009F353A /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		233D7432203DF7A70050CFAB /* FingerGodTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FingerGodTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		233D7435203DF7EB0050CFAB /* FingerGodHexTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodHexTest.swift; sourceTree = "<group>"; };
-		236536722046A5C400E382CA /* TileSystem */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TileSystem; sourceTree = "<group>"; };
 		3D0DA07D203DF45A0050F708 /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		3D0DA07F203DF46D0050F708 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		3D0DA085203DF50C0050F708 /* FingerGodHexText.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FingerGodHexText.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +156,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2338D49C203B8D80009F353A /* TileSystem */ = {
+			isa = PBXGroup;
+			children = (
+				2338D49D203B8DAF009F353A /* Hex.swift */,
+				2338D49F203B90E7009F353A /* Map.swift */,
+			);
+			name = TileSystem;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		3D0DA0B0203E1C3F0050F708 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,9 +205,9 @@
 			isa = PBXGroup;
 			children = (
 				99ED16CB2046912200827958 /* RotatingCubeComponent.swift */,
-				236536722046A5C400E382CA /* TileSystem */,
 				99ED16C92046909300827958 /* FingerGodGame.swift */,
 				3D0DA0B0203E1C3F0050F708 /* Assets */,
+				2338D49C203B8D80009F353A /* TileSystem */,
 				3DDB59422035F39C0000E0C4 /* AppDelegate.swift */,
 				3DDB59442035F39C0000E0C4 /* ViewController.swift */,
 				3DDB59462035F39C0000E0C4 /* Main.storyboard */,
@@ -398,7 +410,6 @@
 				3D0DA0BB203E1C5D0050F708 /* HexTile.mtl in Resources */,
 				3D0DA0B6203E1C560050F708 /* CubeModel.obj in Resources */,
 				3DDB594D2035F39C0000E0C4 /* LaunchScreen.storyboard in Resources */,
-				236536732046A5C400E382CA /* TileSystem in Resources */,
 				9993129A2046418C00835BA3 /* teapot.obj in Resources */,
 				3DDB594A2035F39C0000E0C4 /* Assets.xcassets in Resources */,
 				999312972046367C00835BA3 /* Sphere.mtl in Resources */,
@@ -445,6 +456,7 @@
 				99E70623204515530095BA58 /* ModelInstance.swift in Sources */,
 				3DDB59452035F39C0000E0C4 /* ViewController.swift in Sources */,
 				990EFF3920427EDB002FEBED /* EventDispatcher.swift in Sources */,
+				2338D4A0203B90E7009F353A /* Map.swift in Sources */,
 				99ED16CC2046912200827958 /* RotatingCubeComponent.swift in Sources */,
 				992762DD2036BA0200C73599 /* Component.swift in Sources */,
 				99ED16CA2046909300827958 /* FingerGodGame.swift in Sources */,
@@ -455,6 +467,7 @@
 				3DDB59432035F39C0000E0C4 /* AppDelegate.swift in Sources */,
 				992762DB2036B9DD00C73599 /* GameObject.swift in Sources */,
 				3D0DA07E203DF45A0050F708 /* Renderer.swift in Sources */,
+				2338D49E203B8DAF009F353A /* Hex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
