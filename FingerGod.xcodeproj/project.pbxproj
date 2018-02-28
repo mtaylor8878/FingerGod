@@ -46,7 +46,7 @@
 /* Begin PBXFileReference section */
 		233D7432203DF7A70050CFAB /* FingerGodTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FingerGodTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		233D7435203DF7EB0050CFAB /* FingerGodHexTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodHexTest.swift; sourceTree = "<group>"; };
-		23655FE320455D5C00B9C304 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
+		23655FE320455D5C00B9C304 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tile.swift; path = /Users/niko/Documents/FingerGod/FingerGod/TileSystem/Tile.swift; sourceTree = "<absolute>"; };
 		23655FE420455D5C00B9C304 /* TileMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileMap.swift; sourceTree = "<group>"; };
 		3DDB593F2035F39C0000E0C4 /* FingerGod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FingerGod.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DDB59422035F39C0000E0C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
