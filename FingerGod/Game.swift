@@ -25,6 +25,7 @@ public class Game {
      */
     public init() {
         mach_timebase_info(&timebaseInfo)
+        onGameStart()
     }
     
     /*
@@ -35,6 +36,13 @@ public class Game {
     public func addGameObject(gameObject: GameObject) {
         gameObjects.append(gameObject)
         gameObject.create()
+    }
+    
+    /*
+     Things to be called when the game starts
+    */
+    
+    public func onGameStart() {
     }
     
     /*
