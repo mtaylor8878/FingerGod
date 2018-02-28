@@ -21,6 +21,11 @@ public class Renderer {
         public var transform = GLKMatrix4Identity
         
         public func move(x: Float, y: Float, z: Float) {
+            let tmp = GLKMatrix4Translate(GLKMatrix4Identity, x, y, z)
+            transform = GLKMatrix4Multiply(tmp, transform)
+        }
+        
+        public func moveRelative(x: Float, y: Float, z: Float) {
             transform = GLKMatrix4Translate(transform, x, y, z)
         }
         
@@ -132,7 +137,7 @@ public class Renderer {
         
         glUseProgram(program)
         
-        camera.perspectiveMatrix = GLKMatrix4MakePerspective(Float(60.0 * Double.pi / 180.0), Float(view.drawableWidth) / Float(view.drawableHeight), 1.0, 60.0)
+        camera.perspectiveMatrix = GLKMatrix4MakePerspective(Float(60.0 * Double.pi / 180.0), Float(view.drawableWidth) / Float(view.drawableHeight), 1.0, 300.0)
         
         let cameraMatrix = GLKMatrix4Invert(camera.transform, nil)
         
