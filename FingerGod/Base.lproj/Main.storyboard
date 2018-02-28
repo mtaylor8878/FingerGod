@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4vd-Ob-t2V">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9An-x6-OXA">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--GLKit View Controller-->
-        <scene sceneID="KNB-ot-7KU">
+        <scene sceneID="uC3-Ru-uOE">
             <objects>
-                <glkViewController preferredFramesPerSecond="30" id="4vd-Ob-t2V" customClass="ViewController" customModule="FingerGod" customModuleProvider="target" sceneMemberID="viewController">
-                    <glkView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" id="Jmv-j7-HyH">
+                <glkViewController preferredFramesPerSecond="30" id="9An-x6-OXA" customClass="ViewController" customModule="FingerGod" customModuleProvider="target" sceneMemberID="viewController">
+                    <glkView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" id="1a0-17-BEc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="k7L-bc-qYR"/>
+                        <viewLayoutGuide key="safeArea" id="OoA-aJ-EoG"/>
                         <connections>
-                            <outlet property="delegate" destination="4vd-Ob-t2V" id="j2m-rv-gJU"/>
+                            <outlet property="delegate" destination="9An-x6-OXA" id="XlO-rs-MoQ"/>
                         </connections>
                     </glkView>
                 </glkViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aNF-nF-kfC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yij-me-Qqk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="84" y="274"/>
         </scene>
     </scenes>
 </document>
