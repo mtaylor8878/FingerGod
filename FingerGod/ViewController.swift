@@ -20,22 +20,16 @@ class ViewController: GLKViewController {
         
         do {
             let m = try ModelReader.read(objPath: "HexTile")
+            
             i = ModelInstance(model: m)
             
-            i.transform = GLKMatrix4Translate(i.transform, -1, 0, -5.0)
+            i.transform = GLKMatrix4Translate(i.transform, 0, 0, -5.0)
             i.color = [0.2, 0.95, 0.55, 1.0]
             
             Renderer.addInstance(inst: i)
-            
-            i2 = ModelInstance(model: m)
-
-            i2.transform = GLKMatrix4Translate(i2.transform, 1, 0, -5.0)
-            i2.color = [0.9, 0.4, 0.2, 1.0]
-            
-            Renderer.addInstance(inst: i2)
         }
         catch {
-            
+            print("Error info: \(error)")
         }
     }
 
@@ -49,7 +43,6 @@ class ViewController: GLKViewController {
     
     override func glkView(_ view: GLKView, drawIn rect: CGRect) {
         i.transform = GLKMatrix4Rotate(i.transform, Float.pi / 100, 1, 0, 0)
-        i2.transform = GLKMatrix4Rotate(i2.transform, Float.pi / 100, -1, 0, 0)
         Renderer.draw(drawRect: rect)
     }
 
