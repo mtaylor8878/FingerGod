@@ -106,6 +106,13 @@ public class Renderer {
         // We do this in multiple draw calls for now
         // Eventually it may be a good idea to make less draw calls
         
+        glViewport(0, 0, GLsizei(view.drawableWidth), GLsizei(view.drawableHeight))
+        
+        glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT))
+        
+        glUseProgram(program)
+        
+        
         for inst in modelInstances {
             var mvpMatrix = inst.transform
             var normMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(mvpMatrix), nil)
@@ -120,13 +127,6 @@ public class Renderer {
             
             glUniform1i(uniforms.pass, GL_FALSE)
             glUniform1i(uniforms.shade, GL_TRUE)
-            
-            glViewport(0, 0, GLsizei(view.drawableWidth), GLsizei(view.drawableHeight))
-            
-            glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT))
-            
-            glUseProgram(program)
-            
             glVertexAttribPointer(0, 3, GLenum(GL_FLOAT), GLboolean(GL_FALSE), GLsizei(3 * MemoryLayout<GLfloat>.size), vertices)
             glEnableVertexAttribArray(0)
             
