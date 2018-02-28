@@ -21,4 +21,17 @@ class FingerGodHexTest: XCTestCase {
         super.tearDown()
     }
     
+    func testMapCreate() {
+        var count = 0
+        let width = 10
+        let height = 10
+        
+        let map = TileMap(width, height, 3)
+        
+        for _ in map.getTiles() {
+            count += 1
+        }
+        
+        XCTAssert(count == 100)
+    }
 }
