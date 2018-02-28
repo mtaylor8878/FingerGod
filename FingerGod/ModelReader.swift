@@ -20,19 +20,19 @@ public class ModelReader {
         }
         let objFile = try String(contentsOfFile: path!, encoding: String.Encoding.utf8)
         
-        var vertices = [GLfloat]()
-        var normals = [GLfloat]()
+        var baseVertices = [GLfloat]()
+        var faceNormals = [GLfloat]()
         var texels = [GLfloat]()
-        var faces = [GLint]()
+        var faces = [[Int]]()
 
         objFile.enumerateLines { line, _ in
             switch (line.prefix(2)) {
             case "v ":
-                vertices += parseVertex(line: line)
+                baseVertices += parseVertex(line: line)
             case "vt":
                 texels += parseTexel(line: line)
             case "vn":
-                normals += parseNormal(line: line)
+                faceNormals += parseNormal(line: line)
             case "f ":
                 faces += parseFace(line: line)
             default:
@@ -40,7 +40,31 @@ public class ModelReader {
             }
         }
         
-        return Model(vertices: vertices, normals: normals, texels: texels, faces: faces)
+        // Now that we have the data from the file, we need to convert it into a format OpenGL can use
+        // Basically, this just involves duplicating vertices that have multiple normals
+        
+        var vertices = [GLfloat]()
+        var normals = [GLfloat]()
+        var indices = [GLint]()
+        
+        var indexDictionary = [String:Int]()
+        for f in faces {
+            let txt = String("\(f[0])/\(f[1])")
+            if (indexDictionary[txt] == nil) {
+                // This vertex-normal pair has never been used before, so make the vertex and put it in the dictionary
+                let ind = vertices.count / 3
+                vertices.append(baseVertices[f[0] * 3])
+                vertices.append(baseVertices[f[0] * 3 + 1])
+                vertices.append(baseVertices[f[0] * 3 + 2])
+                normals.append(faceNormals[f[1] * 3])
+                normals.append(faceNormals[f[1] * 3 + 1])
+                normals.append(faceNormals[f[1] * 3 + 2])
+                indexDictionary[txt] = ind
+            }
+            indices.append(GLint(indexDictionary[txt]!))
+        }
+        
+        return Model(vertices: vertices, normals: normals, texels: texels, faces: indices)
     }
     
     private static func parseVertex(line: String) -> [GLfloat] {
@@ -85,19 +109,21 @@ public class ModelReader {
         return vals;
     }
     
-    private static func parseFace(line: String) -> [GLint] {
+    private static func parseFace(line: String) -> [[Int]] {
         let sc = Scanner(string: line)
         sc.charactersToBeSkipped = CharacterSet(charactersIn: "f/ ")
-        var dec = Int(0.0)
-        var vals = [GLint]()
-        sc.scanInt(&dec)
-        vals.append(GLint(dec - 1))
-        sc.scanInt(nil)
-        sc.scanInt(&dec)
-        vals.append(GLint(dec - 1))
-        sc.scanInt(nil)
-        sc.scanInt(&dec)
-        vals.append(GLint(dec - 1))
+        var vec = Int(0.0)
+        var nor = Int(0.0)
+        var vals = [[Int]]()
+        sc.scanInt(&vec)
+        sc.scanInt(&nor)
+        vals.append([vec - 1, nor - 1])
+        sc.scanInt(&vec)
+        sc.scanInt(&nor)
+        vals.append([vec - 1, nor - 1])
+        sc.scanInt(&vec)
+        sc.scanInt(&nor)
+        vals.append([vec - 1, nor - 1])
         return vals
     }
 }

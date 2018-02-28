@@ -12,16 +12,15 @@ import GLKit
 
 class ViewController: GLKViewController {
     
-    private var i : ModelInstance!
-    private var i2 : ModelInstance!
-    
     private var game : Game!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         Renderer.setup(view: self.view as! GLKView)
+
         game = FingerGodGame()
+
     }
     
     override func didReceiveMemoryWarning() {

@@ -42,6 +42,9 @@
 		992762E32036D17A00C73599 /* CounterComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992762E22036D17A00C73599 /* CounterComponent.swift */; };
 		992762E52036E57200C73599 /* FingerGodGameObjectTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992762E42036E57200C73599 /* FingerGodGameObjectTest.swift */; };
 		993F14532046935B00AF5BFB /* FingerGodModelLoadingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DA09D203E164D0050F708 /* FingerGodModelLoadingTests.swift */; };
+		999312972046367C00835BA3 /* Sphere.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 999312952046367B00835BA3 /* Sphere.mtl */; };
+		999312982046367C00835BA3 /* Sphere.obj in Resources */ = {isa = PBXBuildFile; fileRef = 999312962046367C00835BA3 /* Sphere.obj */; };
+		9993129A2046418C00835BA3 /* teapot.obj in Resources */ = {isa = PBXBuildFile; fileRef = 999312992046418C00835BA3 /* teapot.obj */; };
 		99AACA2F2044FB23001262D0 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 99AACA2E2044FB23001262D0 /* Shader.vsh */; };
 		99AACA312044FB43001262D0 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 99AACA302044FB42001262D0 /* Shader.fsh */; };
 		99E70623204515530095BA58 /* ModelInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E70622204515530095BA58 /* ModelInstance.swift */; };
@@ -108,6 +111,9 @@
 		992762DC2036BA0200C73599 /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 		992762E22036D17A00C73599 /* CounterComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterComponent.swift; sourceTree = "<group>"; };
 		992762E42036E57200C73599 /* FingerGodGameObjectTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodGameObjectTest.swift; sourceTree = "<group>"; };
+		999312952046367B00835BA3 /* Sphere.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Sphere.mtl; sourceTree = "<group>"; };
+		999312962046367C00835BA3 /* Sphere.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Sphere.obj; sourceTree = "<group>"; };
+		999312992046418C00835BA3 /* teapot.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = teapot.obj; sourceTree = "<group>"; };
 		99AACA2E2044FB23001262D0 /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
 		99AACA302044FB42001262D0 /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
 		99E70622204515530095BA58 /* ModelInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelInstance.swift; sourceTree = "<group>"; };
@@ -163,8 +169,11 @@
 		3D0DA0B0203E1C3F0050F708 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				999312952046367B00835BA3 /* Sphere.mtl */,
+				999312962046367C00835BA3 /* Sphere.obj */,
 				3D0DA0B9203E1C5D0050F708 /* HexTile.mtl */,
 				3D0DA0BA203E1C5D0050F708 /* HexTile.obj */,
+				999312992046418C00835BA3 /* teapot.obj */,
 				3D0DA0B1203E1C550050F708 /* CubeModel.mtl */,
 				3D0DA0B2203E1C560050F708 /* CubeModel.obj */,
 			);
@@ -209,8 +218,8 @@
 				99AACA2E2044FB23001262D0 /* Shader.vsh */,
 				99AACA302044FB42001262D0 /* Shader.fsh */,
 				992762DA2036B9DD00C73599 /* GameObject.swift */,
-				3D0DA07D203DF45A0050F708 /* Renderer.swift */,
 				C9F4135D203AC2DC001C56E1 /* Subscriber.swift */,
+				3D0DA07D203DF45A0050F708 /* Renderer.swift */,
 				992762DC2036BA0200C73599 /* Component.swift */,
 				3D0DA07F203DF46D0050F708 /* Model.swift */,
 				C9F4135F203ACFFC001C56E1 /* EventDispatcher.swift */,
@@ -396,11 +405,14 @@
 				99AACA312044FB43001262D0 /* Shader.fsh in Resources */,
 				99AACA2F2044FB23001262D0 /* Shader.vsh in Resources */,
 				3D0DA0BE203E1C5D0050F708 /* HexTile.obj in Resources */,
+				999312982046367C00835BA3 /* Sphere.obj in Resources */,
 				3D0DA0B3203E1C560050F708 /* CubeModel.mtl in Resources */,
 				3D0DA0BB203E1C5D0050F708 /* HexTile.mtl in Resources */,
 				3D0DA0B6203E1C560050F708 /* CubeModel.obj in Resources */,
 				3DDB594D2035F39C0000E0C4 /* LaunchScreen.storyboard in Resources */,
+				9993129A2046418C00835BA3 /* teapot.obj in Resources */,
 				3DDB594A2035F39C0000E0C4 /* Assets.xcassets in Resources */,
+				999312972046367C00835BA3 /* Sphere.mtl in Resources */,
 				3DDB59482035F39C0000E0C4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

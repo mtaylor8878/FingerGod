@@ -24,14 +24,13 @@ void main()
     } else {
         // Diffuse shading
         vec3 eyeNormal = normalize(normalMatrix * normal);
-        vec3 lightPosition = vec3(0.0, 0.0, 1.0);
+        vec3 lightPosition = vec3(0.0, 1.0, 1.0);
         vec4 diffuseColor = color;
         
         float nDotVP = max(0.0, dot(eyeNormal, normalize(lightPosition)));
         
-        v_color = diffuseColor;
+        v_color = diffuseColor * nDotVP;
     }
     
     gl_Position = modelViewProjectionMatrix * position;
 }
-
