@@ -7,11 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2338D49E203B8DAF009F353A /* Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2338D49D203B8DAF009F353A /* Hex.swift */; };
+		2338D4A0203B90E7009F353A /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2338D49F203B90E7009F353A /* Map.swift */; };
 		233D7436203DF7EB0050CFAB /* FingerGodHexTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233D7435203DF7EB0050CFAB /* FingerGodHexTest.swift */; };
-		23655FE720455D5C00B9C304 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23655FE320455D5C00B9C304 /* Tile.swift */; };
-		23655FE820455D5C00B9C304 /* TileMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23655FE420455D5C00B9C304 /* TileMap.swift */; };
-		23655FEA2046166000B9C304 /* TileMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23655FE420455D5C00B9C304 /* TileMap.swift */; };
-		23655FEB2046166700B9C304 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23655FE320455D5C00B9C304 /* Tile.swift */; };
+		3D0DA07E203DF45A0050F708 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DA07D203DF45A0050F708 /* Renderer.swift */; };
+		3D0DA0A0203E16870050F708 /* FingerGodModelLoadingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DA09F203E16870050F708 /* FingerGodModelLoadingTests.swift */; };
+		3D0DA0B3203E1C560050F708 /* CubeModel.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3D0DA0B1203E1C550050F708 /* CubeModel.mtl */; };
+		3D0DA0B4203E1C560050F708 /* CubeModel.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3D0DA0B1203E1C550050F708 /* CubeModel.mtl */; };
+		3D0DA0B5203E1C560050F708 /* CubeModel.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3D0DA0B1203E1C550050F708 /* CubeModel.mtl */; };
+		3D0DA0B6203E1C560050F708 /* CubeModel.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3D0DA0B2203E1C560050F708 /* CubeModel.obj */; };
+		3D0DA0B7203E1C560050F708 /* CubeModel.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3D0DA0B2203E1C560050F708 /* CubeModel.obj */; };
+		3D0DA0B8203E1C560050F708 /* CubeModel.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3D0DA0B2203E1C560050F708 /* CubeModel.obj */; };
+		3D0DA0BB203E1C5D0050F708 /* HexTile.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3D0DA0B9203E1C5D0050F708 /* HexTile.mtl */; };
+		3D0DA0BC203E1C5D0050F708 /* HexTile.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3D0DA0B9203E1C5D0050F708 /* HexTile.mtl */; };
+		3D0DA0BD203E1C5D0050F708 /* HexTile.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 3D0DA0B9203E1C5D0050F708 /* HexTile.mtl */; };
+		3D0DA0BE203E1C5D0050F708 /* HexTile.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3D0DA0BA203E1C5D0050F708 /* HexTile.obj */; };
+		3D0DA0BF203E1C5D0050F708 /* HexTile.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3D0DA0BA203E1C5D0050F708 /* HexTile.obj */; };
+		3D0DA0C0203E1C5D0050F708 /* HexTile.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3D0DA0BA203E1C5D0050F708 /* HexTile.obj */; };
 		3DDB59432035F39C0000E0C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB59422035F39C0000E0C4 /* AppDelegate.swift */; };
 		3DDB59452035F39C0000E0C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB59442035F39C0000E0C4 /* ViewController.swift */; };
 		3DDB59482035F39C0000E0C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DDB59462035F39C0000E0C4 /* Main.storyboard */; };
@@ -19,14 +31,37 @@
 		3DDB594D2035F39C0000E0C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DDB594B2035F39C0000E0C4 /* LaunchScreen.storyboard */; };
 		3DDB59582035F39C0000E0C4 /* FingerGodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB59572035F39C0000E0C4 /* FingerGodTests.swift */; };
 		3DDB59632035F39C0000E0C4 /* FingerGodUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB59622035F39C0000E0C4 /* FingerGodUITests.swift */; };
+		990EFF3120427EA4002FEBED /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DA07F203DF46D0050F708 /* Model.swift */; };
+		990EFF3520427EB0002FEBED /* ModelReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DA091203DFD240050F708 /* ModelReader.swift */; };
+		990EFF3720427EB2002FEBED /* ModelReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DA091203DFD240050F708 /* ModelReader.swift */; };
+		990EFF3820427EB7002FEBED /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DA07F203DF46D0050F708 /* Model.swift */; };
+		990EFF3920427EDB002FEBED /* EventDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F4135F203ACFFC001C56E1 /* EventDispatcher.swift */; };
 		992762D72036B4BD00C73599 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992762D62036B4BD00C73599 /* Game.swift */; };
 		992762DB2036B9DD00C73599 /* GameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992762DA2036B9DD00C73599 /* GameObject.swift */; };
 		992762DD2036BA0200C73599 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992762DC2036BA0200C73599 /* Component.swift */; };
 		992762E32036D17A00C73599 /* CounterComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992762E22036D17A00C73599 /* CounterComponent.swift */; };
 		992762E52036E57200C73599 /* FingerGodGameObjectTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992762E42036E57200C73599 /* FingerGodGameObjectTest.swift */; };
+		993F14532046935B00AF5BFB /* FingerGodModelLoadingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DA09D203E164D0050F708 /* FingerGodModelLoadingTests.swift */; };
+		999312972046367C00835BA3 /* Sphere.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 999312952046367B00835BA3 /* Sphere.mtl */; };
+		999312982046367C00835BA3 /* Sphere.obj in Resources */ = {isa = PBXBuildFile; fileRef = 999312962046367C00835BA3 /* Sphere.obj */; };
+		9993129A2046418C00835BA3 /* teapot.obj in Resources */ = {isa = PBXBuildFile; fileRef = 999312992046418C00835BA3 /* teapot.obj */; };
+		99AACA2F2044FB23001262D0 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 99AACA2E2044FB23001262D0 /* Shader.vsh */; };
+		99AACA312044FB43001262D0 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 99AACA302044FB42001262D0 /* Shader.fsh */; };
+		99E70623204515530095BA58 /* ModelInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E70622204515530095BA58 /* ModelInstance.swift */; };
+		99ED16CA2046909300827958 /* FingerGodGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED16C92046909300827958 /* FingerGodGame.swift */; };
+		99ED16CC2046912200827958 /* RotatingCubeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED16CB2046912200827958 /* RotatingCubeComponent.swift */; };
+		C98438662046162A00321700 /* FingerGodMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98438652046162A00321700 /* FingerGodMessageTests.swift */; };
+		C9F4135E203AC2DC001C56E1 /* Subscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F4135D203AC2DC001C56E1 /* Subscriber.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3D0DA08A203DF50C0050F708 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3DDB59372035F39C0000E0C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3DDB593E2035F39C0000E0C4;
+			remoteInfo = FingerGod;
+		};
 		3DDB59542035F39C0000E0C4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3DDB59372035F39C0000E0C4 /* Project object */;
@@ -44,10 +79,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2338D49D203B8DAF009F353A /* Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hex.swift; sourceTree = "<group>"; };
+		2338D49F203B90E7009F353A /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		233D7432203DF7A70050CFAB /* FingerGodTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FingerGodTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		233D7435203DF7EB0050CFAB /* FingerGodHexTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodHexTest.swift; sourceTree = "<group>"; };
-		23655FE320455D5C00B9C304 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tile.swift; path = /Users/niko/Documents/FingerGod/FingerGod/TileSystem/Tile.swift; sourceTree = "<absolute>"; };
-		23655FE420455D5C00B9C304 /* TileMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileMap.swift; sourceTree = "<group>"; };
+		3D0DA07D203DF45A0050F708 /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
+		3D0DA07F203DF46D0050F708 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		3D0DA085203DF50C0050F708 /* FingerGodHexText.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FingerGodHexText.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D0DA091203DFD240050F708 /* ModelReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelReader.swift; sourceTree = "<group>"; };
+		3D0DA09D203E164D0050F708 /* FingerGodModelLoadingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FingerGodModelLoadingTests.swift; path = ../FingerGodModelLoadingTests.swift; sourceTree = "<group>"; };
+		3D0DA09F203E16870050F708 /* FingerGodModelLoadingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodModelLoadingTests.swift; sourceTree = "<group>"; };
+		3D0DA0B1203E1C550050F708 /* CubeModel.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CubeModel.mtl; sourceTree = SOURCE_ROOT; };
+		3D0DA0B2203E1C560050F708 /* CubeModel.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CubeModel.obj; sourceTree = SOURCE_ROOT; };
+		3D0DA0B9203E1C5D0050F708 /* HexTile.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HexTile.mtl; sourceTree = SOURCE_ROOT; };
+		3D0DA0BA203E1C5D0050F708 /* HexTile.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HexTile.obj; sourceTree = SOURCE_ROOT; };
 		3DDB593F2035F39C0000E0C4 /* FingerGod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FingerGod.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DDB59422035F39C0000E0C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3DDB59442035F39C0000E0C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,9 +111,27 @@
 		992762DC2036BA0200C73599 /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 		992762E22036D17A00C73599 /* CounterComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterComponent.swift; sourceTree = "<group>"; };
 		992762E42036E57200C73599 /* FingerGodGameObjectTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodGameObjectTest.swift; sourceTree = "<group>"; };
+		999312952046367B00835BA3 /* Sphere.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Sphere.mtl; sourceTree = "<group>"; };
+		999312962046367C00835BA3 /* Sphere.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Sphere.obj; sourceTree = "<group>"; };
+		999312992046418C00835BA3 /* teapot.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = teapot.obj; sourceTree = "<group>"; };
+		99AACA2E2044FB23001262D0 /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
+		99AACA302044FB42001262D0 /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
+		99E70622204515530095BA58 /* ModelInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelInstance.swift; sourceTree = "<group>"; };
+		99ED16C92046909300827958 /* FingerGodGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodGame.swift; sourceTree = "<group>"; };
+		99ED16CB2046912200827958 /* RotatingCubeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotatingCubeComponent.swift; sourceTree = "<group>"; };
+		C98438652046162A00321700 /* FingerGodMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodMessageTests.swift; sourceTree = "<group>"; };
+		C9F4135D203AC2DC001C56E1 /* Subscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscriber.swift; sourceTree = "<group>"; };
+		C9F4135F203ACFFC001C56E1 /* EventDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDispatcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3D0DA082203DF50C0050F708 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3DDB593C2035F39C0000E0C4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -93,13 +156,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		23655FE120455D1F00B9C304 /* TileSystem */ = {
+		2338D49C203B8D80009F353A /* TileSystem */ = {
 			isa = PBXGroup;
 			children = (
-				23655FE320455D5C00B9C304 /* Tile.swift */,
-				23655FE420455D5C00B9C304 /* TileMap.swift */,
+				2338D49D203B8DAF009F353A /* Hex.swift */,
+				2338D49F203B90E7009F353A /* Map.swift */,
 			);
-			path = TileSystem;
+			name = TileSystem;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		3D0DA0B0203E1C3F0050F708 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				999312952046367B00835BA3 /* Sphere.mtl */,
+				999312962046367C00835BA3 /* Sphere.obj */,
+				3D0DA0B9203E1C5D0050F708 /* HexTile.mtl */,
+				3D0DA0BA203E1C5D0050F708 /* HexTile.obj */,
+				999312992046418C00835BA3 /* teapot.obj */,
+				3D0DA0B1203E1C550050F708 /* CubeModel.mtl */,
+				3D0DA0B2203E1C560050F708 /* CubeModel.obj */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		3DDB59362035F39C0000E0C4 = {
@@ -118,6 +196,7 @@
 				3DDB593F2035F39C0000E0C4 /* FingerGod.app */,
 				3DDB59532035F39C0000E0C4 /* FingerGodTests.xctest */,
 				3DDB595E2035F39C0000E0C4 /* FingerGodUITests.xctest */,
+				3D0DA085203DF50C0050F708 /* FingerGodHexText.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -125,7 +204,10 @@
 		3DDB59412035F39C0000E0C4 /* FingerGod */ = {
 			isa = PBXGroup;
 			children = (
-				23655FE120455D1F00B9C304 /* TileSystem */,
+				99ED16CB2046912200827958 /* RotatingCubeComponent.swift */,
+				99ED16C92046909300827958 /* FingerGodGame.swift */,
+				3D0DA0B0203E1C3F0050F708 /* Assets */,
+				2338D49C203B8D80009F353A /* TileSystem */,
 				3DDB59422035F39C0000E0C4 /* AppDelegate.swift */,
 				3DDB59442035F39C0000E0C4 /* ViewController.swift */,
 				3DDB59462035F39C0000E0C4 /* Main.storyboard */,
@@ -133,8 +215,16 @@
 				3DDB594B2035F39C0000E0C4 /* LaunchScreen.storyboard */,
 				3DDB594E2035F39C0000E0C4 /* Info.plist */,
 				992762D62036B4BD00C73599 /* Game.swift */,
+				99AACA2E2044FB23001262D0 /* Shader.vsh */,
+				99AACA302044FB42001262D0 /* Shader.fsh */,
 				992762DA2036B9DD00C73599 /* GameObject.swift */,
+				C9F4135D203AC2DC001C56E1 /* Subscriber.swift */,
+				3D0DA07D203DF45A0050F708 /* Renderer.swift */,
 				992762DC2036BA0200C73599 /* Component.swift */,
+				3D0DA07F203DF46D0050F708 /* Model.swift */,
+				C9F4135F203ACFFC001C56E1 /* EventDispatcher.swift */,
+				3D0DA091203DFD240050F708 /* ModelReader.swift */,
+				99E70622204515530095BA58 /* ModelInstance.swift */,
 			);
 			path = FingerGod;
 			sourceTree = "<group>";
@@ -142,12 +232,15 @@
 		3DDB59562035F39C0000E0C4 /* FingerGodTests */ = {
 			isa = PBXGroup;
 			children = (
+				3D0DA09F203E16870050F708 /* FingerGodModelLoadingTests.swift */,
+				3D0DA09D203E164D0050F708 /* FingerGodModelLoadingTests.swift */,
 				233D7435203DF7EB0050CFAB /* FingerGodHexTest.swift */,
 				992762E42036E57200C73599 /* FingerGodGameObjectTest.swift */,
 				992762E02036D15200C73599 /* TestClasses */,
 				3DDB59572035F39C0000E0C4 /* FingerGodTests.swift */,
 				3DDB59592035F39C0000E0C4 /* Info.plist */,
 				233D7432203DF7A70050CFAB /* FingerGodTests-Bridging-Header.h */,
+				C98438652046162A00321700 /* FingerGodMessageTests.swift */,
 			);
 			path = FingerGodTests;
 			sourceTree = "<group>";
@@ -172,6 +265,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3D0DA084203DF50C0050F708 /* FingerGodHexText */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D0DA08C203DF50C0050F708 /* Build configuration list for PBXNativeTarget "FingerGodHexText" */;
+			buildPhases = (
+				3D0DA081203DF50C0050F708 /* Sources */,
+				3D0DA082203DF50C0050F708 /* Frameworks */,
+				3D0DA083203DF50C0050F708 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3D0DA08B203DF50C0050F708 /* PBXTargetDependency */,
+			);
+			name = FingerGodHexText;
+			productName = FingerGodHexText;
+			productReference = 3D0DA085203DF50C0050F708 /* FingerGodHexText.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		3DDB593E2035F39C0000E0C4 /* FingerGod */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3DDB59672035F39C0000E0C4 /* Build configuration list for PBXNativeTarget "FingerGod" */;
@@ -235,6 +346,12 @@
 				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = "Ramen Interactive";
 				TargetAttributes = {
+					3D0DA084203DF50C0050F708 = {
+						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 0910;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3DDB593E2035F39C0000E0C4;
+					};
 					3DDB593E2035F39C0000E0C4 = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
@@ -268,17 +385,34 @@
 				3DDB593E2035F39C0000E0C4 /* FingerGod */,
 				3DDB59522035F39C0000E0C4 /* FingerGodTests */,
 				3DDB595D2035F39C0000E0C4 /* FingerGodUITests */,
+				3D0DA084203DF50C0050F708 /* FingerGodHexText */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3D0DA083203DF50C0050F708 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3DDB593D2035F39C0000E0C4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99AACA312044FB43001262D0 /* Shader.fsh in Resources */,
+				99AACA2F2044FB23001262D0 /* Shader.vsh in Resources */,
+				3D0DA0BE203E1C5D0050F708 /* HexTile.obj in Resources */,
+				999312982046367C00835BA3 /* Sphere.obj in Resources */,
+				3D0DA0B3203E1C560050F708 /* CubeModel.mtl in Resources */,
+				3D0DA0BB203E1C5D0050F708 /* HexTile.mtl in Resources */,
+				3D0DA0B6203E1C560050F708 /* CubeModel.obj in Resources */,
 				3DDB594D2035F39C0000E0C4 /* LaunchScreen.storyboard in Resources */,
+				9993129A2046418C00835BA3 /* teapot.obj in Resources */,
 				3DDB594A2035F39C0000E0C4 /* Assets.xcassets in Resources */,
+				999312972046367C00835BA3 /* Sphere.mtl in Resources */,
 				3DDB59482035F39C0000E0C4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,6 +421,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D0DA0B7203E1C560050F708 /* CubeModel.obj in Resources */,
+				3D0DA0BC203E1C5D0050F708 /* HexTile.mtl in Resources */,
+				3D0DA0B4203E1C560050F708 /* CubeModel.mtl in Resources */,
+				3D0DA0BF203E1C5D0050F708 /* HexTile.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,23 +432,42 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D0DA0B8203E1C560050F708 /* CubeModel.obj in Resources */,
+				3D0DA0BD203E1C5D0050F708 /* HexTile.mtl in Resources */,
+				3D0DA0B5203E1C560050F708 /* CubeModel.mtl in Resources */,
+				3D0DA0C0203E1C5D0050F708 /* HexTile.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3D0DA081203DF50C0050F708 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3DDB593B2035F39C0000E0C4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99E70623204515530095BA58 /* ModelInstance.swift in Sources */,
 				3DDB59452035F39C0000E0C4 /* ViewController.swift in Sources */,
+				990EFF3920427EDB002FEBED /* EventDispatcher.swift in Sources */,
+				2338D4A0203B90E7009F353A /* Map.swift in Sources */,
+				99ED16CC2046912200827958 /* RotatingCubeComponent.swift in Sources */,
 				992762DD2036BA0200C73599 /* Component.swift in Sources */,
-				23655FE720455D5C00B9C304 /* Tile.swift in Sources */,
-				23655FE820455D5C00B9C304 /* TileMap.swift in Sources */,
+				99ED16CA2046909300827958 /* FingerGodGame.swift in Sources */,
+				990EFF3120427EA4002FEBED /* Model.swift in Sources */,
+				990EFF3520427EB0002FEBED /* ModelReader.swift in Sources */,
 				992762D72036B4BD00C73599 /* Game.swift in Sources */,
+				C9F4135E203AC2DC001C56E1 /* Subscriber.swift in Sources */,
 				3DDB59432035F39C0000E0C4 /* AppDelegate.swift in Sources */,
 				992762DB2036B9DD00C73599 /* GameObject.swift in Sources */,
+				3D0DA07E203DF45A0050F708 /* Renderer.swift in Sources */,
+				2338D49E203B8DAF009F353A /* Hex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,10 +475,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23655FEA2046166000B9C304 /* TileMap.swift in Sources */,
+				990EFF3720427EB2002FEBED /* ModelReader.swift in Sources */,
+				3D0DA0A0203E16870050F708 /* FingerGodModelLoadingTests.swift in Sources */,
 				992762E52036E57200C73599 /* FingerGodGameObjectTest.swift in Sources */,
+				C98438662046162A00321700 /* FingerGodMessageTests.swift in Sources */,
+				990EFF3820427EB7002FEBED /* Model.swift in Sources */,
 				992762E32036D17A00C73599 /* CounterComponent.swift in Sources */,
-				23655FEB2046166700B9C304 /* Tile.swift in Sources */,
+				993F14532046935B00AF5BFB /* FingerGodModelLoadingTests.swift in Sources */,
 				3DDB59582035F39C0000E0C4 /* FingerGodTests.swift in Sources */,
 				233D7436203DF7EB0050CFAB /* FingerGodHexTest.swift in Sources */,
 			);
@@ -338,6 +498,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3D0DA08B203DF50C0050F708 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3DDB593E2035F39C0000E0C4 /* FingerGod */;
+			targetProxy = 3D0DA08A203DF50C0050F708 /* PBXContainerItemProxy */;
+		};
 		3DDB59552035F39C0000E0C4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3DDB593E2035F39C0000E0C4 /* FingerGod */;
@@ -370,6 +535,41 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3D0DA08D203DF50C0050F708 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FingerGodHexText/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGodHexText;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FingerGodHexText-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FingerGod.app/FingerGod";
+			};
+			name = Debug;
+		};
+		3D0DA08E203DF50C0050F708 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FingerGodHexText/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGodHexText;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FingerGodHexText-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FingerGod.app/FingerGod";
+			};
+			name = Release;
+		};
 		3DDB59652035F39C0000E0C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -402,6 +602,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -459,6 +660,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -575,6 +777,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3D0DA08C203DF50C0050F708 /* Build configuration list for PBXNativeTarget "FingerGodHexText" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D0DA08D203DF50C0050F708 /* Debug */,
+				3D0DA08E203DF50C0050F708 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3DDB593A2035F39C0000E0C4 /* Build configuration list for PBXProject "FingerGod" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
