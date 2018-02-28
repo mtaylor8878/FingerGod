@@ -21,6 +21,11 @@ public class Renderer {
         public var transform = GLKMatrix4Identity
         
         public func move(x: Float, y: Float, z: Float) {
+            let tmp = GLKMatrix4Translate(GLKMatrix4Identity, x, y, z)
+            transform = GLKMatrix4Multiply(tmp, transform)
+        }
+        
+        public func moveRelative(x: Float, y: Float, z: Float) {
             transform = GLKMatrix4Translate(transform, x, y, z)
         }
         
@@ -57,7 +62,7 @@ public class Renderer {
         setupShaders()
         setupUniforms()
         
-        glClearColor(0.0, 0.0, 0.0, 1.0)
+        glClearColor(0.3, 0.65, 1.0, 1.0)
         glEnable(GLenum(GL_DEPTH_TEST))
 	}
     
@@ -127,12 +132,12 @@ public class Renderer {
         // Eventually it may be a good idea to make less draw calls
         
         glViewport(0, 0, GLsizei(view.drawableWidth), GLsizei(view.drawableHeight))
-        
+
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT))
         
         glUseProgram(program)
         
-        camera.perspectiveMatrix = GLKMatrix4MakePerspective(Float(60.0 * Double.pi / 180.0), Float(view.drawableWidth) / Float(view.drawableHeight), 1.0, 20.0)
+        camera.perspectiveMatrix = GLKMatrix4MakePerspective(Float(60.0 * Double.pi / 180.0), Float(view.drawableWidth) / Float(view.drawableHeight), 1.0, 300.0)
         
         let cameraMatrix = GLKMatrix4Invert(camera.transform, nil)
         

@@ -20,10 +20,22 @@
                         <viewLayoutGuide key="safeArea" id="OoA-aJ-EoG"/>
                         <connections>
                             <outlet property="delegate" destination="9An-x6-OXA" id="XlO-rs-MoQ"/>
+                            <outletCollection property="gestureRecognizers" destination="Jtg-l5-JP6" appends="YES" id="NIg-iS-fK0"/>
+                            <outletCollection property="gestureRecognizers" destination="Ebh-FG-iLa" appends="YES" id="Dg9-C1-43D"/>
                         </connections>
                     </glkView>
                 </glkViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yij-me-Qqk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="Jtg-l5-JP6">
+                    <connections>
+                        <action selector="onPanWithRecognizer:" destination="9An-x6-OXA" id="Zja-fE-JIS"/>
+                    </connections>
+                </panGestureRecognizer>
+                <pinchGestureRecognizer id="Ebh-FG-iLa">
+                    <connections>
+                        <action selector="onPinchWithRecognizer:" destination="9An-x6-OXA" id="LFx-3f-0xM"/>
+                    </connections>
+                </pinchGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="84" y="274"/>
         </scene>
