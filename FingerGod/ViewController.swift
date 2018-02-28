@@ -22,11 +22,11 @@ class ViewController: GLKViewController {
             let m = try ModelReader.read(objPath: "HexTile")
             
             i = ModelInstance(model: m)
-            
-            i.transform = GLKMatrix4Translate(i.transform, 0, 0, -5.0)
             i.color = [0.2, 0.95, 0.55, 1.0]
             
             Renderer.addInstance(inst: i)
+            
+            Renderer.camera.move(x: 0, y: 0, z: 5)
         }
         catch {
             print("Error info: \(error)")

@@ -9,7 +9,26 @@ import GLKit
 
 
 public class Renderer {
-    public static let perspectiveMatrix = GLKMatrix4MakePerspective(Float(60.0 * Double.pi / 180.0), Float(view.drawableWidth) / Float(view.drawableHeight), 1.0, 20.0)
+    public static var perspectiveMatrix: GLKMatrix4 {
+        get {
+            return Renderer.camera.perspectiveMatrix
+        }
+    }
+    
+    public class Camera {
+        
+        public var perspectiveMatrix : GLKMatrix4!
+        public var transform = GLKMatrix4Identity
+        
+        public func move(x: Float, y: Float, z: Float) {
+            transform = GLKMatrix4Translate(transform, x, y, z)
+        }
+        
+        public func rotate(angle: Float, x: Float, y: Float, z: Float) {
+            transform = GLKMatrix4Rotate(transform, angle, x, y, z)
+        }
+        
+    }
     
     private struct UniformContainer {
         var mvp: GLint!
@@ -20,6 +39,7 @@ public class Renderer {
     private static var uniforms = UniformContainer()
     private static var view : GLKView!
     private static var program: GLuint!
+    public static var camera = Camera()
     
     private static var modelInstances = [ModelInstance]()
     
@@ -112,10 +132,14 @@ public class Renderer {
         
         glUseProgram(program)
         
+        camera.perspectiveMatrix = GLKMatrix4MakePerspective(Float(60.0 * Double.pi / 180.0), Float(view.drawableWidth) / Float(view.drawableHeight), 1.0, 20.0)
+        
+        let cameraMatrix = GLKMatrix4Invert(camera.transform, nil)
         
         for inst in modelInstances {
             var mvpMatrix = inst.transform
             var normMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(mvpMatrix), nil)
+            mvpMatrix = GLKMatrix4Multiply(cameraMatrix, mvpMatrix)
             mvpMatrix = GLKMatrix4Multiply(perspectiveMatrix, mvpMatrix)
             
             let vertices = inst.model.vertices
