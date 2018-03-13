@@ -24,7 +24,15 @@ class ViewController: GLKViewController {
         game = FingerGodGame()
 
     }
-
+    @IBAction func onTap(_ recognizer: UITapGestureRecognizer) {
+        let ray = getDirection(recognizer.location(in: self.view))
+        let t = -Renderer.camera.location.y / ray.y
+        let point = GLKVector3Add(Renderer.camera.location, GLKVector3MultiplyScalar(ray, t))
+        var paramList = [String : Any]()
+        paramList["coord"] = point
+        EventDispatcher.publish("ClickMap", paramList)
+    }
+    
     @IBAction func onPan(recognizer: UIPanGestureRecognizer) {
         if (recognizer.state == UIGestureRecognizerState.began) {
             prevPanPoint = CGPoint(x: 0, y: 0)
@@ -46,6 +54,20 @@ class ViewController: GLKViewController {
         prevScale = scale;
         
         Renderer.camera.moveRelative(x: 0, y: 0, z: -diff * 4)
+    }
+    
+    func getDirection(_ loc: CGPoint) -> GLKVector3{
+        let bounds = UIScreen.main.bounds
+        let x = Float((2 * loc.x) / bounds.size.width - 1.0)
+        let y = Float(1.0 - (2 * loc.y) / bounds.size.height)
+        let rayClip = GLKVector4Make(x, y, -1.0, 1.0)
+        let invPerspective = GLKMatrix4Invert(Renderer.perspectiveMatrix, nil)
+        var rayEye = GLKMatrix4MultiplyVector4(invPerspective, rayClip)
+        rayEye.z = -1.0
+        rayEye.a = 0
+        let rayWorld = GLKMatrix4MultiplyVector4(Renderer.camera.transform, rayEye)
+        let rayWNorm = GLKVector3Normalize(GLKVector3Make(rayWorld.x, rayWorld.y, rayWorld.z))
+        return rayWNorm
     }
 
     override func didReceiveMemoryWarning() {
