@@ -17,11 +17,13 @@
                     <glkView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" id="1a0-17-BEc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="OoA-aJ-EoG"/>
                         <connections>
                             <outlet property="delegate" destination="9An-x6-OXA" id="XlO-rs-MoQ"/>
                             <outletCollection property="gestureRecognizers" destination="Jtg-l5-JP6" appends="YES" id="NIg-iS-fK0"/>
                             <outletCollection property="gestureRecognizers" destination="Ebh-FG-iLa" appends="YES" id="Dg9-C1-43D"/>
+                            <outletCollection property="gestureRecognizers" destination="8Vr-Vi-WOf" appends="YES" id="IWX-Dr-Djc"/>
                         </connections>
                     </glkView>
                 </glkViewController>
@@ -36,6 +38,11 @@
                         <action selector="onPinchWithRecognizer:" destination="9An-x6-OXA" id="LFx-3f-0xM"/>
                     </connections>
                 </pinchGestureRecognizer>
+                <tapGestureRecognizer id="8Vr-Vi-WOf">
+                    <connections>
+                        <action selector="onTap:" destination="9An-x6-OXA" id="87C-Gf-BUr"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="84" y="274"/>
         </scene>
