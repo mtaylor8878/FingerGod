@@ -19,16 +19,13 @@ public class Renderer {
         
         public var perspectiveMatrix : GLKMatrix4!
         public var transform = GLKMatrix4Identity
-        public var location = GLKVector3()
         
         public func move(x: Float, y: Float, z: Float) {
-            location = GLKVector3Add(location, GLKVector3Make(x, y, z))
             let tmp = GLKMatrix4Translate(GLKMatrix4Identity, x, y, z)
             transform = GLKMatrix4Multiply(tmp, transform)
         }
         
         public func moveRelative(x: Float, y: Float, z: Float) {
-            location = GLKVector3Add(location, GLKVector3Make(x, y, z))
             transform = GLKMatrix4Translate(transform, x, y, z)
         }
         
@@ -112,6 +109,8 @@ public class Renderer {
             glShaderSource(shader, 1, &src, nil)
             glCompileShader(shader)
             
+            
+            print(src)
             
             var compileStatus = GLint(0)
             glGetShaderiv(shader, GLenum(GL_COMPILE_STATUS), &compileStatus)
