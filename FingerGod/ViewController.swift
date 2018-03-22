@@ -26,8 +26,10 @@ class ViewController: GLKViewController {
     }
     @IBAction func onTap(_ recognizer: UITapGestureRecognizer) {
         let ray = getDirection(recognizer.location(in: self.view))
-        let t = -Renderer.camera.location.y / ray.y
-        let point = GLKVector3Add(Renderer.camera.location, GLKVector3MultiplyScalar(ray, t))
+        let location = GLKVector3Make(Renderer.camera.transform.m30, Renderer.camera.transform.m31, Renderer.camera.transform.m32)
+        print("location: " + String(location.x) + ", " + String(location.y) + ", " + String(location.z))
+        let t = -location.y / ray.y
+        let point = GLKVector3Add(location, GLKVector3MultiplyScalar(ray, t))
         var paramList = [String : Any]()
         paramList["coord"] = point
         EventDispatcher.publish("ClickMap", paramList)
