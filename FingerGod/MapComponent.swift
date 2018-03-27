@@ -40,7 +40,10 @@ public class MapComponent : Component, Subscriber {
         } catch {
             print("There was a problem: \(error)")
         }
+       
         EventDispatcher.subscribe("ClickMap",self)
+        EventDispatcher.subscribe("moveGroupUnit",self)
+
     }
     
     public func getClosest(_ coord: GLKVector3) -> TileMap.Point2D {
@@ -66,6 +69,16 @@ public class MapComponent : Component, Subscriber {
     
     func notify(_ eventName: String, _ params: [String : Any]) {
         switch(eventName) {
+        case "moveGroupUnit":
+            let str: String! = params["direction"] as! String
+            if str == "left" {
+                selectTile((selected?.x)! - 1, (selected?.y)! )
+            }
+            if str == "right" {
+                selectTile((selected?.x)! + 1, (selected?.y)! )
+            }
+            break
+            
         case "ClickMap":
             let tiles = tilemap.getTiles()
             let point = params["coord"] as! GLKVector3
