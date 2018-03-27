@@ -16,9 +16,21 @@ class ViewController: GLKViewController {
     private var prevPanPoint = CGPoint(x: 0, y: 0)
     private var prevScale : Float = 1
 
+    
+    @IBOutlet weak var label: UILabel!
+    @IBAction func onButtonClick(_ sender: Any) {
+        let powers = ["fire", "water", "lightning", "earth"];
+        var count = 0;
+        
+        if (count > 4) {
+            count = 0;
+        }
+        label.text = powers[count];
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        // Do any additional setup after loadisg the view, typically from a nib.
         Renderer.setup(view: self.view as! GLKView)
 
         game = FingerGodGame()

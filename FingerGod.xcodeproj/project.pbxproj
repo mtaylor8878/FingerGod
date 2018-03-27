@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		232925AC2069FBCB00CB6549 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232925AB2069FBCB00CB6549 /* RoundButton.swift */; };
 		233D7436203DF7EB0050CFAB /* FingerGodHexTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233D7435203DF7EB0050CFAB /* FingerGodHexTest.swift */; };
 		3D0DA07E203DF45A0050F708 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DA07D203DF45A0050F708 /* Renderer.swift */; };
 		3D0DA0A0203E16870050F708 /* FingerGodModelLoadingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DA09F203E16870050F708 /* FingerGodModelLoadingTests.swift */; };
@@ -80,6 +81,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		232925AB2069FBCB00CB6549 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		233D7432203DF7A70050CFAB /* FingerGodTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FingerGodTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		233D7435203DF7EB0050CFAB /* FingerGodHexTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodHexTest.swift; sourceTree = "<group>"; };
 		3D0DA07D203DF45A0050F708 /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				3D0DA091203DFD240050F708 /* ModelReader.swift */,
 				99E70622204515530095BA58 /* ModelInstance.swift */,
 				993F145F2046AF4500AF5BFB /* MapComponent.swift */,
+				232925AB2069FBCB00CB6549 /* RoundButton.swift */,
 			);
 			path = FingerGod;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				3DDB59432035F39C0000E0C4 /* AppDelegate.swift in Sources */,
 				993F145A2046AAF200AF5BFB /* Tile.swift in Sources */,
 				992762DB2036B9DD00C73599 /* GameObject.swift in Sources */,
+				232925AC2069FBCB00CB6549 /* RoundButton.swift in Sources */,
 				993F14602046AF4500AF5BFB /* MapComponent.swift in Sources */,
 				3D0DA07E203DF45A0050F708 /* Renderer.swift in Sources */,
 			);
@@ -688,10 +692,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3E5RA54B7H;
+				DEVELOPMENT_TEAM = EXV3QGL866;
 				INFOPLIST_FILE = FingerGod/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGod1;
+				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -703,10 +707,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3E5RA54B7H;
+				DEVELOPMENT_TEAM = EXV3QGL866;
 				INFOPLIST_FILE = FingerGod/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGod1;
+				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
