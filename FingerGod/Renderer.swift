@@ -177,8 +177,11 @@ public class Renderer {
     }
     
     public static func removeInstance(inst: ModelInstance) {
-        modelInstances.remove(at: modelInstances.index(where: {$0 === inst})!)
-        setupLists()
+        let ind = modelInstances.index{$0 === inst};
+        if (ind != nil) {
+            modelInstances.remove(at: ind!)
+            setupLists()
+        }
     }
     
     // Sets up all of the necessary lists for rendering

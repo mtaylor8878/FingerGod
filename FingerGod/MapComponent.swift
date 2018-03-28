@@ -14,11 +14,27 @@ public class MapComponent : Component, Subscriber {
     private var tileMap : TileMap!
     private var selected: Point2D?
     
+    // TEMPORARY VALUES
+    private var unitGroupIDs = 10000
+    private var battleIDs = 100000
+    private var unitGroupComps = [UnitGroupComponent]()
+    
     open override func create() {
         tileMap = TileMap(10,1)
        
         EventDispatcher.subscribe("ClickMap",self)
+        EventDispatcher.subscribe("DispatchUnitGroup",self)
         EventDispatcher.subscribe("moveGroupUnit",self)
+        EventDispatcher.subscribe("BattleEnd",self)
+        
+        let testEnemy = GameObject(id: 1)
+        testEnemy.addComponent(type: UnitGroupComponent.self)
+        
+        self.gameObject.game!.addGameObject(gameObject: testEnemy)
+        let ugComp = testEnemy.getComponent(type: UnitGroupComponent.self)
+        ugComp?.move(3, 3)
+        ugComp?.setAlignment(Alignment.ENEMY)
+        unitGroupComps.append(ugComp!)
     }
     
     public func getClosest(_ coord: GLKVector3) -> Point2D {
@@ -64,17 +80,100 @@ public class MapComponent : Component, Subscriber {
                 selectTile(closestTile.x, closestTile.y)
             }
             break
+        case "DispatchUnitGroup":
+            let unitGroup = GameObject(id: unitGroupIDs)
+            unitGroupIDs = unitGroupIDs + 1
+            unitGroup.addComponent(type: UnitGroupComponent.self)
+            self.gameObject.game?.addGameObject(gameObject: unitGroup)
+            
+            var unitGroupComponent = unitGroup.getComponent(type: UnitGroupComponent.self)!
+            unitGroupComponent.move(5, 0)
+            unitGroupComponent.setAlignment(Alignment.ALLIED)
+            
+            unitGroupComps.append(unitGroupComponent)
+            
+            break
+        case "BattleEnd":
+            print("BATTLE END")
+            let result = params["result"] as! String
+            var groupA = params["groupA"] as! UnitGroupComponent
+            var groupB = params["groupB"] as! UnitGroupComponent
+            switch(result) {
+            case "awin":
+                self.gameObject.game?.removeGameObject(gameObject: groupB.gameObject)
+                self.unitGroupComps.remove(at: self.unitGroupComps.index{$0 === groupB}!)
+                groupA.offset(1.25, 0, 0)
+                break
+            case "bwin":
+                self.gameObject.game?.removeGameObject(gameObject: groupA.gameObject)
+                self.unitGroupComps.remove(at: self.unitGroupComps.index{$0 === groupA}!)
+                groupB.offset(-1.25, 0, 0)
+                break
+            case "tie":
+                self.gameObject.game?.removeGameObject(gameObject: groupA.gameObject)
+                self.gameObject.game?.removeGameObject(gameObject: groupB.gameObject)
+                self.unitGroupComps.remove(at: self.unitGroupComps.index{$0 === groupA}!)
+                self.unitGroupComps.remove(at: self.unitGroupComps.index{$0 === groupB}!)
+                break
+            default:
+                break
+            }
+            break
         default:
             break
         }
     }
     
     public func selectTile(_ q: Int, _ r: Int) {
+        var nextObject : UnitGroupComponent? = nil
+        var prevObject : UnitGroupComponent? = nil
         if(selected != nil) {
             tileMap.getTile(selected!)?.resetColor()
+            for c in unitGroupComps {
+                if c.position[0] == selected?.x && c.position[1] == selected?.y {
+                    // There was a unit on our selected tile, move it to the new tile
+                    prevObject = c
+                }
+                if c.position[0] == q && c.position[1] == r {
+                    nextObject = c
+                }
+            }
+        }
+        if (prevObject != nil && prevObject!.alignment == Alignment.ALLIED) {
+            if (nextObject == nil) {
+                // There was a unit on our selected tile, move it to the new tile
+                prevObject!.move(q, r)
+                selected = nil
+                return
+            }
+            else if (nextObject != nil && nextObject!.alignment == Alignment.ENEMY){
+                // INITIATE BATTLE
+                print("BATTLE START")
+                startBattle(prevObject!, nextObject!)
+                selected = nil
+                return
+            }
         }
         selected = Point2D(q,r)
         tileMap.getTile(selected!)!.model.color = [1.0, 0.2, 0.2, 1.0]
+    }
+    
+    private func startBattle(_ unitGroupA : UnitGroupComponent, _ unitGroupB : UnitGroupComponent) {
+        unitGroupA.move(unitGroupB.position[0], unitGroupB.position[1])
+        unitGroupA.offset(-1.25, 0, 0)
+        unitGroupB.offset(1.25, 0, 0)
+        
+        var battleObj = GameObject(id: battleIDs)
+        battleIDs = battleIDs + 1
+        
+        battleObj.addComponent(type: BattleComponent.self)
+        
+        var battleComp = battleObj.getComponent(type: BattleComponent.self)
+        battleComp?.groupA = unitGroupA
+        battleComp?.groupB = unitGroupB
+        
+        self.gameObject.game?.addGameObject(gameObject: battleObj)
+        battleComp?.start()
     }
     
     public func powerTile(_ x: Int, _ y: Int, _ power: Int) {
