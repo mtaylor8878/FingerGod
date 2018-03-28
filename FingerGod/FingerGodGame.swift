@@ -24,6 +24,7 @@ public class FingerGodGame : Game {
         params["structure"] = player._city!
         params["coords"] = Point2D(0,0)
         EventDispatcher.publish("AddStructure", params)
+        EventDispatcher.subscribe("UpdatePlayerMana", player)
         self.addGameObject(gameObject: player)
                 
         Renderer.camera.move(x: 0, y: 14, z: 9)

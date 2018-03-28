@@ -60,7 +60,7 @@ class ViewController: GLKViewController, Subscriber {
         if (count > 0) {
             var params = [String:Any]()
             params["ManaValue"] = Float(-10.0)
-            EventDispatcher.publish("UpdateMana", params)
+            EventDispatcher.publish("UpdatePlayerMana", params)
         }
         EventDispatcher.publish("ClickMap", paramList)
         
