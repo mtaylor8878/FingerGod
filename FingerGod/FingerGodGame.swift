@@ -19,7 +19,7 @@ public class FingerGodGame : Game {
         power.addComponent(type: Power.self)
         self.addGameObject(gameObject: power)
         
-        let player = PlayerObject(2, Point2D(0,0))
+        let player = PlayerObject(2, [0.0, 0.39, 0.898, 1.0], Point2D(0,0))
         var params = [String:Any]()
         params["structure"] = player._city!
         params["coords"] = Point2D(0,0)
