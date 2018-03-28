@@ -49,6 +49,8 @@
 		99AACA2F2044FB23001262D0 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 99AACA2E2044FB23001262D0 /* Shader.vsh */; };
 		99AACA312044FB43001262D0 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 99AACA302044FB42001262D0 /* Shader.fsh */; };
 		99E1CF3B206B3A7400C7A04B /* BattleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E1CF3A206B3A7400C7A04B /* BattleComponent.swift */; };
+		99E1CF3D206B745A00C7A04B /* UnitGroupComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E1CF3C206B745A00C7A04B /* UnitGroupComponent.swift */; };
+		99E1CF3F206B84B100C7A04B /* Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E1CF3E206B84B100C7A04B /* Alignment.swift */; };
 		99E70623204515530095BA58 /* ModelInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E70622204515530095BA58 /* ModelInstance.swift */; };
 		99ED16CA2046909300827958 /* FingerGodGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED16C92046909300827958 /* FingerGodGame.swift */; };
 		99ED16CC2046912200827958 /* RotatingCubeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED16CB2046912200827958 /* RotatingCubeComponent.swift */; };
@@ -124,6 +126,8 @@
 		99AACA2E2044FB23001262D0 /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
 		99AACA302044FB42001262D0 /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
 		99E1CF3A206B3A7400C7A04B /* BattleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleComponent.swift; sourceTree = "<group>"; };
+		99E1CF3C206B745A00C7A04B /* UnitGroupComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitGroupComponent.swift; sourceTree = "<group>"; };
+		99E1CF3E206B84B100C7A04B /* Alignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alignment.swift; sourceTree = "<group>"; };
 		99E70622204515530095BA58 /* ModelInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelInstance.swift; sourceTree = "<group>"; };
 		99ED16C92046909300827958 /* FingerGodGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodGame.swift; sourceTree = "<group>"; };
 		99ED16CB2046912200827958 /* RotatingCubeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotatingCubeComponent.swift; sourceTree = "<group>"; };
@@ -233,6 +237,8 @@
 				F6DD7443206B236600868E57 /* UnitGroup.swift */,
 				99E1CF3A206B3A7400C7A04B /* BattleComponent.swift */,
 				F24C46CA206B6B9200B8097D /* RoundButton.swift */,
+				99E1CF3C206B745A00C7A04B /* UnitGroupComponent.swift */,
+				99E1CF3E206B84B100C7A04B /* Alignment.swift */,
 			);
 			path = FingerGod;
 			sourceTree = "<group>";
@@ -488,12 +494,14 @@
 				99ED16CA2046909300827958 /* FingerGodGame.swift in Sources */,
 				990EFF3120427EA4002FEBED /* Model.swift in Sources */,
 				990EFF3520427EB0002FEBED /* ModelReader.swift in Sources */,
+				99E1CF3D206B745A00C7A04B /* UnitGroupComponent.swift in Sources */,
 				992762D72036B4BD00C73599 /* Game.swift in Sources */,
 				C9F4135E203AC2DC001C56E1 /* Subscriber.swift in Sources */,
 				F6DD7442206B235200868E57 /* SingleUnit.swift in Sources */,
 				3DDB59432035F39C0000E0C4 /* AppDelegate.swift in Sources */,
 				993F145A2046AAF200AF5BFB /* Tile.swift in Sources */,
 				992762DB2036B9DD00C73599 /* GameObject.swift in Sources */,
+				99E1CF3F206B84B100C7A04B /* Alignment.swift in Sources */,
 				99E1CF3B206B3A7400C7A04B /* BattleComponent.swift in Sources */,
 				F24C46CB206B6B9200B8097D /* RoundButton.swift in Sources */,
 				F6DD7444206B236600868E57 /* UnitGroup.swift in Sources */,

@@ -19,6 +19,10 @@ public class GameObject {
     }
     private var _id: Int
     
+    // The game this GameObject belongs to
+    // Temporary
+    public var game: Game?
+    
     // Whether the object has been properly created or not
     private var created = false
     

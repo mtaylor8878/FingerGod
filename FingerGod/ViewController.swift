@@ -130,7 +130,6 @@ class ViewController: GLKViewController {
     }
     
     @objc func btnClick() {
-        print("lst")
         self.initPoint(x: 115, y: 243)
     }
     @objc func leftMoveBtnClick() {
@@ -148,7 +147,7 @@ class ViewController: GLKViewController {
         let point = GLKVector3Add(Renderer.camera.location, GLKVector3MultiplyScalar(ray, t))
         var paramList = [String : Any]()
         paramList["coord"] = point
-        EventDispatcher.publish("ClickMap", paramList)
+        EventDispatcher.publish("DispatchUnitGroup", paramList)
     }
 
 

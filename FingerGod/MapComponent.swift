@@ -15,6 +15,9 @@ public class MapComponent : Component, Subscriber {
     private var tileModelInsts : [TileMap.Point2D : ModelInstance]!
     private var selected: TileMap.Point2D?
     
+    // TEMPORARY
+    private var unitGroupIDs = 10000
+    
     open override func create() {
         tilemap = TileMap(30, 30, 1)
         do {
@@ -42,6 +45,7 @@ public class MapComponent : Component, Subscriber {
         }
        
         EventDispatcher.subscribe("ClickMap",self)
+        EventDispatcher.subscribe("DispatchUnitGroup",self)
         EventDispatcher.subscribe("moveGroupUnit",self)
 
     }
@@ -94,6 +98,17 @@ public class MapComponent : Component, Subscriber {
             } else {
                 selectTile(closestTile.x, closestTile.y)
             }
+            break
+        case "DispatchUnitGroup":
+            let unitGroup = GameObject(id: unitGroupIDs)
+            unitGroupIDs = unitGroupIDs + 1
+            unitGroup.addComponent(type: UnitGroupComponent.self)
+            self.gameObject.game?.addGameObject(gameObject: unitGroup)
+            
+            var unitGroupComponent = unitGroup.getComponent(type: UnitGroupComponent.self)
+            unitGroupComponent?.move(10, 10)
+            unitGroupComponent?.setAlignment(Alignment.ALLIED)
+            
             break
         default:
             break
