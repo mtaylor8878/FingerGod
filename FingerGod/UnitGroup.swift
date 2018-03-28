@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UnitGroup: NSObject {
+public class UnitGroup: NSObject {
     var peopleArray = NSMutableArray()
     var followerArray = NSMutableArray()
     var demiGodArray = NSMutableArray()

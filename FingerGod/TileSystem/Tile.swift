@@ -30,6 +30,8 @@ public class Tile {
     public var model : ModelInstance
     public var defaultColor : [GLfloat]
     
+    private var structure : Structure?
+    
     // Axial Coordinates
     private var q : Int
     
@@ -48,19 +50,32 @@ public class Tile {
      Initialize a tile using a radius and single coord
      */
     public convenience init(_ coordinate: Point2D, _ radius:Int) {
-        self.init(coordinate.x, coordinate.y, radius)
+        self.init(coordinate.x, coordinate.y, radius, types.vacant)
+    }
+    
+    public convenience init(_ coordinate: Point2D, _ radius: Int, _ type: types) {
+        self.init(coordinate.x, coordinate.y, radius, type)
+    }
+    
+    public convenience init(_ coordinate: Point2D, _ radius: Int, _ str: Structure) {
+        self.init(coordinate, radius, types.structure)
+        structure = str
+    }
+    
+    public convenience init(_ q: Int, _ r: Int, _ radius: Int) {
+        self.init(q, r, radius, types.vacant)
     }
     
     /*
      Initialize a tile using a radius (q,r) split
      */
-    public init(_ q: Int, _ r: Int, _ radius:Int) {
+    public init(_ q: Int, _ r: Int, _ radius:Int, _ type: types) {
         self.radius = radius
         
         width = radius * 2
         height = radius * (Int(sqrt(3)))
         
-        type = types.vacant
+        self.type = type
         
         self.q = q
         self.r = r
@@ -111,6 +126,16 @@ public class Tile {
     
     public func resetColor() {
         model.color = defaultColor
+    }
+    
+    public func addStructure(_ structure: Structure) {
+        self.structure = structure
+        type = types.structure
+        structure.model.transform = GLKMatrix4Translate(GLKMatrix4Identity, worldCoordinate.x, 0.05, worldCoordinate.y)
+    }
+    
+    public func getStructure() -> Structure? {
+        return self.structure
     }
     
     private func axialToWorld(_ q: Int, _ r: Int) -> (x: Float, y: Float) {

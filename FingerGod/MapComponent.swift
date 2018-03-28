@@ -21,10 +21,11 @@ public class MapComponent : Component, Subscriber {
     
     open override func create() {
         tileMap = TileMap(10,1)
-       
+        
         EventDispatcher.subscribe("ClickMap",self)
         EventDispatcher.subscribe("DispatchUnitGroup",self)
         EventDispatcher.subscribe("moveGroupUnit",self)
+        EventDispatcher.subscribe("AddStructure", self)
         EventDispatcher.subscribe("BattleEnd",self)
         
         let testEnemy = GameObject(id: 1)
@@ -63,6 +64,12 @@ public class MapComponent : Component, Subscriber {
             if str == "right" {
                 selectTile((selected?.x)! + 1, (selected?.y)!)
             }
+            break
+            
+        case "AddStructure":
+            let str = params["structure"]! as! Structure
+            let pos = params["coords"]! as! Point2D
+            tileMap.getTile(pos)?.addStructure(str)
             break
             
         case "ClickMap":
@@ -194,5 +201,13 @@ public class MapComponent : Component, Subscriber {
         default:
             break
         }
+    }
+    
+    public override func update(delta: Float) {
+        super.update(delta: delta)
+        
+        /*followerLabel.text = String(player._followers)
+        goldLabel.text = String(player._gold)
+        manaLabel.text = String(player._mana)*/
     }
 }

@@ -13,18 +13,18 @@ import GLKit
 let ScreenWidth = UIScreen.main.bounds.size.width
 let ScreenHeigh = UIScreen.main.bounds.size.height
 
-class ViewController: GLKViewController {
+class ViewController: GLKViewController, Subscriber {
     
     private var game : Game!
     private var prevPanPoint = CGPoint(x: 0, y: 0)
     private var prevScale : Float = 1
-    var player = PlayerObject(newId : 0)
     var count : Int = 0;
 
     @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var followers: UILabel!
-    @IBOutlet weak var gold: UILabel!
-    @IBOutlet weak var mana: UILabel!
+    @IBOutlet weak var FollowerLabel: UILabel!
+    @IBOutlet weak var GoldLabel: UILabel!
+    @IBOutlet weak var ManaLabel: UILabel!
+    
     @IBAction func onButtonClick(_ sender: RoundButton) {
         let powers = ["Off", "fire", "water", "lightning", "earth"];
         var powerSelected = [String : Any]();
@@ -45,9 +45,7 @@ class ViewController: GLKViewController {
         label.text = "Off"
         game = FingerGodGame()
         self.initButton()
-        followers.text = String(player._followers)
-        gold.text = String(player._gold)
-        mana.text = String(player._mana)
+        EventDispatcher.subscribe("UpdatePlayerUI", self)
 
     }
     @IBAction func onTap(_ recognizer: UITapGestureRecognizer) {
@@ -60,8 +58,9 @@ class ViewController: GLKViewController {
         paramList["coord"] = point
         paramList["power"] = count
         if (count > 0) {
-            player._mana -= 10
-            mana.text = String(player._mana)
+            var params = [String:Any]()
+            params["ManaValue"] = Float(-10.0)
+            EventDispatcher.publish("UpdateMana", params)
         }
         EventDispatcher.publish("ClickMap", paramList)
         
@@ -111,6 +110,7 @@ class ViewController: GLKViewController {
     
     func update() {
     }
+    
     override func glkView(_ view: GLKView, drawIn rect: CGRect) {
         super.glkView(view, drawIn: rect)
         game.update()
@@ -159,6 +159,18 @@ class ViewController: GLKViewController {
         var paramList = [String : Any]()
         paramList["coord"] = point
         EventDispatcher.publish("DispatchUnitGroup", paramList)
+    }
+    
+    func notify(_ eventName: String, _ params: [String : Any]) {
+        switch(eventName) {
+        case "UpdatePlayerUI":
+            FollowerLabel.text = params["Followers"]! as! String
+            GoldLabel.text = params["Gold"]! as! String
+            ManaLabel.text = params["Mana"]! as! String
+            break
+        default:
+            break
+        }
     }
 
 
