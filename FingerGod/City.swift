@@ -22,7 +22,7 @@ public class City: Structure {
         }
         
         let mi = ModelInstance(model: castle!)
-        mi.color = [0.63, 0.63, 0.63, 1.0]
+        mi.color = owner.color
         Renderer.addInstance(inst: mi)
         
         self.owner = owner

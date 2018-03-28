@@ -14,15 +14,25 @@ public class PlayerObject : GameObject, Subscriber{
     
     public var _followers : Int
     public var _gold : Int
+    public var income : Int
+    public var incomeTick : Float
     public var _mana : Float
     public var _unitList : UnitGroup
     public var _city : City?
+    public let color : [GLfloat]
+    
+    private var tickCount : Float
         
-    public init(_ newId:Int, _ startSpace: Point2D) {
+    public init(_ newId:Int, _ color:[GLfloat], _ startSpace: Point2D) {
         _followers = 1
         _unitList = UnitGroup()
         _gold = STARTING_GOLD
         _mana = 500
+        self.color = color
+        tickCount = 0
+        income = 1
+        incomeTick = 2.0
+        
         super.init(id: newId)
         
         _city = City(startSpace, self)
@@ -40,6 +50,13 @@ public class PlayerObject : GameObject, Subscriber{
     
     public override func update(delta: Float) {
         super.update(delta: delta)
+        
+        tickCount += delta
+        if(tickCount >= incomeTick) {
+            _gold += income
+            tickCount -= incomeTick
+        }
+        
         var params = [String:Any]()
         params["Followers"] = String(_followers)
         params["Gold"] = String(_gold)
