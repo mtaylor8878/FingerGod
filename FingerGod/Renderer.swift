@@ -19,13 +19,16 @@ public class Renderer {
         
         public var perspectiveMatrix : GLKMatrix4!
         public var transform = GLKMatrix4Identity
+        public var location = GLKVector3()
         
         public func move(x: Float, y: Float, z: Float) {
+            location = GLKVector3Add(location, GLKVector3Make(x, y, z))
             let tmp = GLKMatrix4Translate(GLKMatrix4Identity, x, y, z)
             transform = GLKMatrix4Multiply(tmp, transform)
         }
         
         public func moveRelative(x: Float, y: Float, z: Float) {
+            location = GLKVector3Add(location, GLKVector3Make(x, y, z))
             transform = GLKMatrix4Translate(transform, x, y, z)
         }
         
@@ -64,7 +67,7 @@ public class Renderer {
         
         glClearColor(0.3, 0.65, 1.0, 1.0)
         glEnable(GLenum(GL_DEPTH_TEST))
-	}
+    }
     
     private static func setupShaders() {
         let vsh = loadShader(filename: "Shader", type: GL_VERTEX_SHADER)
@@ -110,8 +113,6 @@ public class Renderer {
             glCompileShader(shader)
             
             
-            print(src)
-            
             var compileStatus = GLint(0)
             glGetShaderiv(shader, GLenum(GL_COMPILE_STATUS), &compileStatus)
             if (compileStatus == 0) {
@@ -128,13 +129,13 @@ public class Renderer {
         
         return 0
     }
-	
+    
     public static func draw(drawRect: CGRect) {
         // We do this in multiple draw calls for now
         // Eventually it may be a good idea to make less draw calls
         
         glViewport(0, 0, GLsizei(view.drawableWidth), GLsizei(view.drawableHeight))
-
+        
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT))
         
         glUseProgram(program)
@@ -152,7 +153,7 @@ public class Renderer {
             let vertices = inst.model.vertices
             let normals = inst.model.normals
             let indices = inst.model.faces
-
+            
             glUniformMatrix4fv(uniforms.mvp, 1, 0, &mvpMatrix.m.0)
             glUniformMatrix3fv(uniforms.normal, 1, 0, &normMatrix.m.0)
             
@@ -168,7 +169,7 @@ public class Renderer {
             
             glDrawElements(GLenum(GL_TRIANGLES), GLsizei(indices.count), GLenum(GL_UNSIGNED_INT), indices)
         }
-	}
+    }
     
     public static func addInstance(inst: ModelInstance) {
         modelInstances.append(inst)
@@ -186,3 +187,4 @@ public class Renderer {
         
     }
 }
+
