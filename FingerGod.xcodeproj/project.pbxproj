@@ -48,6 +48,7 @@
 		9993129A2046418C00835BA3 /* teapot.obj in Resources */ = {isa = PBXBuildFile; fileRef = 999312992046418C00835BA3 /* teapot.obj */; };
 		99AACA2F2044FB23001262D0 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 99AACA2E2044FB23001262D0 /* Shader.vsh */; };
 		99AACA312044FB43001262D0 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 99AACA302044FB42001262D0 /* Shader.fsh */; };
+		99E1CF3B206B3A7400C7A04B /* BattleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E1CF3A206B3A7400C7A04B /* BattleComponent.swift */; };
 		99E70623204515530095BA58 /* ModelInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E70622204515530095BA58 /* ModelInstance.swift */; };
 		99ED16CA2046909300827958 /* FingerGodGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED16C92046909300827958 /* FingerGodGame.swift */; };
 		99ED16CC2046912200827958 /* RotatingCubeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED16CB2046912200827958 /* RotatingCubeComponent.swift */; };
@@ -120,6 +121,7 @@
 		999312992046418C00835BA3 /* teapot.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = teapot.obj; sourceTree = "<group>"; };
 		99AACA2E2044FB23001262D0 /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
 		99AACA302044FB42001262D0 /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
+		99E1CF3A206B3A7400C7A04B /* BattleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleComponent.swift; sourceTree = "<group>"; };
 		99E70622204515530095BA58 /* ModelInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelInstance.swift; sourceTree = "<group>"; };
 		99ED16C92046909300827958 /* FingerGodGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodGame.swift; sourceTree = "<group>"; };
 		99ED16CB2046912200827958 /* RotatingCubeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotatingCubeComponent.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				993F145F2046AF4500AF5BFB /* MapComponent.swift */,
 				F6DD7441206B235200868E57 /* SingleUnit.swift */,
 				F6DD7443206B236600868E57 /* UnitGroup.swift */,
+				99E1CF3A206B3A7400C7A04B /* BattleComponent.swift */,
 			);
 			path = FingerGod;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 				3DDB59432035F39C0000E0C4 /* AppDelegate.swift in Sources */,
 				993F145A2046AAF200AF5BFB /* Tile.swift in Sources */,
 				992762DB2036B9DD00C73599 /* GameObject.swift in Sources */,
+				99E1CF3B206B3A7400C7A04B /* BattleComponent.swift in Sources */,
 				F6DD7444206B236600868E57 /* UnitGroup.swift in Sources */,
 				993F14602046AF4500AF5BFB /* MapComponent.swift in Sources */,
 				3D0DA07E203DF45A0050F708 /* Renderer.swift in Sources */,
