@@ -18,12 +18,15 @@ class ViewController: GLKViewController {
     private var game : Game!
     private var prevPanPoint = CGPoint(x: 0, y: 0)
     private var prevScale : Float = 1
+    var player = PlayerObject(newId : 0)
     var count : Int = 0;
 
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var followers: UILabel!
+    @IBOutlet weak var gold: UILabel!
+    @IBOutlet weak var mana: UILabel!
     @IBAction func onButtonClick(_ sender: RoundButton) {
         let powers = ["Off", "fire", "water", "lightning", "earth"];
-    
         var powerSelected = [String : Any]();
         powerSelected["power"] = powers[count];
         EventDispatcher.publish("PowerOn", powerSelected);
@@ -42,6 +45,9 @@ class ViewController: GLKViewController {
         label.text = "Off"
         game = FingerGodGame()
         self.initButton()
+        followers.text = String(player._followers)
+        gold.text = String(player._gold)
+        mana.text = String(player._mana)
 
     }
     @IBAction func onTap(_ recognizer: UITapGestureRecognizer) {
@@ -53,6 +59,10 @@ class ViewController: GLKViewController {
         var paramList = [String : Any]()
         paramList["coord"] = point
         paramList["power"] = count
+        if (count > 0) {
+            player._mana -= 10
+            mana.text = String(player._mana)
+        }
         EventDispatcher.publish("ClickMap", paramList)
         
     }

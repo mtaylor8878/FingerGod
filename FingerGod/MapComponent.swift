@@ -82,15 +82,7 @@ public class MapComponent : Component, Subscriber {
     }
     
     public func powerTile(_ x: Int, _ y: Int, _ power: Int) {
-        /*
-        if(selected != nil) {
-            
-            var curr = tileModelInsts[selected!]!
-            curr.color = [0.075, Float(0.85 + (selected!.x % 2 == 0 ? 0 : 0.15)), 0.25 + Float(selected!.y % 2 == 0 ? 0 : 0.15), 1.0]
-        }
 
-        selected = TileMap.Point2D(x:x,y:y)
-*/
         switch (power) {
         case 1:
             tileMap.getTile(x,y)!.model.color = [1.0, 0.411, 0.706, 1.0]

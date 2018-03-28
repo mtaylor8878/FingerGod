@@ -740,10 +740,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3E5RA54B7H;
+				DEVELOPMENT_TEAM = EXV3QGL866;
 				INFOPLIST_FILE = FingerGod/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGod4;
+				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGod7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -755,10 +755,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3E5RA54B7H;
+				DEVELOPMENT_TEAM = EXV3QGL866;
 				INFOPLIST_FILE = FingerGod/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGod4;
+				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGod7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
