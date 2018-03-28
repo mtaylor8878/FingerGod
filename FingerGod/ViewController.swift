@@ -18,12 +18,15 @@ class ViewController: GLKViewController {
     private var game : Game!
     private var prevPanPoint = CGPoint(x: 0, y: 0)
     private var prevScale : Float = 1
+    var player : PlayerObject!
     var count : Int = 0;
 
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var followers: UILabel!
+    @IBOutlet weak var gold: UILabel!
+    @IBOutlet weak var mana: UILabel!
     @IBAction func onButtonClick(_ sender: RoundButton) {
         let powers = ["Off", "fire", "water", "lightning", "earth"];
-    
         var powerSelected = [String : Any]();
         powerSelected["power"] = powers[count];
         EventDispatcher.publish("PowerOn", powerSelected);
