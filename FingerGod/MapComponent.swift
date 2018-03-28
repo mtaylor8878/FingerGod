@@ -71,7 +71,7 @@ public class MapComponent : Component, Subscriber {
     
     public func selectTile(_ q: Int, _ r: Int) {
         if(selected != nil) {
-            tileMap.getTile(q, r)?.resetColor()
+            tileMap.getTile(selected!)?.resetColor()
         }
         selected = Point2D(q,r)
         tileMap.getTile(selected!)!.model.color = [1.0, 0.2, 0.2, 1.0]
