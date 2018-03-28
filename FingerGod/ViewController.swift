@@ -18,24 +18,28 @@ class ViewController: GLKViewController {
     private var game : Game!
     private var prevPanPoint = CGPoint(x: 0, y: 0)
     private var prevScale : Float = 1
+    var count : Int = 0;
 
-    
     @IBOutlet weak var label: UILabel!
-    @IBAction func onButtonClick(_ sender: Any) {
-        let powers = ["fire", "water", "lightning", "earth"];
-        var count = 0;
+    @IBAction func onButtonClick(_ sender: RoundButton) {
+        let powers = ["Off", "fire", "water", "lightning", "earth"];
+    
+        var powerSelected = [String : Any]();
+        powerSelected["power"] = powers[count];
+        EventDispatcher.publish("PowerOn", powerSelected);
         
-        if (count > 4) {
+        count += 1;
+        if (count == 5) {
             count = 0;
         }
         label.text = powers[count];
     }
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loadisg the view, typically from a nib.
         Renderer.setup(view: self.view as! GLKView)
-
+        label.text = "Off"
         game = FingerGodGame()
         self.initButton()
 
@@ -48,7 +52,9 @@ class ViewController: GLKViewController {
         let point = GLKVector3Add(location, GLKVector3MultiplyScalar(ray, t))
         var paramList = [String : Any]()
         paramList["coord"] = point
+        paramList["power"] = count
         EventDispatcher.publish("ClickMap", paramList)
+        
     }
     
     @IBAction func onPan(recognizer: UIPanGestureRecognizer) {
