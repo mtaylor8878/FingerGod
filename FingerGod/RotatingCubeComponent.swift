@@ -46,7 +46,7 @@ public class RotatingCubeComponent : Component, Subscriber {
     }
 
     open override func update(delta:Float) {
-        modelInst.transform = GLKMatrix4Rotate(modelInst.transform, Float.pi * delta / 2, 1.0, 0.0, 0.0)
+        modelInst.transform = GLKMatrix4Rotate(modelInst.transform, Float.pi * delta / 2, 0.8, 0.2, 0.0)
     }
     
     open func setColor(newCol: [Float]) {

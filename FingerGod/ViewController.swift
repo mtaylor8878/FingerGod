@@ -123,7 +123,7 @@ class ViewController: GLKViewController, Subscriber {
         btn.setTitleColor(UIColor.blue, for: .normal)
         btn.addTarget(self, action: #selector(btnClick), for: UIControlEvents.touchUpInside)
         self.view.addSubview(btn)
-        
+        /*
         let leftBtn = UIButton.init()
         leftBtn.frame = CGRect.init(x: ScreenWidth - 200, y: 150, width: 200, height: 50)
         leftBtn.setTitle("leftMoveUnitGroup", for: .normal)
@@ -136,11 +136,11 @@ class ViewController: GLKViewController, Subscriber {
         rightBtn.setTitleColor(UIColor.blue, for: .normal)
         rightBtn.addTarget(self, action: #selector(rightMoveBtnClick), for: UIControlEvents.touchUpInside)
         self.view.addSubview(rightBtn)
+        */
         
     }
     
     @objc func btnClick() {
-        print("lst")
         self.initPoint(x: 115, y: 243)
     }
     @objc func leftMoveBtnClick() {
@@ -158,7 +158,7 @@ class ViewController: GLKViewController, Subscriber {
         let point = GLKVector3Add(Renderer.camera.location, GLKVector3MultiplyScalar(ray, t))
         var paramList = [String : Any]()
         paramList["coord"] = point
-        EventDispatcher.publish("ClickMap", paramList)
+        EventDispatcher.publish("DispatchUnitGroup", paramList)
     }
     
     func notify(_ eventName: String, _ params: [String : Any]) {

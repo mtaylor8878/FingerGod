@@ -35,7 +35,19 @@ public class Game {
      */
     public func addGameObject(gameObject: GameObject) {
         gameObjects.append(gameObject)
+        gameObject.game = self
         gameObject.create()
+    }
+    
+    /*
+     Removes a GameObject from the game
+     */
+    public func removeGameObject(gameObject: GameObject) {
+        let ind = gameObjects.index{$0.id == gameObject.id};
+        if (ind != nil) {
+            gameObject.delete()
+            gameObjects.remove(at: ind!)
+        }
     }
     
     /*
