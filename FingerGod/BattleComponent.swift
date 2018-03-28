@@ -15,8 +15,8 @@ public class BattleComponent : Component {
         super.init(gameObject: gameObject)
     }
     
-    var groupA : UnitGroup?
-    var groupB : UnitGroup?
+    var groupA : UnitGroupComponent?
+    var groupB : UnitGroupComponent?
     var active = false
     
     public func start() {
@@ -29,20 +29,20 @@ public class BattleComponent : Component {
             if (lastMoveTime > BattleComponent.moveTime) {
                 lastMoveTime -= BattleComponent.moveTime
                 
-                for u in (groupA?.peopleArray)! {
+                for u in (groupA?.unitGroup.peopleArray)! {
                     let unit = u as! SingleUnit
-                    unit.attack(targetGroup: groupB!)
+                    unit.attack(targetGroup: groupB!.unitGroup)
                 }
                 
-                for u in (groupB?.peopleArray)! {
+                for u in (groupB?.unitGroup.peopleArray)! {
                     let unit = u as! SingleUnit
-                    unit.attack(targetGroup: groupA!)
+                    unit.attack(targetGroup: groupA!.unitGroup)
                 }
                 
-                _ = groupA?.removeUnitNum()
-                _ = groupB?.removeUnitNum()
+                _ = groupA?.unitGroup.removeUnitNum()
+                _ = groupB?.unitGroup.removeUnitNum()
                 
-                if groupA?.peopleArray.count == 0 && groupB?.peopleArray.count == 0 {
+                if groupA?.unitGroup.peopleArray.count == 0 && groupB?.unitGroup.peopleArray.count == 0 {
                     // tie
                     active = false
                     var params = [String : Any]()
@@ -50,8 +50,9 @@ public class BattleComponent : Component {
                     params["groupA"] = groupA!
                     params["groupB"] = groupB!
                     _ = EventDispatcher.publish("BattleEnd", params)
+                    self.gameObject.game?.removeGameObject(gameObject: self.gameObject)
                 }
-                else if groupA?.peopleArray.count == 0 {
+                else if groupA?.unitGroup.peopleArray.count == 0 {
                     // group B win
                     active = false
                     var params = [String : Any]()
@@ -59,8 +60,9 @@ public class BattleComponent : Component {
                     params["groupA"] = groupA!
                     params["groupB"] = groupB!
                     _ = EventDispatcher.publish("BattleEnd", params)
+                    self.gameObject.game?.removeGameObject(gameObject: self.gameObject)
                 }
-                else if groupB?.peopleArray.count == 0 {
+                else if groupB?.unitGroup.peopleArray.count == 0 {
                     // group A win
                     active = false
                     var params = [String : Any]()
@@ -68,6 +70,7 @@ public class BattleComponent : Component {
                     params["groupA"] = groupA!
                     params["groupB"] = groupB!
                     _ = EventDispatcher.publish("BattleEnd", params)
+                    self.gameObject.game?.removeGameObject(gameObject: self.gameObject)
                 }
             }
         }

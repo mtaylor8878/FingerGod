@@ -43,7 +43,11 @@ public class Game {
      Removes a GameObject from the game
      */
     public func removeGameObject(gameObject: GameObject) {
-        gameObjects.remove(at: gameObjects.index(where: {$0 === gameObject})!)
+        let ind = gameObjects.index{$0.id == gameObject.id};
+        if (ind != nil) {
+            gameObject.delete()
+            gameObjects.remove(at: ind!)
+        }
     }
     
     /*

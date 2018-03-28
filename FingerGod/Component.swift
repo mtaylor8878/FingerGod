@@ -43,4 +43,8 @@ open class Component {
     open func lateUpdate(delta:Float) {
         
     }
+    
+    open func delete() {
+        
+    }
 }

@@ -11,12 +11,12 @@ import GLKit
 
 public class UnitGroupComponent : Component {
     // Axial coordinate position
-    private var position = [0, 0]
+    public var position = [0, 0]
     private var modelInst : ModelInstance?
-    private var unitGroup = UnitGroup.initUnitGroupWith(peopleNum:10, followerNum: 0, demiGodNum: 0)
+    var unitGroup = UnitGroup.initUnitGroupWith(peopleNum:10, followerNum: 0, demiGodNum: 0)
     
     private var initShape = GLKMatrix4Scale(GLKMatrix4Identity, 0.5, 0.5, 0.5)
-    private var alignment = Alignment.NEUTRAL
+    public var alignment = Alignment.NEUTRAL
     
     public override func create() {
         print("Creating Unit Group")
@@ -24,6 +24,7 @@ public class UnitGroupComponent : Component {
             let model = try ModelReader.read(objPath: "CubeModel")
             modelInst = ModelInstance(model: model)
             modelInst?.transform = GLKMatrix4Translate(initShape, 0, 0.75, 0);
+            modelInst?.transform = GLKMatrix4Multiply((modelInst?.transform)!, initShape)
             modelInst?.color = [1.0, 1.0, 1.0, 1.0]
             Renderer.addInstance(inst: modelInst!)
         } catch {
@@ -31,13 +32,26 @@ public class UnitGroupComponent : Component {
         }
     }
     
+    public override func delete() {
+        Renderer.removeInstance(inst: modelInst!)
+    }
+    
     public func move(_ x : Int, _ y : Int) {
         position[0] = x
         position[1] = y
         
-        let ax = axialToWorld(x, y)
-        
-        modelInst?.transform = GLKMatrix4Translate(initShape, ax[0], 0.75, -ax[1]);
+        updateRenderPos()
+    }
+    
+    public func offset(_ x : Float, _ y : Float, _ z : Float) {
+        initShape = GLKMatrix4Translate(initShape, x, y, z)
+        updateRenderPos()
+    }
+    
+    private func updateRenderPos() {
+        let ax = axialToWorld(position[0], position[1])
+        modelInst?.transform = GLKMatrix4Translate(GLKMatrix4Identity, ax.x, 0.75, ax.y)
+        modelInst?.transform = GLKMatrix4Multiply((modelInst?.transform)!, initShape)
     }
     
     public func setAlignment(_ alignment: Alignment) {
@@ -55,14 +69,10 @@ public class UnitGroupComponent : Component {
         }
     }
     
-    // My own function for converting from axial coordinates to a world position
-    private func axialToWorld(_ ax: Int, _ ay: Int) -> [Float] {
-        let dist = Float(3).squareRoot();
-        var result = [Float]()
+    private func axialToWorld(_ q: Int, _ r: Int) -> (x: Float, y: Float) {
+        let x = 3.0 / 2.0 * Float(q) // x value
+        let z = Float(3).squareRoot() * (Float(r) + Float(q) / 2) // z value
         
-        result.append(dist * cos(Float.pi / 6) * Float(ax)) // x value
-        result.append(dist * sin(Float.pi / 6) * Float(ax) + dist * Float(ay)) // y value
-        
-        return result
+        return (x,z)
     }
 }

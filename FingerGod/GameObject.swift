@@ -82,4 +82,10 @@ public class GameObject {
             }
         }
     }
+    
+    public func delete() {
+        for c in components {
+            c.delete()
+        }
+    }
 }

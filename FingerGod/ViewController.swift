@@ -113,7 +113,7 @@ class ViewController: GLKViewController {
         btn.setTitleColor(UIColor.blue, for: .normal)
         btn.addTarget(self, action: #selector(btnClick), for: UIControlEvents.touchUpInside)
         self.view.addSubview(btn)
-        
+        /*
         let leftBtn = UIButton.init()
         leftBtn.frame = CGRect.init(x: ScreenWidth - 200, y: 150, width: 200, height: 50)
         leftBtn.setTitle("leftMoveUnitGroup", for: .normal)
@@ -126,6 +126,7 @@ class ViewController: GLKViewController {
         rightBtn.setTitleColor(UIColor.blue, for: .normal)
         rightBtn.addTarget(self, action: #selector(rightMoveBtnClick), for: UIControlEvents.touchUpInside)
         self.view.addSubview(rightBtn)
+        */
         
     }
     
