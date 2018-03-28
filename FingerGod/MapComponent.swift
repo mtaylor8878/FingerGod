@@ -72,10 +72,10 @@ public class MapComponent : Component, Subscriber {
         case "moveGroupUnit":
             let str: String! = params["direction"] as! String
             if str == "left" {
-                selectTile((selected?.x)! - 1, (selected?.y)! )
+                selectTile((selected?.x)! - 1, (selected?.y)!)
             }
             if str == "right" {
-                selectTile((selected?.x)! + 1, (selected?.y)! )
+                selectTile((selected?.x)! + 1, (selected?.y)!)
             }
             break
             
@@ -88,7 +88,12 @@ public class MapComponent : Component, Subscriber {
             outputString += "\nTile Axial: (" + String(closestTile.x) + "," + String(closestTile.y) + ")"
             outputString += "\nTile World: (" + String(tile.getCenterX()) + "," + String(tile.getCenterY()) + ")"
             NSLog(outputString)
-            selectTile(closestTile.x, closestTile.y)
+            let number = params["power"] as! Int
+            if (number > 0) {
+                powerTile(closestTile.x, closestTile.y, number)
+            } else {
+                selectTile(closestTile.x, closestTile.y)
+            }
             break
         default:
             break
@@ -103,6 +108,34 @@ public class MapComponent : Component, Subscriber {
         }
         selected = TileMap.Point2D(x:x,y:y)
         tileModelInsts[selected!]!.color = [1.0, 0.2, 0.2, 1.0]
+    }
+    
+    public func powerTile(_ x: Int, _ y: Int, _ power: Int) {
+        /*
+        if(selected != nil) {
+            
+            var curr = tileModelInsts[selected!]!
+            curr.color = [0.075, Float(0.85 + (selected!.x % 2 == 0 ? 0 : 0.15)), 0.25 + Float(selected!.y % 2 == 0 ? 0 : 0.15), 1.0]
+        }
+
+        selected = TileMap.Point2D(x:x,y:y)
+*/
+        switch (power) {
+        case 1:
+            tileModelInsts[TileMap.Point2D(x:x, y:y)]!.color = [1.0, 0.411, 0.706, 1.0]
+            break
+        case 2:
+            tileModelInsts[TileMap.Point2D(x:x, y:y)]!.color = [0.0, 0.0, 1.0, 1.0]
+            break
+        case 3:
+            tileModelInsts[TileMap.Point2D(x:x, y:y)]!.color = [0.2, 0.0, 0.5, 1.0]
+            break
+        case 4:
+            tileModelInsts[TileMap.Point2D(x:x, y:y)]!.color = [1.0, 2.0, 0.2, 1.0]
+            break
+        default:
+            break
+        }
     }
     
     // My own function for converting from axial coordinates to a world position
