@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GLKit
 
 /*
  Tile Class for the tiles that make up the map
@@ -20,148 +21,71 @@ public class Tile {
         case boundary
         case structure
     }
-
-    //Neighbouring Tile Coordinates
-    private let neighboursX : [Int] = [0, 1, 1, 0, -1, -1]
-    private let neighboursY : [[Int]] = [[-1, -1, 0, 1, 0, -1], [-1, 0, 1, 1, 1, 0]]
-    
-    //Tile Corner Coordinates
-    private let cornerX : [Int]
-    private let cornerY : [Int]
-    
-    //Tile Side
-    private let side : Int
-    
-    //Tile Left Coordinate
-    private var coordI : Int
-    //Tile Top Coordinate
-    private var coordJ : Int
-    //Tile X Index
-    private var coordX : Int
-    //Tile Y Index
-    private var coordY : Int
     
     //Tile Dimensions
     public let radius : Int
     public let height : Int
     public let width : Int
-    //Number of Neigbours / Sides
-    public let neighbours : Int = 6
+    
+    public var model : ModelInstance
+    public var defaultColor : [GLfloat]
+    
+    // Axial Coordinates
+    private var q : Int
+    
+    private var r : Int
+    
+    public var worldCoordinate: (x: Float, y: Float) {
+        get {
+            return axialToWorld(q, r)
+        }
+    }
+    
     //Type of Tile
     public var type : types
     
     /*
-     Initialize a tile using a radius
-    */
-    public init(_ radius:Int) {
+     Initialize a tile using a radius and single coord
+     */
+    public convenience init(_ coordinate: Point2D, _ radius:Int) {
+        self.init(coordinate.x, coordinate.y, radius)
+    }
+    
+    /*
+     Initialize a tile using a radius (q,r) split
+     */
+    public init(_ q: Int, _ r: Int, _ radius:Int) {
         self.radius = radius
+        
         width = radius * 2
         height = radius * (Int(sqrt(3)))
-        side = radius * 3 / 2
-        cornerX = [radius / 2, side, width, side, radius / 2, 0]
-        cornerY = [0, 0, height / 2, height, height, height / 2]
+        
         type = types.vacant
         
-        coordI = 0
-        coordJ = 0
-        coordX = 0
-        coordY = 0
-    }
-    
-    /*
-     Get the Left Coord
-    */
-    public func getI() -> Int {
-        return coordI
-    }
-    
-    /*
-     Get the Top Coord
-    */
-    public func getJ() -> Int {
-        return coordJ
-    }
-    
-    /*
-     Get the X coord of the center
-    */
-    public func getCenterX() -> Int {
-        return coordI * radius
-    }
-    
-    /*
-     Get the Y coord of the center
-    */
-    public func getCenterY() -> Int {
-        return coordJ * radius
-    }
-    
-    /*
-     Get the X index
-    */
-    public func getCoordX() -> Int {
-        return coordX
-    }
-    
-    /*
-     Get the Y index
-    */
-    public func getCoordY() -> Int {
-        return coordY
-    }
-    
-    /*
-     Get a the X Coord of a neighour
-    */
-    public func getNeighbourX(_ neighbourX:Int) -> Int {
-        return coordX + neighboursX[neighbourX]
-    }
-   
-    /*
-     Get the Y Coord of a neighbour
-    */
-    public func getNeighbourY(_ neighbourY:Int) -> Int {
-        return coordY + neighboursY[coordX % 2][neighbourY]
-    }
-    
-    /*
-     Sets the 6 corners of the Tile
-    */
-    public func setCorners(_ cornersX: inout [Int],_ cornersY: inout [Int]) {
-        for i in 0 ..< neighbours {
-            cornersX[i] = coordI + cornerX[i]
-            cornersY[i] = coordJ + cornerY[i]
-        }
-    }
-    
-    /*
-     Sets the the Indexes of the tile
-    */
-    public func setCellIndex(_ x:Int,_ y:Int) {
-        coordX = x;
-        coordY = y;
-        coordI = x * side;
-        coordJ = height * (2 * y + (x % 2)) / 2
-    }
-    
-    /*
-     Sets the Tile as a Point
-    */
-    public func setCellByPoint(_ x:Int,_ y:Int) {
-        let indexI = Int(floor(Float(x) / Float(side)))
-        let indexX = x - side * indexI
+        self.q = q
+        self.r = r
         
-        let tempY = y - (indexI % 2) * height / 2
-        let indexJ = Int(floor(Float(tempY) / Float(height)))
-        let indexY = tempY - height * indexJ
+        var hex : Model?
         
-        if (indexX > abs((radius / 2 - radius * indexY / height))) {
-            setCellIndex(indexI, indexJ)
-        } else {
-            setCellIndex(indexI - 1, indexJ + (indexI % 2) - ((indexY < height / 2) ? 1 : 0))
+        do {
+            hex = try ModelReader.read(objPath: "HexTile")
+        } catch {
+            print("There was a problem initializing this tile model: \(error)")
         }
+        
+        let x = 3.0 / 2.0 * Float(q) // x value
+        let z = Float(3).squareRoot() * (Float(r) + Float(q) / 2) // z value
+        
+        defaultColor = [0.075, Float(0.85 + (q % 2 == 0 ? 0 : 0.15)), 0.25 + Float(r % 2 == 0 ? 0 : 0.15), 1.0]
+        
+        model = ModelInstance(model: hex!)
+        model.color = defaultColor
+        model.transform = GLKMatrix4Translate(model.transform, x, 0, z)
+        model.transform = GLKMatrix4RotateX(model.transform, -Float.pi/2)
+        
+        Renderer.addInstance(inst: model)
     }
-    
+
     /*
      Get the type of the tile
     */
@@ -174,6 +98,26 @@ public class Tile {
     */
     public func setType(_ newType:types) {
         self.type = newType
+    }
+    
+    public func setAxial(_ coord: Point2D) {
+        q = coord.x
+        r = coord.y
+    }
+    
+    public func getAxial() -> Point2D {
+        return Point2D(q,r)
+    }
+    
+    public func resetColor() {
+        model.color = defaultColor
+    }
+    
+    private func axialToWorld(_ q: Int, _ r: Int) -> (x: Float, y: Float) {
+        let x = 3.0 / 2.0 * Float(q) // x value
+        let z = Float(3).squareRoot() * (Float(r) + Float(q) / 2) // z value
+        
+        return (x,z)
     }
 }
 
