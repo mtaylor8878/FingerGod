@@ -22,6 +22,7 @@ class EventDispatcher {
     ///   - eventName: name of event to subscribe to
     ///   - subscriber: object to subscribe to the event
     /// - Returns: true if object was successfully subscribed to the given event
+    @discardableResult
     public static func subscribe(_ eventName : String, _ subscriber : Subscriber) -> Bool {
         if (_eventList[eventName] == nil) {
             _eventList[eventName] = [Subscriber]()
@@ -41,6 +42,7 @@ class EventDispatcher {
     ///   - eventName: name of event to unsubscribe from
     ///   - subscriber: object to unsubscribe
     /// - Returns: true if object was successfully unsubscribed from the given event
+    @discardableResult
     public static func unsubscribe(_ eventName: String, _ subscriber : Subscriber) -> Bool {
         if (_eventList[eventName] != nil) {
             if let index = _eventList[eventName]!.index(where: {$0 === subscriber}) {
@@ -59,6 +61,7 @@ class EventDispatcher {
     ///   - eventName: name of event to publish
     ///   - params: dictionary of parameters to pass to subscribers
     /// - Returns: true if subscribers to the given event were notified
+    @discardableResult
     public static func publish(_ eventName: String, _ params: [String : Any]) -> Bool {
         if let subscriberList = _eventList[eventName] {
             for subscriber in subscriberList {
