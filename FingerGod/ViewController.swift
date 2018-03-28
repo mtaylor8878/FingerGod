@@ -18,7 +18,7 @@ class ViewController: GLKViewController {
     private var game : Game!
     private var prevPanPoint = CGPoint(x: 0, y: 0)
     private var prevScale : Float = 1
-    var player : PlayerObject!
+    var player = PlayerObject(newId : 0)
     var count : Int = 0;
 
     @IBOutlet weak var label: UILabel!
@@ -45,6 +45,9 @@ class ViewController: GLKViewController {
         label.text = "Off"
         game = FingerGodGame()
         self.initButton()
+        followers.text = String(player._followers)
+        gold.text = String(player._gold)
+        mana.text = String(player._mana)
 
     }
     @IBAction func onTap(_ recognizer: UITapGestureRecognizer) {
@@ -56,6 +59,10 @@ class ViewController: GLKViewController {
         var paramList = [String : Any]()
         paramList["coord"] = point
         paramList["power"] = count
+        if (count > 0) {
+            player._mana -= 10
+            mana.text = String(player._mana)
+        }
         EventDispatcher.publish("ClickMap", paramList)
         
     }
