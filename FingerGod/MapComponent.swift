@@ -13,9 +13,13 @@ public class MapComponent : Component, Subscriber {
     
     private var tileMap : TileMap!
     private var selected: Point2D?
+    private var player: PlayerObject!
     
     open override func create() {
         tileMap = TileMap(10,1)
+        
+        player = PlayerObject(2, tileMap.getTile(0,0)!)
+        
        
         EventDispatcher.subscribe("ClickMap",self)
         EventDispatcher.subscribe("moveGroupUnit",self)

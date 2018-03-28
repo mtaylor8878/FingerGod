@@ -53,6 +53,10 @@
 		99ED16CA2046909300827958 /* FingerGodGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED16C92046909300827958 /* FingerGodGame.swift */; };
 		99ED16CC2046912200827958 /* RotatingCubeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED16CB2046912200827958 /* RotatingCubeComponent.swift */; };
 		A66911E2206B48F600C9506E /* HexDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66911E1206B48F600C9506E /* HexDirection.swift */; };
+		A66911E5206B9AC100C9506E /* Castle.obj in Resources */ = {isa = PBXBuildFile; fileRef = A66911E3206B9AC100C9506E /* Castle.obj */; };
+		A66911E6206B9AC100C9506E /* Castle.mtl in Resources */ = {isa = PBXBuildFile; fileRef = A66911E4206B9AC100C9506E /* Castle.mtl */; };
+		A66911E8206B9C4400C9506E /* Structure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66911E7206B9C4400C9506E /* Structure.swift */; };
+		A66911EA206B9D7E00C9506E /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66911E9206B9D7E00C9506E /* City.swift */; };
 		C98438662046162A00321700 /* FingerGodMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98438652046162A00321700 /* FingerGodMessageTests.swift */; };
 		C98B13BF2064595700BCFABE /* PlayerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98B13BE2064595700BCFABE /* PlayerObject.swift */; };
 		C9F4135E203AC2DC001C56E1 /* Subscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F4135D203AC2DC001C56E1 /* Subscriber.swift */; };
@@ -130,6 +134,10 @@
 		99ED16C92046909300827958 /* FingerGodGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodGame.swift; sourceTree = "<group>"; };
 		99ED16CB2046912200827958 /* RotatingCubeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotatingCubeComponent.swift; sourceTree = "<group>"; };
 		A66911E1206B48F600C9506E /* HexDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexDirection.swift; sourceTree = "<group>"; };
+		A66911E3206B9AC100C9506E /* Castle.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Castle.obj; path = ../../Castle.obj; sourceTree = "<group>"; };
+		A66911E4206B9AC100C9506E /* Castle.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Castle.mtl; path = ../../Castle.mtl; sourceTree = "<group>"; };
+		A66911E7206B9C4400C9506E /* Structure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structure.swift; sourceTree = "<group>"; };
+		A66911E9206B9D7E00C9506E /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		C98438652046162A00321700 /* FingerGodMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodMessageTests.swift; sourceTree = "<group>"; };
 		C98B13BE2064595700BCFABE /* PlayerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerObject.swift; sourceTree = "<group>"; };
 		C9F4135D203AC2DC001C56E1 /* Subscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscriber.swift; sourceTree = "<group>"; };
@@ -175,6 +183,8 @@
 		3D0DA0B0203E1C3F0050F708 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				A66911E4206B9AC100C9506E /* Castle.mtl */,
+				A66911E3206B9AC100C9506E /* Castle.obj */,
 				999312952046367B00835BA3 /* Sphere.mtl */,
 				999312962046367C00835BA3 /* Sphere.obj */,
 				3D0DA0B9203E1C5D0050F708 /* HexTile.mtl */,
@@ -238,6 +248,8 @@
 				F6DD7443206B236600868E57 /* UnitGroup.swift */,
 				99E1CF3A206B3A7400C7A04B /* BattleComponent.swift */,
 				F24C46CA206B6B9200B8097D /* RoundButton.swift */,
+				A66911E7206B9C4400C9506E /* Structure.swift */,
+				A66911E9206B9D7E00C9506E /* City.swift */,
 			);
 			path = FingerGod;
 			sourceTree = "<group>";
@@ -439,11 +451,13 @@
 				3D0DA0BE203E1C5D0050F708 /* HexTile.obj in Resources */,
 				999312982046367C00835BA3 /* Sphere.obj in Resources */,
 				3D0DA0B3203E1C560050F708 /* CubeModel.mtl in Resources */,
+				A66911E6206B9AC100C9506E /* Castle.mtl in Resources */,
 				3D0DA0BB203E1C5D0050F708 /* HexTile.mtl in Resources */,
 				3D0DA0B6203E1C560050F708 /* CubeModel.obj in Resources */,
 				3DDB594D2035F39C0000E0C4 /* LaunchScreen.storyboard in Resources */,
 				9993129A2046418C00835BA3 /* teapot.obj in Resources */,
 				3DDB594A2035F39C0000E0C4 /* Assets.xcassets in Resources */,
+				A66911E5206B9AC100C9506E /* Castle.obj in Resources */,
 				999312972046367C00835BA3 /* Sphere.mtl in Resources */,
 				3DDB59482035F39C0000E0C4 /* Main.storyboard in Resources */,
 			);
@@ -486,25 +500,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				C98B13BF2064595700BCFABE /* PlayerObject.swift in Sources */,
-				C9524E2D2065F8E8009BC52C /* UnitArrayModel.swift in Sources */,
 				99E70623204515530095BA58 /* ModelInstance.swift in Sources */,
 				3DDB59452035F39C0000E0C4 /* ViewController.swift in Sources */,
 				993F14592046AAF200AF5BFB /* TileMap.swift in Sources */,
 				990EFF3920427EDB002FEBED /* EventDispatcher.swift in Sources */,
-				C9524E322065F8F9009BC52C /* UnitGroup.swift in Sources */,
-				C9524E2E2065F8E8009BC52C /* UnitModel.swift in Sources */,
 				99ED16CC2046912200827958 /* RotatingCubeComponent.swift in Sources */,
 				992762DD2036BA0200C73599 /* Component.swift in Sources */,
 				99ED16CA2046909300827958 /* FingerGodGame.swift in Sources */,
 				990EFF3120427EA4002FEBED /* Model.swift in Sources */,
 				990EFF3520427EB0002FEBED /* ModelReader.swift in Sources */,
 				992762D72036B4BD00C73599 /* Game.swift in Sources */,
-				C9524E312065F8F9009BC52C /* SingleUnit.swift in Sources */,
+				A66911E8206B9C4400C9506E /* Structure.swift in Sources */,
 				C9F4135E203AC2DC001C56E1 /* Subscriber.swift in Sources */,
 				F6DD7442206B235200868E57 /* SingleUnit.swift in Sources */,
 				3DDB59432035F39C0000E0C4 /* AppDelegate.swift in Sources */,
 				A66911E2206B48F600C9506E /* HexDirection.swift in Sources */,
 				993F145A2046AAF200AF5BFB /* Tile.swift in Sources */,
+				A66911EA206B9D7E00C9506E /* City.swift in Sources */,
 				992762DB2036B9DD00C73599 /* GameObject.swift in Sources */,
 				99E1CF3B206B3A7400C7A04B /* BattleComponent.swift in Sources */,
 				F24C46CB206B6B9200B8097D /* RoundButton.swift in Sources */,

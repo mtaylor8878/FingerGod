@@ -18,7 +18,7 @@ public class FingerGodGame : Game {
         self.addGameObject(gameObject: map)
         power.addComponent(type: Power.self)
         self.addGameObject(gameObject: power)
-        
+                
         Renderer.camera.move(x: 0, y: 14, z: 9)
         Renderer.camera.rotate(angle: -Float.pi * 2 / 6, x: 1, y: 0, z: 0)
         
