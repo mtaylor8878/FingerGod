@@ -16,7 +16,7 @@ public class FingerGodGame : Game {
         map.addComponent(type: MapComponent.self)
         self.addGameObject(gameObject: map)
         
-        Renderer.camera.move(x: 10, y: 20, z: -10)
+        Renderer.camera.move(x: 0, y: 14, z: 9)
         Renderer.camera.rotate(angle: -Float.pi * 2 / 6, x: 1, y: 0, z: 0)
     }
 }
