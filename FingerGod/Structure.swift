@@ -10,10 +10,10 @@ import Foundation
 
 public class Structure {
     public var model : ModelInstance
-    public let tile : Tile
+    public let pos : Point2D
     
-    public init(_ tile: Tile, _ mi: ModelInstance) {
-        self.tile = tile
+    public init(_ pos: Point2D, _ mi: ModelInstance) {
+        self.pos = pos
         self.model = mi
     }
     

@@ -13,16 +13,13 @@ public class MapComponent : Component, Subscriber {
     
     private var tileMap : TileMap!
     private var selected: Point2D?
-    private var player: PlayerObject!
     
     open override func create() {
         tileMap = TileMap(10,1)
         
-        player = PlayerObject(2, tileMap.getTile(0,0)!)
-        
-       
         EventDispatcher.subscribe("ClickMap",self)
         EventDispatcher.subscribe("moveGroupUnit",self)
+        EventDispatcher.subscribe("AddStructure", self)
     }
     
     public func getClosest(_ coord: GLKVector3) -> Point2D {
@@ -51,6 +48,12 @@ public class MapComponent : Component, Subscriber {
             if str == "right" {
                 selectTile((selected?.x)! + 1, (selected?.y)!)
             }
+            break
+            
+        case "AddStructure":
+            let str = params["structure"]! as! Structure
+            let pos = params["coords"]! as! Point2D
+            tileMap.getTile(pos)?.addStructure(str)
             break
             
         case "ClickMap":
@@ -99,5 +102,13 @@ public class MapComponent : Component, Subscriber {
         default:
             break
         }
+    }
+    
+    public override func update(delta: Float) {
+        super.update(delta: delta)
+        
+        /*followerLabel.text = String(player._followers)
+        goldLabel.text = String(player._gold)
+        manaLabel.text = String(player._mana)*/
     }
 }
