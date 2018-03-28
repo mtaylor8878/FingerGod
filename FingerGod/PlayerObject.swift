@@ -30,7 +30,7 @@ public class PlayerObject : GameObject, Subscriber{
     
     func notify(_ eventName: String, _ params: [String : Any]) {
         switch(eventName) {
-        case "UpdateMana":
+        case "UpdatePlayerMana":
             _mana += params["ManaValue"]! as! Float
             break
         default:
