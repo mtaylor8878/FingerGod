@@ -66,6 +66,7 @@
 		F24C46CD206B6BB100B8097D /* Power.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24C46CC206B6BB100B8097D /* Power.swift */; };
 		F2FE9E98207EB44F0010D463 /* TitleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FE9E97207EB44F0010D463 /* TitleController.swift */; };
 		F2FE9E9E207EB5D80010D463 /* ModelInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E70622204515530095BA58 /* ModelInstance.swift */; };
+		F2FE9EA4207ED8230010D463 /* Pause.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2FE9EA3207ED8230010D463 /* Pause.xib */; };
 		F6DD7442206B235200868E57 /* SingleUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DD7441206B235200868E57 /* SingleUnit.swift */; };
 		F6DD7444206B236600868E57 /* UnitGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DD7443206B236600868E57 /* UnitGroup.swift */; };
 /* End PBXBuildFile section */
@@ -151,6 +152,7 @@
 		F24C46CA206B6B9200B8097D /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		F24C46CC206B6BB100B8097D /* Power.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Power.swift; sourceTree = "<group>"; };
 		F2FE9E97207EB44F0010D463 /* TitleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleController.swift; sourceTree = "<group>"; };
+		F2FE9EA3207ED8230010D463 /* Pause.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Pause.xib; sourceTree = "<group>"; };
 		F6DD7441206B235200868E57 /* SingleUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleUnit.swift; sourceTree = "<group>"; };
 		F6DD7443206B236600868E57 /* UnitGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitGroup.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -304,6 +306,7 @@
 				3DDB59442035F39C0000E0C4 /* ViewController.swift */,
 				F2FE9E97207EB44F0010D463 /* TitleController.swift */,
 				F24C46CA206B6B9200B8097D /* RoundButton.swift */,
+				F2FE9EA3207ED8230010D463 /* Pause.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2FE9EA4207ED8230010D463 /* Pause.xib in Resources */,
 				99AACA312044FB43001262D0 /* Shader.fsh in Resources */,
 				99AACA2F2044FB23001262D0 /* Shader.vsh in Resources */,
 				3D0DA0BE203E1C5D0050F708 /* HexTile.obj in Resources */,
