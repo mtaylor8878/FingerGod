@@ -14,11 +14,13 @@ import Foundation
 */
 public class Game {
     // The game objects within the game
-    private var gameObjects = Array<GameObject>()
+    private var gameObjects = [Int : GameObject]()
     // The time of the last update to be called
     private var lastTickTime = mach_absolute_time()
     // The timebase info
     private var timebaseInfo = mach_timebase_info_data_t()
+    // ID numbers
+    private var idCount = 0
 
     /*
      Initializes the game
@@ -32,21 +34,42 @@ public class Game {
      Adds a GameObject to the game
      When a GameObject is added to the game, all of its create methods are automatically called
      In other words, it assumes the components for the GameObject are all set up already
+     
+     Returns the ID that was given to the added object
      */
-    public func addGameObject(gameObject: GameObject) {
-        gameObjects.append(gameObject)
+    public func addGameObject(gameObject: GameObject) -> Int {
+        gameObjects[idCount] = gameObject
+        gameObject.id = idCount;
+        idCount += 1;
         gameObject.game = self
         gameObject.create()
+        
+        return gameObject.id!;
+    }
+    
+    /*
+     Retrieve a GameObject by its ID
+     Returns the GameObject if found, nil if not found
+    */
+    public func getGameObject(byId: Int) -> GameObject? {
+        return gameObjects[byId]
     }
     
     /*
      Removes a GameObject from the game
      */
     public func removeGameObject(gameObject: GameObject) {
-        let ind = gameObjects.index{$0.id == gameObject.id};
+        self.removeGameObject(byId: gameObject.id!)
+    }
+    
+    /*
+     Removes a GameObject from the game by its id
+     */
+    public func removeGameObject(byId: Int) {
+        let ind = gameObjects.index{$0.value.id == byId}
         if (ind != nil) {
-            gameObject.delete()
-            gameObjects.remove(at: ind!)
+            gameObjects[ind!].value.delete()
+            gameObjects[gameObjects[ind!].key] = nil
         }
     }
     
@@ -69,12 +92,12 @@ public class Game {
         
         // Perform the regular updates
         for o in gameObjects {
-            o.update(delta: Float(delta))
+            o.value.update(delta: Float(delta))
         }
         
         // Perform the late updates
         for o in gameObjects {
-            o.lateUpdate(delta: Float(delta))
+            o.value.lateUpdate(delta: Float(delta))
         }
     }
 }

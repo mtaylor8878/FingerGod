@@ -33,7 +33,7 @@ public class PlayerObject : GameObject, Subscriber{
         income = 1
         incomeTick = 2.0
         
-        super.init(id: newId)
+        super.init()
         
         _city = City(startSpace, self)
     }
