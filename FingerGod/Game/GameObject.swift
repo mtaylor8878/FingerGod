@@ -37,9 +37,10 @@ public class GameObject {
     }
     
     // Adds a component to the GameObject
-    public func addComponent<T : Component>(type: T.Type) {
+    public func addComponent<T : Component>(type: T.Type) -> Component {
         let component = T.init(gameObject: self)
         components.append(component)
+        return component
     }
     
     /*
