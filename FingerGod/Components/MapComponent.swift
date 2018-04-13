@@ -28,7 +28,7 @@ public class MapComponent : Component, Subscriber {
         EventDispatcher.subscribe("AddStructure", self)
         EventDispatcher.subscribe("BattleEnd",self)
         
-        let testEnemy = GameObject(id: 1)
+        let testEnemy = GameObject()
         testEnemy.addComponent(type: UnitGroupComponent.self)
         
         self.gameObject.game!.addGameObject(gameObject: testEnemy)
@@ -88,7 +88,7 @@ public class MapComponent : Component, Subscriber {
             }
             break
         case "DispatchUnitGroup":
-            let unitGroup = GameObject(id: unitGroupIDs)
+            let unitGroup = GameObject()
             unitGroupIDs = unitGroupIDs + 1
             unitGroup.addComponent(type: UnitGroupComponent.self)
             self.gameObject.game?.addGameObject(gameObject: unitGroup)
@@ -170,7 +170,7 @@ public class MapComponent : Component, Subscriber {
         unitGroupA.offset(-1.25, 0, 0)
         unitGroupB.offset(1.25, 0, 0)
         
-        var battleObj = GameObject(id: battleIDs)
+        var battleObj = GameObject()
         battleIDs = battleIDs + 1
         
         battleObj.addComponent(type: BattleComponent.self)

@@ -12,12 +12,15 @@ import Foundation
  */
 public class GameObject {
     // The identifier of this object
-    public var id: Int {
+    public var id: Int? {
         get {
             return _id
         }
+        set(newId) {
+            _id = newId;
+        }
     }
-    private var _id: Int
+    private var _id: Int? = 0
     
     // The game this GameObject belongs to
     // Temporary
@@ -30,8 +33,7 @@ public class GameObject {
     private var components = Array<Component>()
     
     // Initializes the GameObject with an ID
-    public init(id newId:Int) {
-        self._id = newId;
+    public init() {
     }
     
     // Adds a component to the GameObject

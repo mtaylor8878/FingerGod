@@ -11,8 +11,8 @@ import Foundation
 public class FingerGodGame : Game {
     public override func onGameStart() {
         super.onGameStart()
-        let map = GameObject(id: 0)
-        let power = GameObject(id: 1)
+        let map = GameObject()
+        let power = GameObject()
         
         map.addComponent(type: MapComponent.self)
         self.addGameObject(gameObject: map)
