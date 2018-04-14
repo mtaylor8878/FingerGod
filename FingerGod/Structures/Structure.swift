@@ -15,7 +15,8 @@ public class Structure {
     public init(_ pos: Point2D, _ mi: ModelInstance) {
         self.pos = pos
         self.model = mi
+        EventDispatcher.publish("AddStructure", ("structure",self), ("coords",pos))
     }
     
-    public func onSelect() {}
+    public func interact() {}
 }

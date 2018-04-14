@@ -37,6 +37,7 @@ public class GameObject {
     }
     
     // Adds a component to the GameObject
+    @discardableResult
     public func addComponent<T : Component>(type: T.Type) -> Component {
         let component = T.init(gameObject: self)
         components.append(component)

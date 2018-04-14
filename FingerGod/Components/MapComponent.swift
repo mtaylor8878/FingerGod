@@ -13,7 +13,6 @@ import GLKit
 public class MapComponent : Component, Subscriber {
     
     private var tileMap : TileMap!
-    private var selected: Point2D?
     
     // TEMPORARY VALUES
     private var unitGroupIDs = 10000
@@ -23,10 +22,9 @@ public class MapComponent : Component, Subscriber {
     open override func create() {
         tileMap = TileMap(10,1)
         
-        EventDispatcher.subscribe("ClickMap",self)
-        EventDispatcher.subscribe("DispatchUnitGroup",self)
-        EventDispatcher.subscribe("moveGroupUnit",self)
         EventDispatcher.subscribe("AddStructure", self)
+        EventDispatcher.subscribe("SetTileColor",self)
+        
         EventDispatcher.subscribe("BattleEnd",self)
         
         let testEnemy = GameObject()
@@ -55,52 +53,24 @@ public class MapComponent : Component, Subscriber {
         return select
     }
     
+    public func setTileColor(tile: Point2D, color: [Float]) {
+        tileMap.getTile(tile)!.model.color = color
+    }
+    
+    public func resetTileColor(tile: Point2D){
+        tileMap.getTile(tile)!.resetColor()
+    }
+    
+    public func getTile(pos: Point2D) -> Tile? {
+        return tileMap.getTile(pos)
+    }
+    
     func notify(_ eventName: String, _ params: [String : Any]) {
         switch(eventName) {
-        case "moveGroupUnit":
-            let str: String! = params["direction"] as! String
-            if str == "left" {
-                selectTile((selected?.x)! - 1, (selected?.y)!)
-            }
-            if str == "right" {
-                selectTile((selected?.x)! + 1, (selected?.y)!)
-            }
-            break
-            
         case "AddStructure":
             let str = params["structure"]! as! Structure
             let pos = params["coords"]! as! Point2D
             tileMap.getTile(pos)?.addStructure(str)
-            break
-            
-        case "ClickMap":
-            let point = params["coord"] as! GLKVector3
-            let closestTile = getClosest(point)
-            let tile = tileMap.getTile(closestTile)!
-            var outputString = "\nPoint: (" + String(point.x) + "," + String(point.y) + "," + String(point.z) + ")"
-            outputString += "\nTile Axial: (" + String(closestTile.x) + "," + String(closestTile.y) + ")"
-            outputString += "\nTile World: (" + String(tile.worldCoordinate.x) + "," + String(tile.worldCoordinate.y) + ")"
-            outputString += "\nTile Type: (" + tile.type.rawValue + ")"
-            NSLog(outputString)
-            let number = params["power"] as! Int
-            if (number > 0) {
-                powerTile(closestTile.x, closestTile.y, number)
-            } else {
-                selectTile(closestTile.x, closestTile.y)
-            }
-            break
-            
-        case "DispatchUnitGroup":
-            let unitGroup = GameObject()
-            unitGroupIDs = unitGroupIDs + 1
-            unitGroup.addComponent(type: UnitGroupComponent.self)
-            self.gameObject.game?.addGameObject(gameObject: unitGroup)
-            
-            var unitGroupComponent = unitGroup.getComponent(type: UnitGroupComponent.self)!
-            unitGroupComponent.move(5, 0)
-            unitGroupComponent.setAlignment(Alignment.ALLIED)
-            
-            unitGroupComps.append(unitGroupComponent)
             break
             
         case "BattleEnd":
@@ -129,44 +99,21 @@ public class MapComponent : Component, Subscriber {
                 break
             }
             break
+            
+        case "SetTileColor":
+            let pos = params["pos"]! as! Point2D
+            let color = params["color"] as? [Float]
+            
+            if(color != nil) {
+                setTileColor(tile: pos, color: color!)
+            } else {
+                resetTileColor(tile: pos)
+            }
+            break
+            
         default:
             break
         }
-    }
-    
-    public func selectTile(_ q: Int, _ r: Int) {
-        var nextObject : UnitGroupComponent? = nil
-        var prevObject : UnitGroupComponent? = nil
-        if(selected != nil) {
-            tileMap.getTile(selected!)?.resetColor()
-            for c in unitGroupComps {
-                if c.position[0] == selected?.x && c.position[1] == selected?.y {
-                    // There was a unit on our selected tile, move it to the new tile
-                    prevObject = c
-                }
-                if c.position[0] == q && c.position[1] == r {
-                    nextObject = c
-                }
-            }
-        }
-        
-        if (prevObject != nil && prevObject!.alignment == Alignment.ALLIED) {
-            if (nextObject == nil) {
-                // There was a unit on our selected tile, move it to the new tile
-                prevObject!.move(q, r)
-                selected = nil
-                return
-            }
-            else if (nextObject != nil && nextObject!.alignment == Alignment.ENEMY){
-                // INITIATE BATTLE
-                print("BATTLE START")
-                startBattle(prevObject!, nextObject!)
-                selected = nil
-                return
-            }
-        }
-        selected = Point2D(q,r)
-        tileMap.getTile(selected!)!.model.color = [1.0, 0.2, 0.2, 1.0]
     }
     
     private func startBattle(_ unitGroupA : UnitGroupComponent, _ unitGroupB : UnitGroupComponent) {
@@ -186,8 +133,8 @@ public class MapComponent : Component, Subscriber {
         self.gameObject.game?.addGameObject(gameObject: battleObj)
         battleComp?.start()
     }
-    
-    public func powerTile(_ x: Int, _ y: Int, _ power: Int) {
+
+    /*public func powerTile(_ x: Int, _ y: Int, _ power: Int) {
 
         switch (power) {
         case 1:
@@ -202,7 +149,7 @@ public class MapComponent : Component, Subscriber {
         default:
             break
         }
-    }
+    }*/
     
     public override func update(delta: Float) {
         super.update(delta: delta)

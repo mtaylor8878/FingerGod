@@ -71,4 +71,21 @@ class EventDispatcher {
         }
         return false
     }
+    
+    
+    /// # Publish
+    /// Publish an event and notify all subscribers of that event
+    ///
+    /// - Parameters:
+    ///   - eventName: name of event to publish
+    ///   - param: parameters to pass to subscribers
+    /// - Returns: true if subscribers to the given event were notified
+    @discardableResult
+    public static func publish(_ eventName: String, _ param: (String, Any)...) -> Bool {
+        var paramList = [String:Any]()
+        for (key,value) in param {
+            paramList[key] = value
+        }
+        return publish(eventName, paramList)
+    }
 }

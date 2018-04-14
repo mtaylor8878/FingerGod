@@ -17,16 +17,16 @@ public class PlayerObject : GameObject, Subscriber{
     public var income : Int
     public var incomeTick : Float
     public var _mana : Float
-    public var _unitList : UnitGroup
+    public var _unitList : [UnitGroupComponent]
     public var _city : City?
     public var _selectedPower : String
     public let color : [GLfloat]
     
     private var tickCount : Float
         
-    public init(_ newId:Int, _ color:[GLfloat], _ startSpace: Point2D) {
+    public init(_ color:[GLfloat], _ startSpace: Point2D) {
         _followers = 1
-        _unitList = UnitGroup()
+        _unitList = [UnitGroupComponent]()
         _gold = STARTING_GOLD
         _mana = 500
         self.color = color

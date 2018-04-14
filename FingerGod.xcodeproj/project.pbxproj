@@ -64,6 +64,7 @@
 		B1F0FC6C20815FA7003E0ADD /* EarthPower.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F0FC6B20815FA7003E0ADD /* EarthPower.swift */; };
 		C98438662046162A00321700 /* FingerGodMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98438652046162A00321700 /* FingerGodMessageTests.swift */; };
 		C98B13BF2064595700BCFABE /* PlayerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98B13BE2064595700BCFABE /* PlayerObject.swift */; };
+		C99FF4DE2081707B00270CC4 /* InputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99FF4DD2081707B00270CC4 /* InputManager.swift */; };
 		C9F4135E203AC2DC001C56E1 /* Subscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F4135D203AC2DC001C56E1 /* Subscriber.swift */; };
 		F24C46CB206B6B9200B8097D /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24C46CA206B6B9200B8097D /* RoundButton.swift */; };
 		F24C46CD206B6BB100B8097D /* Power.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24C46CC206B6BB100B8097D /* Power.swift */; };
@@ -152,6 +153,7 @@
 		B1F0FC6B20815FA7003E0ADD /* EarthPower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthPower.swift; sourceTree = "<group>"; };
 		C98438652046162A00321700 /* FingerGodMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodMessageTests.swift; sourceTree = "<group>"; };
 		C98B13BE2064595700BCFABE /* PlayerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerObject.swift; sourceTree = "<group>"; };
+		C99FF4DD2081707B00270CC4 /* InputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputManager.swift; sourceTree = "<group>"; };
 		C9F4135D203AC2DC001C56E1 /* Subscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscriber.swift; sourceTree = "<group>"; };
 		C9F4135F203ACFFC001C56E1 /* EventDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDispatcher.swift; sourceTree = "<group>"; };
 		F24C46CA206B6B9200B8097D /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 				3D0DA07D203DF45A0050F708 /* Renderer.swift */,
 				992762D62036B4BD00C73599 /* Game.swift */,
 				99ED16C92046909300827958 /* FingerGodGame.swift */,
+				C99FF4DD2081707B00270CC4 /* InputManager.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -592,6 +595,7 @@
 				B1F0FC6A20815F92003E0ADD /* WaterPower.swift in Sources */,
 				C9F4135E203AC2DC001C56E1 /* Subscriber.swift in Sources */,
 				F6DD7442206B235200868E57 /* SingleUnit.swift in Sources */,
+				C99FF4DE2081707B00270CC4 /* InputManager.swift in Sources */,
 				3DDB59432035F39C0000E0C4 /* AppDelegate.swift in Sources */,
 				A66911E2206B48F600C9506E /* HexDirection.swift in Sources */,
 				993F145A2046AAF200AF5BFB /* Tile.swift in Sources */,
@@ -822,10 +826,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EXV3QGL866;
+				DEVELOPMENT_TEAM = 3E5RA54B7H;
 				INFOPLIST_FILE = FingerGod/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGod7;
+				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGod1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -837,10 +841,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EXV3QGL866;
+				DEVELOPMENT_TEAM = 3E5RA54B7H;
 				INFOPLIST_FILE = FingerGod/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGod7;
+				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGod1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
