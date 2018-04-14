@@ -26,13 +26,13 @@ class ViewController: GLKViewController, Subscriber {
     @IBOutlet weak var ManaLabel: UILabel!
     
     @IBAction func onButtonClick(_ sender: RoundButton) {
-        let powers = ["Off", "fire", "water", "lightning", "earth"];
+        let powers = ["Off", "fire", "water", "Earth"];
         var powerSelected = [String : Any]();
         powerSelected["power"] = powers[count];
         EventDispatcher.publish("PowerOn", powerSelected);
         
         count += 1;
-        if (count == 5) {
+        if (count == 4) {
             count = 0;
         }
         label.text = powers[count];
@@ -46,7 +46,7 @@ class ViewController: GLKViewController, Subscriber {
         game = FingerGodGame()
         self.initButton()
         EventDispatcher.subscribe("UpdatePlayerUI", self)
-
+        EventDispatcher.subscribe("AllyClick", self)
     }
     @IBAction func onTap(_ recognizer: UITapGestureRecognizer) {
         let ray = getDirection(recognizer.location(in: self.view))
@@ -168,6 +168,16 @@ class ViewController: GLKViewController, Subscriber {
             GoldLabel.text = params["Gold"]! as! String
             ManaLabel.text = params["Mana"]! as! String
             break
+            
+        case "AllyClick":
+            let btn = UIButton.init()
+            btn.frame = CGRect.init(x: ScreenWidth - 200, y: 200, width: 200, height: 50)
+            btn.setTitle("Split Group", for: .normal)
+            btn.setTitleColor(UIColor.black, for: .normal)
+            btn.addTarget(self, action: #selector(btnClick), for: UIControlEvents.touchUpInside)
+            self.view.addSubview(btn)
+            break;
+
         default:
             break
         }

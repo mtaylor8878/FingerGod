@@ -19,6 +19,7 @@ public class PlayerObject : GameObject, Subscriber{
     public var _mana : Float
     public var _unitList : UnitGroup
     public var _city : City?
+    public var _selectedPower : String
     public let color : [GLfloat]
     
     private var tickCount : Float
@@ -32,6 +33,7 @@ public class PlayerObject : GameObject, Subscriber{
         tickCount = 0
         income = 1
         incomeTick = 2.0
+        _selectedPower = "Off"
         
         super.init()
         
@@ -43,6 +45,22 @@ public class PlayerObject : GameObject, Subscriber{
         case "UpdatePlayerMana":
             _mana += params["ManaValue"]! as! Float
             break
+            
+        case "PowerOn":
+            _selectedPower = params["power"]! as! String
+            if (_selectedPower == "fire") {
+                print("Fire Power");
+            }
+            
+            if (_selectedPower == "water") {
+                print("Water Power");
+            }
+            
+            if (_selectedPower == "Off") {
+                print("Power Off");
+            }
+            break
+            
         default:
             break
         }

@@ -12,12 +12,9 @@ public class FingerGodGame : Game {
     public override func onGameStart() {
         super.onGameStart()
         let map = GameObject()
-        let power = GameObject()
         
         map.addComponent(type: MapComponent.self)
         self.addGameObject(gameObject: map)
-        power.addComponent(type: Power.self)
-        self.addGameObject(gameObject: power)
         
         let player = PlayerObject(2, [0.0, 0.39, 0.898, 1.0], Point2D(0,0))
         var params = [String:Any]()

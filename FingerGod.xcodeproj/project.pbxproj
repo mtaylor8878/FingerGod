@@ -59,6 +59,9 @@
 		A66911E6206B9AC100C9506E /* Castle.mtl in Resources */ = {isa = PBXBuildFile; fileRef = A66911E4206B9AC100C9506E /* Castle.mtl */; };
 		A66911E8206B9C4400C9506E /* Structure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66911E7206B9C4400C9506E /* Structure.swift */; };
 		A66911EA206B9D7E00C9506E /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66911E9206B9D7E00C9506E /* City.swift */; };
+		B1F0FC6820815F84003E0ADD /* FirePower.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F0FC6720815F84003E0ADD /* FirePower.swift */; };
+		B1F0FC6A20815F92003E0ADD /* WaterPower.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F0FC6920815F92003E0ADD /* WaterPower.swift */; };
+		B1F0FC6C20815FA7003E0ADD /* EarthPower.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F0FC6B20815FA7003E0ADD /* EarthPower.swift */; };
 		C98438662046162A00321700 /* FingerGodMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98438652046162A00321700 /* FingerGodMessageTests.swift */; };
 		C98B13BF2064595700BCFABE /* PlayerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98B13BE2064595700BCFABE /* PlayerObject.swift */; };
 		C9F4135E203AC2DC001C56E1 /* Subscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F4135D203AC2DC001C56E1 /* Subscriber.swift */; };
@@ -66,7 +69,6 @@
 		F24C46CD206B6BB100B8097D /* Power.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24C46CC206B6BB100B8097D /* Power.swift */; };
 		F2FE9E98207EB44F0010D463 /* TitleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FE9E97207EB44F0010D463 /* TitleController.swift */; };
 		F2FE9E9E207EB5D80010D463 /* ModelInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E70622204515530095BA58 /* ModelInstance.swift */; };
-		F2FE9EA4207ED8230010D463 /* Pause.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2FE9EA3207ED8230010D463 /* Pause.xib */; };
 		F6DD7442206B235200868E57 /* SingleUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DD7441206B235200868E57 /* SingleUnit.swift */; };
 		F6DD7444206B236600868E57 /* UnitGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DD7443206B236600868E57 /* UnitGroup.swift */; };
 /* End PBXBuildFile section */
@@ -145,6 +147,9 @@
 		A66911E4206B9AC100C9506E /* Castle.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Castle.mtl; path = ../../Castle.mtl; sourceTree = "<group>"; };
 		A66911E7206B9C4400C9506E /* Structure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structure.swift; sourceTree = "<group>"; };
 		A66911E9206B9D7E00C9506E /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		B1F0FC6720815F84003E0ADD /* FirePower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirePower.swift; sourceTree = "<group>"; };
+		B1F0FC6920815F92003E0ADD /* WaterPower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterPower.swift; sourceTree = "<group>"; };
+		B1F0FC6B20815FA7003E0ADD /* EarthPower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthPower.swift; sourceTree = "<group>"; };
 		C98438652046162A00321700 /* FingerGodMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodMessageTests.swift; sourceTree = "<group>"; };
 		C98B13BE2064595700BCFABE /* PlayerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerObject.swift; sourceTree = "<group>"; };
 		C9F4135D203AC2DC001C56E1 /* Subscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscriber.swift; sourceTree = "<group>"; };
@@ -152,7 +157,6 @@
 		F24C46CA206B6B9200B8097D /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		F24C46CC206B6BB100B8097D /* Power.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Power.swift; sourceTree = "<group>"; };
 		F2FE9E97207EB44F0010D463 /* TitleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleController.swift; sourceTree = "<group>"; };
-		F2FE9EA3207ED8230010D463 /* Pause.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Pause.xib; sourceTree = "<group>"; };
 		F6DD7441206B235200868E57 /* SingleUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleUnit.swift; sourceTree = "<group>"; };
 		F6DD7443206B236600868E57 /* UnitGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitGroup.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -296,6 +300,9 @@
 			isa = PBXGroup;
 			children = (
 				F24C46CC206B6BB100B8097D /* Power.swift */,
+				B1F0FC6720815F84003E0ADD /* FirePower.swift */,
+				B1F0FC6920815F92003E0ADD /* WaterPower.swift */,
+				B1F0FC6B20815FA7003E0ADD /* EarthPower.swift */,
 			);
 			path = Powers;
 			sourceTree = "<group>";
@@ -306,7 +313,6 @@
 				3DDB59442035F39C0000E0C4 /* ViewController.swift */,
 				F2FE9E97207EB44F0010D463 /* TitleController.swift */,
 				F24C46CA206B6B9200B8097D /* RoundButton.swift */,
-				F2FE9EA3207ED8230010D463 /* Pause.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -359,6 +365,8 @@
 				992762DC2036BA0200C73599 /* Component.swift */,
 				993F145F2046AF4500AF5BFB /* MapComponent.swift */,
 				99ED16CB2046912200827958 /* RotatingCubeComponent.swift */,
+				99E1CF3C206B745A00C7A04B /* UnitGroupComponent.swift */,
+				99E1CF3A206B3A7400C7A04B /* BattleComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -369,8 +377,6 @@
 				99E1CF3E206B84B100C7A04B /* Alignment.swift */,
 				F6DD7441206B235200868E57 /* SingleUnit.swift */,
 				F6DD7443206B236600868E57 /* UnitGroup.swift */,
-				99E1CF3C206B745A00C7A04B /* UnitGroupComponent.swift */,
-				99E1CF3A206B3A7400C7A04B /* BattleComponent.swift */,
 			);
 			path = Units;
 			sourceTree = "<group>";
@@ -515,7 +521,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2FE9EA4207ED8230010D463 /* Pause.xib in Resources */,
 				99AACA312044FB43001262D0 /* Shader.fsh in Resources */,
 				99AACA2F2044FB23001262D0 /* Shader.vsh in Resources */,
 				3D0DA0BE203E1C5D0050F708 /* HexTile.obj in Resources */,
@@ -583,6 +588,8 @@
 				99E1CF3D206B745A00C7A04B /* UnitGroupComponent.swift in Sources */,
 				992762D72036B4BD00C73599 /* Game.swift in Sources */,
 				A66911E8206B9C4400C9506E /* Structure.swift in Sources */,
+				B1F0FC6820815F84003E0ADD /* FirePower.swift in Sources */,
+				B1F0FC6A20815F92003E0ADD /* WaterPower.swift in Sources */,
 				C9F4135E203AC2DC001C56E1 /* Subscriber.swift in Sources */,
 				F6DD7442206B235200868E57 /* SingleUnit.swift in Sources */,
 				3DDB59432035F39C0000E0C4 /* AppDelegate.swift in Sources */,
@@ -597,6 +604,7 @@
 				993F14602046AF4500AF5BFB /* MapComponent.swift in Sources */,
 				F24C46CD206B6BB100B8097D /* Power.swift in Sources */,
 				3D0DA07E203DF45A0050F708 /* Renderer.swift in Sources */,
+				B1F0FC6C20815FA7003E0ADD /* EarthPower.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

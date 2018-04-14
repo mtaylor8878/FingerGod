@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import GLKit
 
 public class MapComponent : Component, Subscriber {
@@ -87,6 +88,7 @@ public class MapComponent : Component, Subscriber {
                 selectTile(closestTile.x, closestTile.y)
             }
             break
+            
         case "DispatchUnitGroup":
             let unitGroup = GameObject()
             unitGroupIDs = unitGroupIDs + 1
@@ -98,8 +100,8 @@ public class MapComponent : Component, Subscriber {
             unitGroupComponent.setAlignment(Alignment.ALLIED)
             
             unitGroupComps.append(unitGroupComponent)
-            
             break
+            
         case "BattleEnd":
             print("BATTLE END")
             let result = params["result"] as! String
@@ -146,6 +148,7 @@ public class MapComponent : Component, Subscriber {
                 }
             }
         }
+        
         if (prevObject != nil && prevObject!.alignment == Alignment.ALLIED) {
             if (nextObject == nil) {
                 // There was a unit on our selected tile, move it to the new tile
@@ -194,9 +197,6 @@ public class MapComponent : Component, Subscriber {
             break
         case 3:
             tileMap.getTile(x,y)!.model.color = [0.2, 0.0, 0.5, 1.0]
-            break
-        case 4:
-            tileMap.getTile(x,y)!.model.color = [1.0, 2.0, 0.2, 1.0]
             break
         default:
             break
