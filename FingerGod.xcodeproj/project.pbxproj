@@ -43,6 +43,7 @@
 		993F14592046AAF200AF5BFB /* TileMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993F14572046AAF200AF5BFB /* TileMap.swift */; };
 		993F145A2046AAF200AF5BFB /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993F14582046AAF200AF5BFB /* Tile.swift */; };
 		993F14602046AF4500AF5BFB /* MapComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993F145F2046AF4500AF5BFB /* MapComponent.swift */; };
+		997D7975208160A300DDB672 /* PathFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997D7974208160A300DDB672 /* PathFinder.swift */; };
 		999312972046367C00835BA3 /* Sphere.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 999312952046367B00835BA3 /* Sphere.mtl */; };
 		999312982046367C00835BA3 /* Sphere.obj in Resources */ = {isa = PBXBuildFile; fileRef = 999312962046367C00835BA3 /* Sphere.obj */; };
 		9993129A2046418C00835BA3 /* teapot.obj in Resources */ = {isa = PBXBuildFile; fileRef = 999312992046418C00835BA3 /* teapot.obj */; };
@@ -128,6 +129,7 @@
 		993F14572046AAF200AF5BFB /* TileMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TileMap.swift; path = FingerGod/TileSystem/TileMap.swift; sourceTree = SOURCE_ROOT; };
 		993F14582046AAF200AF5BFB /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tile.swift; path = FingerGod/TileSystem/Tile.swift; sourceTree = SOURCE_ROOT; };
 		993F145F2046AF4500AF5BFB /* MapComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapComponent.swift; sourceTree = "<group>"; };
+		997D7974208160A300DDB672 /* PathFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathFinder.swift; sourceTree = "<group>"; };
 		999312952046367B00835BA3 /* Sphere.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Sphere.mtl; sourceTree = "<group>"; };
 		999312962046367C00835BA3 /* Sphere.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Sphere.obj; sourceTree = "<group>"; };
 		999312992046418C00835BA3 /* teapot.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = teapot.obj; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				993F14582046AAF200AF5BFB /* Tile.swift */,
 				993F14572046AAF200AF5BFB /* TileMap.swift */,
 				A66911E1206B48F600C9506E /* HexDirection.swift */,
+				997D7974208160A300DDB672 /* PathFinder.swift */,
 			);
 			name = TileSystem;
 			path = "New Group";
@@ -584,6 +587,7 @@
 				3DDB59432035F39C0000E0C4 /* AppDelegate.swift in Sources */,
 				A66911E2206B48F600C9506E /* HexDirection.swift in Sources */,
 				993F145A2046AAF200AF5BFB /* Tile.swift in Sources */,
+				997D7975208160A300DDB672 /* PathFinder.swift in Sources */,
 				A66911EA206B9D7E00C9506E /* City.swift in Sources */,
 				992762DB2036B9DD00C73599 /* GameObject.swift in Sources */,
 				99E1CF3F206B84B100C7A04B /* Alignment.swift in Sources */,

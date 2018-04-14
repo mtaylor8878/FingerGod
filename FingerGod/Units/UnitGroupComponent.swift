@@ -12,11 +12,18 @@ import GLKit
 public class UnitGroupComponent : Component {
     // Axial coordinate position
     public var position = [0, 0]
+    // Positions for display purposes
+    private var startPosition = [0, 0]
+    private var endPosition = [0, 0]
     private var modelInst : ModelInstance?
     var unitGroup = UnitGroup.initUnitGroupWith(peopleNum:10, followerNum: 0, demiGodNum: 0)
     
     private var initShape = GLKMatrix4Scale(GLKMatrix4Identity, 0.5, 0.5, 0.5)
     public var alignment = Alignment.NEUTRAL
+    
+    public var movePath : [(x: Int, y: Int)] = []
+    private var stepProgress : Float = 0.0
+    public var moveSpeed : Float = 1.0 // Tiles per second
     
     public override func create() {
         print("Creating Unit Group")
@@ -32,15 +39,47 @@ public class UnitGroupComponent : Component {
         }
     }
     
+    public override func update(delta: Float) {
+        if (stepProgress <= 0.0 && movePath.count > 0) {
+            endPosition[0] = movePath[0].x
+            endPosition[1] = movePath[0].y
+        }
+        if (endPosition[0] != startPosition[0] || endPosition[1] != startPosition[1]) {
+            stepProgress += moveSpeed * delta
+            if (stepProgress >= 0.5) {
+                position[0] = endPosition[0]
+                position[1] = endPosition[1]
+            }
+            if (stepProgress >= 1.0) {
+                // Reached our destination
+                startPosition[0] = endPosition[0]
+                startPosition[1] = endPosition[1]
+                
+                movePath.removeFirst(1)
+                
+                stepProgress = 0.0
+            }
+            updateRenderPos()
+        }
+    }
+    
     public override func delete() {
         Renderer.removeInstance(inst: modelInst!)
     }
     
-    public func move(_ x : Int, _ y : Int) {
+    public func setPosition(_ x : Int, _ y : Int) {
         position[0] = x
         position[1] = y
+        startPosition[0] = x
+        startPosition[1] = y
+        endPosition[0] = x
+        endPosition[1] = y
         
         updateRenderPos()
+    }
+    
+    public func move(_ x : Int, _ y : Int) {
+        movePath.append((x: x, y: y))
     }
     
     public func offset(_ x : Float, _ y : Float, _ z : Float) {
@@ -49,7 +88,9 @@ public class UnitGroupComponent : Component {
     }
     
     private func updateRenderPos() {
-        let ax = axialToWorld(position[0], position[1])
+        let axs = axialToWorld(startPosition[0], startPosition[1])
+        let axe = axialToWorld(endPosition[0], endPosition[1])
+        let ax = (x: axs.x  * (1 - stepProgress) + axe.x * stepProgress, y: axs.y  * (1 - stepProgress) + axe.y * stepProgress)
         modelInst?.transform = GLKMatrix4Translate(GLKMatrix4Identity, ax.x, 0.75, ax.y)
         modelInst?.transform = GLKMatrix4Multiply((modelInst?.transform)!, initShape)
     }
