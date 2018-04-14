@@ -80,6 +80,7 @@ public class MapComponent : Component, Subscriber {
             var outputString = "\nPoint: (" + String(point.x) + "," + String(point.y) + "," + String(point.z) + ")"
             outputString += "\nTile Axial: (" + String(closestTile.x) + "," + String(closestTile.y) + ")"
             outputString += "\nTile World: (" + String(tile.worldCoordinate.x) + "," + String(tile.worldCoordinate.y) + ")"
+            outputString += "\nTile Type: (" + tile.type.rawValue + ")"
             NSLog(outputString)
             let number = params["power"] as! Int
             if (number > 0) {

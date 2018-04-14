@@ -46,21 +46,6 @@ public class PlayerObject : GameObject, Subscriber{
             _mana += params["ManaValue"]! as! Float
             break
             
-        case "PowerOn":
-            _selectedPower = params["power"]! as! String
-            if (_selectedPower == "fire") {
-                print("Fire Power");
-            }
-            
-            if (_selectedPower == "water") {
-                print("Water Power");
-            }
-            
-            if (_selectedPower == "Off") {
-                print("Power Off");
-            }
-            break
-            
         default:
             break
         }

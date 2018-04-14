@@ -18,12 +18,15 @@ class ViewController: GLKViewController, Subscriber {
     private var game : Game!
     private var prevPanPoint = CGPoint(x: 0, y: 0)
     private var prevScale : Float = 1
+    private var unitMenuHide : Bool = false
     var count : Int = 0;
 
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var FollowerLabel: UILabel!
     @IBOutlet weak var GoldLabel: UILabel!
     @IBOutlet weak var ManaLabel: UILabel!
+    var Exit: RoundButton!
+    var Split: UIButton!
     
     @IBAction func onButtonClick(_ sender: RoundButton) {
         let powers = ["Off", "fire", "water", "Earth"];
@@ -45,6 +48,7 @@ class ViewController: GLKViewController, Subscriber {
         label.text = "Off"
         game = FingerGodGame()
         self.initButton()
+        self.unitMenu()
         EventDispatcher.subscribe("UpdatePlayerUI", self)
         EventDispatcher.subscribe("AllyClick", self)
     }
@@ -118,11 +122,12 @@ class ViewController: GLKViewController, Subscriber {
     }
     func initButton() {
         let btn = UIButton.init()
-        btn.frame = CGRect.init(x: ScreenWidth - 200, y: 100, width: 200, height: 50)
+        btn.frame = CGRect.init(x: ScreenWidth - 200, y: 100, width: 200, height: 30)
         btn.setTitle("addUnitGroup", for: .normal)
         btn.setTitleColor(UIColor.blue, for: .normal)
         btn.addTarget(self, action: #selector(btnClick), for: UIControlEvents.touchUpInside)
         self.view.addSubview(btn)
+        
         /*
         let leftBtn = UIButton.init()
         leftBtn.frame = CGRect.init(x: ScreenWidth - 200, y: 150, width: 200, height: 50)
@@ -140,8 +145,46 @@ class ViewController: GLKViewController, Subscriber {
         
     }
     
+    func unitMenu() {
+        Exit = RoundButton.init()
+        Exit.frame = CGRect.init(x: ScreenWidth - 110, y: 345, width: 15, height: 15)
+        Exit.cornerRadius = 7.5
+        Exit.borderWidth = 1
+        Exit.borderColor = UIColor.red
+        Exit.setTitle("X", for: .normal)
+        Exit.setTitleColor(UIColor.red, for: .normal)
+        Exit.titleLabel?.font = UIFont(name: "ArialRoundedMTBold", size: 6)
+        Exit.addTarget(self, action: #selector(exitMenu), for: UIControlEvents.touchUpInside)
+        self.view.addSubview(Exit)
+        
+        Split = UIButton.init()
+        Split.frame = CGRect.init(x: ScreenWidth - 150, y: 300, width: 100, height: 30)
+        Split.setTitle("Split Group", for: .normal)
+        Split.setTitleColor(UIColor.blue, for: .normal)
+        Split.backgroundColor = UIColor.lightGray
+        self.view.addSubview(Split)
+ 
+    }
+    
+    func unitSelection() {
+        let count = 10
+        
+    }
+    
+    @objc func exitMenu() {
+        Exit.isHidden = true;
+        Split.isHidden = true;
+        
+        NSLog("unitMenu: " + String(unitMenuHide) + " exit: " + String(Exit.isHidden))
+
+    }
+    
     @objc func btnClick() {
         self.initPoint(x: 115, y: 243)
+        Exit.isHidden = false;
+        Split.isHidden = false;
+        NSLog("unitMenu: " + String(unitMenuHide) + " exit: " + String(Exit.isHidden))
+        
     }
     @objc func leftMoveBtnClick() {
         let dic = NSDictionary.init(object: "left", forKey: "direction" as NSCopying)
