@@ -21,6 +21,8 @@ public class Game {
     private var timebaseInfo = mach_timebase_info_data_t()
     // ID numbers
     private var idCount = 0
+    
+    public var input: InputManager?
 
     /*
      Initializes the game
@@ -37,6 +39,7 @@ public class Game {
      
      Returns the ID that was given to the added object
      */
+    @discardableResult
     public func addGameObject(gameObject: GameObject) -> Int {
         gameObjects[idCount] = gameObject
         gameObject.id = idCount;
