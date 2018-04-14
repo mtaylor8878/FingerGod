@@ -23,10 +23,29 @@ public class City: Structure {
         
         let mi = ModelInstance(model: castle!)
         mi.color = owner.color
+        mi.transform = GLKMatrix4Scale(mi.transform, 0.8, 0.8, 0.8)
         Renderer.addInstance(inst: mi)
         
         self.owner = owner
         
         super.init(pos, mi)
+    }
+    
+    public override func interact() {
+        dispatchUnitGroup(size: 1)
+    }
+    
+    private func dispatchUnitGroup(size: Int) {
+        let place = HexDirections.InDirection(pos, HexDirections.RandomDirection())
+        
+        let unitGroup = GameObject()
+        unitGroup.addComponent(type: UnitGroupComponent.self)
+        owner.game?.addGameObject(gameObject: unitGroup)
+        
+        let unitGroupComponent = unitGroup.getComponent(type: UnitGroupComponent.self)!
+        unitGroupComponent.move(place.x, place.y)
+        unitGroupComponent.setAlignment(Alignment.ALLIED)
+        
+        owner._unitList.append(unitGroupComponent)
     }
 }

@@ -19,13 +19,10 @@ public class FingerGodGame : Game {
         power.addComponent(type: Power.self)
         self.addGameObject(gameObject: power)
         
-        let player = PlayerObject(2, [0.0, 0.39, 0.898, 1.0], Point2D(0,0))
-        var params = [String:Any]()
-        params["structure"] = player._city!
-        params["coords"] = Point2D(0,0)
-        EventDispatcher.publish("AddStructure", params)
-        EventDispatcher.subscribe("UpdatePlayerMana", player)
+        let player = PlayerObject([0.0, 0.39, 0.898, 1.0], Point2D(0,0))
         self.addGameObject(gameObject: player)
+        
+        input = InputManager(player: player, map: map.getComponent(type: MapComponent.self)!)
                 
         Renderer.camera.move(x: 0, y: 14, z: 9)
         Renderer.camera.rotate(angle: -Float.pi * 2 / 6, x: 1, y: 0, z: 0)

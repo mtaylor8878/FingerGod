@@ -18,7 +18,6 @@ class ViewController: GLKViewController, Subscriber {
     private var game : Game!
     private var prevPanPoint = CGPoint(x: 0, y: 0)
     private var prevScale : Float = 1
-    var count : Int = 0;
 
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var FollowerLabel: UILabel!
@@ -26,16 +25,18 @@ class ViewController: GLKViewController, Subscriber {
     @IBOutlet weak var ManaLabel: UILabel!
     
     @IBAction func onButtonClick(_ sender: RoundButton) {
-        let powers = ["Off", "fire", "water", "lightning", "earth"];
+        // Power Button
+        
+        /*let powers = ["Off", "fire", "water", "lightning", "earth"];
         var powerSelected = [String : Any]();
         powerSelected["power"] = powers[count];
         EventDispatcher.publish("PowerOn", powerSelected);
         
-        count += 1;
+        count += 1;s
         if (count == 5) {
             count = 0;
         }
-        label.text = powers[count];
+        label.text = powers[count];*/
     }
  
     override func viewDidLoad() {
@@ -44,26 +45,11 @@ class ViewController: GLKViewController, Subscriber {
         Renderer.setup(view: self.view as! GLKView)
         label.text = "Off"
         game = FingerGodGame()
-        self.initButton()
         EventDispatcher.subscribe("UpdatePlayerUI", self)
-
     }
+    
     @IBAction func onTap(_ recognizer: UITapGestureRecognizer) {
-        let ray = getDirection(recognizer.location(in: self.view))
-        let location = GLKVector3Make(Renderer.camera.transform.m30, Renderer.camera.transform.m31, Renderer.camera.transform.m32)
-        print("location: " + String(location.x) + ", " + String(location.y) + ", " + String(location.z))
-        let t = -location.y / ray.y
-        let point = GLKVector3Add(location, GLKVector3MultiplyScalar(ray, t))
-        var paramList = [String : Any]()
-        paramList["coord"] = point
-        paramList["power"] = count
-        if (count > 0) {
-            var params = [String:Any]()
-            params["ManaValue"] = Float(-10.0)
-            EventDispatcher.publish("UpdatePlayerMana", params)
-        }
-        EventDispatcher.publish("ClickMap", paramList)
-        
+        game.input!.tapScreen(coord: recognizer.location(in: self.view))
     }
     
     @IBAction func onPan(recognizer: UIPanGestureRecognizer) {
@@ -89,20 +75,6 @@ class ViewController: GLKViewController, Subscriber {
         Renderer.camera.moveRelative(x: 0, y: 0, z: -diff * 4)
     }
     
-    func getDirection(_ loc: CGPoint) -> GLKVector3{
-        let bounds = UIScreen.main.bounds
-        let x = Float((2 * loc.x) / bounds.size.width - 1.0)
-        let y = Float(1.0 - (2 * loc.y) / bounds.size.height)
-        let rayClip = GLKVector4Make(x, y, -1.0, 1.0)
-        let invPerspective = GLKMatrix4Invert(Renderer.perspectiveMatrix, nil)
-        var rayEye = GLKMatrix4MultiplyVector4(invPerspective, rayClip)
-        rayEye.z = -1.0
-        rayEye.a = 0
-        let rayWorld = GLKMatrix4MultiplyVector4(Renderer.camera.transform, rayEye)
-        let rayWNorm = GLKVector3Normalize(GLKVector3Make(rayWorld.x, rayWorld.y, rayWorld.z))
-        return rayWNorm
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -116,7 +88,7 @@ class ViewController: GLKViewController, Subscriber {
         game.update()
         Renderer.draw(drawRect: rect)
     }
-    func initButton() {
+    /*func initButton() {
         let btn = UIButton.init()
         btn.frame = CGRect.init(x: ScreenWidth - 200, y: 100, width: 200, height: 50)
         btn.setTitle("addUnitGroup", for: .normal)
@@ -138,35 +110,14 @@ class ViewController: GLKViewController, Subscriber {
         self.view.addSubview(rightBtn)
         */
         
-    }
-    
-    @objc func btnClick() {
-        self.initPoint(x: 115, y: 243)
-    }
-    @objc func leftMoveBtnClick() {
-        let dic = NSDictionary.init(object: "left", forKey: "direction" as NSCopying)
-        EventDispatcher.publish("moveGroupUnit", dic as! [String : Any])
-    }
-    @objc func rightMoveBtnClick() {
-        let dic = NSDictionary.init(object: "right", forKey: "direction" as NSCopying)
-        EventDispatcher.publish("moveGroupUnit", dic as! [String : Any])
-    }
-    func initPoint(x:NSInteger,y:NSInteger)  {
-        let ray = getDirection(CGPoint.init(x: x, y: y))
-        let t = -Renderer.camera.location.y / ray.y
-        
-        let point = GLKVector3Add(Renderer.camera.location, GLKVector3MultiplyScalar(ray, t))
-        var paramList = [String : Any]()
-        paramList["coord"] = point
-        EventDispatcher.publish("DispatchUnitGroup", paramList)
-    }
+    }*/
     
     func notify(_ eventName: String, _ params: [String : Any]) {
         switch(eventName) {
         case "UpdatePlayerUI":
-            FollowerLabel.text = params["Followers"]! as! String
-            GoldLabel.text = params["Gold"]! as! String
-            ManaLabel.text = params["Mana"]! as! String
+            FollowerLabel.text = (params["Followers"]! as! String)
+            GoldLabel.text = (params["Gold"]! as! String)
+            ManaLabel.text = (params["Mana"]! as! String)
             break
         default:
             break

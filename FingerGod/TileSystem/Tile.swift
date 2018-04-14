@@ -131,7 +131,7 @@ public class Tile {
     public func addStructure(_ structure: Structure) {
         self.structure = structure
         type = types.structure
-        structure.model.transform = GLKMatrix4Translate(GLKMatrix4Identity, worldCoordinate.x, 0.05, worldCoordinate.y)
+        structure.model.transform = GLKMatrix4Translate(structure.model.transform, worldCoordinate.x, 0.05, worldCoordinate.y)
     }
     
     public func getStructure() -> Structure? {
