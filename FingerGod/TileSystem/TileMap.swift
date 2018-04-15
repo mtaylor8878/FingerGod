@@ -18,6 +18,11 @@ public struct Point2D: Hashable{
         self.y = y
     }
     
+    public init(_ point: [Int]) {
+        self.x = point[0]
+        self.y = point[1]
+    }
+    
     public var hashValue: Int {
         return "(\(x),\(y))".hashValue
     }

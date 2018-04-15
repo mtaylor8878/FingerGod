@@ -37,8 +37,10 @@ public class UnitGroupComponent : Component {
     }
     
     public func move(_ x : Int, _ y : Int) {
+        EventDispatcher.publish("SetTileType", ("pos", Point2D(position)), ("type", Tile.types.vacant))
         position[0] = x
         position[1] = y
+        EventDispatcher.publish("SetTileType", ("pos", Point2D(position)), ("type", Tile.types.occupied))
         
         updateRenderPos()
     }
