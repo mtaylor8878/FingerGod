@@ -11,6 +11,7 @@ import Foundation
 public class Structure {
     public var model : ModelInstance
     public let pos : Point2D
+    public var tile : Tile?
     
     public init(_ pos: Point2D, _ mi: ModelInstance) {
         self.pos = pos
@@ -18,5 +19,5 @@ public class Structure {
         EventDispatcher.publish("AddStructure", ("structure",self), ("coords",pos))
     }
     
-    public func interact() {}
+    public func interact(selected: UnitGroupComponent?) {}
 }

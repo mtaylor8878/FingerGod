@@ -91,14 +91,16 @@ public class InputManager : Subscriber {
         
         switch(selectedTile.type) {
         case Tile.types.structure:
-            selectedTile.getStructure()!.interact()
+            selectedTile.getStructure()!.interact(selected: prevObject)
             noSelect = true
             break
         
         case Tile.types.vacant:
             if (prevObject != nil) {
                 if (nextObject == nil) {
+                    map.getTile(pos: selected!)!.setType(Tile.types.vacant)
                     prevObject!.move(q, r)
+                    selectedTile.setType(Tile.types.occupied)
                     noSelect = true
                 } else if(nextObject!.alignment == Alignment.ENEMY) {
                     noSelect = true

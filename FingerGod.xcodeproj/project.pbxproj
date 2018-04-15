@@ -54,6 +54,7 @@
 		99E70623204515530095BA58 /* ModelInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E70622204515530095BA58 /* ModelInstance.swift */; };
 		99ED16CA2046909300827958 /* FingerGodGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED16C92046909300827958 /* FingerGodGame.swift */; };
 		99ED16CC2046912200827958 /* RotatingCubeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED16CB2046912200827958 /* RotatingCubeComponent.swift */; };
+		A64474212082C10A006FF8D3 /* AIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64474202082C10A006FF8D3 /* AIController.swift */; };
 		A66911E2206B48F600C9506E /* HexDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66911E1206B48F600C9506E /* HexDirection.swift */; };
 		A66911E5206B9AC100C9506E /* Castle.obj in Resources */ = {isa = PBXBuildFile; fileRef = A66911E3206B9AC100C9506E /* Castle.obj */; };
 		A66911E6206B9AC100C9506E /* Castle.mtl in Resources */ = {isa = PBXBuildFile; fileRef = A66911E4206B9AC100C9506E /* Castle.mtl */; };
@@ -140,6 +141,7 @@
 		99E70622204515530095BA58 /* ModelInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelInstance.swift; sourceTree = "<group>"; };
 		99ED16C92046909300827958 /* FingerGodGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodGame.swift; sourceTree = "<group>"; };
 		99ED16CB2046912200827958 /* RotatingCubeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotatingCubeComponent.swift; sourceTree = "<group>"; };
+		A64474202082C10A006FF8D3 /* AIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIController.swift; sourceTree = "<group>"; };
 		A66911E1206B48F600C9506E /* HexDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexDirection.swift; sourceTree = "<group>"; };
 		A66911E3206B9AC100C9506E /* Castle.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Castle.obj; path = ../../Castle.obj; sourceTree = "<group>"; };
 		A66911E4206B9AC100C9506E /* Castle.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Castle.mtl; path = ../../Castle.mtl; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 				992762D62036B4BD00C73599 /* Game.swift */,
 				99ED16C92046909300827958 /* FingerGodGame.swift */,
 				C99FF4DD2081707B00270CC4 /* InputManager.swift */,
+				A64474202082C10A006FF8D3 /* AIController.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -337,8 +340,8 @@
 		F2FE9E9C207EB5610010D463 /* Structures */ = {
 			isa = PBXGroup;
 			children = (
-				A66911E9206B9D7E00C9506E /* City.swift */,
 				A66911E7206B9C4400C9506E /* Structure.swift */,
+				A66911E9206B9D7E00C9506E /* City.swift */,
 			);
 			path = Structures;
 			sourceTree = "<group>";
@@ -587,6 +590,7 @@
 				C99FF4DE2081707B00270CC4 /* InputManager.swift in Sources */,
 				3DDB59432035F39C0000E0C4 /* AppDelegate.swift in Sources */,
 				A66911E2206B48F600C9506E /* HexDirection.swift in Sources */,
+				A64474212082C10A006FF8D3 /* AIController.swift in Sources */,
 				993F145A2046AAF200AF5BFB /* Tile.swift in Sources */,
 				A66911EA206B9D7E00C9506E /* City.swift in Sources */,
 				992762DB2036B9DD00C73599 /* GameObject.swift in Sources */,
