@@ -107,7 +107,11 @@ public class InputManager : Subscriber {
                     noSelect = true
                     // TODO: Start Battle
                 }
-            } else if (nextObject != nil && nextObject!.alignment == Alignment.ALLIED) {
+            }
+            break
+            
+        case Tile.types.occupied:
+            if (nextObject != nil && nextObject!.alignment == Alignment.ALLIED) {
                 print("Ally Selected")
                 // TODO: display unit stuff
                 let peopleNum = nextObject?.unitGroup.peopleArray.count
@@ -115,7 +119,6 @@ public class InputManager : Subscriber {
                 EventDispatcher.publish("AllyClick", ("unitCount", peopleNum ?? 0))
                 noSelect = true
             }
-            break
             
         default:
             break
