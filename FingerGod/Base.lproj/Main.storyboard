@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9An-x6-OXA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4OF-Sy-sDz">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -72,7 +72,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IkN-5O-KwN">
-                                <rect key="frame" x="108" y="30" width="11" height="21"/>
+                                <rect key="frame" x="108" y="30" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -136,19 +136,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Finger God" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ARp-z1-Xcy">
-                                <rect key="frame" x="68" y="57" width="239" height="90"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mNs-56-dJL">
+                                <rect key="frame" x="162" y="313" width="50" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Start">
+                                    <color key="titleColor" red="1" green="0.073462945350000003" blue="0.051895721720000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="startGame:" destination="dEt-u6-gAo" eventType="touchUpInside" id="AiI-Ve-RKM"/>
+                                    <segue destination="9An-x6-OXA" kind="show" id="0rx-ip-6Ud"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finger God" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ARp-z1-Xcy">
+                                <rect key="frame" x="72" y="75.5" width="231" height="57.5"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="48"/>
                                 <color key="textColor" red="1" green="0.98419405309999997" blue="0.39351102310000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mNs-56-dJL">
-                                <rect key="frame" x="164" y="243" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="mNs-56-dJL" firstAttribute="centerY" secondItem="COL-Vw-tUA" secondAttribute="centerY" id="04G-Kz-bdr"/>
+                            <constraint firstItem="mNs-56-dJL" firstAttribute="centerX" secondItem="COL-Vw-tUA" secondAttribute="centerX" id="58v-ja-ket"/>
+                            <constraint firstItem="ARp-z1-Xcy" firstAttribute="centerX" secondItem="COL-Vw-tUA" secondAttribute="centerX" id="QAc-Ky-XQs"/>
+                            <constraint firstItem="ARp-z1-Xcy" firstAttribute="centerX" secondItem="COL-Vw-tUA" secondAttribute="centerX" id="Yru-Yc-WW7"/>
+                            <constraint firstItem="mNs-56-dJL" firstAttribute="centerX" secondItem="COL-Vw-tUA" secondAttribute="centerX" id="ar1-SP-49l"/>
+                            <constraint firstItem="ARp-z1-Xcy" firstAttribute="centerY" secondItem="COL-Vw-tUA" secondAttribute="centerY" constant="-229.5" id="eil-en-5PJ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="dqb-aW-83F"/>
                         <connections>
                             <outlet property="delegate" destination="4OF-Sy-sDz" id="pMj-hC-10y"/>
@@ -156,6 +169,7 @@
                     </glkView>
                 </glkViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GIS-Ya-OhX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="dEt-u6-gAo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="932" y="273.91304347826087"/>
         </scene>

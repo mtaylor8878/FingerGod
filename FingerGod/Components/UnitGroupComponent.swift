@@ -47,8 +47,10 @@ public class UnitGroupComponent : Component {
         if (endPosition[0] != startPosition[0] || endPosition[1] != startPosition[1]) {
             stepProgress += moveSpeed * delta
             if (stepProgress >= 0.5) {
+                EventDispatcher.publish("SetTileType", ("pos", Point2D(position)), ("type", Tile.types.vacant))
                 position[0] = endPosition[0]
                 position[1] = endPosition[1]
+                EventDispatcher.publish("SetTileType", ("pos", Point2D(position)), ("type", Tile.types.occupied))
             }
             if (stepProgress >= 1.0) {
                 // Reached our destination
@@ -66,15 +68,16 @@ public class UnitGroupComponent : Component {
     public override func delete() {
         Renderer.removeInstance(inst: modelInst!)
     }
-    
+
     public func setPosition(_ x : Int, _ y : Int) {
+        EventDispatcher.publish("SetTileType", ("pos", Point2D(position)), ("type", Tile.types.vacant))
         position[0] = x
         position[1] = y
         startPosition[0] = x
         startPosition[1] = y
         endPosition[0] = x
         endPosition[1] = y
-        
+        EventDispatcher.publish("SetTileType", ("pos", Point2D(position)), ("type", Tile.types.occupied))
         updateRenderPos()
     }
     

@@ -56,13 +56,18 @@
 		99E70623204515530095BA58 /* ModelInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E70622204515530095BA58 /* ModelInstance.swift */; };
 		99ED16CA2046909300827958 /* FingerGodGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED16C92046909300827958 /* FingerGodGame.swift */; };
 		99ED16CC2046912200827958 /* RotatingCubeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED16CB2046912200827958 /* RotatingCubeComponent.swift */; };
+		A64474212082C10A006FF8D3 /* AIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64474202082C10A006FF8D3 /* AIController.swift */; };
 		A66911E2206B48F600C9506E /* HexDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66911E1206B48F600C9506E /* HexDirection.swift */; };
 		A66911E5206B9AC100C9506E /* Castle.obj in Resources */ = {isa = PBXBuildFile; fileRef = A66911E3206B9AC100C9506E /* Castle.obj */; };
 		A66911E6206B9AC100C9506E /* Castle.mtl in Resources */ = {isa = PBXBuildFile; fileRef = A66911E4206B9AC100C9506E /* Castle.mtl */; };
 		A66911E8206B9C4400C9506E /* Structure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66911E7206B9C4400C9506E /* Structure.swift */; };
 		A66911EA206B9D7E00C9506E /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66911E9206B9D7E00C9506E /* City.swift */; };
+		B1F0FC6820815F84003E0ADD /* FirePower.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F0FC6720815F84003E0ADD /* FirePower.swift */; };
+		B1F0FC6A20815F92003E0ADD /* WaterPower.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F0FC6920815F92003E0ADD /* WaterPower.swift */; };
+		B1F0FC6C20815FA7003E0ADD /* EarthPower.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F0FC6B20815FA7003E0ADD /* EarthPower.swift */; };
 		C98438662046162A00321700 /* FingerGodMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98438652046162A00321700 /* FingerGodMessageTests.swift */; };
 		C98B13BF2064595700BCFABE /* PlayerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98B13BE2064595700BCFABE /* PlayerObject.swift */; };
+		C99FF4DE2081707B00270CC4 /* InputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99FF4DD2081707B00270CC4 /* InputManager.swift */; };
 		C9F4135E203AC2DC001C56E1 /* Subscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F4135D203AC2DC001C56E1 /* Subscriber.swift */; };
 		F24C46CB206B6B9200B8097D /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24C46CA206B6B9200B8097D /* RoundButton.swift */; };
 		F24C46CD206B6BB100B8097D /* Power.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24C46CC206B6BB100B8097D /* Power.swift */; };
@@ -143,13 +148,18 @@
 		99E70622204515530095BA58 /* ModelInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelInstance.swift; sourceTree = "<group>"; };
 		99ED16C92046909300827958 /* FingerGodGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodGame.swift; sourceTree = "<group>"; };
 		99ED16CB2046912200827958 /* RotatingCubeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotatingCubeComponent.swift; sourceTree = "<group>"; };
+		A64474202082C10A006FF8D3 /* AIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIController.swift; sourceTree = "<group>"; };
 		A66911E1206B48F600C9506E /* HexDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexDirection.swift; sourceTree = "<group>"; };
 		A66911E3206B9AC100C9506E /* Castle.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Castle.obj; path = ../../Castle.obj; sourceTree = "<group>"; };
 		A66911E4206B9AC100C9506E /* Castle.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Castle.mtl; path = ../../Castle.mtl; sourceTree = "<group>"; };
 		A66911E7206B9C4400C9506E /* Structure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structure.swift; sourceTree = "<group>"; };
 		A66911E9206B9D7E00C9506E /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		B1F0FC6720815F84003E0ADD /* FirePower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirePower.swift; sourceTree = "<group>"; };
+		B1F0FC6920815F92003E0ADD /* WaterPower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterPower.swift; sourceTree = "<group>"; };
+		B1F0FC6B20815FA7003E0ADD /* EarthPower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthPower.swift; sourceTree = "<group>"; };
 		C98438652046162A00321700 /* FingerGodMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodMessageTests.swift; sourceTree = "<group>"; };
 		C98B13BE2064595700BCFABE /* PlayerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerObject.swift; sourceTree = "<group>"; };
+		C99FF4DD2081707B00270CC4 /* InputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputManager.swift; sourceTree = "<group>"; };
 		C9F4135D203AC2DC001C56E1 /* Subscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscriber.swift; sourceTree = "<group>"; };
 		C9F4135F203ACFFC001C56E1 /* EventDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDispatcher.swift; sourceTree = "<group>"; };
 		F24C46CA206B6B9200B8097D /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
@@ -309,6 +319,9 @@
 			isa = PBXGroup;
 			children = (
 				F24C46CC206B6BB100B8097D /* Power.swift */,
+				B1F0FC6720815F84003E0ADD /* FirePower.swift */,
+				B1F0FC6920815F92003E0ADD /* WaterPower.swift */,
+				B1F0FC6B20815FA7003E0ADD /* EarthPower.swift */,
 			);
 			path = Powers;
 			sourceTree = "<group>";
@@ -342,6 +355,8 @@
 				3D0DA07D203DF45A0050F708 /* Renderer.swift */,
 				992762D62036B4BD00C73599 /* Game.swift */,
 				99ED16C92046909300827958 /* FingerGodGame.swift */,
+				C99FF4DD2081707B00270CC4 /* InputManager.swift */,
+				A64474202082C10A006FF8D3 /* AIController.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -349,8 +364,8 @@
 		F2FE9E9C207EB5610010D463 /* Structures */ = {
 			isa = PBXGroup;
 			children = (
-				A66911E9206B9D7E00C9506E /* City.swift */,
 				A66911E7206B9C4400C9506E /* Structure.swift */,
+				A66911E9206B9D7E00C9506E /* City.swift */,
 			);
 			path = Structures;
 			sourceTree = "<group>";
@@ -371,6 +386,8 @@
 				992762DC2036BA0200C73599 /* Component.swift */,
 				993F145F2046AF4500AF5BFB /* MapComponent.swift */,
 				99ED16CB2046912200827958 /* RotatingCubeComponent.swift */,
+				99E1CF3C206B745A00C7A04B /* UnitGroupComponent.swift */,
+				99E1CF3A206B3A7400C7A04B /* BattleComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -381,8 +398,6 @@
 				99E1CF3E206B84B100C7A04B /* Alignment.swift */,
 				F6DD7441206B235200868E57 /* SingleUnit.swift */,
 				F6DD7443206B236600868E57 /* UnitGroup.swift */,
-				99E1CF3C206B745A00C7A04B /* UnitGroupComponent.swift */,
-				99E1CF3A206B3A7400C7A04B /* BattleComponent.swift */,
 			);
 			path = Units;
 			sourceTree = "<group>";
@@ -594,11 +609,15 @@
 				99E1CF3D206B745A00C7A04B /* UnitGroupComponent.swift in Sources */,
 				992762D72036B4BD00C73599 /* Game.swift in Sources */,
 				A66911E8206B9C4400C9506E /* Structure.swift in Sources */,
+				B1F0FC6820815F84003E0ADD /* FirePower.swift in Sources */,
+				B1F0FC6A20815F92003E0ADD /* WaterPower.swift in Sources */,
 				C9F4135E203AC2DC001C56E1 /* Subscriber.swift in Sources */,
 				F6DD7442206B235200868E57 /* SingleUnit.swift in Sources */,
+				C99FF4DE2081707B00270CC4 /* InputManager.swift in Sources */,
 				3DDB59432035F39C0000E0C4 /* AppDelegate.swift in Sources */,
 				991CC3FB2081961200CD8178 /* PriorityQueue.swift in Sources */,
 				A66911E2206B48F600C9506E /* HexDirection.swift in Sources */,
+				A64474212082C10A006FF8D3 /* AIController.swift in Sources */,
 				993F145A2046AAF200AF5BFB /* Tile.swift in Sources */,
 				997D7975208160A300DDB672 /* PathFinder.swift in Sources */,
 				A66911EA206B9D7E00C9506E /* City.swift in Sources */,
@@ -610,6 +629,7 @@
 				993F14602046AF4500AF5BFB /* MapComponent.swift in Sources */,
 				F24C46CD206B6BB100B8097D /* Power.swift in Sources */,
 				3D0DA07E203DF45A0050F708 /* Renderer.swift in Sources */,
+				B1F0FC6C20815FA7003E0ADD /* EarthPower.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -827,10 +847,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EXV3QGL866;
+				DEVELOPMENT_TEAM = 3E5RA54B7H;
 				INFOPLIST_FILE = FingerGod/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGod7;
+				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGod1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -842,10 +862,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EXV3QGL866;
+				DEVELOPMENT_TEAM = 3E5RA54B7H;
 				INFOPLIST_FILE = FingerGod/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGod7;
+				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGod1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

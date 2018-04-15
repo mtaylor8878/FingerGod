@@ -19,16 +19,18 @@ public class Renderer {
         
         public var perspectiveMatrix : GLKMatrix4!
         public var transform = GLKMatrix4Identity
-        public var location = GLKVector3()
+        public var location: GLKVector3 {
+            get {
+                return GLKVector3Make(transform.m30, transform.m31, transform.m32)
+            }
+        }
         
         public func move(x: Float, y: Float, z: Float) {
-            location = GLKVector3Add(location, GLKVector3Make(x, y, z))
             let tmp = GLKMatrix4Translate(GLKMatrix4Identity, x, y, z)
             transform = GLKMatrix4Multiply(tmp, transform)
         }
         
         public func moveRelative(x: Float, y: Float, z: Float) {
-            location = GLKVector3Add(location, GLKVector3Make(x, y, z))
             transform = GLKMatrix4Translate(transform, x, y, z)
         }
         
