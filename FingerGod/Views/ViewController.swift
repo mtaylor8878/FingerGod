@@ -18,14 +18,16 @@ class ViewController: GLKViewController, Subscriber {
     private var game : Game!
     private var prevPanPoint = CGPoint(x: 0, y: 0)
     private var prevScale : Float = 1
-    private var unitMenuHide : Bool = false
+    private var unitCount : Int!
 
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var FollowerLabel: UILabel!
     @IBOutlet weak var GoldLabel: UILabel!
     @IBOutlet weak var ManaLabel: UILabel!
+    
     var Exit: RoundButton!
     var Split: UIButton!
+    var units: [RoundButton] = [RoundButton]()
     
     @IBAction func onButtonClick(_ sender: RoundButton) {
         // Power Button
@@ -48,7 +50,6 @@ class ViewController: GLKViewController, Subscriber {
         Renderer.setup(view: self.view as! GLKView)
         label.text = "Off"
         game = FingerGodGame()
-        self.initButton()
         self.unitMenu()
         EventDispatcher.subscribe("UpdatePlayerUI", self)
         EventDispatcher.subscribe("AllyClick", self)
@@ -106,22 +107,50 @@ class ViewController: GLKViewController, Subscriber {
         Exit.titleLabel?.font = UIFont(name: "ArialRoundedMTBold", size: 6)
         Exit.addTarget(self, action: #selector(exitMenu), for: UIControlEvents.touchUpInside)
         self.view.addSubview(Exit)
+        Exit.isHidden = true
         
         Split = UIButton.init()
         Split.frame = CGRect.init(x: ScreenWidth - 150, y: 300, width: 100, height: 30)
         Split.setTitle("Split Group", for: .normal)
         Split.setTitleColor(UIColor.blue, for: .normal)
         Split.backgroundColor = UIColor.lightGray
+        Split.addTarget(self, action: #selector(splitMenu), for: UIControlEvents.touchUpInside)
         self.view.addSubview(Split)
- 
+        Split.isHidden = true
+    }
+    
+    @objc func splitMenu() {
+        Split.isHidden = true
+        for i in 1...unitCount {
+            var btn = RoundButton.init()
+            let pos = (i * 30) + 150
+            btn.frame = CGRect.init(x: Int(ScreenWidth - 50), y: pos, width: 30, height: 30)
+            btn.cornerRadius = 15
+            btn.borderWidth = 1
+            btn.borderColor = UIColor.black
+            btn.addTarget(self, action: #selector(moveUnit), for: UIControlEvents.touchUpInside)
+            self.view.addSubview(btn)
+            units.append(btn)
+        }
     }
     
     @objc func exitMenu() {
-        Exit.isHidden = true;
-        Split.isHidden = true;
+        Exit.isHidden = true
+        Split.isHidden = true
         
-        NSLog("unitMenu: " + String(unitMenuHide) + " exit: " + String(Exit.isHidden))
-
+        for unit in units {
+            unit.isHidden = true
+        }
+        
+        for i in 1...unitCount {
+            units.remove(at: 0)
+        }
+        unitCount = 0
+    }
+    
+    @objc func moveUnit() {
+        //TODO: Put Unit Group Splitting here
+        print("moving unit away")
     }
 
     func notify(_ eventName: String, _ params: [String : Any]) {
@@ -132,6 +161,11 @@ class ViewController: GLKViewController, Subscriber {
             ManaLabel.text = (params["Mana"]! as! String)
             break
    
+        case "AllyClick":
+            print("works")
+            Split.isHidden = false;
+            Exit.isHidden = false;
+            unitCount = (params["unitCount"]! as! Int)
         default:
             break
         }
