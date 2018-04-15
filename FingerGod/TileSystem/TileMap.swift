@@ -63,7 +63,7 @@ public class TileMap {
         
         for i in 0 ..< mapHeight {
             for j in 0 ..< mapWidth {
-                tileMap[Point2D(i, j)] = Tile(i, j, radius)
+                tileMap[Point2D(i, j)] = Tile(self, i, j, radius)
             }
         }
     }
@@ -80,7 +80,7 @@ public class TileMap {
         self.radius = tileRadius
         
         let start = Point2D(0,0)
-        tileMap[start] = Tile(start, tileRadius)
+        tileMap[start] = Tile(self, start, tileRadius)
         
         if(radius > 0) {
             for r in 1...mapRadius {
@@ -88,7 +88,7 @@ public class TileMap {
                 var dir = HexDirection.SouthEast
                 for _ in 0...HexDirections.Count {
                     for _ in 0..<r {
-                        tileMap[point] = Tile(point, tileRadius)
+                        tileMap[point] = Tile(self, point, tileRadius)
                         point = HexDirections.InDirection(point, dir)
                     }
                     dir = HexDirections.NextDirection(dir)

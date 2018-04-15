@@ -23,7 +23,8 @@ public class MapComponent : Component, Subscriber {
         tileMap = TileMap(10,1)
         
         EventDispatcher.subscribe("AddStructure", self)
-        EventDispatcher.subscribe("SetTileColor",self)
+        EventDispatcher.subscribe("SetTileColor", self)
+        EventDispatcher.subscribe("SetTileType", self)
         
         EventDispatcher.subscribe("BattleEnd",self)
         
@@ -38,7 +39,7 @@ public class MapComponent : Component, Subscriber {
     }
     
     public func getClosest(_ coord: GLKVector3) -> Point2D {
-        var shortest = Float(255)
+        var shortest = Float.greatestFiniteMagnitude
         var select: Point2D!
         
         for (point, tile ) in tileMap.getTiles() {
@@ -109,6 +110,13 @@ public class MapComponent : Component, Subscriber {
             } else {
                 resetTileColor(tile: pos)
             }
+            break
+        
+        case "SetTileType":
+            let pos = params["pos"]! as! Point2D
+            let type = params["type"]! as! Tile.types
+            
+            tileMap.getTile(pos)!.setType(type)
             break
             
         default:
