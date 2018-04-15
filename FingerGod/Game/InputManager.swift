@@ -99,25 +99,25 @@ public class InputManager : Subscriber {
         case Tile.types.vacant:
             if (prevObject != nil) {
                 if (nextObject == nil) {
-                    map.getTile(pos: selected!)!.setType(Tile.types.vacant)
                     prevObject!.move(q, r)
-                    selectedTile.setType(Tile.types.occupied)
                     noSelect = true
-                } else if(nextObject!.alignment == Alignment.ENEMY) {
-                    noSelect = true
-                    // TODO: Start Battle
                 }
             }
             break
             
         case Tile.types.occupied:
-            if (nextObject != nil && nextObject!.alignment == Alignment.ALLIED) {
-                print("Ally Selected")
-                // TODO: display unit stuff
-                let peopleNum = nextObject?.unitGroup.peopleArray.count
-                print("Units in tile "  + String(describing: peopleNum))
-                EventDispatcher.publish("AllyClick", ("unitCount", peopleNum ?? 0))
-                noSelect = true
+            if (nextObject != nil) {
+                if(nextObject!.alignment == Alignment.ALLIED) {
+                    print("Ally Selected")
+                    // TODO: display unit stuff
+                    let peopleNum = nextObject?.unitGroup.peopleArray.count
+                    print("Units in tile "  + String(describing: peopleNum))
+                    EventDispatcher.publish("AllyClick", ("unitCount", peopleNum ?? 0))
+                    noSelect = true
+                } else if(nextObject!.alignment == Alignment.ENEMY){
+                    noSelect = true
+                    // TODO: Start Battle
+                }
             }
             
         default:
