@@ -24,7 +24,7 @@ public class PlayerObject : GameObject, Subscriber{
     private var tickCount : Float
         
     public init(_ color:[GLfloat], _ startSpace: Point2D) {
-        _followers = 1
+        _followers = 100
         _unitList = [UnitGroupComponent]()
         _gold = STARTING_GOLD
         _mana = 500
@@ -40,9 +40,6 @@ public class PlayerObject : GameObject, Subscriber{
     
     func notify(_ eventName: String, _ params: [String : Any]) {
         switch(eventName) {
-        case "UpdatePlayerMana":
-            _mana += params["ManaValue"]! as! Float
-            break
         default:
             break
         }
