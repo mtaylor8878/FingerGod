@@ -15,7 +15,7 @@ import GLKit
 public class Tile {
     
     //Types of tiles
-    public enum types {
+    public enum types : String {
         case vacant
         case occupied
         case boundary

@@ -19,6 +19,7 @@ public class PlayerObject : GameObject, Subscriber{
     public var _mana : Float
     public var _unitList : [UnitGroupComponent]
     public var _city : City?
+    public var _selectedPower : String
     public let color : [GLfloat]
     
     private var tickCount : Float
@@ -32,6 +33,7 @@ public class PlayerObject : GameObject, Subscriber{
         tickCount = 0
         income = 1
         incomeTick = 2.0
+        _selectedPower = "Off"
         
         super.init()
         

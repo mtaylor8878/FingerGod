@@ -87,6 +87,7 @@ public class InputManager : Subscriber {
         output += "Type: " + String(describing: selectedTile.type) + ", "
         output += "World Coord: (" + String(selectedTile.worldCoordinate.x) + ", " + String(selectedTile.worldCoordinate.y) + ")"
         output += "]"
+        output += "\n"
         print(output)
         
         switch(selectedTile.type) {
@@ -106,6 +107,13 @@ public class InputManager : Subscriber {
                     noSelect = true
                     // TODO: Start Battle
                 }
+            } else if (nextObject != nil && nextObject!.alignment == Alignment.ALLIED) {
+                print("Ally Selected")
+                // TODO: display unit stuff
+                let peopleNum = nextObject?.unitGroup.peopleArray.count
+                print("Units in tile "  + String(describing: peopleNum))
+                EventDispatcher.publish("AllyClick", ("unitCount", peopleNum ?? 0))
+                noSelect = true
             }
             break
             

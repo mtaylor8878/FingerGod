@@ -8,18 +8,24 @@
 
 import Foundation
 
-class Power : Component, Subscriber {
+public class Power : GameObject, Subscriber {
     
-    var power : String = "none"
-
-    open override func create() {
-        EventDispatcher.subscribe("PowerOn",self)
+    public var _name : String
+    public var _cost : Int
+    public var _tick : Float
+    
+    public init(_ newId:Int) {
+        _name = "Off"
+        _cost = 0
+        _tick = 2.0
     }
     
-    open override func update(delta: Float) {
-        if (power == "fire") {
-            
-        }
+    public override func create() {
+        EventDispatcher.subscribe("PowerOn", self)
+    }
+    
+    public override func update(delta: Float) {
+        
     }
     
     func notify(_ eventName: String, _ params: [String : Any]) {
@@ -27,29 +33,25 @@ class Power : Component, Subscriber {
         case "PowerOn":
             let str: String! = params["power"] as! String
             if (str == "fire") {
-                print("Fire Power");
-                power = "fire";
+                _name = "fire";
             }
             
             if (str == "water") {
                 print("Water Power");
-                power = "water";
-            }
-            
-            if (str == "lightning") {
-                print("Lightning Power");
-                power = "water";
+                _name = "water";
             }
             
             if (str == "earth") {
                 print("Earth Power");
-                power = "earth";
+                _name = "earth";
             }
             
             if (str == "Off") {
                 print("Power Off");
-                power = "none";
+                _name = "Off";
             }
+            var outputString = "\nPower: " + str
+            NSLog(outputString)
             break
             
         default:

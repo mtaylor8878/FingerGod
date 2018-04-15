@@ -40,5 +40,9 @@ class SingleUnit: NSObject {
         // Default hurt behaviour
         HP = HP - damage
     }
+    
+    public func heal(damage: Int) {
+        HP = HP + damage
+    }
 }
 

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import GLKit
 
 public class MapComponent : Component, Subscriber {
@@ -152,9 +153,6 @@ public class MapComponent : Component, Subscriber {
             break
         case 3:
             tileMap.getTile(x,y)!.model.color = [0.2, 0.0, 0.5, 1.0]
-            break
-        case 4:
-            tileMap.getTile(x,y)!.model.color = [1.0, 2.0, 0.2, 1.0]
             break
         default:
             break
