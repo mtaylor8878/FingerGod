@@ -11,13 +11,13 @@ import UIKit
 
 public class PlayerObject : GameObject, Subscriber{
     public let STARTING_GOLD = 100
+    public var _unitList : [UnitGroupComponent]
     
     public var _followers : Int
     public var _gold : Int
     public var income : Int
     public var incomeTick : Float
     public var _mana : Float
-    public var _unitList : [UnitGroupComponent]
     public var _city : City?
     public var _selectedPower : String
     public let color : [GLfloat]
@@ -26,7 +26,6 @@ public class PlayerObject : GameObject, Subscriber{
         
     public init(_ color:[GLfloat], _ startSpace: Point2D) {
         _followers = 100
-        _unitList = [UnitGroupComponent]()
         _gold = STARTING_GOLD
         _mana = 500
         self.color = color
@@ -35,13 +34,24 @@ public class PlayerObject : GameObject, Subscriber{
         incomeTick = 2.0
         _selectedPower = "Off"
         
+        _unitList = []
         super.init()
+        
+        EventDispatcher.subscribe("RemoveUnit", self)
         
         _city = City(startSpace, self)
     }
     
     func notify(_ eventName: String, _ params: [String : Any]) {
         switch(eventName) {
+        case "RemoveUnit":
+            let unit = params["unit"] as! UnitGroupComponent
+            if (unit.alignment == Alignment.ALLIED) {
+                let ind = _unitList.index{$0 === unit};
+                if (ind != nil) {
+                    _unitList.remove(at: ind!)
+                }
+            }
         default:
             break
         }
