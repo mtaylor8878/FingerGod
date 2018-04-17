@@ -16,7 +16,7 @@ public class UnitGroupComponent : Component {
     private var startPosition = [0, 0]
     private var endPosition = [0, 0]
     private var modelInst : ModelInstance?
-    var unitGroup = UnitGroup.initUnitGroupWith(peopleNum:10, followerNum: 0, demiGodNum: 0)
+    var unitGroup = UnitGroup(peopleNum:10)
     
     private var initShape = GLKMatrix4Scale(GLKMatrix4Identity, 0.5, 0.5, 0.5)
     //public var alignment = Alignment.NEUTRAL
@@ -30,6 +30,9 @@ public class UnitGroupComponent : Component {
     
     // Are we stopped by something?
     public var halted = false
+    
+    private var lastHealTime : Float = 0
+    private var secsToHeal : Float = 1
     
     public override func create() {
         print("Creating Unit Group")
@@ -46,6 +49,15 @@ public class UnitGroupComponent : Component {
     }
     
     public override func update(delta: Float) {
+        lastHealTime += delta
+        if (lastHealTime > secsToHeal) {
+            lastHealTime -= secsToHeal
+            for u in unitGroup.peopleArray {
+                let unit = u as! SingleUnit
+                unit.heal(1)
+            }
+        }
+        
         if (stepProgress <= 0.0 && movePath.count > 0 && !halted) {
             // Remove any extraneous movement paths
             while (movePath.count > 0 && movePath[0].x == position[0] && movePath[0].y == position[1]) {

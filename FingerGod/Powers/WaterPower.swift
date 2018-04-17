@@ -15,7 +15,7 @@ public class WaterPower : Power {
     public override func update(delta: Float) {
         for u in (target?.unitGroup.peopleArray)! {
             let unit = u as! SingleUnit
-            unit.heal(damage:50)
+            unit.heal(50)
         }
     }
 }
