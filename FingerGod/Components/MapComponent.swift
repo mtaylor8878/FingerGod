@@ -12,7 +12,7 @@ import GLKit
 
 public class MapComponent : Component, Subscriber {
     
-    private var tileMap : TileMap!
+    public var tileMap : TileMap!
     
     open override func create() {
         tileMap = TileMap(10,1)
@@ -20,6 +20,7 @@ public class MapComponent : Component, Subscriber {
         EventDispatcher.subscribe("AddStructure", self)
         EventDispatcher.subscribe("SetTileColor", self)
         EventDispatcher.subscribe("SetTileType", self)
+        EventDispatcher.subscribe("ResetTileType", self)
         
         EventDispatcher.subscribe("BattleEnd",self)
     }
@@ -38,6 +39,18 @@ public class MapComponent : Component, Subscriber {
         }
         
         return select
+    }
+    
+    public func getRandomTile() -> Tile {
+        var tile : Tile? = nil
+        
+        while (tile == nil) {
+            let q = Int(arc4random_uniform(UInt32(tileMap.mapWidth))) - tileMap.mapWidth / 2
+            let r = Int(arc4random_uniform(UInt32(tileMap.mapHeight))) - tileMap.mapHeight / 2
+            tile = tileMap.getTile(Point2D(q,r))
+        }
+        
+        return tile!
     }
     
     public func setTileColor(tile: Point2D, color: [Float]) {
@@ -74,8 +87,16 @@ public class MapComponent : Component, Subscriber {
         case "SetTileType":
             let pos = params["pos"]! as! Point2D
             let type = params["type"]! as! Tile.types
+            let perma = params["perma"]! as! Bool
             
-            tileMap.getTile(pos)!.setType(type)
+            tileMap.getTile(pos)!.setType(type, perma)
+            break
+            
+        case "ResetTileType":
+            let pos = params["pos"]! as! Point2D
+            let tile = tileMap.getTile(pos)!
+            tile.setType(tile.originalType, false)
+            tile.resetColor()
             break
             
         default:
@@ -108,7 +129,7 @@ public class MapComponent : Component, Subscriber {
         manaLabel.text = String(player._mana)*/
     }
     
-    public func generate() {
+    /*public func generate() {
         let testEnemy = GameObject()
         testEnemy.addComponent(type: UnitGroupComponent.self)
         
@@ -116,6 +137,12 @@ public class MapComponent : Component, Subscriber {
         let ugComp = testEnemy.getComponent(type: UnitGroupComponent.self)
         ugComp?.move(3, 3)
         ugComp?.setAlignment(Alignment.ENEMY)
+        
+        // Make the enemy group a little beefier
+        for _ in 0 ... 10 {
+            ugComp?.unitGroup.peopleArray.add(SingleUnit())
+        }
+        
         EventDispatcher.publish("AddUnit", ("unit", ugComp!))
-    }
+    }*/
 }

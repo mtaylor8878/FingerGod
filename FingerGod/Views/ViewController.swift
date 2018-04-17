@@ -41,7 +41,6 @@ class ViewController: GLKViewController, Subscriber {
         PowerLabel.text = "Off"
         game = FingerGodGame()
         self.unitMenu()
-        EventDispatcher.subscribe("UpdatePlayerUI", self)
         EventDispatcher.subscribe("AllyClick", self)
         EventDispatcher.subscribe("AddPowerButton", self)
     }
@@ -85,12 +84,20 @@ class ViewController: GLKViewController, Subscriber {
         super.glkView(view, drawIn: rect)
         game.update()
         Renderer.draw(drawRect: rect)
+        FollowerLabel.text = String(game.input!.player._followers)
+        GoldLabel.text = String(game.input!.player._gold)
+        ManaLabel.text = String(game.input!.player._mana)
+        if (game.input!.player._curPower != nil) {
+            PowerLabel.text = String(game.input!.player._curPower!.Label)
+        } else {
+            PowerLabel.text = "Off"
+        }
     }
     
     func unitMenu() {
         Exit = RoundButton.init()
-        Exit.frame = CGRect.init(x: ScreenWidth - 110, y: 345, width: 15, height: 15)
-        Exit.cornerRadius = 7.5
+        Exit.frame = CGRect.init(x: ScreenWidth - 110, y: 345, width: 20, height: 20)
+        Exit.cornerRadius = 10
         Exit.borderWidth = 1
         Exit.borderColor = UIColor.red
         Exit.setTitle("X", for: .normal)
@@ -146,12 +153,6 @@ class ViewController: GLKViewController, Subscriber {
 
     func notify(_ eventName: String, _ params: [String : Any]) {
         switch(eventName) {
-        case "UpdatePlayerUI":
-            FollowerLabel.text = (params["Followers"]! as! String)
-            GoldLabel.text = (params["Gold"]! as! String)
-            ManaLabel.text = (params["Mana"]! as! String)
-            break
-   
         case "AllyClick":
             print("works")
             Split.isHidden = false;
@@ -161,8 +162,13 @@ class ViewController: GLKViewController, Subscriber {
         case "AddPowerButton":
             let btn = (params["button"]! as! RoundButton)
             let pos = (params["pos"]! as! Int)
-            btn.frame = CGRect.init(x: Int(ScreenWidth - 350), y: 120 + pos, width: 30, height: 30)
+            btn.frame = CGRect.init(x: Int(ScreenWidth - 352), y: 600 - pos, width: 30, height: 30)
             self.view.addSubview(btn)
+            let verticalConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:|[btn]|", options: [], metrics: nil, views: ["btn": btn])
+            
+            let horizontalConstraint = NSLayoutConstraint.constraints(withVisualFormat: "H:|[btn]|", options: [], metrics: nil, views: ["btn": btn])
+            self.view.addConstraints(verticalConstraint)
+            self.view.addConstraints(horizontalConstraint)
             
         default:
             break

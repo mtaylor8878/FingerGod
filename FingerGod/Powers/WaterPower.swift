@@ -11,10 +11,17 @@ import UIKit
 
 public class WaterPower : Power {
     
-    var target : UnitGroupComponent?
+    public var target : Tile?
     
     public override init(player: PlayerObject) {
         super.init(player: player)
+        
+        Label = "Water"
+        
+        _duration = 5
+        _damage = 5.0
+        _cost = 25.0
+        
         _btn = RoundButton.init()
         _btn?.cornerRadius = 25
         _btn?.borderWidth = 1
@@ -23,14 +30,36 @@ public class WaterPower : Power {
     }
     
     @objc func waterTap() {
-        _player._curPower = self
+        if (_player._mana > _cost) {
+            _player._curPower = self
+        }
     }
-    public override func activate(tile : Tile) {
-        EventDispatcher.publish("HealUnit", ("tile", tile), ("heal", 50))
+    
+    public override func activate(tile : Tile){
+        super.activate(tile: tile)
+        _player._mana -= _cost
+        target = tile
         tile.model.color = [0.0, 0.0, 1.0, 1.0]
+        _count = 0
+        _time = 0.0
+        _active = true
     }
     
     public override func update(delta: Float) {
-        
+        if (_active) {
+            _time += delta
+            
+            if (_time >= _tick) {
+                EventDispatcher.publish("HealUnit", ("tile", target!), ("heal", _damage), ("owner", _player.id))
+                _time = 0.0
+                _count += 1
+            }
+            
+            if (_count >= _duration) {
+                target?.resetColor()
+                _active = false
+            }
+        }
     }
 }
+

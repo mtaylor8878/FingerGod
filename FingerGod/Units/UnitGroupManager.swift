@@ -23,6 +23,7 @@ public class UnitGroupManager : NSObject, Subscriber {
         EventDispatcher.subscribe("BattleEnd", self)
         EventDispatcher.subscribe("PowerTileGroup", self)
         EventDispatcher.subscribe("DamageUnit", self)
+        EventDispatcher.subscribe("ChangeTile", self)
     }
     
     func notify(_ eventName: String, _ params: [String : Any]) {
@@ -39,30 +40,19 @@ public class UnitGroupManager : NSObject, Subscriber {
             
             if (unitsAtNewPos.count > 0) {
                 for otherUnit in unitsAtNewPos {
-                    switch (otherUnit.alignment) {
-                    case Alignment.ALLIED:
-                        if (unit !== otherUnit && unit.alignment == otherUnit.alignment) {
-                            // TODO: Ally Merge code
-                        }
-                        break
-                    case Alignment.ENEMY:
-                        if (unit.alignment != otherUnit.alignment) {
-                            print("BATTLE START")
-                            startBattle(unit, otherUnit)
-                        }
-                        break
-                    case Alignment.NEUTRAL:
-                        // Potentially follower capture code?
-                        break
-                    default:
-                        break
+                    if (unit !== otherUnit && unit.owner == otherUnit.owner) {
+                        // TODO: Ally Merge code
+                    }
+                    else if (unit.owner != otherUnit.owner) {
+                        print("BATTLE START")
+                        startBattle(unit, otherUnit)
                     }
                 }
             }
-            if (oldPos != nil && unitsAtLocation(oldPos!).count < 0) {
-                EventDispatcher.publish("SetTileType", ("pos", oldPos), ("type", Tile.types.vacant))
+            if (oldPos != nil && unitsAtLocation(oldPos!).count == 0) {
+                EventDispatcher.publish("ResetTileType", ("pos", oldPos!))
             }
-            EventDispatcher.publish("SetTileType", ("pos", newPos), ("type", Tile.types.occupied))
+            EventDispatcher.publish("SetTileType", ("pos", newPos), ("type", Tile.types.occupied), ("perma", false))
             
             break
         case "RemoveUnit":
@@ -71,7 +61,7 @@ public class UnitGroupManager : NSObject, Subscriber {
             let ind = unitGroups.index{$0 === unit};
             if (ind != nil) {
                 unitGroups.remove(at: ind!)
-                EventDispatcher.publish("SetTileType", ("pos", Point2D(unit.position[0], unit.position[1])), ("type", Tile.types.vacant))
+                EventDispatcher.publish("ResetTileType", ("pos", Point2D(unit.position[0], unit.position[1])))
             }
             break
         case "BattleEnd":
@@ -83,10 +73,12 @@ public class UnitGroupManager : NSObject, Subscriber {
             case "awin":
                 EventDispatcher.publish("RemoveUnit", ("unit", groupB))
                 groupA.offset(1.25, 0, 0)
+                groupA.halted = false
                 break
             case "bwin":
                 EventDispatcher.publish("RemoveUnit", ("unit", groupA))
                 groupB.offset(-1.25, 0, 0)
+                groupB.halted = false
                 break
             case "tie":
                 EventDispatcher.publish("RemoveUnit", ("unit", groupA))
@@ -99,38 +91,38 @@ public class UnitGroupManager : NSObject, Subscriber {
             
         case "DamageUnit":
             let tile = params["tile"] as! Tile
-            let damage =  params["damage"] as! Int
+            let damage =  params["damage"] as! Float
+            let owner = params["owner"] as! Int
             for c in (unitGroups) {
                 if c.position[0] == tile.getAxial().x && c.position[1] == tile.getAxial().y {
-                    if (c.alignment == Alignment.ENEMY) {
+                    if (c.owner != owner) {
                         for u in (c.unitGroup.peopleArray) {
                             let unit = u as! SingleUnit
-                            unit.hurt(damage: damage)
-                            
-                            if (unit.HP >= 0) {
-                                //TODO: Remove unit from array when dead
+                            unit.hurt(damage)
+                        }
+                    }
+                }
+            }
+        break
+            
+        case "HealUnit":
+            let tile = params["tile"] as! Tile
+            let heal =  params["heal"] as! Float
+            let owner = params["owner"] as! Int
+            for c in (unitGroups) {
+                for c in (unitGroups) {
+                    if c.position[0] == tile.getAxial().x && c.position[1] == tile.getAxial().y {
+                        if (c.owner != owner) {
+                            for u in (c.unitGroup.peopleArray) {
+                                let unit = u as! SingleUnit
+                                unit.heal(heal)
                             }
                         }
                     }
                 }
             }
-           break
-            
-        case "HealUnit":
-            let tile = params["tile"] as! Tile
-            let heal =  params["heal"] as! Int
-            for c in (unitGroups) {
-                if c.position[0] == tile.getAxial().x && c.position[1] == tile.getAxial().y {
-                    if (c.alignment == Alignment.ALLIED) {
-                        for u in (c.unitGroup.peopleArray) {
-                            let unit = u as! SingleUnit
-                            unit.heal(damage: heal)
-                        }
-                    }
-                }
-            }
             break
-            
+        
         default:
             break
         }
@@ -139,6 +131,9 @@ public class UnitGroupManager : NSObject, Subscriber {
     private func startBattle(_ unitGroupA : UnitGroupComponent, _ unitGroupB : UnitGroupComponent) {
         unitGroupA.offset(-1.25, 0, 0)
         unitGroupB.offset(1.25, 0, 0)
+        
+        unitGroupA.halted = true
+        unitGroupB.halted = true
         
         var battleObj = GameObject()
         
@@ -161,4 +156,5 @@ public class UnitGroupManager : NSObject, Subscriber {
         }
         return units
     }
+
 }

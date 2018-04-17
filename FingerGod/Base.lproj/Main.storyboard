@@ -46,8 +46,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3kf-Lc-Kii" userLabel="onBtnClick" customClass="RoundButton" customModule="FingerGod" customModuleProvider="target">
-                                <rect key="frame" x="42" y="593" width="50" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3kf-Lc-Kii" userLabel="onBtnClick" customClass="RoundButton" customModule="FingerGod" customModuleProvider="target">
+                                <rect key="frame" x="32" y="583" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="jni-iV-zQf"/>
+                                    <constraint firstAttribute="width" constant="50" id="oUD-kS-ueL"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" cocoaTouchSystemColor="darkTextColor"/>
@@ -94,8 +98,8 @@
                         </subviews>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="3kf-Lc-Kii" firstAttribute="centerY" secondItem="1a0-17-BEc" secondAttribute="centerY" constant="274.5" id="NuF-6N-RTv"/>
-                            <constraint firstItem="3kf-Lc-Kii" firstAttribute="centerX" secondItem="1a0-17-BEc" secondAttribute="centerX" constant="-130.5" id="Pfp-Di-8NK"/>
+                            <constraint firstItem="3kf-Lc-Kii" firstAttribute="centerX" secondItem="1a0-17-BEc" secondAttribute="centerX" constant="-130" id="5eB-FL-eV3"/>
+                            <constraint firstItem="3kf-Lc-Kii" firstAttribute="centerY" secondItem="1a0-17-BEc" secondAttribute="centerY" constant="275" id="iaR-9Z-sWY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OoA-aJ-EoG"/>
                         <connections>

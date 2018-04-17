@@ -11,12 +11,11 @@ import GLKit
 
 public class InputManager : Subscriber {
     private let SELECTION_COLOR: [Float] = [1.0, 0.2, 0.2, 1.0]
-    private let player: PlayerObject
+    public let player: PlayerObject
     private let map: MapComponent
     private var unitGroupManager : UnitGroupManager
     
     private var selected: Point2D?
-    private var currPower: Int
     private var powerMenuEnabled : Bool
     private var powerMenu : [RoundButton]
     
@@ -24,7 +23,6 @@ public class InputManager : Subscriber {
         self.player = player
         self.map = map
         self.unitGroupManager = unitGroupManager
-        currPower = 0
         powerMenuEnabled = false
         powerMenu = [RoundButton]()
     }
@@ -36,9 +34,6 @@ public class InputManager : Subscriber {
         let point = GLKVector3Add(location, GLKVector3MultiplyScalar(ray, t))
         let tile = map.getClosest(point)
         selectTile(tile.x, tile.y)
-        if (currPower > 0) {
-            player._mana -= 10.0
-        }
     }
     
     public func togglePowerMenu() {
@@ -48,7 +43,7 @@ public class InputManager : Subscriber {
             var pos : Int
             pos = 0
             for power in player.powers {
-                pos += 20
+                pos += 50
                 EventDispatcher.publish("AddPowerButton", ("button", power._btn!), ("pos", pos))
             }
         } else {
@@ -73,8 +68,9 @@ public class InputManager : Subscriber {
         
         if(selected != nil) {
             map.resetTileColor(tile: selected!)
-            
+            print("Selected position: " + String(describing: selected?.x) + "," + String(describing: selected?.y))
             for c in unitGroupManager.unitGroups {
+                 print("Unit Position: " + String(c.position[0]) + "," + String(c.position[1]))
                  if c.position[0] == selected?.x && c.position[1] == selected?.y {
                      prevObject = c
                  }
@@ -114,7 +110,10 @@ public class InputManager : Subscriber {
         
         if (player._curPower != nil) {
             noSelect = true
-            player._curPower?.activate(tile: selectedTile)
+            if (player._mana > 0) {
+                player._curPower?.activate(tile: selectedTile)
+                player._curPower = nil
+            }
         }
         
         switch(selectedTile.type) {
@@ -125,8 +124,9 @@ public class InputManager : Subscriber {
         
         case Tile.types.vacant:
             if (prevObject != nil) {
-                if (nextObject == nil) {
-                    prevObject!.move(q, r)
+                if (nextObject == nil && prevObject!.owner == player.id!) {
+                    print("Moving unit...")
+                    prevObject!.setTarget(TilePathFindingTarget(tile: selectedTile, map: map.tileMap))
                     noSelect = true
                 }
             }
@@ -134,24 +134,23 @@ public class InputManager : Subscriber {
             
         case Tile.types.occupied:
             if (nextObject != nil) {
-                if(nextObject!.alignment == Alignment.ALLIED) {
+                if(nextObject!.owner == player.id!) {
                     print("Ally Selected")
                     // TODO: display unit stuff
                     let peopleNum = nextObject?.unitGroup.peopleArray.count
                     print("Units in tile "  + String(describing: peopleNum))
                     EventDispatcher.publish("AllyClick", ("unitCount", peopleNum ?? 0))
                     noSelect = true
-                } else if(nextObject!.alignment == Alignment.ENEMY){
+                } else {
                     print("Enemy Selected")
                     // Note: Battle doesn't start here, we simply move to the tile
                     // But in future, may want to have the player start moving to the "enemy" rather than its tile
                     if (prevObject != nil) {
-                        prevObject!.move(q, r)
-                        noSelect = true
+                        prevObject!.setTarget(EnemyPathFindingTarget(enemy: nextObject!, map: map.tileMap))
                     }
+                    noSelect = true
                 }
             }
-            player._curPower = nil
             
         default:
             break

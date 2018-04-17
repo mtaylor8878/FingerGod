@@ -11,10 +11,17 @@ import UIKit
 
 public class FirePower : Power {
     
-    var target : UnitGroupComponent?
+    public var target : Tile?
     
     public override init(player: PlayerObject) {
         super.init(player: player)
+        
+        Label = "Fire"
+        
+        _duration = 5
+        _damage = 10.0
+        _cost = 50
+        
         _btn = RoundButton.init()
         _btn?.cornerRadius = 25
         _btn?.borderWidth = 1
@@ -23,15 +30,35 @@ public class FirePower : Power {
     }
     
     @objc func fireTap() {
-        _player._curPower = self
+        if (_player._mana > _cost) {
+            _player._curPower = self
+        }
     }
     
     public override func activate(tile : Tile){
-        EventDispatcher.publish("DamageUnit", ("tile", tile), ("damage", 50))
+        super.activate(tile: tile)
+        _player._mana -= _cost
+        target = tile
         tile.model.color = [1.0, 0.411, 0.706, 1.0]
+        _count = 0
+        _time = 0.0
+        _active = true
     }
     
     public override func update(delta: Float) {
-
+        if (_active) {
+            _time += delta
+            
+            if (_time >= _tick) {
+                EventDispatcher.publish("DamageUnit", ("tile", target!), ("damage", _damage), ("owner", _player.id))
+                _time = 0.0
+                _count += 1
+            }
+            
+            if (_count >= _duration) {
+                target?.resetColor()
+                _active = false
+            }
+        }
     }
 }
