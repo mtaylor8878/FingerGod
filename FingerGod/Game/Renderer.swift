@@ -109,7 +109,7 @@ public class Renderer {
                 print("Failed to create shader")
             }
             
-            var src = UnsafePointer<GLchar>(shadeSrc.cString(using: String.Encoding.ascii))
+            var src = UnsafePointer<GLchar>(shadeSrc.cString(using: String.Encoding.utf8))
             
             glShaderSource(shader, 1, &src, nil)
             glCompileShader(shader)
