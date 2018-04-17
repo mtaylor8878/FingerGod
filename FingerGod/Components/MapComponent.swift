@@ -12,12 +12,7 @@ import GLKit
 
 public class MapComponent : Component, Subscriber {
     
-    private var tileMap : TileMap!
-    
-    // TEMPORARY VALUES
-    private var unitGroupIDs = 10000
-    private var battleIDs = 100000
-    private var unitGroupComps = [UnitGroupComponent]()
+    public var tileMap : TileMap!
     
     open override func create() {
         tileMap = TileMap(10,1)
@@ -25,17 +20,9 @@ public class MapComponent : Component, Subscriber {
         EventDispatcher.subscribe("AddStructure", self)
         EventDispatcher.subscribe("SetTileColor", self)
         EventDispatcher.subscribe("SetTileType", self)
+        EventDispatcher.subscribe("ResetTileType", self)
         
         EventDispatcher.subscribe("BattleEnd",self)
-        
-        let testEnemy = GameObject()
-        testEnemy.addComponent(type: UnitGroupComponent.self)
-        
-        self.gameObject.game!.addGameObject(gameObject: testEnemy)
-        let ugComp = testEnemy.getComponent(type: UnitGroupComponent.self)
-        ugComp?.move(3, 3)
-        ugComp?.setAlignment(Alignment.ENEMY)
-        unitGroupComps.append(ugComp!)
     }
     
     public func getClosest(_ coord: GLKVector3) -> Point2D {
@@ -74,33 +61,6 @@ public class MapComponent : Component, Subscriber {
             tileMap.getTile(pos)?.addStructure(str)
             break
             
-        case "BattleEnd":
-            print("BATTLE END")
-            let result = params["result"] as! String
-            var groupA = params["groupA"] as! UnitGroupComponent
-            var groupB = params["groupB"] as! UnitGroupComponent
-            switch(result) {
-            case "awin":
-                self.gameObject.game?.removeGameObject(gameObject: groupB.gameObject)
-                self.unitGroupComps.remove(at: self.unitGroupComps.index{$0 === groupB}!)
-                groupA.offset(1.25, 0, 0)
-                break
-            case "bwin":
-                self.gameObject.game?.removeGameObject(gameObject: groupA.gameObject)
-                self.unitGroupComps.remove(at: self.unitGroupComps.index{$0 === groupA}!)
-                groupB.offset(-1.25, 0, 0)
-                break
-            case "tie":
-                self.gameObject.game?.removeGameObject(gameObject: groupA.gameObject)
-                self.gameObject.game?.removeGameObject(gameObject: groupB.gameObject)
-                self.unitGroupComps.remove(at: self.unitGroupComps.index{$0 === groupA}!)
-                self.unitGroupComps.remove(at: self.unitGroupComps.index{$0 === groupB}!)
-                break
-            default:
-                break
-            }
-            break
-            
         case "SetTileColor":
             let pos = params["pos"]! as! Point2D
             let color = params["color"] as? [Float]
@@ -119,27 +79,15 @@ public class MapComponent : Component, Subscriber {
             tileMap.getTile(pos)!.setType(type)
             break
             
+        case "ResetTileType":
+            let pos = params["pos"]! as! Point2D
+            let tile = tileMap.getTile(pos)!
+            tile.setType(tile.originalType)
+            break
+            
         default:
             break
         }
-    }
-    
-    private func startBattle(_ unitGroupA : UnitGroupComponent, _ unitGroupB : UnitGroupComponent) {
-        unitGroupA.move(unitGroupB.position[0], unitGroupB.position[1])
-        unitGroupA.offset(-1.25, 0, 0)
-        unitGroupB.offset(1.25, 0, 0)
-        
-        var battleObj = GameObject()
-        battleIDs = battleIDs + 1
-        
-        battleObj.addComponent(type: BattleComponent.self)
-        
-        var battleComp = battleObj.getComponent(type: BattleComponent.self)
-        battleComp?.groupA = unitGroupA
-        battleComp?.groupB = unitGroupB
-        
-        self.gameObject.game?.addGameObject(gameObject: battleObj)
-        battleComp?.start()
     }
 
     /*public func powerTile(_ x: Int, _ y: Int, _ power: Int) {
@@ -165,5 +113,22 @@ public class MapComponent : Component, Subscriber {
         /*followerLabel.text = String(player._followers)
         goldLabel.text = String(player._gold)
         manaLabel.text = String(player._mana)*/
+    }
+    
+    public func generate() {
+        let testEnemy = GameObject()
+        testEnemy.addComponent(type: UnitGroupComponent.self)
+        
+        self.gameObject.game!.addGameObject(gameObject: testEnemy)
+        let ugComp = testEnemy.getComponent(type: UnitGroupComponent.self)
+        ugComp?.move(3, 3)
+        ugComp?.setAlignment(Alignment.ENEMY)
+        
+        // Make the enemy group a little beefier
+        for _ in 0 ... 10 {
+            ugComp?.unitGroup.peopleArray.add(SingleUnit())
+        }
+        
+        EventDispatcher.publish("AddUnit", ("unit", ugComp!))
     }
 }

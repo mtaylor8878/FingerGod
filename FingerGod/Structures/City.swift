@@ -73,6 +73,8 @@ public class City: Structure {
                 owner._unitList.append(unitGroupComponent)
                 owner._followers -= units
                 
+                EventDispatcher.publish("AddUnit", ("unit", unitGroupComponent))
+                
                 // TODO: TEMPORARY UNTIL UNIT MANAGEMENT
                 place.setType(Tile.types.occupied)
                 

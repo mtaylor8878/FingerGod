@@ -9,7 +9,7 @@
 import Foundation
 
 public class PathFinder {
-    public static func getPath(start:(x: Int, y: Int), end:(x: Int, y: Int), map: TileMap) -> [(x: Int, y: Int)] {
+    public static func getPath(start:Point2D, end:Point2D, map: TileMap) -> [Point2D] {
         // Begin A* Pathfinding Code
         // Adapted from http://www.redblobgames.com/pathfinding/a-star/introduction.html
         let frontier = PriorityQueue<Tile>()
@@ -21,9 +21,8 @@ public class PathFinder {
             return []
         }
         
-        let startPoint = Point2D(start.x, start.y)
-        cost[startPoint] = 0
-        frontier.add(item: map.getTile(startPoint)!, priority: cost[startPoint]!)
+        cost[start] = 0
+        frontier.add(item: map.getTile(start)!, priority: cost[start]!)
         
         while frontier.count > 0 {
             let curr = frontier.shift()
@@ -35,13 +34,15 @@ public class PathFinder {
             let neighbours = getNeighbours(t: curr, map: map)
             
             for next in neighbours {
-                let newCost = cost[curr.getAxial()]! + getCost(next)
-                let nextCost = cost[next.getAxial()]
-                
-                if nextCost == nil || newCost < nextCost! {
-                    cost[next.getAxial()] = newCost
-                    frontier.add(item: next, priority: newCost + distance(endTile!, next))
-                    from[next.getAxial()] = curr.getAxial()
+                if next.type != Tile.types.boundary {
+                    let newCost = cost[curr.getAxial()]! + getCost(next)
+                    let nextCost = cost[next.getAxial()]
+                    
+                    if nextCost == nil || newCost < nextCost! {
+                        cost[next.getAxial()] = newCost
+                        frontier.add(item: next, priority: newCost + distance(endTile!, next))
+                        from[next.getAxial()] = curr.getAxial()
+                    }
                 }
             }
         }
@@ -55,10 +56,10 @@ public class PathFinder {
         while from[step] != nil {
             // Move back and add the previous spot to the list
             step = from[step]!
-            path.append((x: step.x, y: step.y))
+            path.append(Point2D(step.x, step.y))
         }
         
-        return path
+        return path.reversed()
     }
     
     public static func getNeighbours(t: Tile, map: TileMap) -> [Tile] {

@@ -21,9 +21,14 @@ public class UnitGroupComponent : Component {
     private var initShape = GLKMatrix4Scale(GLKMatrix4Identity, 0.5, 0.5, 0.5)
     public var alignment = Alignment.NEUTRAL
     
-    public var movePath : [(x: Int, y: Int)] = []
+    public var movePath : [Point2D] = []
     private var stepProgress : Float = 0.0
     public var moveSpeed : Float = 1.0 // Tiles per second
+    
+    public var target : PathFindingTarget?
+    
+    // Are we stopped by something?
+    public var halted = false
     
     public override func create() {
         print("Creating Unit Group")
@@ -40,26 +45,40 @@ public class UnitGroupComponent : Component {
     }
     
     public override func update(delta: Float) {
-        if (stepProgress <= 0.0 && movePath.count > 0) {
-            endPosition[0] = movePath[0].x
-            endPosition[1] = movePath[0].y
+        if (stepProgress <= 0.0 && movePath.count > 0 && !halted) {
+            // Remove any extraneous movement paths
+            while (movePath.count > 0 && movePath[0].x == position[0] && movePath[0].y == position[1]) {
+                movePath.removeFirst(1)
+            }
+            
+            if (movePath.count > 0) {
+                // If we still have move paths after handling redundancies, start moving
+                if target != nil && target!.changedLocation() {
+                    self.movePath = target!.getPathToTarget(from: Point2D(position))
+                }
+                endPosition[0] = movePath[0].x
+                endPosition[1] = movePath[0].y
+            }
         }
         if (endPosition[0] != startPosition[0] || endPosition[1] != startPosition[1]) {
             stepProgress += moveSpeed * delta
-            if (stepProgress >= 0.5) {
-                EventDispatcher.publish("SetTileType", ("pos", Point2D(position)), ("type", Tile.types.vacant))
+            if (stepProgress >= 0.5 && (position[0] != endPosition[0] || position[1] != endPosition[1])) {
                 position[0] = endPosition[0]
                 position[1] = endPosition[1]
-                EventDispatcher.publish("SetTileType", ("pos", Point2D(position)), ("type", Tile.types.occupied))
+                EventDispatcher.publish("UnitMoved", ("newPos", Point2D(position)), ("oldPos", Point2D(startPosition)), ("unit", self))
+                
             }
             if (stepProgress >= 1.0) {
                 // Reached our destination
                 startPosition[0] = endPosition[0]
                 startPosition[1] = endPosition[1]
                 
-                movePath.removeFirst(1)
-                
                 stepProgress = 0.0
+                
+                if (target != nil && target!.fulfilled(by: self)) {
+                    // We did what we set out to do, woo!
+                    target = nil
+                }
             }
             updateRenderPos()
         }
@@ -70,19 +89,21 @@ public class UnitGroupComponent : Component {
     }
 
     public func setPosition(_ x : Int, _ y : Int) {
-        EventDispatcher.publish("SetTileType", ("pos", Point2D(position)), ("type", Tile.types.vacant))
+        let oldPos = position
         position[0] = x
         position[1] = y
         startPosition[0] = x
         startPosition[1] = y
         endPosition[0] = x
         endPosition[1] = y
-        EventDispatcher.publish("SetTileType", ("pos", Point2D(position)), ("type", Tile.types.occupied))
+        EventDispatcher.publish("UnitMoved", ("newPos", Point2D(position)), ("oldPos", Point2D(oldPos)), ("unit", self))
+        
         updateRenderPos()
     }
     
     public func move(_ x : Int, _ y : Int) {
-        movePath.append((x: x, y: y))
+        movePath.append(Point2D(x, y))
+        updateRenderPos()
     }
     
     public func offset(_ x : Float, _ y : Float, _ z : Float) {
@@ -118,5 +139,10 @@ public class UnitGroupComponent : Component {
         let z = Float(3).squareRoot() * (Float(r) + Float(q) / 2) // z value
         
         return (x,z)
+    }
+
+    public func setTarget(_ target : PathFindingTarget) {
+        self.target = target
+        self.movePath = target.getPathToTarget(from: Point2D(position))
     }
 }

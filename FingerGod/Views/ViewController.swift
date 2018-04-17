@@ -142,7 +142,7 @@ class ViewController: GLKViewController, Subscriber {
             unit.isHidden = true
         }
         
-        for i in 1...unitCount {
+        while (units.count > 0) {
             units.remove(at: 0)
         }
         unitCount = 0
