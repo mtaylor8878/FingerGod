@@ -13,13 +13,15 @@ public class InputManager : Subscriber {
     private let SELECTION_COLOR: [Float] = [1.0, 0.2, 0.2, 1.0]
     private let player: PlayerObject
     private let map: MapComponent
+    private var unitGroupManager : UnitGroupManager
     
     private var selected: Point2D?
     private var currPower: Int
     
-    public init(player: PlayerObject, map: MapComponent) {
+    public init(player: PlayerObject, map: MapComponent, unitGroupManager: UnitGroupManager) {
         self.player = player
         self.map = map
+        self.unitGroupManager = unitGroupManager
         currPower = 0
     }
     
@@ -51,9 +53,8 @@ public class InputManager : Subscriber {
         if(selected != nil) {
             map.resetTileColor(tile: selected!)
             
-            for c in player._unitList {
+            for c in unitGroupManager.unitGroups {
                  if c.position[0] == selected?.x && c.position[1] == selected?.y {
-                     // There was a unit on our selected tile, move it to the new tile
                      prevObject = c
                  }
                  if c.position[0] == q && c.position[1] == r {
@@ -115,8 +116,13 @@ public class InputManager : Subscriber {
                     EventDispatcher.publish("AllyClick", ("unitCount", peopleNum ?? 0))
                     noSelect = true
                 } else if(nextObject!.alignment == Alignment.ENEMY){
-                    noSelect = true
-                    // TODO: Start Battle
+                    print("Enemy Selected")
+                    // Note: Battle doesn't start here, we simply move to the tile
+                    // But in future, may want to have the player start moving to the "enemy" rather than its tile
+                    if (prevObject != nil) {
+                        prevObject!.move(q, r)
+                        noSelect = true
+                    }
                 }
             }
             

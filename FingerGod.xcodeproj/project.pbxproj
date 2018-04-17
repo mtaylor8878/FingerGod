@@ -52,6 +52,7 @@
 		99E1CF3D206B745A00C7A04B /* UnitGroupComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E1CF3C206B745A00C7A04B /* UnitGroupComponent.swift */; };
 		99E1CF3F206B84B100C7A04B /* Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E1CF3E206B84B100C7A04B /* Alignment.swift */; };
 		99E70623204515530095BA58 /* ModelInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E70622204515530095BA58 /* ModelInstance.swift */; };
+		99EB987820840C7100304573 /* UnitGroupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EB987720840C7100304573 /* UnitGroupManager.swift */; };
 		99ED16CA2046909300827958 /* FingerGodGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED16C92046909300827958 /* FingerGodGame.swift */; };
 		99ED16CC2046912200827958 /* RotatingCubeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ED16CB2046912200827958 /* RotatingCubeComponent.swift */; };
 		A64474212082C10A006FF8D3 /* AIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A64474202082C10A006FF8D3 /* AIController.swift */; };
@@ -142,6 +143,7 @@
 		99E1CF3C206B745A00C7A04B /* UnitGroupComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitGroupComponent.swift; sourceTree = "<group>"; };
 		99E1CF3E206B84B100C7A04B /* Alignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alignment.swift; sourceTree = "<group>"; };
 		99E70622204515530095BA58 /* ModelInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelInstance.swift; sourceTree = "<group>"; };
+		99EB987720840C7100304573 /* UnitGroupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitGroupManager.swift; sourceTree = "<group>"; };
 		99ED16C92046909300827958 /* FingerGodGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodGame.swift; sourceTree = "<group>"; };
 		99ED16CB2046912200827958 /* RotatingCubeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotatingCubeComponent.swift; sourceTree = "<group>"; };
 		A64474202082C10A006FF8D3 /* AIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIController.swift; sourceTree = "<group>"; };
@@ -383,6 +385,7 @@
 				99E1CF3E206B84B100C7A04B /* Alignment.swift */,
 				F6DD7441206B235200868E57 /* SingleUnit.swift */,
 				F6DD7443206B236600868E57 /* UnitGroup.swift */,
+				99EB987720840C7100304573 /* UnitGroupManager.swift */,
 			);
 			path = Units;
 			sourceTree = "<group>";
@@ -613,6 +616,7 @@
 				F24C46CD206B6BB100B8097D /* Power.swift in Sources */,
 				3D0DA07E203DF45A0050F708 /* Renderer.swift in Sources */,
 				B1F0FC6C20815FA7003E0ADD /* EarthPower.swift in Sources */,
+				99EB987820840C7100304573 /* UnitGroupManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
