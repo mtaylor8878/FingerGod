@@ -57,8 +57,8 @@ public class UnitGroupManager : NSObject, Subscriber {
                     }
                 }
             }
-            if (oldPos != nil && unitsAtLocation(oldPos!).count < 0) {
-                EventDispatcher.publish("SetTileType", ("pos", oldPos), ("type", Tile.types.vacant))
+            if (oldPos != nil && unitsAtLocation(oldPos!).count == 0) {
+                EventDispatcher.publish("ResetTileType", ("pos", oldPos!))
             }
             EventDispatcher.publish("SetTileType", ("pos", newPos), ("type", Tile.types.occupied))
             
@@ -69,7 +69,7 @@ public class UnitGroupManager : NSObject, Subscriber {
             let ind = unitGroups.index{$0 === unit};
             if (ind != nil) {
                 unitGroups.remove(at: ind!)
-                EventDispatcher.publish("SetTileType", ("pos", Point2D(unit.position[0], unit.position[1])), ("type", Tile.types.vacant))
+                EventDispatcher.publish("ResetTileType", ("pos", Point2D(unit.position[0], unit.position[1])))
             }
             break
         case "BattleEnd":

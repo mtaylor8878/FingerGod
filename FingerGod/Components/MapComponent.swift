@@ -20,6 +20,7 @@ public class MapComponent : Component, Subscriber {
         EventDispatcher.subscribe("AddStructure", self)
         EventDispatcher.subscribe("SetTileColor", self)
         EventDispatcher.subscribe("SetTileType", self)
+        EventDispatcher.subscribe("ResetTileType", self)
         
         EventDispatcher.subscribe("BattleEnd",self)
     }
@@ -76,6 +77,12 @@ public class MapComponent : Component, Subscriber {
             let type = params["type"]! as! Tile.types
             
             tileMap.getTile(pos)!.setType(type)
+            break
+            
+        case "ResetTileType":
+            let pos = params["pos"]! as! Point2D
+            let tile = tileMap.getTile(pos)!
+            tile.setType(tile.originalType)
             break
             
         default:
