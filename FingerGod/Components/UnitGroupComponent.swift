@@ -144,10 +144,21 @@ public class UnitGroupComponent : Component {
     
     private func updateModels() {
         modelInst = ModelInstance(model: model!)
-        modelInst?.transform = GLKMatrix4Translate(initShape, 0, 0.75, 0);
-        modelInst?.transform = GLKMatrix4Multiply((modelInst?.transform)!, initShape)
-        modelInst?.color = [1.0, 1.0, 1.0, 1.0]
-        Renderer.addInstance(inst: modelInst!)
+        squareSize = Int(Float(unitGroup.peopleArray.count).squareRoot()) + 1
+        
+        for i in 0..<unitGroup.peopleArray.count {
+            modelInst?.transform = GLKMatrix4Translate(initShape, 0, 0.75, 0);
+            modelInst?.transform = GLKMatrix4Multiply((modelInst?.transform)!, initShape)
+            modelInst?.color = [1.0, 1.0, 1.0, 1.0]
+            Renderer.addInstance(inst: modelInst!)
+        }
+        
+        if (unitGroup.peopleArray.count < unitModels.count) {
+            for i in stride(from: unitModels.count, to: (unitGroup.peopleArray.count - 1), by: -1) {
+                Renderer.removeInstance(inst: unitModels[i])
+                unitModels.popLast()
+            }
+        }
     }
 
     public func setTarget(_ target : PathFindingTarget) {
