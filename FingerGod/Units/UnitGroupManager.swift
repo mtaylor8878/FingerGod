@@ -21,6 +21,7 @@ public class UnitGroupManager : NSObject, Subscriber {
         EventDispatcher.subscribe("RemoveUnit", self)
         EventDispatcher.subscribe("UnitMoved", self)
         EventDispatcher.subscribe("BattleEnd", self)
+        EventDispatcher.subscribe("PowerTileGroup", self)
     }
     
     func notify(_ eventName: String, _ params: [String : Any]) {
@@ -94,6 +95,7 @@ public class UnitGroupManager : NSObject, Subscriber {
                 break
             }
             break
+            
         default:
             break
         }

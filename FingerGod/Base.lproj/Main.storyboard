@@ -46,9 +46,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3kf-Lc-Kii" userLabel="onBtnClick" customClass="RoundButton" customModule="FingerGod" customModuleProvider="target">
-                                <rect key="frame" x="32" y="583" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3kf-Lc-Kii" userLabel="onBtnClick" customClass="RoundButton" customModule="FingerGod" customModuleProvider="target">
+                                <rect key="frame" x="42" y="593" width="30" height="30"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" cocoaTouchSystemColor="darkTextColor"/>
@@ -139,6 +138,10 @@
                             </button>
                         </subviews>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="3kf-Lc-Kii" firstAttribute="centerY" secondItem="1a0-17-BEc" secondAttribute="centerY" constant="274.5" id="NuF-6N-RTv"/>
+                            <constraint firstItem="3kf-Lc-Kii" firstAttribute="centerX" secondItem="1a0-17-BEc" secondAttribute="centerX" constant="-130.5" id="Pfp-Di-8NK"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="OoA-aJ-EoG"/>
                         <connections>
                             <outlet property="delegate" destination="9An-x6-OXA" id="XlO-rs-MoQ"/>
@@ -153,8 +156,8 @@
                         <outlet property="FollowerLabel" destination="IkN-5O-KwN" id="8uD-Mh-e84"/>
                         <outlet property="GoldLabel" destination="Xna-6u-qcT" id="WRD-eK-Hau"/>
                         <outlet property="ManaLabel" destination="20l-ry-K1W" id="vMl-Nd-YYh"/>
+                        <outlet property="PowerLabel" destination="IW8-Y5-2Gw" id="AXw-BH-z6q"/>
                         <outlet property="WaterButton" destination="1Vx-TK-k0z" id="CxR-yc-PUZ"/>
-                        <outlet property="label" destination="IW8-Y5-2Gw" id="MVa-nI-hyM"/>
                     </connections>
                 </glkViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yij-me-Qqk" userLabel="First Responder" sceneMemberID="firstResponder"/>

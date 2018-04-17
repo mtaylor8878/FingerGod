@@ -19,43 +19,31 @@ class ViewController: GLKViewController, Subscriber {
     private var prevPanPoint = CGPoint(x: 0, y: 0)
     private var prevScale : Float = 1
     private var unitCount : Int!
+    private var powerMenuHide : Bool!
 
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var PowerLabel: UILabel!
     @IBOutlet weak var FollowerLabel: UILabel!
     @IBOutlet weak var GoldLabel: UILabel!
     @IBOutlet weak var ManaLabel: UILabel!
-    @IBOutlet weak var FireButton: RoundButton!
-    @IBOutlet weak var WaterButton: RoundButton!
-    @IBOutlet weak var EarthButton: RoundButton!
-    
     var Exit: RoundButton!
     var Split: UIButton!
     var units: [RoundButton] = [RoundButton]()
+    var powers: [RoundButton] = [RoundButton]()
     
     @IBAction func onButtonClick(_ sender: RoundButton) {
-        // Power Button
-        
-        /*let powers = ["Off", "fire", "water", "lightning", "earth"];
-        var powerSelected = [String : Any]();
-        powerSelected["power"] = powers[count];
-        EventDispatcher.publish("PowerOn", powerSelected);
-        
-        count += 1;
-        if (count == 4) {
-            count = 0;
-        }
-        label.text = powers[count];*/
+        game.input!.togglePowerMenu()
     }
  
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loadisg the view, typically from a nib.
         Renderer.setup(view: self.view as! GLKView)
-        label.text = "Off"
+        PowerLabel.text = "Off"
         game = FingerGodGame()
         self.unitMenu()
         EventDispatcher.subscribe("UpdatePlayerUI", self)
         EventDispatcher.subscribe("AllyClick", self)
+        EventDispatcher.subscribe("AddPowerButton", self)
     }
     
     @IBAction func onTap(_ recognizer: UITapGestureRecognizer) {
@@ -99,6 +87,11 @@ class ViewController: GLKViewController, Subscriber {
         Renderer.draw(drawRect: rect)
     }
 
+    func powerMenu() {
+        
+        
+    }
+    
     func unitMenu() {
         Exit = RoundButton.init()
         Exit.frame = CGRect.init(x: ScreenWidth - 110, y: 345, width: 15, height: 15)
@@ -169,6 +162,13 @@ class ViewController: GLKViewController, Subscriber {
             Split.isHidden = false;
             Exit.isHidden = false;
             unitCount = (params["unitCount"]! as! Int)
+            
+        case "AddPowerButton":
+            let btn = (params["button"]! as! RoundButton)
+            let pos = (params["pos"]! as! Int)
+            btn.frame = CGRect.init(x: Int(ScreenWidth - 350), y: pos, width: 30, height: 30)
+            self.view.addSubview(btn)
+            
         default:
             break
         }

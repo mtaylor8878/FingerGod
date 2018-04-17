@@ -19,8 +19,9 @@ public class PlayerObject : GameObject, Subscriber{
     public var incomeTick : Float
     public var _mana : Float
     public var _city : City?
-    public var _selectedPower : String
+    public var _curPower : Power?
     public let color : [GLfloat]
+    public var powers : [Power]
     
     private var tickCount : Float
         
@@ -32,10 +33,13 @@ public class PlayerObject : GameObject, Subscriber{
         tickCount = 0
         income = 1
         incomeTick = 2.0
-        _selectedPower = "Off"
         
         _unitList = []
+        powers = [Power]()
         super.init()
+        powers.append(FirePower(player: self))
+        powers.append(WaterPower(player: self))
+        powers.append(EarthPower(player: self))
         
         EventDispatcher.subscribe("RemoveUnit", self)
         

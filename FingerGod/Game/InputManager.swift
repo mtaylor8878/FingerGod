@@ -17,12 +17,16 @@ public class InputManager : Subscriber {
     
     private var selected: Point2D?
     private var currPower: Int
+    private var powerMenuEnabled : Bool
+    private var powerMenu : [RoundButton]
     
     public init(player: PlayerObject, map: MapComponent, unitGroupManager: UnitGroupManager) {
         self.player = player
         self.map = map
         self.unitGroupManager = unitGroupManager
         currPower = 0
+        powerMenuEnabled = false
+        powerMenu = [RoundButton]()
     }
     
     public func tapScreen(coord: CGPoint) {
@@ -34,6 +38,21 @@ public class InputManager : Subscriber {
         selectTile(tile.x, tile.y)
         if (currPower > 0) {
             player._mana -= 10.0
+        }
+    }
+    
+    public func togglePowerMenu() {
+        powerMenuEnabled = !powerMenuEnabled
+        
+        if (powerMenuEnabled) {
+            var pos : Int
+            pos = 0
+            for power in player.powers {
+                pos += 20
+                EventDispatcher.publish("AddPowerButton", ("button", power._btn!), ("pos", pos))
+            }
+        } else {
+            player.powers.removeAll()
         }
     }
     
@@ -90,6 +109,11 @@ public class InputManager : Subscriber {
         output += "]"
         output += "\n"
         print(output)
+        
+        if (player._curPower != nil) {
+            player._curPower?.activate(tile: selectedTile)
+            player._curPower = nil
+        }
         
         switch(selectedTile.type) {
         case Tile.types.structure:
