@@ -39,6 +39,9 @@ public class BattleComponent : Component {
                     unit.attack(targetGroup: groupA!.unitGroup)
                 }
                 
+                groupA!.updateModels()
+                groupB!.updateModels()
+                
                 _ = groupA?.unitGroup.removeDeadUnits()
                 _ = groupB?.unitGroup.removeDeadUnits()
                 
