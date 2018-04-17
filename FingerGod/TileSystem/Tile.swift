@@ -47,6 +47,7 @@ public class Tile {
     
     //Type of Tile
     public var type : types
+    public var originalType : types
     
     /*
      Initialize a tile using a radius and single coord
@@ -78,6 +79,7 @@ public class Tile {
         height = radius * (Int(sqrt(3)))
         
         self.type = type
+        self.originalType = type
         
         self.q = q
         self.r = r
@@ -135,6 +137,7 @@ public class Tile {
     public func addStructure(_ structure: Structure) {
         self.structure = structure
         type = types.structure
+        originalType = types.structure
         structure.model.transform = GLKMatrix4Translate(structure.model.transform, worldCoordinate.x, 0.05, worldCoordinate.y)
         structure.tile = self
     }
