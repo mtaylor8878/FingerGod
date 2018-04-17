@@ -31,6 +31,9 @@ public class UnitGroupComponent : Component {
     // Are we stopped by something?
     public var halted = false
     
+    private var lastHealTime : Float = 0
+    private var secsToHeal : Float = 1
+    
     public override func create() {
         print("Creating Unit Group")
         do {
@@ -46,6 +49,15 @@ public class UnitGroupComponent : Component {
     }
     
     public override func update(delta: Float) {
+        lastHealTime += delta
+        if (lastHealTime > secsToHeal) {
+            lastHealTime -= secsToHeal
+            for u in unitGroup.peopleArray {
+                let unit = u as! SingleUnit
+                unit.heal(1)
+            }
+        }
+        
         if (stepProgress <= 0.0 && movePath.count > 0 && !halted) {
             // Remove any extraneous movement paths
             while (movePath.count > 0 && movePath[0].x == position[0] && movePath[0].y == position[1]) {

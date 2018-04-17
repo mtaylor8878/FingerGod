@@ -17,7 +17,7 @@ public class FirePower : Power {
     
         for u in (target?.unitGroup.peopleArray)! {
             let unit = u as! SingleUnit
-            unit.hurt(damage:50)
+            unit.hurt(50)
         }
     }
 }

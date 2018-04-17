@@ -16,10 +16,11 @@ enum Character {
 
 class SingleUnit: NSObject {
     
-    var hp = 100 //hp
-    var maxHP = 100
+    var hp : Float = 100 //hp
+    var maxHP : Float = 100
     var character: Character?
     var dead = false
+    var attack : Float = 10
     
     public func attack(targetGroup: UnitGroup) {
         // Default attack behaviour
@@ -35,10 +36,10 @@ class SingleUnit: NSObject {
         }
         let target = targets[Int(arc4random_uniform(UInt32(targets.count)))] as! SingleUnit
         
-        target.hurt(damage: 10)
+        target.hurt(attack)
     }
     
-    public func hurt(damage: Int) {
+    public func hurt(_ damage: Float) {
         // Default hurt behaviour
         hp = hp - damage
         if (hp <= 0) {
@@ -46,9 +47,9 @@ class SingleUnit: NSObject {
         }
     }
     
-    public func heal(damage: Int) {
+    public func heal(_ recovery: Float) {
         // Default healing behaviour
-        hp = hp + damage
+        hp = hp + recovery
         if (hp > maxHP) {
             hp = maxHP
         }
