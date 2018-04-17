@@ -69,12 +69,12 @@ public class UnitGroupManager : NSObject, Subscriber {
             switch(result) {
             case "awin":
                 EventDispatcher.publish("RemoveUnit", ("unit", groupB))
-                groupA.offset(1.25, 0, 0)
+                groupA.offset(0.65, 0, 0)
                 groupA.halted = false
                 break
             case "bwin":
                 EventDispatcher.publish("RemoveUnit", ("unit", groupA))
-                groupB.offset(-1.25, 0, 0)
+                groupB.offset(-0.65, 0, 0)
                 groupB.halted = false
                 break
             case "tie":
@@ -91,8 +91,8 @@ public class UnitGroupManager : NSObject, Subscriber {
     }
     
     private func startBattle(_ unitGroupA : UnitGroupComponent, _ unitGroupB : UnitGroupComponent) {
-        unitGroupA.offset(-1.25, 0, 0)
-        unitGroupB.offset(1.25, 0, 0)
+        unitGroupA.offset(-0.65, 0, 0)
+        unitGroupB.offset(0.65, 0, 0)
         
         unitGroupA.halted = true
         unitGroupB.halted = true
