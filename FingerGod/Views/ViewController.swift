@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import GLKit
+import AVFoundation
 
 let ScreenWidth = UIScreen.main.bounds.size.width
 let ScreenHeigh = UIScreen.main.bounds.size.height
@@ -29,11 +30,21 @@ class ViewController: GLKViewController, Subscriber {
     var Split: UIButton!
     var units: [RoundButton] = [RoundButton]()
     var powers: [RoundButton] = [RoundButton]()
+    var audioPlayer: AVAudioPlayer!
     
     @IBAction func onButtonClick(_ sender: RoundButton) {
         game.input!.togglePowerMenu()
     }
- 
+    
+    @IBAction func muteMusic(_ sender: UIButton) {
+        if(audioPlayer.isPlaying){
+            audioPlayer.pause()
+        }else{
+            audioPlayer.play()
+        }
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loadisg the view, typically from a nib.
@@ -43,6 +54,14 @@ class ViewController: GLKViewController, Subscriber {
         self.unitMenu()
         EventDispatcher.subscribe("AllyClick", self)
         EventDispatcher.subscribe("AddPowerButton", self)
+        let url = Bundle.main.url(forResource: "Epic Music Soundtracks (Battle Music)", withExtension: "mp3")
+        do{
+            audioPlayer = try AVAudioPlayer(contentsOf: url!)
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+        }catch let error as NSError{
+            print(error.debugDescription)
+        }
     }
     
     @IBAction func onTap(_ recognizer: UITapGestureRecognizer) {

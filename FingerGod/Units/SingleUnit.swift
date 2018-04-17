@@ -21,6 +21,7 @@ class SingleUnit: NSObject {
     var character: Character?
     var dead = false
     var attack : Float = 10
+    var modelInstance : ModelInstance?
     
     public func attack(targetGroup: UnitGroup) {
         // Default attack behaviour
