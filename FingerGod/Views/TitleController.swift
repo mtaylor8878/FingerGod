@@ -9,12 +9,14 @@
 import Foundation
 import UIKit
 import GLKit
+import AVFoundation
 
 class TitleController: GLKViewController, Subscriber {
-    
+     var audioPlayer: AVAudioPlayer!
     override func viewDidLoad() {
         super.viewDidLoad()
         Renderer.setup(view: self.view as! GLKView)
+        
         
         var castle : Model?
         
@@ -26,8 +28,22 @@ class TitleController: GLKViewController, Subscriber {
         
         let mi = ModelInstance(model: castle!)
         Renderer.addInstance(inst: mi)
+        let url = Bundle.main.url(forResource: "Duel With Ares", withExtension: "mp3")
+        do{
+            audioPlayer = try AVAudioPlayer(contentsOf: url!)
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+        }catch let error as NSError{
+            print(error.debugDescription)
+        }
+
     }
     
+    @IBAction func stopLoadingMusic(_ sender: UIButton) {
+        if(audioPlayer.isPlaying){
+            audioPlayer.pause()
+        }
+    }
     func update() {
         
     }

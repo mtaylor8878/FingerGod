@@ -63,7 +63,7 @@ class ViewController: GLKViewController, Subscriber {
         game = FingerGodGame()
         self.unitMenu()
         EventDispatcher.subscribe("AllyClick", self)
-        let url = Bundle.main.url(forResource: "Background Music", withExtension: "mp3")
+        let url = Bundle.main.url(forResource: "Epic Music Soundtracks (Battle Music)", withExtension: "mp3")
         do{
             audioPlayer = try AVAudioPlayer(contentsOf: url!)
             audioPlayer.prepareToPlay()

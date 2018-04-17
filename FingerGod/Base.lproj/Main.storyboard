@@ -139,7 +139,7 @@
         <!--GLKit View Controller-->
         <scene sceneID="DA9-Bn-HH1">
             <objects>
-                <glkViewController preferredFramesPerSecond="30" id="4OF-Sy-sDz" sceneMemberID="viewController">
+                <glkViewController preferredFramesPerSecond="30" id="4OF-Sy-sDz" customClass="TitleController" customModule="FingerGod" customModuleProvider="target" sceneMemberID="viewController">
                     <glkView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" id="COL-Vw-tUA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -152,6 +152,7 @@
                                 </state>
                                 <connections>
                                     <action selector="startGame:" destination="dEt-u6-gAo" eventType="touchUpInside" id="AiI-Ve-RKM"/>
+                                    <action selector="stopLoadingMusic:" destination="4OF-Sy-sDz" eventType="touchUpInside" id="VNc-mX-pjQ"/>
                                     <segue destination="9An-x6-OXA" kind="show" id="0rx-ip-6Ud"/>
                                 </connections>
                             </button>
