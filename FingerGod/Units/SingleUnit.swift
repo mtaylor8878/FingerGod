@@ -16,8 +16,10 @@ enum Character {
 
 class SingleUnit: NSObject {
     
-    var HP = 100 //hp
+    var hp = 100 //hp
+    var maxHP = 100
     var character: Character?
+    var dead = false
     
     public func attack(targetGroup: UnitGroup) {
         // Default attack behaviour
@@ -38,11 +40,32 @@ class SingleUnit: NSObject {
     
     public func hurt(damage: Int) {
         // Default hurt behaviour
-        HP = HP - damage
+        hp = hp - damage
+        if (hp <= 0) {
+            die()
+        }
     }
     
     public func heal(damage: Int) {
-        HP = HP + damage
+        // Default healing behaviour
+        hp = hp + damage
+        if (hp > maxHP) {
+            hp = maxHP
+        }
+    }
+    
+    public func die() {
+        // Default death behaviour
+        dead = true
+    }
+    
+    public func battleEnd() {
+        // Default end-of-battle behaviour
+    }
+    
+    public func getModelName() -> String {
+        // Name of the model this unit uses
+        return "CubeModel"
     }
 }
 

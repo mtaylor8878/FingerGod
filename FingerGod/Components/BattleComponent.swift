@@ -39,8 +39,8 @@ public class BattleComponent : Component {
                     unit.attack(targetGroup: groupA!.unitGroup)
                 }
                 
-                _ = groupA?.unitGroup.removeUnitNum()
-                _ = groupB?.unitGroup.removeUnitNum()
+                _ = groupA?.unitGroup.removeDeadUnits()
+                _ = groupB?.unitGroup.removeDeadUnits()
                 
                 if groupA?.unitGroup.peopleArray.count == 0 && groupB?.unitGroup.peopleArray.count == 0 {
                     // tie

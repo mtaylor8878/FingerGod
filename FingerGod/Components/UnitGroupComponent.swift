@@ -16,7 +16,7 @@ public class UnitGroupComponent : Component {
     private var startPosition = [0, 0]
     private var endPosition = [0, 0]
     private var modelInst : ModelInstance?
-    var unitGroup = UnitGroup.initUnitGroupWith(peopleNum:10, followerNum: 0, demiGodNum: 0)
+    var unitGroup = UnitGroup(peopleNum:10)
     
     private var initShape = GLKMatrix4Scale(GLKMatrix4Identity, 0.5, 0.5, 0.5)
     //public var alignment = Alignment.NEUTRAL
