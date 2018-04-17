@@ -27,14 +27,7 @@ public class FirePower : Power {
     }
     
     public override func activate(tile : Tile){
-        for c in (unitGroupManager?.unitGroups)! {
-            if c.position[0] == tile.getAxial().x && c.position[1] == tile.getAxial().y {
-                for u in (c.unitGroup.peopleArray) {
-                    let unit = u as! SingleUnit
-                    unit.hurt(damage: 50)
-                }
-            }
-        }
+        EventDispatcher.publish("DamageUnit", ("tile", tile), ("damage", 50))
         tile.model.color = [1.0, 0.411, 0.706, 1.0]
     }
     

@@ -52,7 +52,9 @@ public class InputManager : Subscriber {
                 EventDispatcher.publish("AddPowerButton", ("button", power._btn!), ("pos", pos))
             }
         } else {
-            player.powers.removeAll()
+            for power in player.powers {
+                power._btn?.removeFromSuperview()
+            }
         }
     }
     
@@ -111,8 +113,8 @@ public class InputManager : Subscriber {
         print(output)
         
         if (player._curPower != nil) {
+            noSelect = true
             player._curPower?.activate(tile: selectedTile)
-            player._curPower = nil
         }
         
         switch(selectedTile.type) {
@@ -149,6 +151,7 @@ public class InputManager : Subscriber {
                     }
                 }
             }
+            player._curPower = nil
             
         default:
             break

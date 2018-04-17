@@ -22,6 +22,7 @@ public class UnitGroupManager : NSObject, Subscriber {
         EventDispatcher.subscribe("UnitMoved", self)
         EventDispatcher.subscribe("BattleEnd", self)
         EventDispatcher.subscribe("PowerTileGroup", self)
+        EventDispatcher.subscribe("DamageUnit", self)
     }
     
     func notify(_ eventName: String, _ params: [String : Any]) {
@@ -93,6 +94,40 @@ public class UnitGroupManager : NSObject, Subscriber {
                 break
             default:
                 break
+            }
+            break
+            
+        case "DamageUnit":
+            let tile = params["tile"] as! Tile
+            let damage =  params["damage"] as! Int
+            for c in (unitGroups) {
+                if c.position[0] == tile.getAxial().x && c.position[1] == tile.getAxial().y {
+                    if (c.alignment == Alignment.ENEMY) {
+                        for u in (c.unitGroup.peopleArray) {
+                            let unit = u as! SingleUnit
+                            unit.hurt(damage: damage)
+                            
+                            if (unit.HP >= 0) {
+                                //TODO: Remove unit from array when dead
+                            }
+                        }
+                    }
+                }
+            }
+           break
+            
+        case "HealUnit":
+            let tile = params["tile"] as! Tile
+            let heal =  params["heal"] as! Int
+            for c in (unitGroups) {
+                if c.position[0] == tile.getAxial().x && c.position[1] == tile.getAxial().y {
+                    if (c.alignment == Alignment.ALLIED) {
+                        for u in (c.unitGroup.peopleArray) {
+                            let unit = u as! SingleUnit
+                            unit.heal(damage: heal)
+                        }
+                    }
+                }
             }
             break
             

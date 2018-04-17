@@ -27,10 +27,10 @@ public class EarthPower : Power {
     }
     public override func activate(tile : Tile) {
         tile.setType(Tile.types.boundary)
-        tile.model.color = [0.2, 0.0, 0.5, 1.0]
+        tile.model.color = [1.0, 1.0, 0.0, 1.0]
     }
     
     public override func update(delta: Float) {
-        target?.setType(Tile.types.boundary)
+        
     }
 }

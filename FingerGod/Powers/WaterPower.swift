@@ -26,14 +26,7 @@ public class WaterPower : Power {
         _player._curPower = self
     }
     public override func activate(tile : Tile) {
-        for c in (unitGroupManager?.unitGroups)! {
-            if c.position[0] == tile.getAxial().x && c.position[1] == tile.getAxial().y {
-                for u in (c.unitGroup.peopleArray) {
-                    let unit = u as! SingleUnit
-                    unit.heal(damage: 50)
-                }
-            }
-        }
+        EventDispatcher.publish("HealUnit", ("tile", tile), ("heal", 50))
         tile.model.color = [0.0, 0.0, 1.0, 1.0]
     }
     

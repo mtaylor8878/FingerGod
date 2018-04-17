@@ -86,11 +86,6 @@ class ViewController: GLKViewController, Subscriber {
         game.update()
         Renderer.draw(drawRect: rect)
     }
-
-    func powerMenu() {
-        
-        
-    }
     
     func unitMenu() {
         Exit = RoundButton.init()
@@ -135,7 +130,7 @@ class ViewController: GLKViewController, Subscriber {
         Split.isHidden = true
         
         for unit in units {
-            unit.isHidden = true
+            unit.removeFromSuperview()
         }
         
         while (units.count > 0) {
@@ -166,7 +161,7 @@ class ViewController: GLKViewController, Subscriber {
         case "AddPowerButton":
             let btn = (params["button"]! as! RoundButton)
             let pos = (params["pos"]! as! Int)
-            btn.frame = CGRect.init(x: Int(ScreenWidth - 350), y: pos, width: 30, height: 30)
+            btn.frame = CGRect.init(x: Int(ScreenWidth - 350), y: 120 + pos, width: 30, height: 30)
             self.view.addSubview(btn)
             
         default:
