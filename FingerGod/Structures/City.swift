@@ -23,7 +23,6 @@ public class City: Structure {
         
         let mi = ModelInstance(model: castle!)
         mi.color = owner.color
-        mi.transform = GLKMatrix4Scale(mi.transform, 0.8, 0.8, 0.8)
         Renderer.addInstance(inst: mi)
         
         self.owner = owner
@@ -34,21 +33,15 @@ public class City: Structure {
     public override func interact(selected: UnitGroupComponent?) {
         if(selected == nil) {
             dispatchUnitGroup(size: 10)
-        } else if(selected!.alignment == Alignment.ALLIED){
+        } else if(selected!.owner == owner.id!){
             returnUnits(selected!)
         }
     }
     
     private func returnUnits(_ unitGroup: UnitGroupComponent) {
         let units = unitGroup.unitGroup.peopleArray.count
-        var i: Int = 0
-        while(i < owner._unitList.count) {
-            if(owner._unitList[i].gameObject.id == unitGroup.gameObject.id) {
-                owner._unitList.remove(at: i)
-            } else {
-                i += 1
-            }
-        }
+
+        owner.removeUnit(unit: unitGroup)
         EventDispatcher.publish("SetTileType", ("pos",Point2D(unitGroup.position[0], unitGroup.position[1])), ("type", Tile.types.vacant))
         unitGroup.delete()
         owner._followers += units
@@ -68,15 +61,12 @@ public class City: Structure {
                 
                 let unitGroupComponent = unitGroup.getComponent(type: UnitGroupComponent.self)!
                 unitGroupComponent.move(pos.x, pos.y)
-                unitGroupComponent.setAlignment(Alignment.ALLIED)
+                unitGroupComponent.setOwner(owner)
                 
-                owner._unitList.append(unitGroupComponent)
+                owner.addUnit(unit: unitGroupComponent)
                 owner._followers -= units
                 
                 EventDispatcher.publish("AddUnit", ("unit", unitGroupComponent))
-                
-                // TODO: TEMPORARY UNTIL UNIT MANAGEMENT
-                place.setType(Tile.types.occupied)
                 
                 print(String(units) + " units deployed to field")
             } else {

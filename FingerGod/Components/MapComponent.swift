@@ -41,6 +41,18 @@ public class MapComponent : Component, Subscriber {
         return select
     }
     
+    public func getRandomTile() -> Tile {
+        var tile : Tile? = nil
+        
+        while (tile == nil) {
+            let q = Int(arc4random_uniform(UInt32(tileMap.mapWidth))) - tileMap.mapWidth / 2
+            let r = Int(arc4random_uniform(UInt32(tileMap.mapHeight))) - tileMap.mapHeight / 2
+            tile = tileMap.getTile(Point2D(q,r))
+        }
+        
+        return tile!
+    }
+    
     public func setTileColor(tile: Point2D, color: [Float]) {
         tileMap.getTile(tile)!.model.color = color
     }
@@ -115,7 +127,7 @@ public class MapComponent : Component, Subscriber {
         manaLabel.text = String(player._mana)*/
     }
     
-    public func generate() {
+    /*public func generate() {
         let testEnemy = GameObject()
         testEnemy.addComponent(type: UnitGroupComponent.self)
         
@@ -130,5 +142,5 @@ public class MapComponent : Component, Subscriber {
         }
         
         EventDispatcher.publish("AddUnit", ("unit", ugComp!))
-    }
+    }*/
 }

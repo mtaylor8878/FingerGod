@@ -37,10 +37,10 @@ public class UnitGroupManager : NSObject, Subscriber {
             
             if (unitsAtNewPos.count > 0) {
                 for otherUnit in unitsAtNewPos {
-                    if (unit !== otherUnit && unit.alignment == otherUnit.alignment) {
+                    if (unit !== otherUnit && unit.owner == otherUnit.owner) {
                         // TODO: Ally Merge code
                     }
-                    else if (unit.alignment != otherUnit.alignment) {
+                    else if (unit.owner != otherUnit.owner) {
                         print("BATTLE START")
                         startBattle(unit, otherUnit)
                     }

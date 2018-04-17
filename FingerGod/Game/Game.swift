@@ -23,6 +23,8 @@ public class Game {
     private var idCount = 0
     
     public var input: InputManager?
+    
+    public var aiControl: AIController?
 
     /*
      Initializes the game

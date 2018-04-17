@@ -19,7 +19,8 @@ public class UnitGroupComponent : Component {
     var unitGroup = UnitGroup.initUnitGroupWith(peopleNum:10, followerNum: 0, demiGodNum: 0)
     
     private var initShape = GLKMatrix4Scale(GLKMatrix4Identity, 0.5, 0.5, 0.5)
-    public var alignment = Alignment.NEUTRAL
+    //public var alignment = Alignment.NEUTRAL
+    public var owner : Int? = nil
     
     public var movePath : [Point2D] = []
     private var stepProgress : Float = 0.0
@@ -119,7 +120,7 @@ public class UnitGroupComponent : Component {
         modelInst?.transform = GLKMatrix4Multiply((modelInst?.transform)!, initShape)
     }
     
-    public func setAlignment(_ alignment: Alignment) {
+    /*public func setAlignment(_ alignment: Alignment) {
         self.alignment = alignment;
         switch(alignment) {
         case Alignment.NEUTRAL:
@@ -132,6 +133,11 @@ public class UnitGroupComponent : Component {
             modelInst?.color = [1.0, 0.2, 0.0, 1.0]
             break
         }
+    }*/
+    
+    public func setOwner(_ player: PlayerObject) {
+        owner = player.id!
+        modelInst?.color = player.color
     }
     
     private func axialToWorld(_ q: Int, _ r: Int) -> (x: Float, y: Float) {
