@@ -52,8 +52,9 @@ public class InputManager : Subscriber {
         
         if(selected != nil) {
             map.resetTileColor(tile: selected!)
-            
+            print("Selected position: " + String(describing: selected?.x) + "," + String(describing: selected?.y))
             for c in unitGroupManager.unitGroups {
+                 print("Unit Position: " + String(c.position[0]) + "," + String(c.position[1]))
                  if c.position[0] == selected?.x && c.position[1] == selected?.y {
                      prevObject = c
                  }
@@ -100,7 +101,8 @@ public class InputManager : Subscriber {
         case Tile.types.vacant:
             if (prevObject != nil) {
                 if (nextObject == nil) {
-                    prevObject!.move(q, r)
+                    print("Moving unit...")
+                    prevObject!.setTarget(TilePathFindingTarget(tile: selectedTile, map: map.tileMap))
                     noSelect = true
                 }
             }
@@ -120,7 +122,7 @@ public class InputManager : Subscriber {
                     // Note: Battle doesn't start here, we simply move to the tile
                     // But in future, may want to have the player start moving to the "enemy" rather than its tile
                     if (prevObject != nil) {
-                        prevObject!.move(q, r)
+                        prevObject!.setTarget(EnemyPathFindingTarget(enemy: nextObject!, map: map.tileMap))
                         noSelect = true
                     }
                 }

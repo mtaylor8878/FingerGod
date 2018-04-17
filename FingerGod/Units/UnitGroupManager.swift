@@ -37,23 +37,12 @@ public class UnitGroupManager : NSObject, Subscriber {
             
             if (unitsAtNewPos.count > 0) {
                 for otherUnit in unitsAtNewPos {
-                    switch (otherUnit.alignment) {
-                    case Alignment.ALLIED:
-                        if (unit !== otherUnit && unit.alignment == otherUnit.alignment) {
-                            // TODO: Ally Merge code
-                        }
-                        break
-                    case Alignment.ENEMY:
-                        if (unit.alignment != otherUnit.alignment) {
-                            print("BATTLE START")
-                            startBattle(unit, otherUnit)
-                        }
-                        break
-                    case Alignment.NEUTRAL:
-                        // Potentially follower capture code?
-                        break
-                    default:
-                        break
+                    if (unit !== otherUnit && unit.alignment == otherUnit.alignment) {
+                        // TODO: Ally Merge code
+                    }
+                    else if (unit.alignment != otherUnit.alignment) {
+                        print("BATTLE START")
+                        startBattle(unit, otherUnit)
                     }
                 }
             }
@@ -81,10 +70,12 @@ public class UnitGroupManager : NSObject, Subscriber {
             case "awin":
                 EventDispatcher.publish("RemoveUnit", ("unit", groupB))
                 groupA.offset(1.25, 0, 0)
+                groupA.halted = false
                 break
             case "bwin":
                 EventDispatcher.publish("RemoveUnit", ("unit", groupA))
                 groupB.offset(-1.25, 0, 0)
+                groupB.halted = false
                 break
             case "tie":
                 EventDispatcher.publish("RemoveUnit", ("unit", groupA))
@@ -102,6 +93,9 @@ public class UnitGroupManager : NSObject, Subscriber {
     private func startBattle(_ unitGroupA : UnitGroupComponent, _ unitGroupB : UnitGroupComponent) {
         unitGroupA.offset(-1.25, 0, 0)
         unitGroupB.offset(1.25, 0, 0)
+        
+        unitGroupA.halted = true
+        unitGroupB.halted = true
         
         var battleObj = GameObject()
         

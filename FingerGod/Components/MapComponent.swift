@@ -12,7 +12,7 @@ import GLKit
 
 public class MapComponent : Component, Subscriber {
     
-    private var tileMap : TileMap!
+    public var tileMap : TileMap!
     
     open override func create() {
         tileMap = TileMap(10,1)
@@ -123,6 +123,12 @@ public class MapComponent : Component, Subscriber {
         let ugComp = testEnemy.getComponent(type: UnitGroupComponent.self)
         ugComp?.move(3, 3)
         ugComp?.setAlignment(Alignment.ENEMY)
+        
+        // Make the enemy group a little beefier
+        for _ in 0 ... 10 {
+            ugComp?.unitGroup.peopleArray.add(SingleUnit())
+        }
+        
         EventDispatcher.publish("AddUnit", ("unit", ugComp!))
     }
 }
