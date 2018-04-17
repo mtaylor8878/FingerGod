@@ -51,7 +51,6 @@ class ViewController: GLKViewController, Subscriber {
         label.text = "Off"
         game = FingerGodGame()
         self.unitMenu()
-        EventDispatcher.subscribe("UpdatePlayerUI", self)
         EventDispatcher.subscribe("AllyClick", self)
     }
     
@@ -94,6 +93,9 @@ class ViewController: GLKViewController, Subscriber {
         super.glkView(view, drawIn: rect)
         game.update()
         Renderer.draw(drawRect: rect)
+        FollowerLabel.text = String(game.input!.player._followers)
+        GoldLabel.text = String(game.input!.player._gold)
+        ManaLabel.text = String(game.input!.player._mana)
     }
 
     func unitMenu() {
@@ -155,12 +157,6 @@ class ViewController: GLKViewController, Subscriber {
 
     func notify(_ eventName: String, _ params: [String : Any]) {
         switch(eventName) {
-        case "UpdatePlayerUI":
-            FollowerLabel.text = (params["Followers"]! as! String)
-            GoldLabel.text = (params["Gold"]! as! String)
-            ManaLabel.text = (params["Mana"]! as! String)
-            break
-   
         case "AllyClick":
             print("works")
             Split.isHidden = false;

@@ -71,6 +71,7 @@
 		B1F0FC6C20815FA7003E0ADD /* EarthPower.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F0FC6B20815FA7003E0ADD /* EarthPower.swift */; };
 		C98438662046162A00321700 /* FingerGodMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98438652046162A00321700 /* FingerGodMessageTests.swift */; };
 		C98B13BF2064595700BCFABE /* PlayerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98B13BE2064595700BCFABE /* PlayerObject.swift */; };
+		C9945E4E2085EEBC006A1A48 /* AIPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9945E4D2085EEBC006A1A48 /* AIPlayer.swift */; };
 		C99FF4DE2081707B00270CC4 /* InputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99FF4DD2081707B00270CC4 /* InputManager.swift */; };
 		C9F4135E203AC2DC001C56E1 /* Subscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F4135D203AC2DC001C56E1 /* Subscriber.swift */; };
 		F24C46CB206B6B9200B8097D /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24C46CA206B6B9200B8097D /* RoundButton.swift */; };
@@ -167,6 +168,7 @@
 		B1F0FC6B20815FA7003E0ADD /* EarthPower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthPower.swift; sourceTree = "<group>"; };
 		C98438652046162A00321700 /* FingerGodMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodMessageTests.swift; sourceTree = "<group>"; };
 		C98B13BE2064595700BCFABE /* PlayerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerObject.swift; sourceTree = "<group>"; };
+		C9945E4D2085EEBC006A1A48 /* AIPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIPlayer.swift; sourceTree = "<group>"; };
 		C99FF4DD2081707B00270CC4 /* InputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputManager.swift; sourceTree = "<group>"; };
 		C9F4135D203AC2DC001C56E1 /* Subscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscriber.swift; sourceTree = "<group>"; };
 		C9F4135F203ACFFC001C56E1 /* EventDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDispatcher.swift; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 				99ED16C92046909300827958 /* FingerGodGame.swift */,
 				C99FF4DD2081707B00270CC4 /* InputManager.swift */,
 				A64474202082C10A006FF8D3 /* AIController.swift */,
+				C9945E4D2085EEBC006A1A48 /* AIPlayer.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -607,6 +610,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9945E4E2085EEBC006A1A48 /* AIPlayer.swift in Sources */,
 				C98B13BF2064595700BCFABE /* PlayerObject.swift in Sources */,
 				99E70623204515530095BA58 /* ModelInstance.swift in Sources */,
 				F2FE9E98207EB44F0010D463 /* TitleController.swift in Sources */,

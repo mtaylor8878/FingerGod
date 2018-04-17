@@ -11,7 +11,7 @@ import GLKit
 
 public class InputManager : Subscriber {
     private let SELECTION_COLOR: [Float] = [1.0, 0.2, 0.2, 1.0]
-    private let player: PlayerObject
+    public let player: PlayerObject
     private let map: MapComponent
     private var unitGroupManager : UnitGroupManager
     
@@ -100,7 +100,7 @@ public class InputManager : Subscriber {
         
         case Tile.types.vacant:
             if (prevObject != nil) {
-                if (nextObject == nil) {
+                if (nextObject == nil && prevObject!.owner == player.id!) {
                     print("Moving unit...")
                     prevObject!.setTarget(TilePathFindingTarget(tile: selectedTile, map: map.tileMap))
                     noSelect = true
@@ -110,21 +110,21 @@ public class InputManager : Subscriber {
             
         case Tile.types.occupied:
             if (nextObject != nil) {
-                if(nextObject!.alignment == Alignment.ALLIED) {
+                if(nextObject!.owner == player.id!) {
                     print("Ally Selected")
                     // TODO: display unit stuff
                     let peopleNum = nextObject?.unitGroup.peopleArray.count
                     print("Units in tile "  + String(describing: peopleNum))
                     EventDispatcher.publish("AllyClick", ("unitCount", peopleNum ?? 0))
                     noSelect = true
-                } else if(nextObject!.alignment == Alignment.ENEMY){
+                } else {
                     print("Enemy Selected")
                     // Note: Battle doesn't start here, we simply move to the tile
                     // But in future, may want to have the player start moving to the "enemy" rather than its tile
                     if (prevObject != nil) {
                         prevObject!.setTarget(EnemyPathFindingTarget(enemy: nextObject!, map: map.tileMap))
-                        noSelect = true
                     }
+                    noSelect = true
                 }
             }
             
