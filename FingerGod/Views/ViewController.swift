@@ -24,6 +24,9 @@ class ViewController: GLKViewController, Subscriber {
     @IBOutlet weak var FollowerLabel: UILabel!
     @IBOutlet weak var GoldLabel: UILabel!
     @IBOutlet weak var ManaLabel: UILabel!
+    @IBOutlet weak var FireButton: RoundButton!
+    @IBOutlet weak var WaterButton: RoundButton!
+    @IBOutlet weak var EarthButton: RoundButton!
     
     var Exit: RoundButton!
     var Split: UIButton!
