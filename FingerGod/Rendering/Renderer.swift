@@ -102,18 +102,17 @@ public class Renderer {
     private static func loadShader(filename: String, type: Int32) -> GLuint {
         do {
             let path = Bundle.main.path(forResource: filename, ofType: (type == GL_VERTEX_SHADER ? "vsh" : "fsh"))!
-            let shadeSrc = try String(contentsOfFile: path, encoding: String.Encoding.ascii)
+            let shadeSrc = try String(contentsOfFile: path, encoding: String.Encoding.utf8)
             
             let shader = glCreateShader(GLenum(type))
             if (shader == 0) {
                 print("Failed to create shader")
             }
             
-            var src = UnsafePointer<GLchar>(shadeSrc.cString(using: String.Encoding.utf8))
+            var src = (shadeSrc as NSString).utf8String
             
-            glShaderSource(shader, 1, &src, nil)
+            glShaderSource(shader, GLsizei(1), &src, nil)
             glCompileShader(shader)
-            
             
             var compileStatus = GLint(0)
             glGetShaderiv(shader, GLenum(GL_COMPILE_STATUS), &compileStatus)
