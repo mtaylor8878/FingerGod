@@ -20,6 +20,12 @@ class TilePathFindingTarget : PathFindingTarget {
         return PathFinder.getPath(start: from, end: tile.getAxial(), map: map)
     }
     
+    // Did the target change locations since this function was last called (or since the object was created)?
+    func changedLocation() -> Bool {
+        // A tile cannot move, so the target will never have moved since this function was last called
+        return false
+    }
+    
     // Did we do what we were supposed to do?
     func fulfilled(by: UnitGroupComponent) -> Bool {
         return Point2D(by.position) == tile.getAxial()

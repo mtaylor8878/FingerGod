@@ -22,6 +22,13 @@ class EnemyPathFindingTarget : PathFindingTarget {
         return PathFinder.getPath(start: from, end: Point2D(enemy.position), map: map)
     }
     
+    // Did the target change locations since this function was last called (or since the object was created)?
+    func changedLocation() -> Bool {
+        let posChanged = lastEnemyPosition != Point2D(enemy.position)
+        lastEnemyPosition = Point2D(enemy.position)
+        return posChanged
+    }
+    
     // Did we do what we were supposed to do?
     func fulfilled(by: UnitGroupComponent) -> Bool {
         // Is the enemy dead?

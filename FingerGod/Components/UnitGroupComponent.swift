@@ -58,16 +58,16 @@ public class UnitGroupComponent : Component {
         }
         
         if (stepProgress <= 0.0 && movePath.count > 0 && !halted) {
+            // Recalibrate movement
+            if target != nil {
+                self.movePath = target!.getPathToTarget(from: Point2D(position))
+            }
             // Remove any extraneous movement paths
             while (movePath.count > 0 && movePath[0].x == position[0] && movePath[0].y == position[1]) {
                 movePath.removeFirst(1)
             }
             
             if (movePath.count > 0) {
-                // If we still have move paths after handling redundancies, start moving
-                if target != nil {
-                    self.movePath = target!.getPathToTarget(from: Point2D(position))
-                }
                 endPosition[0] = movePath[0].x
                 endPosition[1] = movePath[0].y
             }
