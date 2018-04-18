@@ -18,13 +18,13 @@ public class UnitGroupComponent : Component {
     private var startPosition = [0, 0]
     private var endPosition = [0, 0]
 
-    var unitGroup = UnitGroup(peopleNum:10)
+    var unitGroup = UnitGroup(peopleNum:0)
 
     private var squareSize = 0
     
     private var initShape = GLKMatrix4Scale(GLKMatrix4Identity, 0.05, 0.25, 0.05)
     //public var alignment = Alignment.NEUTRAL
-    public var owner : Int? = nil
+    public var owner : PlayerObject?
     
     public var movePath : [Point2D] = []
     private var stepProgress : Float = 0.0
@@ -176,7 +176,7 @@ public class UnitGroupComponent : Component {
     }*/
     
     public func setOwner(_ player: PlayerObject) {
-        owner = player.id!
+        owner = player
         for u in unitGroup.peopleArray {
             let unit = u as! SingleUnit
             if (unit.modelInstance != nil) {
@@ -211,6 +211,7 @@ public class UnitGroupComponent : Component {
                 let modelInst = ModelInstance(model: model)
 
                 unit.modelInstance = modelInst
+                unit.modelInstance!.color = owner!.color
                 Renderer.addInstance(inst: modelInst)
             }
             else if (unit.dead) {
