@@ -14,8 +14,10 @@ public class MapComponent : Component, Subscriber {
     
     public var tileMap : TileMap!
     
+    public var size = 10
+    
     open override func create() {
-        tileMap = TileMap(10,1)
+        tileMap = TileMap(size,1)
         
         EventDispatcher.subscribe("AddStructure", self)
         EventDispatcher.subscribe("SetTileColor", self)

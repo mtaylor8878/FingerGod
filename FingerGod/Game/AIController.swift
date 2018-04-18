@@ -41,7 +41,8 @@ public class AIController : GameObject {
                 undine.power = player.addPowerByName(undine.powerName)
                 iugc?.unitGroup.peopleArray.add(undine)
                 iugc?.updateModels()
-                iugc?.setPosition(start.getAxial().x, start.getAxial().y + 1, true)
+                let pos = start.getNeighbours()[0]
+                iugc?.setPosition(pos.getAxial().x, pos.getAxial().y, true)
                 player.addUnit(unit: iugc!)
                 EventDispatcher.publish("AddUnit", ("unit", iugc))
             }
@@ -57,7 +58,8 @@ public class AIController : GameObject {
                 onyxra.power = player.addPowerByName(onyxra.powerName)
                 iugc?.unitGroup.peopleArray.add(onyxra)
                 iugc?.updateModels()
-                iugc?.setPosition(start.getAxial().x, start.getAxial().y + 1, true)
+                let pos = start.getNeighbours()[0]
+                iugc?.setPosition(pos.getAxial().x, pos.getAxial().y, true)
                 player.addUnit(unit: iugc!)
                 EventDispatcher.publish("AddUnit", ("unit", iugc))
             }

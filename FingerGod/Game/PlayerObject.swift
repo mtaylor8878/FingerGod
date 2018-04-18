@@ -59,6 +59,10 @@ public class PlayerObject : GameObject, Subscriber{
         _city = City(startSpace, self)
     }
     
+    public static func resetStatics() {
+        PlayerObject.NumPlayers = 0
+    }
+    
     public func setupPowers() {
         let fire = FirePower(player: self)
         game!.addGameObject(gameObject: fire)

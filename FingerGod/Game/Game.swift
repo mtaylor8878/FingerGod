@@ -22,6 +22,8 @@ public class Game {
     // ID numbers
     private var idCount = 0
     
+    public var timeMultiplier : Double = 1
+    
     public var input: InputManager?
     
     public var aiControl: AIController?
@@ -97,12 +99,12 @@ public class Game {
         
         // Perform the regular updates
         for o in gameObjects {
-            o.value.update(delta: Float(delta))
+            o.value.update(delta: Float(delta * timeMultiplier))
         }
         
         // Perform the late updates
         for o in gameObjects {
-            o.value.lateUpdate(delta: Float(delta))
+            o.value.lateUpdate(delta: Float(delta * timeMultiplier))
         }
     }
 }

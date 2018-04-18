@@ -58,6 +58,12 @@ public class Renderer {
     private static var modelInstances = [ModelInstance]()
     private static var textureIds = [String : Int]()
     
+    public static func clear() {
+        modelInstances = [ModelInstance]()
+        textureIds = [String : Int]()
+        camera.transform = GLKMatrix4Identity
+    }
+    
     public static func setup(view: GLKView) {
         if !setupBefore {
             context = EAGLContext.init(api: EAGLRenderingAPI.openGLES3)
@@ -71,17 +77,22 @@ public class Renderer {
             Renderer.view = view
             EAGLContext.setCurrent(view.context)
             
-                setupShaders()
-                setupUniforms()
-                // Add a simple default texture if we have none so far
-                addTexture(ImageReader.read(name: "checker.png"))
+            setupShaders()
+            setupUniforms()
+            // Add a simple default texture if we have none so far
+            addTexture(ImageReader.read(name: "checker.png"))
             
             glClearColor(0.3, 0.65, 1.0, 1.0)
             glEnable(GLenum(GL_DEPTH_TEST))
             setupBefore = true
         }
         else {
+            clear()
+            // Add a simple default texture if we have none so far
+            addTexture(ImageReader.read(name: "checker.png"))
+            
             view.drawableDepthFormat = GLKViewDrawableDepthFormat.format24
+            view.drawableColorFormat = GLKViewDrawableColorFormat.SRGBA8888
             view.context = context!
             Renderer.view = view
             EAGLContext.setCurrent(view.context)
