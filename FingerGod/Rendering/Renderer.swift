@@ -50,29 +50,41 @@ public class Renderer {
     private static var uniforms = UniformContainer()
     private static var view : GLKView!
     private static var program: GLuint!
+    private static var context : EAGLContext?
     public static var camera = Camera()
+    
+    private static var setupBefore = false;
     
     private static var modelInstances = [ModelInstance]()
     private static var textureIds = [String : Int]()
     
     public static func setup(view: GLKView) {
-        let context = EAGLContext.init(api: EAGLRenderingAPI.openGLES3)
-        if context == nil {
-            print("Failed to create GLES3 Context")
+        if !setupBefore {
+            context = EAGLContext.init(api: EAGLRenderingAPI.openGLES3)
+            if context == nil {
+                print("Failed to create GLES3 Context")
+            }
+            view.drawableDepthFormat = GLKViewDrawableDepthFormat.format24
+            view.context = context!
+            
+            Renderer.view = view
+            EAGLContext.setCurrent(view.context)
+            
+                setupShaders()
+                setupUniforms()
+                // Add a simple default texture if we have none so far
+                addTexture(ImageReader.read(name: "checker.png"))
+            
+            glClearColor(0.3, 0.65, 1.0, 1.0)
+            glEnable(GLenum(GL_DEPTH_TEST))
+            setupBefore = true
         }
-        view.drawableDepthFormat = GLKViewDrawableDepthFormat.format24
-        view.context = context!
-        
-        Renderer.view = view
-        EAGLContext.setCurrent(view.context)
-        
-        setupShaders()
-        setupUniforms()
-        
-        addTexture(ImageReader.read(name: "checker.png"))
-        
-        glClearColor(0.3, 0.65, 1.0, 1.0)
-        glEnable(GLenum(GL_DEPTH_TEST))
+        else {
+            view.drawableDepthFormat = GLKViewDrawableDepthFormat.format24
+            view.context = context!
+            Renderer.view = view
+            EAGLContext.setCurrent(view.context)
+        }
     }
     
     private static func setupShaders() {
