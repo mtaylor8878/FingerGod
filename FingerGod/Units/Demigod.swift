@@ -21,6 +21,6 @@ class Demigod : SingleUnit {
     }
     
     public override func getModelName() -> String {
-        return "teapot"
+        return "DemiToken"
     }
 }
