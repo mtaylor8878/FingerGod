@@ -65,6 +65,7 @@ public class Renderer {
                 print("Failed to create GLES3 Context")
             }
             view.drawableDepthFormat = GLKViewDrawableDepthFormat.format24
+            view.drawableColorFormat = GLKViewDrawableColorFormat.SRGBA8888
             view.context = context!
             
             Renderer.view = view
@@ -194,7 +195,7 @@ public class Renderer {
             glVertexAttribPointer(2, 3, GLenum(GL_FLOAT), GLboolean(GL_FALSE), GLsizei(3 * MemoryLayout<GLfloat>.size), normals)
             glEnableVertexAttribArray(2)
             
-            glVertexAttribPointer(3, 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), GLsizei(3 * MemoryLayout<GLfloat>.size), texCoords)
+            glVertexAttribPointer(3, 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), GLsizei(2 * MemoryLayout<GLfloat>.size), texCoords)
             glEnableVertexAttribArray(3)
             
             glDrawElements(GLenum(GL_TRIANGLES), GLsizei(indices.count), GLenum(GL_UNSIGNED_INT), indices)
@@ -203,7 +204,7 @@ public class Renderer {
     
     public static func addInstance(inst: ModelInstance) {
         modelInstances.append(inst)
-        if (inst.model.texture != nil) {
+        if (inst.model.texture != nil && textureIds[inst.model.texture!.name] == nil) {
             addTexture(inst.model.texture!)
         }
         setupLists()

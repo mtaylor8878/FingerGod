@@ -83,11 +83,11 @@ public class ModelReader {
                 vertices.append(baseVertices[f[0] * 3])
                 vertices.append(baseVertices[f[0] * 3 + 1])
                 vertices.append(baseVertices[f[0] * 3 + 2])
-                normals.append(faceNormals[f[1] * 3])
-                normals.append(faceNormals[f[1] * 3 + 1])
-                normals.append(faceNormals[f[1] * 3 + 2])
-                texCoords.append(texels[f[2] * 2])
-                texCoords.append(texels[f[2] * 2 + 1])
+                texCoords.append(texels[f[1] * 2])
+                texCoords.append(texels[f[1] * 2 + 1])
+                normals.append(faceNormals[f[2] * 3])
+                normals.append(faceNormals[f[2] * 3 + 1])
+                normals.append(faceNormals[f[2] * 3 + 2])
                 indexDictionary[txt] = ind
             }
             indices.append(GLint(indexDictionary[txt]!))
@@ -158,7 +158,7 @@ public class ModelReader {
             else {
                 nor = 1
             }
-            vals.append([vec - 1, nor - 1, tex - 1])
+            vals.append([vec - 1, tex - 1, nor - 1])
         }
 
         return vals

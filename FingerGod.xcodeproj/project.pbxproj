@@ -55,6 +55,8 @@
 		999312972046367C00835BA3 /* Sphere.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 999312952046367B00835BA3 /* Sphere.mtl */; };
 		999312982046367C00835BA3 /* Sphere.obj in Resources */ = {isa = PBXBuildFile; fileRef = 999312962046367C00835BA3 /* Sphere.obj */; };
 		9993129A2046418C00835BA3 /* teapot.obj in Resources */ = {isa = PBXBuildFile; fileRef = 999312992046418C00835BA3 /* teapot.obj */; };
+		99A4D9FC20870CF600E47A71 /* HexTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 99A4D9FB20870CF500E47A71 /* HexTile.png */; };
+		99A4D9FE20870E9A00E47A71 /* HexTileWithTex2.obj in Resources */ = {isa = PBXBuildFile; fileRef = 99A4D9FD20870E9A00E47A71 /* HexTileWithTex2.obj */; };
 		99AACA2F2044FB23001262D0 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 99AACA2E2044FB23001262D0 /* Shader.vsh */; };
 		99AACA312044FB43001262D0 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 99AACA302044FB42001262D0 /* Shader.fsh */; };
 		99E1CF3B206B3A7400C7A04B /* BattleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E1CF3A206B3A7400C7A04B /* BattleComponent.swift */; };
@@ -158,6 +160,8 @@
 		999312952046367B00835BA3 /* Sphere.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Sphere.mtl; sourceTree = "<group>"; };
 		999312962046367C00835BA3 /* Sphere.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Sphere.obj; sourceTree = "<group>"; };
 		999312992046418C00835BA3 /* teapot.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = teapot.obj; sourceTree = "<group>"; };
+		99A4D9FB20870CF500E47A71 /* HexTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HexTile.png; sourceTree = "<group>"; };
+		99A4D9FD20870E9A00E47A71 /* HexTileWithTex2.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HexTileWithTex2.obj; sourceTree = "<group>"; };
 		99AACA2E2044FB23001262D0 /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
 		99AACA302044FB42001262D0 /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
 		99E1CF3A206B3A7400C7A04B /* BattleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleComponent.swift; sourceTree = "<group>"; };
@@ -227,7 +231,9 @@
 			isa = PBXGroup;
 			children = (
 				3DD2698F2086CA0100F7C8B4 /* HexTileWithTex.obj */,
+				99A4D9FD20870E9A00E47A71 /* HexTileWithTex2.obj */,
 				3DD2698D2086C48100F7C8B4 /* checker.png */,
+				99A4D9FB20870CF500E47A71 /* HexTile.png */,
 				A66911E4206B9AC100C9506E /* Castle.mtl */,
 				A66911E3206B9AC100C9506E /* Castle.obj */,
 				999312952046367B00835BA3 /* Sphere.mtl */,
@@ -601,8 +607,10 @@
 				A66911E6206B9AC100C9506E /* Castle.mtl in Resources */,
 				3DD2698E2086C48200F7C8B4 /* checker.png in Resources */,
 				3D0DA0BB203E1C5D0050F708 /* HexTile.mtl in Resources */,
+				99A4D9FE20870E9A00E47A71 /* HexTileWithTex2.obj in Resources */,
 				3D0DA0B6203E1C560050F708 /* CubeModel.obj in Resources */,
 				3DDB594D2035F39C0000E0C4 /* LaunchScreen.storyboard in Resources */,
+				99A4D9FC20870CF600E47A71 /* HexTile.png in Resources */,
 				9993129A2046418C00835BA3 /* teapot.obj in Resources */,
 				3DD269902086CA0100F7C8B4 /* HexTileWithTex.obj in Resources */,
 				3DDB594A2035F39C0000E0C4 /* Assets.xcassets in Resources */,
