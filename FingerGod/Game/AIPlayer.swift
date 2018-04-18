@@ -33,7 +33,6 @@ public class AIPlayer : PlayerObject {
                     }
                     
                     units[i].0.setTarget(TilePathFindingTarget(tile: tile, map: map.tileMap))
-                    print("Moving enemy to (" + String(tile.getAxial().x) + ", " + String(tile.getAxial().y) + ")")
                     units[i].1 = 0
                 }
             }

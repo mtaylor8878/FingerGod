@@ -17,6 +17,7 @@ public class FingerGodGame : Game {
         map.addComponent(type: MapComponent.self)
         self.addGameObject(gameObject: map)
         
+        PlayerObject.resetStatics()
         let player = PlayerObject(Point2D(0,0))
         self.addGameObject(gameObject: player)
         //player.setupPowers()

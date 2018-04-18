@@ -14,6 +14,8 @@ import AVFoundation
 class TitleController: GLKViewController, Subscriber {
      var audioPlayer: AVAudioPlayer!
     
+    private var game : Game!
+    
     @IBOutlet weak var optionsBtn: UIButton!
     @IBOutlet weak var startBtn: UIButton!
     
@@ -21,6 +23,7 @@ class TitleController: GLKViewController, Subscriber {
     override func viewDidLoad() {
         super.viewDidLoad()
         Renderer.setup(view: self.view as! GLKView)
+        game = TitleScreenGame()
         startBtn.layer.cornerRadius = startBtn.frame.height/1.5
         optionsBtn.layer.cornerRadius = optionsBtn.frame.height/1.5
         optionsItems.forEach{(optBtn) in
@@ -56,9 +59,8 @@ class TitleController: GLKViewController, Subscriber {
     }
     
     override func glkView(_ view: GLKView, drawIn rect: CGRect) {
-        
         super.glkView(view, drawIn: rect)
-
+        game.update()
         Renderer.draw(drawRect: rect)
     }
     
