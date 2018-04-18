@@ -34,7 +34,7 @@ public class PathFinder {
             let neighbours = getNeighbours(t: curr, map: map)
             
             for next in neighbours {
-                if next.type != Tile.types.boundary {
+                if canNavigate(next.type) {
                     let newCost = cost[curr.getAxial()]! + getCost(next)
                     let nextCost = cost[next.getAxial()]
                     
@@ -89,5 +89,9 @@ public class PathFinder {
         let cb = tileB.worldCoordinate;
         let c = (x: ca.x - cb.x, y: ca.y - cb.y)
         return (c.x * c.x + c.y * c.y).squareRoot()
+    }
+    
+    private static func canNavigate(_ type : Tile.types) -> Bool {
+        return type != Tile.types.boundary && type != Tile.types.structure
     }
 }
