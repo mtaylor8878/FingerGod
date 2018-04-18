@@ -107,7 +107,7 @@ public class UnitGroupManager : NSObject, Subscriber {
                 }
                 EventDispatcher.publish("RemoveUnit", ("unit", groupB))
                 groupA.offset(0.65, 0, 0)
-                groupA.halted = false
+                groupA.haltCounter -= 1
                 break
             case "bwin":
                 for d in groupA.unitGroup.deactivatedDemigods {
@@ -126,7 +126,7 @@ public class UnitGroupManager : NSObject, Subscriber {
                 }
                 EventDispatcher.publish("RemoveUnit", ("unit", groupA))
                 groupB.offset(-0.65, 0, 0)
-                groupB.halted = false
+                groupB.haltCounter -= 1
                 break
             default:
                 break
@@ -233,8 +233,8 @@ public class UnitGroupManager : NSObject, Subscriber {
         unitGroupA.setPosition(unitGroupA.position[0], unitGroupA.position[1], false)
         unitGroupB.setPosition(unitGroupB.position[0], unitGroupB.position[1], false)
         
-        unitGroupA.halted = true
-        unitGroupB.halted = true
+        unitGroupA.haltCounter += 1
+        unitGroupB.haltCounter += 1
         
         var battleObj = GameObject()
         
