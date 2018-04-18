@@ -143,7 +143,7 @@ public class InputManager : Subscriber {
         
         case Tile.types.vacant:
             if (prevObject != nil) {
-                if (nextObject == nil && prevObject!.owner == player.id!) {
+                if (nextObject == nil && prevObject!.owner!.id == player.id!) {
                     print("Moving unit...")
                     prevObject!.setTarget(TilePathFindingTarget(tile: selectedTile, map: map.tileMap))
                     noSelect = true
@@ -153,12 +153,12 @@ public class InputManager : Subscriber {
             
         case Tile.types.occupied:
             if (nextObject != nil) {
-                if(nextObject!.owner == player.id!) {
+                if(nextObject!.owner!.id == player.id!) {
                     print("Ally Selected")
                     // TODO: display unit stuff
                     let peopleNum = nextObject?.unitGroup.peopleArray.count
                     print("Units in tile "  + String(describing: peopleNum))
-                    EventDispatcher.publish("AllyClick", ("unitCount", peopleNum ?? 0),  ("tile", selectedTile))
+                    EventDispatcher.publish("AllyClick", ("unitCount", nextObject),  ("tile", selectedTile))
                     noSelect = true
                 } else {
                     print("Enemy Selected")

@@ -19,7 +19,11 @@ class ViewController: GLKViewController, Subscriber {
     private var game : Game!
     private var prevPanPoint = CGPoint(x: 0, y: 0)
     private var prevScale : Float = 1
-    private var unitCount : Int!
+    private var unitCount : UnitGroupComponent!
+    private var targetTile : Tile!
+    private var newTile : Tile!
+    private var unitGroup : [SingleUnit]!
+    private var newGroup : UnitGroupComponent!
     private var powerMenuHide : Bool!
 
     @IBOutlet weak var PowerLabel: UILabel!
@@ -54,6 +58,7 @@ class ViewController: GLKViewController, Subscriber {
         self.unitMenu()
         EventDispatcher.subscribe("AllyClick", self)
         EventDispatcher.subscribe("AddPowerButton", self)
+        EventDispatcher.subscribe("SplitTarget", self)
         let url = Bundle.main.url(forResource: "Epic Music Soundtracks (Battle Music)", withExtension: "mp3")
         do{
             audioPlayer = try AVAudioPlayer(contentsOf: url!)
@@ -138,14 +143,14 @@ class ViewController: GLKViewController, Subscriber {
     
     @objc func splitMenu() {
         Split.isHidden = true
-        
-        for i in 1...unitCount {
-            var btn = RoundButton.init()
+        for i in 0..<Int(ceil(CGFloat(unitCount.unitGroup.peopleArray.count)/5)) {
+            let btn = RoundButton.init()
             let pos = (i * 30) + 150
             btn.frame = CGRect.init(x: Int(ScreenWidth - 50), y: pos, width: 30, height: 30)
             btn.cornerRadius = 15
             btn.borderWidth = 1
             btn.borderColor = UIColor.black
+            btn.tag = i
             btn.addTarget(self, action: #selector(moveUnit), for: UIControlEvents.touchUpInside)
             self.view.addSubview(btn)
             units.append(btn)
@@ -163,11 +168,13 @@ class ViewController: GLKViewController, Subscriber {
         while (units.count > 0) {
             units.remove(at: 0)
         }
-        unitCount = 0
+        unitCount = nil
     }
     
-    @objc func moveUnit() {
+    @objc func moveUnit(sender: UIButton) {
         //TODO: Put Unit Group Splitting here
+        
+        EventDispatcher.publish("SplitUnit", ("unitGroup", unitCount), ("index", Int(sender.tag)), ("btn", sender))
         print("moving unit away")
     }
 
@@ -177,7 +184,8 @@ class ViewController: GLKViewController, Subscriber {
             print("works")
             Split.isHidden = false;
             Exit.isHidden = false;
-            unitCount = (params["unitCount"]! as! Int)
+            unitCount = params["unitCount"]! as! UnitGroupComponent
+            targetTile = params["tile"]! as! Tile
             
         case "AddPowerButton":
             let btn = (params["button"]! as! RoundButton)
@@ -189,6 +197,11 @@ class ViewController: GLKViewController, Subscriber {
             let horizontalConstraint = NSLayoutConstraint.constraints(withVisualFormat: "H:|[btn]|", options: [], metrics: nil, views: ["btn": btn])
             self.view.addConstraints(verticalConstraint)
             self.view.addConstraints(horizontalConstraint)
+            
+        case "SplitTarget":
+            newTile = params["pos"] as! Tile
+            unitGroup = params["units"] as! [SingleUnit]
+            break
             
         default:
             break
