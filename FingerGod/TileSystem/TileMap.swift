@@ -94,7 +94,6 @@ public class TileMap {
                 for _ in 0..<HexDirections.Count {
                     for _ in 0..<r {
                         tileMap[point] = Tile(self, point, tileRadius)
-                        print(point)
                         point = HexDirections.InDirection(point, dir)
                     }
                     dir = HexDirections.NextDirection(dir)

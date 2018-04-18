@@ -19,7 +19,7 @@ public class FingerGodGame : Game {
         
         let player = PlayerObject(Point2D(0,0))
         self.addGameObject(gameObject: player)
-        player.setupPowers()
+        //player.setupPowers()
         
         unitGroupManager = UnitGroupManager(self, map.getComponent(type: MapComponent.self)!)
         input = InputManager(player: player, map: map.getComponent(type: MapComponent.self)!, unitGroupManager: unitGroupManager!)
@@ -27,6 +27,21 @@ public class FingerGodGame : Game {
         self.addGameObject(gameObject: aiControl!)
         aiControl!.setup(numEnemies: 3)
         //map.getComponent(type: MapComponent.self)!.generate()
+        
+        let ifritUnitGroup = GameObject()
+        ifritUnitGroup.addComponent(type: UnitGroupComponent.self)
+        addGameObject(gameObject: ifritUnitGroup)
+        
+        let iugc = ifritUnitGroup.getComponent(type: UnitGroupComponent.self)
+        iugc?.setOwner(player)
+        iugc?.unitGroup.peopleArray.removeAllObjects()
+        let ifrit = Ifrit()
+        ifrit.power = player.addPowerByName(ifrit.powerName)
+        iugc?.unitGroup.peopleArray.add(ifrit)
+        iugc?.updateModels()
+        iugc?.setPosition(0, 1, true)
+        player.addUnit(unit: iugc!)
+        EventDispatcher.publish("AddUnit", ("unit", iugc))
                 
         Renderer.camera.move(x: 0, y: 14, z: 9)
         Renderer.camera.rotate(angle: -Float.pi * 2 / 6, x: 1, y: 0, z: 0)

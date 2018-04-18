@@ -57,6 +57,10 @@
 		9993129A2046418C00835BA3 /* teapot.obj in Resources */ = {isa = PBXBuildFile; fileRef = 999312992046418C00835BA3 /* teapot.obj */; };
 		99A4D9FC20870CF600E47A71 /* HexTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 99A4D9FB20870CF500E47A71 /* HexTile.png */; };
 		99A4D9FE20870E9A00E47A71 /* HexTileWithTex2.obj in Resources */ = {isa = PBXBuildFile; fileRef = 99A4D9FD20870E9A00E47A71 /* HexTileWithTex2.obj */; };
+		99A4DA002087298B00E47A71 /* Demigod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A4D9FF2087298B00E47A71 /* Demigod.swift */; };
+		99A4DA022087299700E47A71 /* Ifrit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A4DA012087299700E47A71 /* Ifrit.swift */; };
+		99A4DA04208729A800E47A71 /* Undine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A4DA03208729A800E47A71 /* Undine.swift */; };
+		99A4DA0620872A7F00E47A71 /* Onyxra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A4DA0520872A7F00E47A71 /* Onyxra.swift */; };
 		99AACA2F2044FB23001262D0 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 99AACA2E2044FB23001262D0 /* Shader.vsh */; };
 		99AACA312044FB43001262D0 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 99AACA302044FB42001262D0 /* Shader.fsh */; };
 		99E1CF3B206B3A7400C7A04B /* BattleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E1CF3A206B3A7400C7A04B /* BattleComponent.swift */; };
@@ -162,6 +166,10 @@
 		999312992046418C00835BA3 /* teapot.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = teapot.obj; sourceTree = "<group>"; };
 		99A4D9FB20870CF500E47A71 /* HexTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HexTile.png; sourceTree = "<group>"; };
 		99A4D9FD20870E9A00E47A71 /* HexTileWithTex2.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HexTileWithTex2.obj; sourceTree = "<group>"; };
+		99A4D9FF2087298B00E47A71 /* Demigod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Demigod.swift; sourceTree = "<group>"; };
+		99A4DA012087299700E47A71 /* Ifrit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ifrit.swift; sourceTree = "<group>"; };
+		99A4DA03208729A800E47A71 /* Undine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Undine.swift; sourceTree = "<group>"; };
+		99A4DA0520872A7F00E47A71 /* Onyxra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onyxra.swift; sourceTree = "<group>"; };
 		99AACA2E2044FB23001262D0 /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
 		99AACA302044FB42001262D0 /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
 		99E1CF3A206B3A7400C7A04B /* BattleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleComponent.swift; sourceTree = "<group>"; };
@@ -444,6 +452,10 @@
 				F6DD7441206B235200868E57 /* SingleUnit.swift */,
 				F6DD7443206B236600868E57 /* UnitGroup.swift */,
 				99EB987720840C7100304573 /* UnitGroupManager.swift */,
+				99A4D9FF2087298B00E47A71 /* Demigod.swift */,
+				99A4DA012087299700E47A71 /* Ifrit.swift */,
+				99A4DA03208729A800E47A71 /* Undine.swift */,
+				99A4DA0520872A7F00E47A71 /* Onyxra.swift */,
 			);
 			path = Units;
 			sourceTree = "<group>";
@@ -664,7 +676,9 @@
 				3DDB59452035F39C0000E0C4 /* ViewController.swift in Sources */,
 				993F14592046AAF200AF5BFB /* TileMap.swift in Sources */,
 				990EFF3920427EDB002FEBED /* EventDispatcher.swift in Sources */,
+				99A4DA0620872A7F00E47A71 /* Onyxra.swift in Sources */,
 				99ED16CC2046912200827958 /* RotatingCubeComponent.swift in Sources */,
+				99A4DA002087298B00E47A71 /* Demigod.swift in Sources */,
 				992762DD2036BA0200C73599 /* Component.swift in Sources */,
 				99ED16CA2046909300827958 /* FingerGodGame.swift in Sources */,
 				990EFF3120427EA4002FEBED /* Model.swift in Sources */,
@@ -691,11 +705,13 @@
 				992762DB2036B9DD00C73599 /* GameObject.swift in Sources */,
 				99E1CF3F206B84B100C7A04B /* Alignment.swift in Sources */,
 				99E1CF3B206B3A7400C7A04B /* BattleComponent.swift in Sources */,
+				99A4DA022087299700E47A71 /* Ifrit.swift in Sources */,
 				F24C46CB206B6B9200B8097D /* RoundButton.swift in Sources */,
 				F6DD7444206B236600868E57 /* UnitGroup.swift in Sources */,
 				993F14602046AF4500AF5BFB /* MapComponent.swift in Sources */,
 				F24C46CD206B6BB100B8097D /* Power.swift in Sources */,
 				3D0DA07E203DF45A0050F708 /* Renderer.swift in Sources */,
+				99A4DA04208729A800E47A71 /* Undine.swift in Sources */,
 				B1F0FC6C20815FA7003E0ADD /* EarthPower.swift in Sources */,
 				99EB987820840C7100304573 /* UnitGroupManager.swift in Sources */,
 			);
