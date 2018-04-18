@@ -13,9 +13,20 @@ import AVFoundation
 
 class TitleController: GLKViewController, Subscriber {
      var audioPlayer: AVAudioPlayer!
+    
+    @IBOutlet weak var optionsBtn: UIButton!
+    @IBOutlet weak var startBtn: UIButton!
+    
+    @IBOutlet var optionsItems: [UIButton]!
     override func viewDidLoad() {
         super.viewDidLoad()
         Renderer.setup(view: self.view as! GLKView)
+        startBtn.layer.cornerRadius = startBtn.frame.height/1.5
+        optionsBtn.layer.cornerRadius = optionsBtn.frame.height/1.5
+        optionsItems.forEach{(optBtn) in
+            optBtn.layer.cornerRadius=optBtn.frame.height/1.5
+            optBtn.isHidden = true
+        }
         
         
         var castle : Model?
@@ -39,6 +50,13 @@ class TitleController: GLKViewController, Subscriber {
 
     }
     
+    @IBAction func optionSelection(_ sender: UIButton) {
+        optionsItems.forEach{(optBtn) in
+            optBtn.isHidden = !optBtn.isHidden   }
+    }
+    
+    @IBAction func pressedOptions(_ sender: UIButton) {
+    }
     @IBAction func stopLoadingMusic(_ sender: UIButton) {
         if(audioPlayer.isPlaying){
             audioPlayer.pause()

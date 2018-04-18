@@ -40,7 +40,7 @@ public class UnitGroupManager : NSObject, Subscriber {
             let oldPos = params["oldPos"] as? Point2D
             
             if(map.getTile(pos: newPos)!.type == Tile.types.structure) {
-                
+                if(structure)
             } else {
                 let unitsAtNewPos = unitsAtLocation(newPos)
                 
