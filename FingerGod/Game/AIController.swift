@@ -29,7 +29,7 @@ public class AIController : GameObject {
             
             AIPlayers.append(player)
             
-            player._city!.interact(selected: nil)
+            player._city!.interact()
         }
     }
     

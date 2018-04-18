@@ -10,7 +10,7 @@ import Foundation
 import GLKit
 
 public class City: Structure {
-    private let owner : PlayerObject
+    public let owner : PlayerObject
     
     public init(_ pos: Point2D, _ owner: PlayerObject) {
         var castle : Model?
@@ -32,15 +32,11 @@ public class City: Structure {
         self.hp = 50
     }
     
-    public override func interact(selected: UnitGroupComponent?) {
-        if(selected == nil) {
-            dispatchUnitGroup(size: 10)
-        } else if(selected!.owner!.id == owner.id!){
-            returnUnits(selected!)
-        }
+    public override func interact() {
+        dispatchUnitGroup(size: 10)
     }
     
-    private func returnUnits(_ unitGroup: UnitGroupComponent) {
+    public func returnUnits(_ unitGroup: UnitGroupComponent) {
         let units = unitGroup.unitGroup.peopleArray.count
 
         owner.removeUnit(unit: unitGroup)

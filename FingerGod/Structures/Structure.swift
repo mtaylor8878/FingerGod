@@ -21,5 +21,5 @@ public class Structure {
         EventDispatcher.publish("AddStructure", ("structure",self), ("coords",pos))
     }
     
-    public func interact(selected: UnitGroupComponent?) {}
+    public func interact() {}
 }

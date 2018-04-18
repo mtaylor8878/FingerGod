@@ -40,7 +40,12 @@ public class UnitGroupManager : NSObject, Subscriber {
             let oldPos = params["oldPos"] as? Point2D
             
             if(map.getTile(pos: newPos)!.type == Tile.types.structure) {
-                if(structure)
+                let city = map.getTile(pos: newPos)!.getStructure()! as! City
+                if(city.owner.id == unit.owner!.id) {
+                    city.returnUnits(unit)
+                } else {
+                    // TODO: Fight Enemy Castle
+                }
             } else {
                 let unitsAtNewPos = unitsAtLocation(newPos)
                 

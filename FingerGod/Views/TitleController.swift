@@ -28,17 +28,6 @@ class TitleController: GLKViewController, Subscriber {
             optBtn.isHidden = true
         }
         
-        
-        var castle : Model?
-        
-        do {
-            castle = try ModelReader.read(objPath: "Castle")
-        } catch {
-            print("There was a problem initializing this tile model: \(error)")
-        }
-        
-        let mi = ModelInstance(model: castle!)
-        Renderer.addInstance(inst: mi)
         let url = Bundle.main.url(forResource: "Duel With Ares", withExtension: "mp3")
         do{
             audioPlayer = try AVAudioPlayer(contentsOf: url!)

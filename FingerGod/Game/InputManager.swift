@@ -80,24 +80,6 @@ public class InputManager : Subscriber {
                  }
              }
         }
-        /*
-         OLD CODE FOR REFERENCE
-         if (prevObject != nil && prevObject!.alignment == Alignment.ALLIED) {
-         if (nextObject == nil) {
-         // There was a unit on our selected tile, move it to the new tile
-         prevObject!.move(q, r)
-         selected = nil
-         return
-         }
-         else if (nextObject != nil && nextObject!.alignment == Alignment.ENEMY){
-         // INITIATE BATTLE
-         print("BATTLE START")
-         startBattle(prevObject!, nextObject!)
-         selected = nil
-         return
-         }
-         }*/
-        
         
         let selectedTile = map.getTile(pos: Point2D(q,r))!
         
@@ -134,46 +116,52 @@ public class InputManager : Subscriber {
                 power?.activate(tile: selectedTile)
                 player._curPower = nil
             }
-        }
+        } else {
         
-        switch(selectedTile.type) {
-        case Tile.types.structure:
-            selectedTile.getStructure()!.interact(selected: prevObject)
-            noSelect = true
-            break
-        
-        case Tile.types.vacant:
-            if (prevObject != nil) {
-                if (nextObject == nil && prevObject!.owner!.id == player.id!) {
-                    print("Moving unit...")
+            switch(selectedTile.type) {
+            case Tile.types.structure:
+                if (prevObject != nil && prevObject!.owner!.id == player.id!) {
                     prevObject!.setTarget(TilePathFindingTarget(tile: selectedTile, map: map.tileMap))
-                    noSelect = true
-                }
-            }
-            break
-            
-        case Tile.types.occupied:
-            if (nextObject != nil) {
-                if(nextObject!.owner!.id == player.id!) {
-                    print("Ally Selected")
-                    // TODO: display unit stuff
-                    let peopleNum = nextObject?.unitGroup.peopleArray.count
-                    print("Units in tile "  + String(describing: peopleNum))
-                    EventDispatcher.publish("AllyClick", ("unitCount", nextObject),  ("tile", selectedTile))
-                    noSelect = true
+                    print("MOVE TO CASTLE")
                 } else {
-                    print("Enemy Selected")
-                    // Note: Battle doesn't start here, we simply move to the tile
-                    // But in future, may want to have the player start moving to the "enemy" rather than its tile
-                    if (prevObject != nil) {
-                        prevObject!.setTarget(EnemyPathFindingTarget(enemy: nextObject!, map: map.tileMap))
-                    }
-                    noSelect = true
+                    selectedTile.getStructure()!.interact()
                 }
-            }
+                noSelect = true
+                break
             
-        default:
-            break
+            case Tile.types.vacant:
+                if (prevObject != nil) {
+                    if (nextObject == nil && prevObject!.owner!.id == player.id!) {
+                        print("Moving unit...")
+                        prevObject!.setTarget(TilePathFindingTarget(tile: selectedTile, map: map.tileMap))
+                        noSelect = true
+                    }
+                }
+                break
+                
+            case Tile.types.occupied:
+                if (nextObject != nil) {
+                    if(nextObject!.owner!.id == player.id!) {
+                        print("Ally Selected")
+                        // TODO: display unit stuff
+                        let peopleNum = nextObject?.unitGroup.peopleArray.count
+                        print("Units in tile "  + String(describing: peopleNum))
+                        EventDispatcher.publish("AllyClick", ("unitCount", nextObject),  ("tile", selectedTile))
+                        noSelect = true
+                    } else {
+                        print("Enemy Selected")
+                        // Note: Battle doesn't start here, we simply move to the tile
+                        // But in future, may want to have the player start moving to the "enemy" rather than its tile
+                        if (prevObject != nil) {
+                            prevObject!.setTarget(EnemyPathFindingTarget(enemy: nextObject!, map: map.tileMap))
+                        }
+                        noSelect = true
+                    }
+                }
+                
+            default:
+                break
+            }
         }
         
         if(!noSelect) {
