@@ -91,9 +91,10 @@ public class TileMap {
             for r in 1...mapRadius {
                 var point = HexDirections.InDirection(start, HexDirection.North,r)
                 var dir = HexDirection.SouthEast
-                for _ in 0...HexDirections.Count {
+                for _ in 0..<HexDirections.Count {
                     for _ in 0..<r {
                         tileMap[point] = Tile(self, point, tileRadius)
+                        print(point)
                         point = HexDirections.InDirection(point, dir)
                     }
                     dir = HexDirections.NextDirection(dir)
