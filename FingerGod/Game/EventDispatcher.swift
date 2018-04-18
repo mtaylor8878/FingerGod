@@ -14,6 +14,10 @@ import Foundation
 class EventDispatcher {
     private static var _eventList = [String : [Subscriber]]()
     
+    public static func clearAll() {
+        _eventList = [String : [Subscriber]]()
+    }
+    
     
     /// # Subscribe
     /// Subscribes an object passed into the function to the given event

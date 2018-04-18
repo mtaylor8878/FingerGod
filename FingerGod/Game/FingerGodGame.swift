@@ -13,6 +13,8 @@ public class FingerGodGame : Game {
     public override func onGameStart() {
         super.onGameStart()
         
+        EventDispatcher.clearAll()aaahgonn
+        
         let map = GameObject()
         map.addComponent(type: MapComponent.self)
         self.addGameObject(gameObject: map)

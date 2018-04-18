@@ -67,7 +67,7 @@ class SingleUnit: NSObject {
     
     public func getModelName() -> String {
         // Name of the model this unit uses
-        return "CubeModel"
+        return "UnitToken"
     }
 }
 

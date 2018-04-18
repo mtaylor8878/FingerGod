@@ -22,7 +22,7 @@ public class UnitGroupComponent : Component {
 
     private var squareSize = 0
     
-    private var initShape = GLKMatrix4Scale(GLKMatrix4Identity, 0.05, 0.25, 0.05)
+    private var initShape = GLKMatrix4Scale(GLKMatrix4Identity, 0.25, 0.25, 0.25)
     //public var alignment = Alignment.NEUTRAL
     public var owner : PlayerObject?
     

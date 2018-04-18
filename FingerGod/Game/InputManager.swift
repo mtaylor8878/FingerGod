@@ -10,7 +10,7 @@ import Foundation
 import GLKit
 
 public class InputManager : Subscriber {
-    private let SELECTION_COLOR: [Float] = [1.0, 0.2, 0.2, 1.0]
+    private let SELECTION_COLOR: [Float] = [0, 0.95, 1.0, 1.0]
     public let player: PlayerObject
     private let map: MapComponent
     private var unitGroupManager : UnitGroupManager

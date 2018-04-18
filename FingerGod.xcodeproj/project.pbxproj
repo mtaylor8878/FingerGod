@@ -81,6 +81,8 @@
 		B1F0FC6820815F84003E0ADD /* FirePower.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F0FC6720815F84003E0ADD /* FirePower.swift */; };
 		B1F0FC6A20815F92003E0ADD /* WaterPower.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F0FC6920815F92003E0ADD /* WaterPower.swift */; };
 		B1F0FC6C20815FA7003E0ADD /* EarthPower.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F0FC6B20815FA7003E0ADD /* EarthPower.swift */; };
+		C968AB8520876EAE00027F76 /* UnitToken.obj in Resources */ = {isa = PBXBuildFile; fileRef = C968AB8320876EAD00027F76 /* UnitToken.obj */; };
+		C968AB8620876EAE00027F76 /* DemiToken.obj in Resources */ = {isa = PBXBuildFile; fileRef = C968AB8420876EAD00027F76 /* DemiToken.obj */; };
 		C98438662046162A00321700 /* FingerGodMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98438652046162A00321700 /* FingerGodMessageTests.swift */; };
 		C98B13BF2064595700BCFABE /* PlayerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98B13BE2064595700BCFABE /* PlayerObject.swift */; };
 		C9945E4E2085EEBC006A1A48 /* AIPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9945E4D2085EEBC006A1A48 /* AIPlayer.swift */; };
@@ -192,6 +194,8 @@
 		B1F0FC6720815F84003E0ADD /* FirePower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirePower.swift; sourceTree = "<group>"; };
 		B1F0FC6920815F92003E0ADD /* WaterPower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterPower.swift; sourceTree = "<group>"; };
 		B1F0FC6B20815FA7003E0ADD /* EarthPower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthPower.swift; sourceTree = "<group>"; };
+		C968AB8320876EAD00027F76 /* UnitToken.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UnitToken.obj; sourceTree = "<group>"; };
+		C968AB8420876EAD00027F76 /* DemiToken.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DemiToken.obj; sourceTree = "<group>"; };
 		C98438652046162A00321700 /* FingerGodMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerGodMessageTests.swift; sourceTree = "<group>"; };
 		C98B13BE2064595700BCFABE /* PlayerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerObject.swift; sourceTree = "<group>"; };
 		C9945E4D2085EEBC006A1A48 /* AIPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIPlayer.swift; sourceTree = "<group>"; };
@@ -255,6 +259,8 @@
 				999312992046418C00835BA3 /* teapot.obj */,
 				3D0DA0B1203E1C550050F708 /* CubeModel.mtl */,
 				3D0DA0B2203E1C560050F708 /* CubeModel.obj */,
+				C968AB8420876EAD00027F76 /* DemiToken.obj */,
+				C968AB8320876EAD00027F76 /* UnitToken.obj */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -619,11 +625,13 @@
 				F6CA348020868A2B00D3C492 /* Duel With Ares.mp3 in Resources */,
 				99AACA2F2044FB23001262D0 /* Shader.vsh in Resources */,
 				3D0DA0BE203E1C5D0050F708 /* HexTile.obj in Resources */,
+				C968AB8520876EAE00027F76 /* UnitToken.obj in Resources */,
 				999312982046367C00835BA3 /* Sphere.obj in Resources */,
 				A6CC6E9F20874B0700EBA3D3 /* HexTile.png in Resources */,
 				3D0DA0B3203E1C560050F708 /* CubeModel.mtl in Resources */,
 				F6CA347E20868A2300D3C492 /* Epic Music Soundtracks (Battle Music).mp3 in Resources */,
 				A66911E6206B9AC100C9506E /* Castle.mtl in Resources */,
+				C968AB8620876EAE00027F76 /* DemiToken.obj in Resources */,
 				3DD2698E2086C48200F7C8B4 /* checker.png in Resources */,
 				3D0DA0BB203E1C5D0050F708 /* HexTile.mtl in Resources */,
 				99A4D9FE20870E9A00E47A71 /* HexTileWithTex2.obj in Resources */,
@@ -942,7 +950,7 @@
 				DEVELOPMENT_TEAM = 3E5RA54B7H;
 				INFOPLIST_FILE = FingerGod/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGod5;
+				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGod4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -957,7 +965,7 @@
 				DEVELOPMENT_TEAM = 3E5RA54B7H;
 				INFOPLIST_FILE = FingerGod/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGod5;
+				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGod4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
