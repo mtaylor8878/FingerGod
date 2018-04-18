@@ -21,7 +21,7 @@ void main()
         
         float nDotVP = max(0.0, dot(eyeNormal, normalize(lightPosition)));
         
-        o_fragColor = diffuseColor * (nDotVP * texture(texSampler, v_texcoord) + vec4(0.15, 0.14, 0.10, 0.0));
+        o_fragColor = diffuseColor * (nDotVP * texture(texSampler, v_texcoord) + vec4(0.0, 0.0, 0.0, 0.0));
     } else {
         o_fragColor = v_color;
     }
