@@ -65,7 +65,7 @@ public class UnitGroupComponent : Component {
             
             if (movePath.count > 0) {
                 // If we still have move paths after handling redundancies, start moving
-                if target != nil && target!.changedLocation() {
+                if target != nil {
                     self.movePath = target!.getPathToTarget(from: Point2D(position))
                 }
                 endPosition[0] = movePath[0].x
