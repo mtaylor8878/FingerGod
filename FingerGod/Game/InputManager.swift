@@ -121,8 +121,22 @@ public class InputManager : Subscriber {
             switch(selectedTile.type) {
             case Tile.types.structure:
                 if (prevObject != nil && prevObject!.owner!.id == player.id!) {
-                    prevObject!.setTarget(TilePathFindingTarget(tile: selectedTile, map: map.tileMap))
-                    print("MOVE TO CASTLE")
+                    let curTile = map.getTile(pos: Point2D(prevObject!.position))!
+                    if(PathFinder.distance(curTile, selectedTile) < 2.0) {
+                        (selectedTile.getStructure()! as! City).returnUnits(prevObject!)
+                    } else {
+                        let neighbours = selectedTile.getNeighbours()
+                        var shortest = Float.greatestFiniteMagnitude
+                        var closest: Tile = neighbours[0]
+                        for tile in neighbours {
+                            let dist = PathFinder.distance(curTile, tile)
+                            if(dist < shortest) {
+                                shortest = dist
+                                closest = tile
+                            }
+                        }
+                        prevObject!.setTarget(TilePathFindingTarget(tile: closest, map: map.tileMap))
+                    }
                 } else {
                     selectedTile.getStructure()!.interact()
                 }
