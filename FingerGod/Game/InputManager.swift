@@ -48,6 +48,7 @@ public class InputManager : Subscriber {
             }
         } else {
             for power in player.powers {
+                player._curPower = nil
                 power._btn?.removeFromSuperview()
             }
         }

@@ -18,6 +18,8 @@ public class EarthPower : Power {
         _cost = 10.0
         
         _btn = RoundButton.init()
+        _btn?.setTitle("Earth", for: .normal)
+        _btn?.setTitleColor(UIColor.black, for: .normal)
         _btn?.cornerRadius = 25
         _btn?.borderWidth = 1
         _btn?.borderColor = UIColor.yellow
