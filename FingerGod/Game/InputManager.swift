@@ -71,7 +71,6 @@ public class InputManager : Subscriber {
             map.resetTileColor(tile: selected!)
             print("Selected position: " + String(describing: selected?.x) + "," + String(describing: selected?.y))
             for c in unitGroupManager.unitGroups {
-                 print("Unit Position: " + String(c.position[0]) + "," + String(c.position[1]))
                  if c.position[0] == selected?.x && c.position[1] == selected?.y {
                      prevObject = c
                  }
@@ -154,14 +153,14 @@ public class InputManager : Subscriber {
             
         case Tile.types.occupied:
             if (nextObject != nil) {
-                if(nextObject!.owner!.id == player.id!) {
-                    print("Ally Selected")
+                if(nextObject!.owner!.id == player.id! && nextObject === prevObject) {
+                    print("Ally Double Selected")
                     // TODO: display unit stuff
                     let peopleNum = nextObject?.unitGroup.peopleArray.count
                     print("Units in tile "  + String(describing: peopleNum))
                     EventDispatcher.publish("AllyClick", ("unitCount", nextObject),  ("tile", selectedTile))
                     noSelect = true
-                } else {
+                } else if (nextObject!.owner!.id != player.id!) {
                     print("Enemy Selected")
                     // Note: Battle doesn't start here, we simply move to the tile
                     // But in future, may want to have the player start moving to the "enemy" rather than its tile
@@ -169,6 +168,17 @@ public class InputManager : Subscriber {
                         prevObject!.setTarget(EnemyPathFindingTarget(enemy: nextObject!, map: map.tileMap))
                     }
                     noSelect = true
+                } else {
+                    // Note: Battle doesn't start here, we simply move to the tile
+                    // But in future, may want to have the player start moving to the "enemy" rather than its tile
+                    if (prevObject != nil) {
+                        print("Ally Selected to Merge")
+                        prevObject!.setTarget(MergingPathFindingTarget(ally: nextObject!, map: map.tileMap))
+                        noSelect = true
+                    }
+                    else {
+                        print("Ally Selected")
+                    }
                 }
             }
             
