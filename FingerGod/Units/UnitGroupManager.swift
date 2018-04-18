@@ -21,6 +21,9 @@ public class UnitGroupManager : NSObject, Subscriber {
         EventDispatcher.subscribe("RemoveUnit", self)
         EventDispatcher.subscribe("UnitMoved", self)
         EventDispatcher.subscribe("BattleEnd", self)
+        EventDispatcher.subscribe("PowerTileGroup", self)
+        EventDispatcher.subscribe("DamageUnit", self)
+        EventDispatcher.subscribe("ChangeTile", self)
     }
     
     func notify(_ eventName: String, _ params: [String : Any]) {
@@ -49,7 +52,7 @@ public class UnitGroupManager : NSObject, Subscriber {
             if (oldPos != nil && unitsAtLocation(oldPos!).count == 0) {
                 EventDispatcher.publish("ResetTileType", ("pos", oldPos!))
             }
-            EventDispatcher.publish("SetTileType", ("pos", newPos), ("type", Tile.types.occupied))
+            EventDispatcher.publish("SetTileType", ("pos", newPos), ("type", Tile.types.occupied), ("perma", false))
             
             break
         case "RemoveUnit":
@@ -85,6 +88,44 @@ public class UnitGroupManager : NSObject, Subscriber {
                 break
             }
             break
+            
+        case "DamageUnit":
+            let tile = params["tile"] as! Tile
+            let damage =  params["damage"] as! Float
+            let owner = params["owner"] as! Int
+            for c in (unitGroups) {
+                if Point2D(c.position) == tile.getAxial() {
+                    if (c.owner != owner) {
+                        for u in (c.unitGroup.peopleArray) {
+                            let unit = u as! SingleUnit
+                            unit.hurt(damage)
+                        }
+                        c.updateModels()
+                        let left = c.unitGroup.removeDeadUnits()
+                        if left == 0 {
+                            game.removeGameObject(gameObject: c.gameObject)
+                        }
+                    }
+                }
+            }
+        break
+            
+        case "HealUnit":
+            let tile = params["tile"] as! Tile
+            let heal =  params["heal"] as! Float
+            let owner = params["owner"] as! Int
+            for c in (unitGroups) {
+                if Point2D(c.position) == tile.getAxial() {
+                    if (c.owner != owner) {
+                        for u in (c.unitGroup.peopleArray) {
+                            let unit = u as! SingleUnit
+                            unit.heal(heal)
+                        }
+                    }
+                }
+            }
+            break
+        
         default:
             break
         }
@@ -118,4 +159,5 @@ public class UnitGroupManager : NSObject, Subscriber {
         }
         return units
     }
+
 }

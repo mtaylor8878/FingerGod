@@ -117,8 +117,17 @@ public class Tile {
     /*
      Set the type of the tile
     */
-    public func setType(_ newType:types) {
+    public func setType(_ newType:types, _ perma: Bool) {
         self.type = newType
+        if(type == Tile.types.boundary) {
+            model.color = [1.0, 1.0, 0, 1.0]
+        } else {
+            model.color = [0.075, Float(0.85 + (q % 2 == 0 ? 0 : 0.15)), 0.25 + Float(r % 2 == 0 ? 0 : 0.15), 1.0]
+        }
+        if(perma) {
+            self.originalType = newType
+            self.defaultColor = model.color
+        }
     }
     
     public func setAxial(_ coord: Point2D) {

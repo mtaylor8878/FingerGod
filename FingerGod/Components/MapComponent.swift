@@ -87,37 +87,22 @@ public class MapComponent : Component, Subscriber {
         case "SetTileType":
             let pos = params["pos"]! as! Point2D
             let type = params["type"]! as! Tile.types
+            let perma = params["perma"]! as! Bool
             
-            tileMap.getTile(pos)!.setType(type)
+            tileMap.getTile(pos)!.setType(type, perma)
             break
             
         case "ResetTileType":
             let pos = params["pos"]! as! Point2D
             let tile = tileMap.getTile(pos)!
-            tile.setType(tile.originalType)
+            tile.setType(tile.originalType, false)
+            tile.resetColor()
             break
             
         default:
             break
         }
     }
-
-    /*public func powerTile(_ x: Int, _ y: Int, _ power: Int) {
-
-        switch (power) {
-        case 1:
-            tileMap.getTile(x,y)!.model.color = [1.0, 0.411, 0.706, 1.0]
-            break
-        case 2:
-            tileMap.getTile(x,y)!.model.color = [0.0, 0.0, 1.0, 1.0]
-            break
-        case 3:
-            tileMap.getTile(x,y)!.model.color = [0.2, 0.0, 0.5, 1.0]
-            break
-        default:
-            break
-        }
-    }*/
     
     public override func update(delta: Float) {
         super.update(delta: delta)
