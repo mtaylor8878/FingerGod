@@ -14,7 +14,7 @@ public class MapComponent : Component, Subscriber {
     
     public var tileMap : TileMap!
     
-    public var size = 10
+    public var size = 13
     
     open override func create() {
         tileMap = TileMap(size,1)
