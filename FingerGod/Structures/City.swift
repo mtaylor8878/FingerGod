@@ -37,12 +37,42 @@ public class City: Structure {
     }
     
     public func returnUnits(_ unitGroup: UnitGroupComponent) {
+        var demigods = [SingleUnit]()
         let units = unitGroup.unitGroup.peopleArray.count
+        
+        for u in unitGroup.unitGroup.peopleArray {
+            let unit = u as! SingleUnit
+            if unit.character == Character.DEMIGOD {
+                demigods.append(unit)
+            }
+        }
+        
+        let lastPos = unitGroup.position
 
         owner.removeUnit(unit: unitGroup)
         EventDispatcher.publish("SetTileType", ("pos",Point2D(unitGroup.position)), ("type", Tile.types.vacant), ("perma", false))
         unitGroup.delete()
-        owner._followers += units
+        owner._followers += units - demigods.count
+        
+        if (demigods.count > 0) {
+            // Make a new unit with whatever demigods we shouldn't return
+            let demigodUnitGroup = GameObject()
+            demigodUnitGroup.addComponent(type: UnitGroupComponent.self)
+            let game = unitGroup.gameObject.game
+            game!.addGameObject(gameObject: demigodUnitGroup)
+            
+            let iugc = demigodUnitGroup.getComponent(type: UnitGroupComponent.self)
+            iugc?.setOwner(owner)
+            iugc?.unitGroup.peopleArray.removeAllObjects()
+            for demigod in demigods {
+                demigod.modelInstance = nil
+                iugc?.unitGroup.peopleArray.add(demigod)
+            }
+            iugc?.updateModels()
+            iugc?.setPosition(lastPos[0], lastPos[1], true)
+            owner.addUnit(unit: iugc!)
+            EventDispatcher.publish("AddUnit", ("unit", iugc))
+        }
     }
     
     private func dispatchUnitGroup(size: Int) {

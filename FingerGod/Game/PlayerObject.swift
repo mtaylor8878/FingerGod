@@ -71,6 +71,37 @@ public class PlayerObject : GameObject, Subscriber{
         powers.append(earth)
     }
     
+    public func addPowerByName(_ name: String) -> Power? {
+        switch(name) {
+        case "fire":
+            let fire = FirePower(player: self)
+            game!.removeGameObject(gameObject: fire)
+            powers.append(fire)
+            return fire
+        case "water":
+            let water = WaterPower(player: self)
+            game!.removeGameObject(gameObject: water)
+            powers.append(water)
+            return water
+        case "earth":
+            let earth = EarthPower(player: self)
+            game!.removeGameObject(gameObject: earth)
+            powers.append(earth)
+            return earth
+        default:
+            break
+        }
+        return nil
+    }
+    
+    public func removePower(_ power : Power) {
+        let ind = powers.index{$0 === power};
+        if (ind != nil) {
+            game!.removeGameObject(gameObject: power)
+            powers.remove(at: ind!)
+        }
+    }
+    
     public func addUnit(unit: UnitGroupComponent) {
         _unitList.append(unit)
     }

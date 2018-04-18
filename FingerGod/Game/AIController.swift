@@ -19,7 +19,7 @@ public class AIController : GameObject {
     }
     
     public func setup(numEnemies: Int) {
-        for _ in 1...numEnemies {
+        for var i in 1...numEnemies {
             var start = map.getRandomTile()
             while(start.getType() != Tile.types.vacant) {
                 start = map.getRandomTile()
@@ -28,6 +28,39 @@ public class AIController : GameObject {
             game!.addGameObject(gameObject: player)
             
             AIPlayers.append(player)
+            
+            if (i == 1) {
+                let undineUnitGroup = GameObject()
+                undineUnitGroup.addComponent(type: UnitGroupComponent.self)
+                game!.addGameObject(gameObject: undineUnitGroup)
+                
+                let iugc = undineUnitGroup.getComponent(type: UnitGroupComponent.self)
+                iugc?.setOwner(player)
+                iugc?.unitGroup.peopleArray.removeAllObjects()
+                let undine = Undine()
+                undine.power = player.addPowerByName(undine.powerName)
+                iugc?.unitGroup.peopleArray.add(undine)
+                iugc?.updateModels()
+                iugc?.setPosition(start.getAxial().x, start.getAxial().y + 1, true)
+                player.addUnit(unit: iugc!)
+                EventDispatcher.publish("AddUnit", ("unit", iugc))
+            }
+            else if (i == 2) {
+                let onyxraUnitGroup = GameObject()
+                onyxraUnitGroup.addComponent(type: UnitGroupComponent.self)
+                game!.addGameObject(gameObject: onyxraUnitGroup)
+                
+                let iugc = onyxraUnitGroup.getComponent(type: UnitGroupComponent.self)
+                iugc?.setOwner(player)
+                iugc?.unitGroup.peopleArray.removeAllObjects()
+                let onyxra = Onyxra()
+                onyxra.power = player.addPowerByName(onyxra.powerName)
+                iugc?.unitGroup.peopleArray.add(onyxra)
+                iugc?.updateModels()
+                iugc?.setPosition(start.getAxial().x, start.getAxial().y + 1, true)
+                player.addUnit(unit: iugc!)
+                EventDispatcher.publish("AddUnit", ("unit", iugc))
+            }
             
             player._city!.interact()
         }
