@@ -30,13 +30,21 @@ class ViewController: GLKViewController, Subscriber {
     @IBOutlet weak var FollowerLabel: UILabel!
     @IBOutlet weak var GoldLabel: UILabel!
     @IBOutlet weak var ManaLabel: UILabel!
+    
     var Exit: RoundButton!
     var Split: UIButton!
     var units: [RoundButton] = [RoundButton]()
     var powers: [RoundButton] = [RoundButton]()
     var audioPlayer: AVAudioPlayer!
+    var hideTitle : Bool! = false
     
     @IBAction func onButtonClick(_ sender: RoundButton) {
+        hideTitle = !hideTitle
+        sender.setTitle("Off", for: .normal)
+        sender.setTitleColor(UIColor.red, for: .normal)
+        if (!hideTitle) {
+            sender.setTitle(" ", for: .normal)
+        }
         game.input!.togglePowerMenu()
     }
     
@@ -189,14 +197,15 @@ class ViewController: GLKViewController, Subscriber {
             
         case "AddPowerButton":
             let btn = (params["button"]! as! RoundButton)
-            let pos = (params["pos"]! as! Int)
-            btn.frame = CGRect.init(x: Int(ScreenWidth - 352), y: 600 - pos, width: 30, height: 30)
+            let pos = (-100 - (params["pos"]! as! Int))
             self.view.addSubview(btn)
-            let verticalConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:|[btn]|", options: [], metrics: nil, views: ["btn": btn])
-            
-            let horizontalConstraint = NSLayoutConstraint.constraints(withVisualFormat: "H:|[btn]|", options: [], metrics: nil, views: ["btn": btn])
-            self.view.addConstraints(verticalConstraint)
-            self.view.addConstraints(horizontalConstraint)
+            btn.translatesAutoresizingMaskIntoConstraints = false
+            let horizontalConstraint = btn.centerXAnchor.constraint(equalTo: view.leftAnchor, constant: 75)
+            let verticalConstraint = btn.centerYAnchor.constraint(equalTo: view.bottomAnchor, constant: CGFloat(pos))
+            let widthConstraint = btn.widthAnchor.constraint(equalToConstant: 50)
+            let heightConstraint = btn.heightAnchor.constraint(equalToConstant: 50)
+            view.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
+        
             
         case "SplitTarget":
             newTile = params["pos"] as! Tile

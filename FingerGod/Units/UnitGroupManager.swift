@@ -194,6 +194,9 @@ public class UnitGroupManager : NSObject, Subscriber {
         unitGroupA.offset(-0.65, 0, 0)
         unitGroupB.offset(0.65, 0, 0)
         
+        unitGroupA.setPosition(unitGroupA.position[0], unitGroupA.position[1], false)
+        unitGroupB.setPosition(unitGroupB.position[0], unitGroupB.position[1], false)
+        
         unitGroupA.halted = true
         unitGroupB.halted = true
         

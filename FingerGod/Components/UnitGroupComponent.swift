@@ -58,21 +58,21 @@ public class UnitGroupComponent : Component {
         }
         
         if (stepProgress <= 0.0 && movePath.count > 0 && !halted) {
+            // Recalibrate movement
+            if target != nil {
+                self.movePath = target!.getPathToTarget(from: Point2D(position))
+            }
             // Remove any extraneous movement paths
             while (movePath.count > 0 && movePath[0].x == position[0] && movePath[0].y == position[1]) {
                 movePath.removeFirst(1)
             }
             
             if (movePath.count > 0) {
-                // If we still have move paths after handling redundancies, start moving
-                if target != nil && target!.changedLocation() {
-                    self.movePath = target!.getPathToTarget(from: Point2D(position))
-                }
                 endPosition[0] = movePath[0].x
                 endPosition[1] = movePath[0].y
             }
         }
-        if (endPosition[0] != startPosition[0] || endPosition[1] != startPosition[1]) {
+        if ((endPosition[0] != startPosition[0] || endPosition[1] != startPosition[1]) && !halted) {
             stepProgress += moveSpeed * delta
             if (stepProgress >= 0.5 && (position[0] != endPosition[0] || position[1] != endPosition[1])) {
                 position[0] = endPosition[0]
@@ -106,7 +106,7 @@ public class UnitGroupComponent : Component {
         }
     }
 
-    public func setPosition(_ x : Int, _ y : Int) {
+    public func setPosition(_ x : Int, _ y : Int, _ triggerMove : Bool = true) {
         let oldPos = position
         position[0] = x
         position[1] = y
@@ -114,9 +114,19 @@ public class UnitGroupComponent : Component {
         startPosition[1] = y
         endPosition[0] = x
         endPosition[1] = y
-        EventDispatcher.publish("UnitMoved", ("newPos", Point2D(position)), ("oldPos", Point2D(oldPos)), ("unit", self))
+        stepProgress = 0
+        if (triggerMove) {
+            EventDispatcher.publish("UnitMoved", ("newPos", Point2D(position)), ("oldPos", Point2D(oldPos)), ("unit", self))
+        }
         
         updateRenderPos()
+    }
+    
+    public func revertPartStep() {
+        if (stepProgress < 0.5) {
+            stepProgress = 0
+            updateRenderPos()
+        }
     }
     
     public func move(_ x : Int, _ y : Int) {
