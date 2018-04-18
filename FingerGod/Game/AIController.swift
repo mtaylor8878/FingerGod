@@ -62,7 +62,7 @@ public class AIController : GameObject {
                 EventDispatcher.publish("AddUnit", ("unit", iugc))
             }
             
-            player._city!.interact(selected: nil)
+            player._city!.interact()
         }
     }
     

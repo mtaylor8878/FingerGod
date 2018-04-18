@@ -55,7 +55,6 @@
 		999312972046367C00835BA3 /* Sphere.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 999312952046367B00835BA3 /* Sphere.mtl */; };
 		999312982046367C00835BA3 /* Sphere.obj in Resources */ = {isa = PBXBuildFile; fileRef = 999312962046367C00835BA3 /* Sphere.obj */; };
 		9993129A2046418C00835BA3 /* teapot.obj in Resources */ = {isa = PBXBuildFile; fileRef = 999312992046418C00835BA3 /* teapot.obj */; };
-		99A4D9FC20870CF600E47A71 /* HexTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 99A4D9FB20870CF500E47A71 /* HexTile.png */; };
 		99A4D9FE20870E9A00E47A71 /* HexTileWithTex2.obj in Resources */ = {isa = PBXBuildFile; fileRef = 99A4D9FD20870E9A00E47A71 /* HexTileWithTex2.obj */; };
 		99A4DA002087298B00E47A71 /* Demigod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A4D9FF2087298B00E47A71 /* Demigod.swift */; };
 		99A4DA022087299700E47A71 /* Ifrit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A4DA012087299700E47A71 /* Ifrit.swift */; };
@@ -77,6 +76,7 @@
 		A66911E6206B9AC100C9506E /* Castle.mtl in Resources */ = {isa = PBXBuildFile; fileRef = A66911E4206B9AC100C9506E /* Castle.mtl */; };
 		A66911E8206B9C4400C9506E /* Structure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66911E7206B9C4400C9506E /* Structure.swift */; };
 		A66911EA206B9D7E00C9506E /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66911E9206B9D7E00C9506E /* City.swift */; };
+		A6CC6E9F20874B0700EBA3D3 /* HexTile.png in Resources */ = {isa = PBXBuildFile; fileRef = A6CC6E9E20874B0700EBA3D3 /* HexTile.png */; };
 		B1F0FC6820815F84003E0ADD /* FirePower.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F0FC6720815F84003E0ADD /* FirePower.swift */; };
 		B1F0FC6A20815F92003E0ADD /* WaterPower.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F0FC6920815F92003E0ADD /* WaterPower.swift */; };
 		B1F0FC6C20815FA7003E0ADD /* EarthPower.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F0FC6B20815FA7003E0ADD /* EarthPower.swift */; };
@@ -165,7 +165,6 @@
 		999312952046367B00835BA3 /* Sphere.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Sphere.mtl; sourceTree = "<group>"; };
 		999312962046367C00835BA3 /* Sphere.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Sphere.obj; sourceTree = "<group>"; };
 		999312992046418C00835BA3 /* teapot.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = teapot.obj; sourceTree = "<group>"; };
-		99A4D9FB20870CF500E47A71 /* HexTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HexTile.png; sourceTree = "<group>"; };
 		99A4D9FD20870E9A00E47A71 /* HexTileWithTex2.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HexTileWithTex2.obj; sourceTree = "<group>"; };
 		99A4D9FF2087298B00E47A71 /* Demigod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Demigod.swift; sourceTree = "<group>"; };
 		99A4DA012087299700E47A71 /* Ifrit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ifrit.swift; sourceTree = "<group>"; };
@@ -187,6 +186,7 @@
 		A66911E4206B9AC100C9506E /* Castle.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Castle.mtl; path = ../../Castle.mtl; sourceTree = "<group>"; };
 		A66911E7206B9C4400C9506E /* Structure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structure.swift; sourceTree = "<group>"; };
 		A66911E9206B9D7E00C9506E /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		A6CC6E9E20874B0700EBA3D3 /* HexTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HexTile.png; sourceTree = "<group>"; };
 		B1F0FC6720815F84003E0ADD /* FirePower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirePower.swift; sourceTree = "<group>"; };
 		B1F0FC6920815F92003E0ADD /* WaterPower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterPower.swift; sourceTree = "<group>"; };
 		B1F0FC6B20815FA7003E0ADD /* EarthPower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthPower.swift; sourceTree = "<group>"; };
@@ -242,8 +242,8 @@
 			children = (
 				3DD2698F2086CA0100F7C8B4 /* HexTileWithTex.obj */,
 				99A4D9FD20870E9A00E47A71 /* HexTileWithTex2.obj */,
+				A6CC6E9E20874B0700EBA3D3 /* HexTile.png */,
 				3DD2698D2086C48100F7C8B4 /* checker.png */,
-				99A4D9FB20870CF500E47A71 /* HexTile.png */,
 				A66911E4206B9AC100C9506E /* Castle.mtl */,
 				A66911E3206B9AC100C9506E /* Castle.obj */,
 				999312952046367B00835BA3 /* Sphere.mtl */,
@@ -617,6 +617,7 @@
 				99AACA2F2044FB23001262D0 /* Shader.vsh in Resources */,
 				3D0DA0BE203E1C5D0050F708 /* HexTile.obj in Resources */,
 				999312982046367C00835BA3 /* Sphere.obj in Resources */,
+				A6CC6E9F20874B0700EBA3D3 /* HexTile.png in Resources */,
 				3D0DA0B3203E1C560050F708 /* CubeModel.mtl in Resources */,
 				F6CA347E20868A2300D3C492 /* Epic Music Soundtracks (Battle Music).mp3 in Resources */,
 				A66911E6206B9AC100C9506E /* Castle.mtl in Resources */,
@@ -625,7 +626,6 @@
 				99A4D9FE20870E9A00E47A71 /* HexTileWithTex2.obj in Resources */,
 				3D0DA0B6203E1C560050F708 /* CubeModel.obj in Resources */,
 				3DDB594D2035F39C0000E0C4 /* LaunchScreen.storyboard in Resources */,
-				99A4D9FC20870CF600E47A71 /* HexTile.png in Resources */,
 				9993129A2046418C00835BA3 /* teapot.obj in Resources */,
 				3DD269902086CA0100F7C8B4 /* HexTileWithTex.obj in Resources */,
 				3DDB594A2035F39C0000E0C4 /* Assets.xcassets in Resources */,
@@ -935,10 +935,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EXV3QGL866;
+				DEVELOPMENT_TEAM = 3E5RA54B7H;
 				INFOPLIST_FILE = FingerGod/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGod9;
+				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGod5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -950,10 +950,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8NFNE4TC77;
+				DEVELOPMENT_TEAM = 3E5RA54B7H;
 				INFOPLIST_FILE = FingerGod/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGod9;
+				PRODUCT_BUNDLE_IDENTIFIER = btechgames.bcit.ca.FingerGod5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

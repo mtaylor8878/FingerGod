@@ -10,7 +10,7 @@ import Foundation
 import GLKit
 
 public class City: Structure {
-    private let owner : PlayerObject
+    public let owner : PlayerObject
     
     public init(_ pos: Point2D, _ owner: PlayerObject) {
         var castle : Model?
@@ -28,17 +28,15 @@ public class City: Structure {
         self.owner = owner
         
         super.init(pos, mi)
+        
+        self.hp = 50
     }
     
-    public override func interact(selected: UnitGroupComponent?) {
-        if(selected == nil) {
-            dispatchUnitGroup(size: 10)
-        } else if(selected!.owner!.id == owner.id!){
-            returnUnits(selected!)
-        }
+    public override func interact() {
+        dispatchUnitGroup(size: 10)
     }
     
-    private func returnUnits(_ unitGroup: UnitGroupComponent) {
+    public func returnUnits(_ unitGroup: UnitGroupComponent) {
         var demigods = [SingleUnit]()
         let units = unitGroup.unitGroup.peopleArray.count
         
@@ -83,14 +81,15 @@ public class City: Structure {
             let shuffled = shuffleVacantTiles(tile!.getNeighbours())
             if(shuffled.count > 0) {
                 let place = shuffled[Int(arc4random_uniform(UInt32(shuffled.count)))]
-                let pos = place.getAxial()
+                let coord = place.getAxial()
                 
                 let unitGroup = GameObject()
                 unitGroup.addComponent(type: UnitGroupComponent.self)
                 owner.game?.addGameObject(gameObject: unitGroup)
                 
                 let unitGroupComponent = unitGroup.getComponent(type: UnitGroupComponent.self)!
-                unitGroupComponent.move(pos.x, pos.y)
+                unitGroupComponent.setPosition(pos.x, pos.y, false)
+                unitGroupComponent.move(coord.x, coord.y)
                 unitGroupComponent.setOwner(owner)
                 
                 for _ in 0..<units {

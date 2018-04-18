@@ -79,24 +79,6 @@ public class InputManager : Subscriber {
                  }
              }
         }
-        /*
-         OLD CODE FOR REFERENCE
-         if (prevObject != nil && prevObject!.alignment == Alignment.ALLIED) {
-         if (nextObject == nil) {
-         // There was a unit on our selected tile, move it to the new tile
-         prevObject!.move(q, r)
-         selected = nil
-         return
-         }
-         else if (nextObject != nil && nextObject!.alignment == Alignment.ENEMY){
-         // INITIATE BATTLE
-         print("BATTLE START")
-         startBattle(prevObject!, nextObject!)
-         selected = nil
-         return
-         }
-         }*/
-        
         
         let selectedTile = map.getTile(pos: Point2D(q,r))!
         
@@ -133,57 +115,77 @@ public class InputManager : Subscriber {
                 power?.activate(tile: selectedTile)
                 player._curPower = nil
             }
-        }
+        } else {
         
-        switch(selectedTile.type) {
-        case Tile.types.structure:
-            selectedTile.getStructure()!.interact(selected: prevObject)
-            noSelect = true
-            break
-        
-        case Tile.types.vacant:
-            if (prevObject != nil) {
-                if (nextObject == nil && prevObject!.owner!.id == player.id!) {
-                    print("Moving unit...")
-                    prevObject!.setTarget(TilePathFindingTarget(tile: selectedTile, map: map.tileMap))
-                    noSelect = true
-                }
-            }
-            break
-            
-        case Tile.types.occupied:
-            if (nextObject != nil) {
-                if(nextObject!.owner!.id == player.id! && nextObject === prevObject) {
-                    print("Ally Double Selected")
-                    // TODO: display unit stuff
-                    let peopleNum = nextObject?.unitGroup.peopleArray.count
-                    print("Units in tile "  + String(describing: peopleNum))
-                    EventDispatcher.publish("AllyClick", ("unitCount", nextObject),  ("tile", selectedTile))
-                    noSelect = true
-                } else if (nextObject!.owner!.id != player.id!) {
-                    print("Enemy Selected")
-                    // Note: Battle doesn't start here, we simply move to the tile
-                    // But in future, may want to have the player start moving to the "enemy" rather than its tile
-                    if (prevObject != nil) {
-                        prevObject!.setTarget(EnemyPathFindingTarget(enemy: nextObject!, map: map.tileMap))
+            switch(selectedTile.type) {
+            case Tile.types.structure:
+                if (prevObject != nil && prevObject!.owner!.id == player.id!) {
+                    let curTile = map.getTile(pos: Point2D(prevObject!.position))!
+                    if(PathFinder.distance(curTile, selectedTile) < 2.0) {
+                        (selectedTile.getStructure()! as! City).returnUnits(prevObject!)
+                    } else {
+                        let neighbours = selectedTile.getNeighbours()
+                        var shortest = Float.greatestFiniteMagnitude
+                        var closest: Tile = neighbours[0]
+                        for tile in neighbours {
+                            let dist = PathFinder.distance(curTile, tile)
+                            if(dist < shortest) {
+                                shortest = dist
+                                closest = tile
+                            }
+                        }
+                        prevObject!.setTarget(TilePathFindingTarget(tile: closest, map: map.tileMap))
                     }
-                    noSelect = true
                 } else {
-                    // Note: Battle doesn't start here, we simply move to the tile
-                    // But in future, may want to have the player start moving to the "enemy" rather than its tile
-                    if (prevObject != nil) {
-                        print("Ally Selected to Merge")
-                        prevObject!.setTarget(MergingPathFindingTarget(ally: nextObject!, map: map.tileMap))
+                    selectedTile.getStructure()!.interact()
+                }
+                noSelect = true
+                break
+            
+            case Tile.types.vacant:
+                if (prevObject != nil) {
+                    if (nextObject == nil && prevObject!.owner!.id == player.id!) {
+                        print("Moving unit...")
+                        prevObject!.setTarget(TilePathFindingTarget(tile: selectedTile, map: map.tileMap))
                         noSelect = true
                     }
-                    else {
-                        print("Ally Selected")
-                    }
                 }
+                break
+                
+                case Tile.types.occupied:
+                    if (nextObject != nil) {
+                        if(nextObject!.owner!.id == player.id! && nextObject === prevObject) {
+                            print("Ally Double Selected")
+                            // TODO: display unit stuff
+                            let peopleNum = nextObject?.unitGroup.peopleArray.count
+                            print("Units in tile "  + String(describing: peopleNum))
+                            EventDispatcher.publish("AllyClick", ("unitCount", nextObject),  ("tile", selectedTile))
+                            noSelect = true
+                        } else if (nextObject!.owner!.id != player.id!) {
+                            print("Enemy Selected")
+                            // Note: Battle doesn't start here, we simply move to the tile
+                            // But in future, may want to have the player start moving to the "enemy" rather than its tile
+                            if (prevObject != nil) {
+                                prevObject!.setTarget(EnemyPathFindingTarget(enemy: nextObject!, map: map.tileMap))
+                            }
+                            noSelect = true
+                        } else {
+                            // Note: Battle doesn't start here, we simply move to the tile
+                            // But in future, may want to have the player start moving to the "enemy" rather than its tile
+                            if (prevObject != nil) {
+                                print("Ally Selected to Merge")
+                                prevObject!.setTarget(MergingPathFindingTarget(ally: nextObject!, map: map.tileMap))
+                                noSelect = true
+                            }
+                            else {
+                                print("Ally Selected")
+                            }
+                        }
+                }
+                
+                default:
+                    break
             }
-            
-        default:
-            break
         }
         
         if(!noSelect) {

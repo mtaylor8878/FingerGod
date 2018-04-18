@@ -38,33 +38,37 @@ public class UnitGroupManager : NSObject, Subscriber {
             let unit = params["unit"] as! UnitGroupComponent
             let newPos = params["newPos"] as! Point2D
             let oldPos = params["oldPos"] as? Point2D
-            let unitsAtNewPos = unitsAtLocation(newPos)
             
-            if (unitsAtNewPos.count > 0) {
-                for otherUnit in unitsAtNewPos {
-                    if (unit !== otherUnit && unit.owner!.id == otherUnit.owner!.id) {
-                        // TODO: Ally Merge code
-                        for u in otherUnit.unitGroup.peopleArray{
-                            let newU = u as! SingleUnit
-                            if (newU.modelInstance != nil) {
-                                Renderer.removeInstance(inst: newU.modelInstance!)
-                                newU.modelInstance = nil
+            if(map.getTile(pos: newPos)!.type == Tile.types.structure) {
+                let city = map.getTile(pos: newPos)!.getStructure()! as! City
+                if(city.owner.id == unit.owner!.id) {
+                    city.returnUnits(unit)
+                } else {
+                    // TODO: Fight Enemy Castle
+                }
+            } else {
+                let unitsAtNewPos = unitsAtLocation(newPos)
+                
+                if (unitsAtNewPos.count > 0) {
+                    for otherUnit in unitsAtNewPos {
+                        if (unit !== otherUnit && unit.owner!.id == otherUnit.owner!.id) {
+                            // TODO: Ally Merge code
+                            for u in otherUnit.unitGroup.peopleArray{
+                                let newU = u as! SingleUnit
+                                if (newU.modelInstance != nil) {
+                                    Renderer.removeInstance(inst: newU.modelInstance!)
+                                    newU.modelInstance = nil
+                                }
+                                unit.unitGroup.peopleArray.add(newU)
                             }
-                            unit.unitGroup.peopleArray.add(newU)
+                        } else if (unit.owner!.id != otherUnit.owner!.id) {
+                            print("BATTLE START")
+                            startBattle(unit, otherUnit)
                         }
-                        unit.updateModels()
-                        let index = unitGroups.index{$0 === otherUnit}
-                        if (index != nil) {
-                            unitGroups.remove(at: index!)
-                        }
-
-                    }
-                    else if (unit.owner!.id != otherUnit.owner!.id) {
-                        print("BATTLE START")
-                        startBattle(unit, otherUnit)
                     }
                 }
             }
+            
             if (oldPos != nil && unitsAtLocation(oldPos!).count == 0) {
                 EventDispatcher.publish("ResetTileType", ("pos", oldPos!))
             }
