@@ -215,7 +215,9 @@ public class UnitGroupComponent : Component {
                 Renderer.addInstance(inst: modelInst)
             }
             else if (unit.dead) {
-                Renderer.removeInstance(inst: unit.modelInstance!)
+                if (unit.modelInstance != nil) {
+                    Renderer.removeInstance(inst: unit.modelInstance!)
+                }
             }
         }
     }
