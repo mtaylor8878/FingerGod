@@ -3,7 +3,10 @@
 precision highp float;
 in vec4 v_color;
 in vec3 v_normal;
+in vec2 v_texcoord;
 out vec4 o_fragColor;
+
+uniform sampler2D texSampler;
 
 uniform mat3 normalMatrix;
 uniform bool passThrough;
@@ -18,7 +21,7 @@ void main()
         
         float nDotVP = max(0.0, dot(eyeNormal, normalize(lightPosition)));
         
-        o_fragColor = diffuseColor * (nDotVP * vec4(0.65, 0.65, 0.65, 1.0) + vec4(0.35, 0.35, 0.35, 0.0));
+        o_fragColor = diffuseColor * (nDotVP * vec4(0.65, 0.65, 0.65, 1.0) * texture(texSampler, v_texcoord) + vec4(0.35, 0.35, 0.35, 0.0));
     } else {
         o_fragColor = v_color;
     }
