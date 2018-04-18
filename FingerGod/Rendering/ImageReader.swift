@@ -10,7 +10,8 @@ import Foundation
 import GLKit
 
 public class ImageReader {
-    public static func Read(string : String) -> Image {
-        let img = 
+    public static func read(name : String) -> Image {
+        let img = UIImage(named: name)?.cgImage
+        return Image(name, img!)
     }
 }

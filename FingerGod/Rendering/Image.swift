@@ -12,7 +12,7 @@ import GLKit
 public class Image {
     public var img : CGImage
     public var name : String
-    public init(name : String, img : CGImage) {
+    public init(_ name : String, _ img : CGImage) {
         self.img = img
         self.name = name
     }

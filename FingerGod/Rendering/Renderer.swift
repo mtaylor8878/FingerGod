@@ -45,6 +45,7 @@ public class Renderer {
         var normal: GLint!
         var pass: GLint!
         var shade: GLint!
+        var texture: GLint!
     }
     private static var uniforms = UniformContainer()
     private static var view : GLKView!
@@ -52,6 +53,7 @@ public class Renderer {
     public static var camera = Camera()
     
     private static var modelInstances = [ModelInstance]()
+    private static var textureIds = [String : Int]()
     
     public static func setup(view: GLKView) {
         let context = EAGLContext.init(api: EAGLRenderingAPI.openGLES3)
@@ -66,6 +68,8 @@ public class Renderer {
         
         setupShaders()
         setupUniforms()
+        
+        addTexture(ImageReader.read(name: "checker.png"))
         
         glClearColor(0.3, 0.65, 1.0, 1.0)
         glEnable(GLenum(GL_DEPTH_TEST))
@@ -97,6 +101,7 @@ public class Renderer {
         uniforms.normal = glGetUniformLocation(program, "normalMatrix")
         uniforms.pass = glGetUniformLocation(program, "passThrough")
         uniforms.shade = glGetUniformLocation(program, "shadeInFrag")
+        uniforms.texture = glGetUniformLocation(program, "texSampler")
     }
     
     private static func loadShader(filename: String, type: Int32) -> GLuint {
@@ -153,6 +158,7 @@ public class Renderer {
             
             let vertices = inst.model.vertices
             let normals = inst.model.normals
+            let texCoords = inst.model.texels
             let indices = inst.model.faces
             
             glUniformMatrix4fv(uniforms.mvp, 1, 0, &mvpMatrix.m.0)
@@ -160,6 +166,14 @@ public class Renderer {
             
             glUniform1i(uniforms.pass, GL_FALSE)
             glUniform1i(uniforms.shade, GL_TRUE)
+            
+            var texId = 0
+            if (inst.model.texture != nil) {
+                texId = textureIds[inst.model.texture!.name]!
+            }
+            
+            glUniform1i(uniforms.texture, GLint(texId))
+            
             glVertexAttribPointer(0, 3, GLenum(GL_FLOAT), GLboolean(GL_FALSE), GLsizei(3 * MemoryLayout<GLfloat>.size), vertices)
             glEnableVertexAttribArray(0)
             
@@ -168,12 +182,18 @@ public class Renderer {
             glVertexAttribPointer(2, 3, GLenum(GL_FLOAT), GLboolean(GL_FALSE), GLsizei(3 * MemoryLayout<GLfloat>.size), normals)
             glEnableVertexAttribArray(2)
             
+            glVertexAttribPointer(3, 2, GLenum(GL_FLOAT), GLboolean(GL_FALSE), GLsizei(3 * MemoryLayout<GLfloat>.size), texCoords)
+            glEnableVertexAttribArray(3)
+            
             glDrawElements(GLenum(GL_TRIANGLES), GLsizei(indices.count), GLenum(GL_UNSIGNED_INT), indices)
         }
     }
     
     public static func addInstance(inst: ModelInstance) {
         modelInstances.append(inst)
+        if (inst.model.texture != nil) {
+            addTexture(inst.model.texture!)
+        }
         setupLists()
     }
     
@@ -183,6 +203,32 @@ public class Renderer {
             modelInstances.remove(at: ind!)
             setupLists()
         }
+    }
+    
+    private static func addTexture(_ texture: Image) {
+        let w = texture.img.width
+        let h = texture.img.height
+        
+        let spriteData = calloc(w * h * 4, MemoryLayout<GLubyte>.size)
+        let spriteContext = CGContext(data: spriteData, width: w, height: h, bitsPerComponent: 8, bytesPerRow: w * 4, space: texture.img.colorSpace!, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)
+        
+        spriteContext!.draw(texture.img, in: CGRect(x: 0, y: 0, width: w, height: h))
+
+        var texName : GLuint = 0
+        glGenTextures(1, &texName)
+        
+        let val = textureIds.count
+        
+        glActiveTexture(GLenum(Int(GL_TEXTURE0) + val))
+        glBindTexture(GLenum(GL_TEXTURE_2D), texName)
+        
+        glTexParameteri(GLenum(GL_TEXTURE_2D), GLenum(GL_TEXTURE_MIN_FILTER), GL_NEAREST)
+        glTexImage2D(GLenum(GL_TEXTURE_2D), 0, GL_RGBA, GLsizei(w), GLsizei(h), 0, GLenum(GL_RGBA), GLenum(GL_UNSIGNED_BYTE), spriteData)
+        free(spriteData)
+        
+        print("Texture " + String(texture.name) + " loaded into slot " + String(val))
+        
+        textureIds[texture.name] = val
     }
     
     // Sets up all of the necessary lists for rendering
