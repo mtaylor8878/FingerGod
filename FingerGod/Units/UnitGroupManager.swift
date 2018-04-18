@@ -125,6 +125,9 @@ public class UnitGroupManager : NSObject, Subscriber {
                 EventDispatcher.publish("RemoveUnit", ("unit", groupB))
                 groupA.offset(0.65, 0, 0)
                 groupA.haltCounter -= 1
+                groupA.unitGroup.deactivatedDemigods = [Demigod]()
+                groupB.unitGroup.deactivatedDemigods = [Demigod]()
+                groupA.owner!._gold += 10
                 break
             case "bwin":
                 for d in groupB.unitGroup.deactivatedDemigods {
@@ -157,6 +160,9 @@ public class UnitGroupManager : NSObject, Subscriber {
                 EventDispatcher.publish("RemoveUnit", ("unit", groupA))
                 groupB.offset(-0.65, 0, 0)
                 groupB.haltCounter -= 1
+                groupA.unitGroup.deactivatedDemigods = [Demigod]()
+                groupB.unitGroup.deactivatedDemigods = [Demigod]()
+                groupB.owner!._gold += 10
                 break
             default:
                 break

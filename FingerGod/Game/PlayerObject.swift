@@ -23,17 +23,23 @@ public class PlayerObject : GameObject, Subscriber{
     
     private static var NumPlayers: Int = 0
     
-    public let STARTING_GOLD = 100
+    public let STARTING_GOLD = 0
     
     public var _followers : Int
     public var _gold : Int
     public var income : Int
     public var incomeTick : Float
     public var _mana : Float
+    public var maxMana : Float {
+        get {
+            return Float(_followers) * 2.0
+        }
+    }
     public var _city : City?
     public var _curPower : Power?
     public let color : [GLfloat]
     public var powers : [Power]
+    public var _manaRegen: Float
     
     private var tickCount : Float
     private var _unitList : [UnitGroupComponent]
@@ -41,7 +47,8 @@ public class PlayerObject : GameObject, Subscriber{
     public init(_ startSpace: Point2D) {
         _followers = 100
         _gold = STARTING_GOLD
-        _mana = 500
+        _mana = 200
+        _manaRegen = 2.0
         
         self.color = PlayerObject.PLAYER_COLOURS[PlayerObject.NumPlayers]
         PlayerObject.NumPlayers += 1
@@ -76,6 +83,7 @@ public class PlayerObject : GameObject, Subscriber{
     }
     
     public func addPowerByName(_ name: String) -> Power? {
+        print("Adding " + name)
         switch(name) {
         case "fire":
             let fire = FirePower(player: self)
@@ -102,6 +110,7 @@ public class PlayerObject : GameObject, Subscriber{
         let ind = powers.index{$0 === power};
         if (ind != nil) {
             game!.removeGameObject(gameObject: power)
+            power._btn?.removeFromSuperview()
             powers.remove(at: ind!)
         }
     }
@@ -139,8 +148,12 @@ public class PlayerObject : GameObject, Subscriber{
         
         tickCount += delta
         if(tickCount >= incomeTick) {
-            _gold += income
-            tickCount -= incomeTick
+            _mana += 0.05 * maxMana
+            _followers += 1
+            tickCount = 0
+            if(_mana > maxMana) {
+                _mana = maxMana
+            }
         }
     }
 }

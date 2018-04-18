@@ -76,7 +76,7 @@ public class City: Structure {
         }
     }
     
-    private func dispatchUnitGroup(size: Int) {
+    public func dispatchUnitGroup(size: Int) {
         let units = min(size, owner._followers)
         if (units > 0) {
             let shuffled = shuffleVacantTiles(tile!.getNeighbours())

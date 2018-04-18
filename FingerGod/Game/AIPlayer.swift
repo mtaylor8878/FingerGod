@@ -11,7 +11,12 @@ import Foundation
 public class AIPlayer : PlayerObject {
     private let map: MapComponent
     private let MOVE_CD: Float = 5.0
+    private let DEPLOY_CD: Float = 30.0
+    
+    private var deployUnit: Int = 10
+    private var deployCount: Float = 0.0
     private var units = [(UnitGroupComponent, Float)]()
+    
     
     public init(_ startSpace: Point2D, map: MapComponent) {
         self.map = map
@@ -21,6 +26,14 @@ public class AIPlayer : PlayerObject {
     
     public override func update(delta: Float) {
         super.update(delta: delta)
+        
+        deployCount += delta
+        if(deployCount >= DEPLOY_CD) {
+            _city!.dispatchUnitGroup(size: deployUnit)
+            _followers += deployUnit
+            deployUnit += 5
+            deployCount = 0
+        }
         
         for i in 0..<units.count {
             if(units[i].0.movePath.count == 0) {
