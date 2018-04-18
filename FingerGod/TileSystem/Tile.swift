@@ -89,7 +89,8 @@ public class Tile {
         var hex : Model?
         
         do {
-            hex = try ModelReader.read(objPath: "HexTileWithTex")
+            hex = try ModelReader.read(objPath: "HexTileWithTex2")
+            hex!.texture = ImageReader.read(name: "HexTile.png")
         } catch {
             print("There was a problem initializing this tile model: \(error)")
         }
@@ -97,12 +98,13 @@ public class Tile {
         let x = 3.0 / 2.0 * Float(q) // x value
         let z = Float(3).squareRoot() * (Float(r) + Float(q) / 2) // z value
         
-        defaultColor = [0.075, Float(0.85 + (q % 2 == 0 ? 0 : 0.15)), 0.25 + Float(r % 2 == 0 ? 0 : 0.15), 1.0]
+        //defaultColor = [0.075, Float(0.85 + (q % 2 == 0 ? 0 : 0.15)), 0.25 + Float(r % 2 == 0 ? 0 : 0.15), 1.0]
+        defaultColor = [1.0, 1.0, 1.0, 1.0]
         
         model = ModelInstance(model: hex!)
         model.color = defaultColor
         model.transform = GLKMatrix4Translate(model.transform, x, 0, z)
-        model.transform = GLKMatrix4RotateX(model.transform, -Float.pi/2)
+        model.transform = GLKMatrix4RotateX(model.transform, Float.pi/2)
         
         Renderer.addInstance(inst: model)
     }
