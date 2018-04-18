@@ -42,7 +42,7 @@ public class City: Structure {
         let units = unitGroup.unitGroup.peopleArray.count
 
         owner.removeUnit(unit: unitGroup)
-        EventDispatcher.publish("SetTileType", ("pos",Point2D(unitGroup.position[0], unitGroup.position[1])), ("type", Tile.types.vacant))
+        EventDispatcher.publish("SetTileType", ("pos",Point2D(unitGroup.position)), ("type", Tile.types.vacant), ("perma", false))
         unitGroup.delete()
         owner._followers += units
     }

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import GLKit
+import AVFoundation
 
 let ScreenWidth = UIScreen.main.bounds.size.width
 let ScreenHeigh = UIScreen.main.bounds.size.height
@@ -19,39 +20,48 @@ class ViewController: GLKViewController, Subscriber {
     private var prevPanPoint = CGPoint(x: 0, y: 0)
     private var prevScale : Float = 1
     private var unitCount : Int!
+    private var powerMenuHide : Bool!
 
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var PowerLabel: UILabel!
     @IBOutlet weak var FollowerLabel: UILabel!
     @IBOutlet weak var GoldLabel: UILabel!
     @IBOutlet weak var ManaLabel: UILabel!
-    
     var Exit: RoundButton!
     var Split: UIButton!
     var units: [RoundButton] = [RoundButton]()
+    var powers: [RoundButton] = [RoundButton]()
+    var audioPlayer: AVAudioPlayer!
     
     @IBAction func onButtonClick(_ sender: RoundButton) {
-        // Power Button
-        
-        /*let powers = ["Off", "fire", "water", "lightning", "earth"];
-        var powerSelected = [String : Any]();
-        powerSelected["power"] = powers[count];
-        EventDispatcher.publish("PowerOn", powerSelected);
-        
-        count += 1;
-        if (count == 4) {
-            count = 0;
-        }
-        label.text = powers[count];*/
+        game.input!.togglePowerMenu()
     }
- 
+    
+    @IBAction func muteMusic(_ sender: UIButton) {
+        if(audioPlayer.isPlaying){
+            audioPlayer.pause()
+        }else{
+            audioPlayer.play()
+        }
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loadisg the view, typically from a nib.
         Renderer.setup(view: self.view as! GLKView)
-        label.text = "Off"
+        PowerLabel.text = "Off"
         game = FingerGodGame()
         self.unitMenu()
         EventDispatcher.subscribe("AllyClick", self)
+        EventDispatcher.subscribe("AddPowerButton", self)
+        let url = Bundle.main.url(forResource: "Epic Music Soundtracks (Battle Music)", withExtension: "mp3")
+        do{
+            audioPlayer = try AVAudioPlayer(contentsOf: url!)
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+        }catch let error as NSError{
+            print(error.debugDescription)
+        }
     }
     
     @IBAction func onTap(_ recognizer: UITapGestureRecognizer) {
@@ -96,12 +106,17 @@ class ViewController: GLKViewController, Subscriber {
         FollowerLabel.text = String(game.input!.player._followers)
         GoldLabel.text = String(game.input!.player._gold)
         ManaLabel.text = String(game.input!.player._mana)
+        if (game.input!.player._curPower != nil) {
+            PowerLabel.text = String(game.input!.player._curPower!.Label)
+        } else {
+            PowerLabel.text = "Off"
+        }
     }
-
+    
     func unitMenu() {
         Exit = RoundButton.init()
-        Exit.frame = CGRect.init(x: ScreenWidth - 110, y: 345, width: 15, height: 15)
-        Exit.cornerRadius = 7.5
+        Exit.frame = CGRect.init(x: ScreenWidth - 110, y: 345, width: 20, height: 20)
+        Exit.cornerRadius = 10
         Exit.borderWidth = 1
         Exit.borderColor = UIColor.red
         Exit.setTitle("X", for: .normal)
@@ -123,6 +138,7 @@ class ViewController: GLKViewController, Subscriber {
     
     @objc func splitMenu() {
         Split.isHidden = true
+        
         for i in 1...unitCount {
             var btn = RoundButton.init()
             let pos = (i * 30) + 150
@@ -141,7 +157,7 @@ class ViewController: GLKViewController, Subscriber {
         Split.isHidden = true
         
         for unit in units {
-            unit.isHidden = true
+            unit.removeFromSuperview()
         }
         
         while (units.count > 0) {
@@ -162,6 +178,18 @@ class ViewController: GLKViewController, Subscriber {
             Split.isHidden = false;
             Exit.isHidden = false;
             unitCount = (params["unitCount"]! as! Int)
+            
+        case "AddPowerButton":
+            let btn = (params["button"]! as! RoundButton)
+            let pos = (params["pos"]! as! Int)
+            btn.frame = CGRect.init(x: Int(ScreenWidth - 352), y: 600 - pos, width: 30, height: 30)
+            self.view.addSubview(btn)
+            let verticalConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:|[btn]|", options: [], metrics: nil, views: ["btn": btn])
+            
+            let horizontalConstraint = NSLayoutConstraint.constraints(withVisualFormat: "H:|[btn]|", options: [], metrics: nil, views: ["btn": btn])
+            self.view.addConstraints(verticalConstraint)
+            self.view.addConstraints(horizontalConstraint)
+            
         default:
             break
         }

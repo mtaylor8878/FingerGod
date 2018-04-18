@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4OF-Sy-sDz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4OF-Sy-sDz">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -46,9 +46,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3kf-Lc-Kii" userLabel="onBtnClick" customClass="RoundButton" customModule="FingerGod" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3kf-Lc-Kii" userLabel="onBtnClick" customClass="RoundButton" customModule="FingerGod" customModuleProvider="target">
                                 <rect key="frame" x="32" y="583" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="jni-iV-zQf"/>
+                                    <constraint firstAttribute="width" constant="50" id="oUD-kS-ueL"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" cocoaTouchSystemColor="darkTextColor"/>
@@ -92,8 +95,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jFC-7R-NDb">
+                                <rect key="frame" x="287" y="593" width="70" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sound Off"/>
+                                <connections>
+                                    <action selector="muteMusic:" destination="9An-x6-OXA" eventType="touchUpInside" id="LLj-q1-mCl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="3kf-Lc-Kii" firstAttribute="centerX" secondItem="1a0-17-BEc" secondAttribute="centerX" constant="-130" id="5eB-FL-eV3"/>
+                            <constraint firstItem="3kf-Lc-Kii" firstAttribute="centerY" secondItem="1a0-17-BEc" secondAttribute="centerY" constant="275" id="iaR-9Z-sWY"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="OoA-aJ-EoG"/>
                         <connections>
                             <outlet property="delegate" destination="9An-x6-OXA" id="XlO-rs-MoQ"/>
@@ -106,7 +121,7 @@
                         <outlet property="FollowerLabel" destination="IkN-5O-KwN" id="8uD-Mh-e84"/>
                         <outlet property="GoldLabel" destination="Xna-6u-qcT" id="WRD-eK-Hau"/>
                         <outlet property="ManaLabel" destination="20l-ry-K1W" id="vMl-Nd-YYh"/>
-                        <outlet property="label" destination="IW8-Y5-2Gw" id="MVa-nI-hyM"/>
+                        <outlet property="PowerLabel" destination="IW8-Y5-2Gw" id="AXw-BH-z6q"/>
                     </connections>
                 </glkViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yij-me-Qqk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -131,7 +146,7 @@
         <!--GLKit View Controller-->
         <scene sceneID="DA9-Bn-HH1">
             <objects>
-                <glkViewController preferredFramesPerSecond="30" id="4OF-Sy-sDz" sceneMemberID="viewController">
+                <glkViewController preferredFramesPerSecond="30" id="4OF-Sy-sDz" customClass="TitleController" customModule="FingerGod" customModuleProvider="target" sceneMemberID="viewController">
                     <glkView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" id="COL-Vw-tUA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -144,6 +159,7 @@
                                 </state>
                                 <connections>
                                     <action selector="startGame:" destination="dEt-u6-gAo" eventType="touchUpInside" id="AiI-Ve-RKM"/>
+                                    <action selector="stopLoadingMusic:" destination="4OF-Sy-sDz" eventType="touchUpInside" id="VNc-mX-pjQ"/>
                                     <segue destination="9An-x6-OXA" kind="show" id="0rx-ip-6Ud"/>
                                 </connections>
                             </button>

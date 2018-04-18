@@ -16,13 +16,15 @@ public class InputManager : Subscriber {
     private var unitGroupManager : UnitGroupManager
     
     private var selected: Point2D?
-    private var currPower: Int
+    private var powerMenuEnabled : Bool
+    private var powerMenu : [RoundButton]
     
     public init(player: PlayerObject, map: MapComponent, unitGroupManager: UnitGroupManager) {
         self.player = player
         self.map = map
         self.unitGroupManager = unitGroupManager
-        currPower = 0
+        powerMenuEnabled = false
+        powerMenu = [RoundButton]()
     }
     
     public func tapScreen(coord: CGPoint) {
@@ -32,8 +34,22 @@ public class InputManager : Subscriber {
         let point = GLKVector3Add(location, GLKVector3MultiplyScalar(ray, t))
         let tile = map.getClosest(point)
         selectTile(tile.x, tile.y)
-        if (currPower > 0) {
-            player._mana -= 10.0
+    }
+    
+    public func togglePowerMenu() {
+        powerMenuEnabled = !powerMenuEnabled
+        
+        if (powerMenuEnabled) {
+            var pos : Int
+            pos = 0
+            for power in player.powers {
+                pos += 50
+                EventDispatcher.publish("AddPowerButton", ("button", power._btn!), ("pos", pos))
+            }
+        } else {
+            for power in player.powers {
+                power._btn?.removeFromSuperview()
+            }
         }
     }
     
@@ -92,6 +108,33 @@ public class InputManager : Subscriber {
         output += "\n"
         print(output)
         
+        if (player._curPower != nil) {
+            noSelect = true
+                var power : Power?
+                switch (player._curPower!.Label) {
+                case "Fire":
+                    power = FirePower(player: player)
+                    break
+                    
+                case "Water":
+                    power = WaterPower(player: player)
+                    break
+                    
+                case "Earth":
+                    power = EarthPower(player: player)
+                    break
+                    
+                default:
+                    break
+                }
+            
+            if (player._mana >= power!._cost){
+                player.game!.addGameObject(gameObject: power!)
+                power?.activate(tile: selectedTile)
+                player._curPower = nil
+            }
+        }
+        
         switch(selectedTile.type) {
         case Tile.types.structure:
             selectedTile.getStructure()!.interact(selected: prevObject)
@@ -115,7 +158,7 @@ public class InputManager : Subscriber {
                     // TODO: display unit stuff
                     let peopleNum = nextObject?.unitGroup.peopleArray.count
                     print("Units in tile "  + String(describing: peopleNum))
-                    EventDispatcher.publish("AllyClick", ("unitCount", peopleNum ?? 0))
+                    EventDispatcher.publish("AllyClick", ("unitCount", peopleNum ?? 0),  ("tile", selectedTile))
                     noSelect = true
                 } else {
                     print("Enemy Selected")

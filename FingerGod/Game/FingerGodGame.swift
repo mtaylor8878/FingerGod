@@ -19,6 +19,7 @@ public class FingerGodGame : Game {
         
         let player = PlayerObject(Point2D(0,0))
         self.addGameObject(gameObject: player)
+        player.setupPowers()
         
         unitGroupManager = UnitGroupManager(self, map.getComponent(type: MapComponent.self)!)
         input = InputManager(player: player, map: map.getComponent(type: MapComponent.self)!, unitGroupManager: unitGroupManager!)

@@ -31,8 +31,9 @@ public class PlayerObject : GameObject, Subscriber{
     public var incomeTick : Float
     public var _mana : Float
     public var _city : City?
-    public var _selectedPower : String
-    public let color : [Float]
+    public var _curPower : Power?
+    public let color : [GLfloat]
+    public var powers : [Power]
     
     private var tickCount : Float
     private var _unitList : [UnitGroupComponent]
@@ -48,14 +49,26 @@ public class PlayerObject : GameObject, Subscriber{
         tickCount = 0
         income = 1
         incomeTick = 2.0
-        _selectedPower = "Off"
         
         _unitList = []
+        powers = [Power]()
         super.init()
         
         EventDispatcher.subscribe("RemoveUnit", self)
         
         _city = City(startSpace, self)
+    }
+    
+    public func setupPowers() {
+        let fire = FirePower(player: self)
+        game!.addGameObject(gameObject: fire)
+        powers.append(fire)
+        let water = WaterPower(player: self)
+        game!.addGameObject(gameObject: water)
+        powers.append(water)
+        let earth = EarthPower(player: self)
+        game!.addGameObject(gameObject: earth)
+        powers.append(earth)
     }
     
     public func addUnit(unit: UnitGroupComponent) {

@@ -8,54 +8,39 @@
 
 import Foundation
 
-public class Power : GameObject, Subscriber {
+public class Power : GameObject{
     
-    public var _name : String
-    public var _cost : Int
+    public var _player : PlayerObject
+    public var _time : Float
     public var _tick : Float
+    public var _count : Int
+    public var _duration : Int
+    public var _damage : Float
+    public var _cost : Float
+    public var _active : Bool
+    public var unitGroupManager : UnitGroupManager?
+    public var _btn : RoundButton?
+    public var Label: String
     
-    public init(_ newId:Int) {
-        _name = "Off"
-        _cost = 0
-        _tick = 2.0
+    public init(player: PlayerObject) {
+        _player = player
+        _time = 0.0
+        _tick = 1.0
+        _count = 0
+        _active = false
+        _duration = 0
+        _damage = 0
+        _cost = 0.0
+        Label = "Off"
+        super.init()
     }
     
-    public override func create() {
-        EventDispatcher.subscribe("PowerOn", self)
+    public func activate(tile : Tile) {
+        
     }
     
     public override func update(delta: Float) {
         
     }
     
-    func notify(_ eventName: String, _ params: [String : Any]) {
-        switch (eventName) {
-        case "PowerOn":
-            let str: String! = params["power"] as! String
-            if (str == "fire") {
-                _name = "fire";
-            }
-            
-            if (str == "water") {
-                print("Water Power");
-                _name = "water";
-            }
-            
-            if (str == "earth") {
-                print("Earth Power");
-                _name = "earth";
-            }
-            
-            if (str == "Off") {
-                print("Power Off");
-                _name = "Off";
-            }
-            var outputString = "\nPower: " + str
-            NSLog(outputString)
-            break
-            
-        default:
-            break
-        }
-    }
 }
