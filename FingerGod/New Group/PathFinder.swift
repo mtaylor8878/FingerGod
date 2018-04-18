@@ -34,7 +34,7 @@ public class PathFinder {
             let neighbours = getNeighbours(t: curr, map: map)
             
             for next in neighbours {
-                if next.type != Tile.types.boundary {
+                if canNavigate(next.type) {
                     let newCost = cost[curr.getAxial()]! + getCost(next)
                     let nextCost = cost[next.getAxial()]
                     
@@ -51,26 +51,33 @@ public class PathFinder {
         
         // Backtracking to figure out path
         
-        var step = Point2D(end.x, end.y)
+        var step = end
         // As long as we can keep going back
         while from[step] != nil {
             // Move back and add the previous spot to the list
             step = from[step]!
-            path.append(Point2D(step.x, step.y))
+            path.append(step)
+        }
+        
+        // If the last point isn't the start, then obviously we couldn't get to the end
+        // So return an empty array
+        
+        if (path.last != start) {
+            return []
         }
         
         return path.reversed()
     }
     
     public static func getNeighbours(t: Tile, map: TileMap) -> [Tile] {
-        let pos = t.getAxial()
+        /*let pos = t.getAxial()
         var neighbours : [Tile] = []
         for offset in [Point2D(-1, 0), Point2D(-1, 1), Point2D(0, 1), Point2D(1, 0), Point2D(1, -1), Point2D(0, -1)] {
             if let t = map.getTile(Point2D(pos.x + offset.x, pos.y + offset.y)) {
                 neighbours.append(t)
             }
-        }
-        return neighbours
+        }*/
+        return t.getNeighbours()
     }
     
     public static func getCost(_ tile: Tile) -> Float {
@@ -82,5 +89,9 @@ public class PathFinder {
         let cb = tileB.worldCoordinate;
         let c = (x: ca.x - cb.x, y: ca.y - cb.y)
         return (c.x * c.x + c.y * c.y).squareRoot()
+    }
+    
+    private static func canNavigate(_ type : Tile.types) -> Bool {
+        return type != Tile.types.boundary && type != Tile.types.structure
     }
 }
