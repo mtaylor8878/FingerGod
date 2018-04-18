@@ -110,8 +110,27 @@ public class InputManager : Subscriber {
         
         if (player._curPower != nil) {
             noSelect = true
-            if (player._mana > 0) {
-                player._curPower?.activate(tile: selectedTile)
+                var power : Power?
+                switch (player._curPower!.Label) {
+                case "Fire":
+                    power = FirePower(player: player)
+                    break
+                    
+                case "Water":
+                    power = WaterPower(player: player)
+                    break
+                    
+                case "Earth":
+                    power = EarthPower(player: player)
+                    break
+                    
+                default:
+                    break
+                }
+            
+            if (player._mana >= power!._cost){
+                player.game!.addGameObject(gameObject: power!)
+                power?.activate(tile: selectedTile)
                 player._curPower = nil
             }
         }
@@ -139,7 +158,7 @@ public class InputManager : Subscriber {
                     // TODO: display unit stuff
                     let peopleNum = nextObject?.unitGroup.peopleArray.count
                     print("Units in tile "  + String(describing: peopleNum))
-                    EventDispatcher.publish("AllyClick", ("unitCount", peopleNum ?? 0))
+                    EventDispatcher.publish("AllyClick", ("unitCount", peopleNum ?? 0),  ("tile", selectedTile))
                     noSelect = true
                 } else {
                     print("Enemy Selected")

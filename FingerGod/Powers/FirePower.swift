@@ -18,8 +18,8 @@ public class FirePower : Power {
         
         Label = "Fire"
         
-        _duration = 5
-        _damage = 10.0
+        _duration = 20
+        _damage = 3.0
         _cost = 50
         
         _btn = RoundButton.init()
@@ -30,7 +30,7 @@ public class FirePower : Power {
     }
     
     @objc func fireTap() {
-        if (_player._mana > _cost) {
+        if (_player._mana >= _cost) {
             _player._curPower = self
         }
     }

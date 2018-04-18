@@ -94,11 +94,16 @@ public class UnitGroupManager : NSObject, Subscriber {
             let damage =  params["damage"] as! Float
             let owner = params["owner"] as! Int
             for c in (unitGroups) {
-                if c.position[0] == tile.getAxial().x && c.position[1] == tile.getAxial().y {
+                if Point2D(c.position) == tile.getAxial() {
                     if (c.owner != owner) {
                         for u in (c.unitGroup.peopleArray) {
                             let unit = u as! SingleUnit
                             unit.hurt(damage)
+                        }
+                        c.updateModels()
+                        let left = c.unitGroup.removeDeadUnits()
+                        if left == 0 {
+                            game.removeGameObject(gameObject: c.gameObject)
                         }
                     }
                 }
@@ -110,13 +115,11 @@ public class UnitGroupManager : NSObject, Subscriber {
             let heal =  params["heal"] as! Float
             let owner = params["owner"] as! Int
             for c in (unitGroups) {
-                for c in (unitGroups) {
-                    if c.position[0] == tile.getAxial().x && c.position[1] == tile.getAxial().y {
-                        if (c.owner != owner) {
-                            for u in (c.unitGroup.peopleArray) {
-                                let unit = u as! SingleUnit
-                                unit.heal(heal)
-                            }
+                if Point2D(c.position) == tile.getAxial() {
+                    if (c.owner != owner) {
+                        for u in (c.unitGroup.peopleArray) {
+                            let unit = u as! SingleUnit
+                            unit.heal(heal)
                         }
                     }
                 }

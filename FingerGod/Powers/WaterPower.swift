@@ -30,7 +30,7 @@ public class WaterPower : Power {
     }
     
     @objc func waterTap() {
-        if (_player._mana > _cost) {
+        if (_player._mana >= _cost) {
             _player._curPower = self
         }
     }

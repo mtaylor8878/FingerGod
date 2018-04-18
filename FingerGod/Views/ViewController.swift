@@ -138,6 +138,7 @@ class ViewController: GLKViewController, Subscriber {
     
     @objc func splitMenu() {
         Split.isHidden = true
+        
         for i in 1...unitCount {
             var btn = RoundButton.init()
             let pos = (i * 30) + 150

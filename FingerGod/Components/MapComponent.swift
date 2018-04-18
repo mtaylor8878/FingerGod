@@ -103,23 +103,6 @@ public class MapComponent : Component, Subscriber {
             break
         }
     }
-
-    /*public func powerTile(_ x: Int, _ y: Int, _ power: Int) {
-
-        switch (power) {
-        case 1:
-            tileMap.getTile(x,y)!.model.color = [1.0, 0.411, 0.706, 1.0]
-            break
-        case 2:
-            tileMap.getTile(x,y)!.model.color = [0.0, 0.0, 1.0, 1.0]
-            break
-        case 3:
-            tileMap.getTile(x,y)!.model.color = [0.2, 0.0, 0.5, 1.0]
-            break
-        default:
-            break
-        }
-    }*/
     
     public override func update(delta: Float) {
         super.update(delta: delta)
