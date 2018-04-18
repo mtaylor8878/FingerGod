@@ -51,7 +51,8 @@ public class City: Structure {
 
         owner.removeUnit(unit: unitGroup)
         EventDispatcher.publish("SetTileType", ("pos",Point2D(unitGroup.position)), ("type", Tile.types.vacant), ("perma", false))
-        unitGroup.delete()
+        EventDispatcher.publish("RemoveUnit", ("unit", unitGroup))
+        
         owner._followers += units - demigods.count
         
         if (demigods.count > 0) {

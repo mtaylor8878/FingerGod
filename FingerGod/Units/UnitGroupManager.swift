@@ -52,7 +52,7 @@ public class UnitGroupManager : NSObject, Subscriber {
                 if (unitsAtNewPos.count > 0) {
                     for otherUnit in unitsAtNewPos {
                         if (unit !== otherUnit && unit.owner!.id == otherUnit.owner!.id) {
-                            // TODO: Ally Merge code
+                            // Ally Merge code
                             for u in otherUnit.unitGroup.peopleArray{
                                 let newU = u as! SingleUnit
                                 if (newU.modelInstance != nil) {
@@ -61,6 +61,8 @@ public class UnitGroupManager : NSObject, Subscriber {
                                 }
                                 unit.unitGroup.peopleArray.add(newU)
                             }
+                            EventDispatcher.publish("RemoveUnit", ("unit", otherUnit))
+                            unit.updateModels()
                         } else if (unit.owner!.id != otherUnit.owner!.id) {
                             print("BATTLE START")
                             startBattle(unit, otherUnit)
@@ -91,32 +93,58 @@ public class UnitGroupManager : NSObject, Subscriber {
             var groupB = params["groupB"] as! UnitGroupComponent
             switch(result) {
             case "awin", "tie":
+                for d in groupA.unitGroup.deactivatedDemigods {
+                    groupA.unitGroup.peopleArray.add(d)
+                    if (d.hp <= 0) {
+                        d.hp = 1
+                    }
+                    d.dead = false
+                    if (d.modelInstance != nil) {
+                        Renderer.removeInstance(inst: d.modelInstance!)
+                        d.modelInstance = nil
+                    }
+                }
                 for d in groupB.unitGroup.deactivatedDemigods {
                     if (d.power != nil) {
                         groupB.owner?.removePower(d.power!)
                     }
                     groupA.unitGroup.peopleArray.add(d)
                     d.power = groupA.owner?.addPowerByName(d.powerName)
-                    d.hp = d.maxHP
+                    if (d.hp <= 0) {
+                        d.hp = 1
+                    }
                     d.dead = false
                     if (d.modelInstance != nil) {
                         Renderer.removeInstance(inst: d.modelInstance!)
                         d.modelInstance = nil
                     }
-                    groupA.updateModels()
                 }
+                groupA.updateModels()
                 EventDispatcher.publish("RemoveUnit", ("unit", groupB))
                 groupA.offset(0.65, 0, 0)
-                groupA.halted = false
+                groupA.haltCounter -= 1
                 break
             case "bwin":
+                for d in groupB.unitGroup.deactivatedDemigods {
+                    groupB.unitGroup.peopleArray.add(d)
+                    if (d.hp <= 0) {
+                        d.hp = 1
+                    }
+                    d.dead = false
+                    if (d.modelInstance != nil) {
+                        Renderer.removeInstance(inst: d.modelInstance!)
+                        d.modelInstance = nil
+                    }
+                }
                 for d in groupA.unitGroup.deactivatedDemigods {
                     if (d.power != nil) {
                         groupA.owner?.removePower(d.power!)
                     }
                     groupB.unitGroup.peopleArray.add(d)
                     d.power = groupB.owner?.addPowerByName(d.powerName)
-                    d.hp = d.maxHP
+                    if (d.hp <= 0) {
+                        d.hp = 1
+                    }
                     d.dead = false
                     if (d.modelInstance != nil) {
                         Renderer.removeInstance(inst: d.modelInstance!)
@@ -126,7 +154,7 @@ public class UnitGroupManager : NSObject, Subscriber {
                 }
                 EventDispatcher.publish("RemoveUnit", ("unit", groupA))
                 groupB.offset(-0.65, 0, 0)
-                groupB.halted = false
+                groupB.haltCounter -= 1
                 break
             default:
                 break
@@ -147,7 +175,7 @@ public class UnitGroupManager : NSObject, Subscriber {
                         c.updateModels()
                         let left = c.unitGroup.removeDeadUnits()
                         if left == 0 {
-                            game.removeGameObject(gameObject: c.gameObject)
+                            EventDispatcher.publish("RemoveUnit", ("unit", c))
                         }
                     }
                 }
@@ -198,17 +226,21 @@ public class UnitGroupManager : NSObject, Subscriber {
                 let max = min((index + 1) * 5, tile.unitGroup.peopleArray.count)
                 let minI = index * 5
                 
-                for _ in (index * 5)..<max {
-                    let unit = tile.unitGroup.peopleArray[minI] as! SingleUnit
-                    tile.unitGroup.peopleArray.removeObject(at: minI)
-                    if (unit.modelInstance != nil) {
-                        Renderer.removeInstance(inst: unit.modelInstance!)
-                        unit.modelInstance = nil
+                print("max: " + String(max) + ", count: " + String(tile.unitGroup.peopleArray.count))
+                
+                if (index * 5 < max) {
+                    for _ in (index * 5)..<max {
+                        let unit = tile.unitGroup.peopleArray[minI] as! SingleUnit
+                        tile.unitGroup.peopleArray.removeObject(at: minI)
+                        if (unit.modelInstance != nil) {
+                            Renderer.removeInstance(inst: unit.modelInstance!)
+                            unit.modelInstance = nil
+                        }
+                        unitGroupComponent?.unitGroup.peopleArray.add(unit)
                     }
-                    unitGroupComponent?.unitGroup.peopleArray.add(unit)
                 }
                 if(tile.unitGroup.peopleArray.count == 0) {
-                    tile.delete()
+                    EventDispatcher.publish("RemoveUnit", ("unit", tile))
                     let index = unitGroups.index{$0 === tile}
                     if (index != nil) {
                         unitGroups.remove(at: index!)
@@ -233,8 +265,8 @@ public class UnitGroupManager : NSObject, Subscriber {
         unitGroupA.setPosition(unitGroupA.position[0], unitGroupA.position[1], false)
         unitGroupB.setPosition(unitGroupB.position[0], unitGroupB.position[1], false)
         
-        unitGroupA.halted = true
-        unitGroupB.halted = true
+        unitGroupA.haltCounter += 1
+        unitGroupB.haltCounter += 1
         
         var battleObj = GameObject()
         

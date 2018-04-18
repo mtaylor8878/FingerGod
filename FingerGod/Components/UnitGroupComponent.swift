@@ -33,7 +33,7 @@ public class UnitGroupComponent : Component {
     public var target : PathFindingTarget?
     
     // Are we stopped by something?
-    public var halted = false
+    public var haltCounter = 0
     
     private var lastHealTime : Float = 0
     private var secsToHeal : Float = 1
@@ -57,7 +57,7 @@ public class UnitGroupComponent : Component {
             }
         }
         
-        if (stepProgress <= 0.0 && movePath.count > 0 && !halted) {
+        if (stepProgress <= 0.0 && movePath.count > 0 && haltCounter <= 0) {
             // Recalibrate movement
             if target != nil {
                 self.movePath = target!.getPathToTarget(from: Point2D(position))
@@ -72,7 +72,7 @@ public class UnitGroupComponent : Component {
                 endPosition[1] = movePath[0].y
             }
         }
-        if ((endPosition[0] != startPosition[0] || endPosition[1] != startPosition[1]) && !halted) {
+        if ((endPosition[0] != startPosition[0] || endPosition[1] != startPosition[1]) && haltCounter <= 0) {
             stepProgress += moveSpeed * delta
             if (stepProgress >= 0.5 && (position[0] != endPosition[0] || position[1] != endPosition[1])) {
                 position[0] = endPosition[0]
@@ -215,7 +215,9 @@ public class UnitGroupComponent : Component {
                 Renderer.addInstance(inst: modelInst)
             }
             else if (unit.dead) {
-                Renderer.removeInstance(inst: unit.modelInstance!)
+                if (unit.modelInstance != nil) {
+                    Renderer.removeInstance(inst: unit.modelInstance!)
+                }
             }
         }
     }
