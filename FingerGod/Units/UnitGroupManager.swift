@@ -38,29 +38,35 @@ public class UnitGroupManager : NSObject, Subscriber {
             let unit = params["unit"] as! UnitGroupComponent
             let newPos = params["newPos"] as! Point2D
             let oldPos = params["oldPos"] as? Point2D
-            let unitsAtNewPos = unitsAtLocation(newPos)
             
-            if (unitsAtNewPos.count > 0) {
-                for otherUnit in unitsAtNewPos {
-                    if (unit !== otherUnit && unit.owner!.id == otherUnit.owner!.id) {
-                        // TODO: Ally Merge code
-                        for u in otherUnit.unitGroup.peopleArray{
-                            let newU = u as! SingleUnit
-                            unit.unitGroup.peopleArray.add(newU)
+            if(map.getTile(pos: newPos)!.type == Tile.types.structure) {
+                
+            } else {
+                let unitsAtNewPos = unitsAtLocation(newPos)
+                
+                if (unitsAtNewPos.count > 0) {
+                    for otherUnit in unitsAtNewPos {
+                        if (unit !== otherUnit && unit.owner!.id == otherUnit.owner!.id) {
+                            // TODO: Ally Merge code
+                            for u in otherUnit.unitGroup.peopleArray{
+                                let newU = u as! SingleUnit
+                                unit.unitGroup.peopleArray.add(newU)
+                            }
+                            unit.updateModels()
+                            let index = unitGroups.index{$0 === otherUnit}
+                            if (index != nil) {
+                                unitGroups.remove(at: index!)
+                            }
+                            
                         }
-                        unit.updateModels()
-                        let index = unitGroups.index{$0 === otherUnit}
-                        if (index != nil) {
-                            unitGroups.remove(at: index!)
+                        else if (unit.owner!.id != otherUnit.owner!.id) {
+                            print("BATTLE START")
+                            startBattle(unit, otherUnit)
                         }
-
-                    }
-                    else if (unit.owner!.id != otherUnit.owner!.id) {
-                        print("BATTLE START")
-                        startBattle(unit, otherUnit)
                     }
                 }
             }
+            
             if (oldPos != nil && unitsAtLocation(oldPos!).count == 0) {
                 EventDispatcher.publish("ResetTileType", ("pos", oldPos!))
             }

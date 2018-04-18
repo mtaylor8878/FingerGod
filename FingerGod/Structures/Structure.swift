@@ -12,10 +12,12 @@ public class Structure {
     public var model : ModelInstance
     public let pos : Point2D
     public var tile : Tile?
+    public var hp : Int
     
     public init(_ pos: Point2D, _ mi: ModelInstance) {
         self.pos = pos
         self.model = mi
+        self.hp = 10
         EventDispatcher.publish("AddStructure", ("structure",self), ("coords",pos))
     }
     
