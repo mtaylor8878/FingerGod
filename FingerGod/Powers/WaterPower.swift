@@ -23,6 +23,7 @@ public class WaterPower : Power {
         _cost = 25.0
         
         _btn = RoundButton.init()
+        _btn?.setTitle("Water", for: .normal)
         _btn?.cornerRadius = 25
         _btn?.borderWidth = 1
         _btn?.borderColor = UIColor.blue
