@@ -19,4 +19,8 @@ class Demigod : SingleUnit {
         attack = 50
         character = Character.DEMIGOD
     }
+    
+    public override func getModelName() -> String {
+        return "teapot"
+    }
 }
