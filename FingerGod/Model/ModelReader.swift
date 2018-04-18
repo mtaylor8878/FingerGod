@@ -34,10 +34,36 @@ public class ModelReader {
             case "vn":
                 faceNormals += parseNormal(line: line)
             case "f ":
-                faces += parseFace(line: line)
+                let ind = line.components(separatedBy: " ")
+                let ind2 = ind[1].components(separatedBy: "/")
+                if (ind2.count == 3) {
+                    if ind2[1] == "" {
+                        faces += parseFace(line: line, hasNormals: true, hasTexels: false)
+                    }
+                    else {
+                        faces += parseFace(line: line, hasNormals: true, hasTexels: true)
+                    }
+                }
+                else if (ind2.count == 2) {
+                    faces += parseFace(line: line, hasNormals: false, hasTexels: true)
+                }
+                else {
+                    faces += parseFace(line: line, hasNormals: false, hasTexels: false)
+                }
             default:
                 break
             }
+        }
+        
+        if (faceNormals.count == 0) {
+            faceNormals.append(0.0)
+            faceNormals.append(0.0)
+            faceNormals.append(1.0)
+        }
+        
+        if (texels.count == 0) {
+            texels.append(0.0)
+            texels.append(0.0)
         }
         
         // Now that we have the data from the file, we need to convert it into a format OpenGL can use
@@ -45,11 +71,12 @@ public class ModelReader {
         
         var vertices = [GLfloat]()
         var normals = [GLfloat]()
+        var texCoords = [GLfloat]()
         var indices = [GLint]()
         
         var indexDictionary = [String:Int]()
         for f in faces {
-            let txt = String("\(f[0])/\(f[1])")
+            let txt = String("\(f[0])/\(f[1])/\(f[2])")
             if (indexDictionary[txt] == nil) {
                 // This vertex-normal pair has never been used before, so make the vertex and put it in the dictionary
                 let ind = vertices.count / 3
@@ -59,12 +86,14 @@ public class ModelReader {
                 normals.append(faceNormals[f[1] * 3])
                 normals.append(faceNormals[f[1] * 3 + 1])
                 normals.append(faceNormals[f[1] * 3 + 2])
+                texCoords.append(texels[f[2] * 2])
+                texCoords.append(texels[f[2] * 2 + 1])
                 indexDictionary[txt] = ind
             }
             indices.append(GLint(indexDictionary[txt]!))
         }
         
-        return Model(vertices: vertices, normals: normals, texels: texels, faces: indices)
+        return Model(vertices: vertices, normals: normals, texels: texCoords, faces: indices, texture: nil)
     }
     
     private static func parseVertex(line: String) -> [GLfloat] {
@@ -89,9 +118,7 @@ public class ModelReader {
         sc.scanFloat(&dec)
         vals.append(dec)
         sc.scanFloat(&dec)
-        vals.append(dec)
-        sc.scanFloat(&dec)
-        vals.append(dec)
+        vals.append(1 - dec)
         return vals;
     }
     
@@ -109,21 +136,31 @@ public class ModelReader {
         return vals;
     }
     
-    private static func parseFace(line: String) -> [[Int]] {
+    private static func parseFace(line: String, hasNormals : Bool, hasTexels : Bool) -> [[Int]] {
         let sc = Scanner(string: line)
         sc.charactersToBeSkipped = CharacterSet(charactersIn: "f/ ")
-        var vec = Int(0.0)
-        var nor = Int(0.0)
+        var vec : Int = 0
+        var nor : Int = 0
+        var tex : Int = 0
         var vals = [[Int]]()
-        sc.scanInt(&vec)
-        sc.scanInt(&nor)
-        vals.append([vec - 1, nor - 1])
-        sc.scanInt(&vec)
-        sc.scanInt(&nor)
-        vals.append([vec - 1, nor - 1])
-        sc.scanInt(&vec)
-        sc.scanInt(&nor)
-        vals.append([vec - 1, nor - 1])
+        
+        for _ in 0..<3 {
+            sc.scanInt(&vec)
+            if (hasTexels) {
+                sc.scanInt(&tex)
+            }
+            else {
+                tex = 1
+            }
+            if (hasNormals) {
+                sc.scanInt(&nor)
+            }
+            else {
+                nor = 1
+            }
+            vals.append([vec - 1, nor - 1, tex - 1])
+        }
+
         return vals
     }
 }

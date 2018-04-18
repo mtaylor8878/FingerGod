@@ -89,7 +89,7 @@ public class Tile {
         var hex : Model?
         
         do {
-            hex = try ModelReader.read(objPath: "HexTile")
+            hex = try ModelReader.read(objPath: "HexTileWithTex")
         } catch {
             print("There was a problem initializing this tile model: \(error)")
         }

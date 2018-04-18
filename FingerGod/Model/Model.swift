@@ -15,11 +15,13 @@ public class Model {
     public var normals: [GLfloat]
     public var texels: [GLfloat]
     public var faces: [GLint]
+    public var texture: Image?
     
-    public init(vertices: [GLfloat], normals: [GLfloat], texels: [GLfloat], faces: [GLint]) {
+    public init(vertices: [GLfloat], normals: [GLfloat], texels: [GLfloat], faces: [GLint], texture: Image?) {
         self.vertices = vertices
         self.normals = normals
         self.texels = texels
         self.faces = faces
+        self.texture = texture
     }
 }

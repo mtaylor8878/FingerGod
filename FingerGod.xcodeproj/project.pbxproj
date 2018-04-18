@@ -22,6 +22,10 @@
 		3D0DA0BE203E1C5D0050F708 /* HexTile.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3D0DA0BA203E1C5D0050F708 /* HexTile.obj */; };
 		3D0DA0BF203E1C5D0050F708 /* HexTile.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3D0DA0BA203E1C5D0050F708 /* HexTile.obj */; };
 		3D0DA0C0203E1C5D0050F708 /* HexTile.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3D0DA0BA203E1C5D0050F708 /* HexTile.obj */; };
+		3DD2698A2086AA1000F7C8B4 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD269892086AA1000F7C8B4 /* Image.swift */; };
+		3DD2698C2086AD3300F7C8B4 /* ImageReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2698B2086AD3300F7C8B4 /* ImageReader.swift */; };
+		3DD2698E2086C48200F7C8B4 /* checker.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD2698D2086C48100F7C8B4 /* checker.png */; };
+		3DD269902086CA0100F7C8B4 /* HexTileWithTex.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3DD2698F2086CA0100F7C8B4 /* HexTileWithTex.obj */; };
 		3DDB59432035F39C0000E0C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB59422035F39C0000E0C4 /* AppDelegate.swift */; };
 		3DDB59452035F39C0000E0C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB59442035F39C0000E0C4 /* ViewController.swift */; };
 		3DDB59482035F39C0000E0C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DDB59462035F39C0000E0C4 /* Main.storyboard */; };
@@ -120,6 +124,10 @@
 		3D0DA0B2203E1C560050F708 /* CubeModel.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CubeModel.obj; sourceTree = SOURCE_ROOT; };
 		3D0DA0B9203E1C5D0050F708 /* HexTile.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HexTile.mtl; sourceTree = SOURCE_ROOT; };
 		3D0DA0BA203E1C5D0050F708 /* HexTile.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HexTile.obj; sourceTree = SOURCE_ROOT; };
+		3DD269892086AA1000F7C8B4 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		3DD2698B2086AD3300F7C8B4 /* ImageReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageReader.swift; sourceTree = "<group>"; };
+		3DD2698D2086C48100F7C8B4 /* checker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checker.png; sourceTree = "<group>"; };
+		3DD2698F2086CA0100F7C8B4 /* HexTileWithTex.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HexTileWithTex.obj; sourceTree = "<group>"; };
 		3DDB593F2035F39C0000E0C4 /* FingerGod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FingerGod.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DDB59422035F39C0000E0C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3DDB59442035F39C0000E0C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +226,8 @@
 		3D0DA0B0203E1C3F0050F708 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				3DD2698F2086CA0100F7C8B4 /* HexTileWithTex.obj */,
+				3DD2698D2086C48100F7C8B4 /* checker.png */,
 				A66911E4206B9AC100C9506E /* Castle.mtl */,
 				A66911E3206B9AC100C9506E /* Castle.obj */,
 				999312952046367B00835BA3 /* Sphere.mtl */,
@@ -229,6 +239,16 @@
 				3D0DA0B2203E1C560050F708 /* CubeModel.obj */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		3DD269882086A92700F7C8B4 /* Rendering */ = {
+			isa = PBXGroup;
+			children = (
+				3D0DA07D203DF45A0050F708 /* Renderer.swift */,
+				3DD269892086AA1000F7C8B4 /* Image.swift */,
+				3DD2698B2086AD3300F7C8B4 /* ImageReader.swift */,
+			);
+			path = Rendering;
 			sourceTree = "<group>";
 		};
 		3DDB59362035F39C0000E0C4 = {
@@ -255,6 +275,7 @@
 		3DDB59412035F39C0000E0C4 /* FingerGod */ = {
 			isa = PBXGroup;
 			children = (
+				3DD269882086A92700F7C8B4 /* Rendering */,
 				F6CA347C20868A0700D3C492 /* Audio */,
 				3D0DA0B0203E1C3F0050F708 /* Assets */,
 				F2FE9E9A207EB4820010D463 /* Shaders */,
@@ -370,7 +391,6 @@
 				C9F4135F203ACFFC001C56E1 /* EventDispatcher.swift */,
 				992762DA2036B9DD00C73599 /* GameObject.swift */,
 				C98B13BE2064595700BCFABE /* PlayerObject.swift */,
-				3D0DA07D203DF45A0050F708 /* Renderer.swift */,
 				992762D62036B4BD00C73599 /* Game.swift */,
 				99ED16C92046909300827958 /* FingerGodGame.swift */,
 				C99FF4DD2081707B00270CC4 /* InputManager.swift */,
@@ -579,10 +599,12 @@
 				3D0DA0B3203E1C560050F708 /* CubeModel.mtl in Resources */,
 				F6CA347E20868A2300D3C492 /* Epic Music Soundtracks (Battle Music).mp3 in Resources */,
 				A66911E6206B9AC100C9506E /* Castle.mtl in Resources */,
+				3DD2698E2086C48200F7C8B4 /* checker.png in Resources */,
 				3D0DA0BB203E1C5D0050F708 /* HexTile.mtl in Resources */,
 				3D0DA0B6203E1C560050F708 /* CubeModel.obj in Resources */,
 				3DDB594D2035F39C0000E0C4 /* LaunchScreen.storyboard in Resources */,
 				9993129A2046418C00835BA3 /* teapot.obj in Resources */,
+				3DD269902086CA0100F7C8B4 /* HexTileWithTex.obj in Resources */,
 				3DDB594A2035F39C0000E0C4 /* Assets.xcassets in Resources */,
 				A66911E5206B9AC100C9506E /* Castle.obj in Resources */,
 				999312972046367C00835BA3 /* Sphere.mtl in Resources */,
@@ -638,6 +660,7 @@
 				992762DD2036BA0200C73599 /* Component.swift in Sources */,
 				99ED16CA2046909300827958 /* FingerGodGame.swift in Sources */,
 				990EFF3120427EA4002FEBED /* Model.swift in Sources */,
+				3DD2698A2086AA1000F7C8B4 /* Image.swift in Sources */,
 				990EFF3520427EB0002FEBED /* ModelReader.swift in Sources */,
 				99E1CF3D206B745A00C7A04B /* UnitGroupComponent.swift in Sources */,
 				992762D72036B4BD00C73599 /* Game.swift in Sources */,
@@ -649,6 +672,7 @@
 				F6DD7442206B235200868E57 /* SingleUnit.swift in Sources */,
 				C99FF4DE2081707B00270CC4 /* InputManager.swift in Sources */,
 				3DDB59432035F39C0000E0C4 /* AppDelegate.swift in Sources */,
+				3DD2698C2086AD3300F7C8B4 /* ImageReader.swift in Sources */,
 				991CC3FB2081961200CD8178 /* PriorityQueue.swift in Sources */,
 				A66911E2206B48F600C9506E /* HexDirection.swift in Sources */,
 				A64474212082C10A006FF8D3 /* AIController.swift in Sources */,
