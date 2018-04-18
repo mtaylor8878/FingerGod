@@ -46,6 +46,10 @@ public class UnitGroupManager : NSObject, Subscriber {
                         // TODO: Ally Merge code
                         for u in otherUnit.unitGroup.peopleArray{
                             let newU = u as! SingleUnit
+                            if (newU.modelInstance != nil) {
+                                Renderer.removeInstance(inst: newU.modelInstance!)
+                                newU.modelInstance = nil
+                            }
                             unit.unitGroup.peopleArray.add(newU)
                         }
                         unit.updateModels()
@@ -82,19 +86,43 @@ public class UnitGroupManager : NSObject, Subscriber {
             var groupA = params["groupA"] as! UnitGroupComponent
             var groupB = params["groupB"] as! UnitGroupComponent
             switch(result) {
-            case "awin":
+            case "awin", "tie":
+                for d in groupB.unitGroup.deactivatedDemigods {
+                    if (d.power != nil) {
+                        groupB.owner?.removePower(d.power!)
+                    }
+                    groupA.unitGroup.peopleArray.add(d)
+                    d.power = groupA.owner?.addPowerByName(d.powerName)
+                    d.hp = d.maxHP
+                    d.dead = false
+                    if (d.modelInstance != nil) {
+                        Renderer.removeInstance(inst: d.modelInstance!)
+                        d.modelInstance = nil
+                    }
+                    groupA.updateModels()
+                }
                 EventDispatcher.publish("RemoveUnit", ("unit", groupB))
                 groupA.offset(0.65, 0, 0)
                 groupA.halted = false
                 break
             case "bwin":
+                for d in groupA.unitGroup.deactivatedDemigods {
+                    if (d.power != nil) {
+                        groupA.owner?.removePower(d.power!)
+                    }
+                    groupB.unitGroup.peopleArray.add(d)
+                    d.power = groupB.owner?.addPowerByName(d.powerName)
+                    d.hp = d.maxHP
+                    d.dead = false
+                    if (d.modelInstance != nil) {
+                        Renderer.removeInstance(inst: d.modelInstance!)
+                        d.modelInstance = nil
+                    }
+                    groupB.updateModels()
+                }
                 EventDispatcher.publish("RemoveUnit", ("unit", groupA))
                 groupB.offset(-0.65, 0, 0)
                 groupB.halted = false
-                break
-            case "tie":
-                EventDispatcher.publish("RemoveUnit", ("unit", groupA))
-                EventDispatcher.publish("RemoveUnit", ("unit", groupB))
                 break
             default:
                 break
@@ -169,6 +197,10 @@ public class UnitGroupManager : NSObject, Subscriber {
                 for _ in (index * 5)..<max {
                     let unit = tile.unitGroup.peopleArray[minI] as! SingleUnit
                     tile.unitGroup.peopleArray.removeObject(at: minI)
+                    if (unit.modelInstance != nil) {
+                        Renderer.removeInstance(inst: unit.modelInstance!)
+                        unit.modelInstance = nil
+                    }
                     unitGroupComponent?.unitGroup.peopleArray.add(unit)
                 }
                 if(tile.unitGroup.peopleArray.count == 0) {

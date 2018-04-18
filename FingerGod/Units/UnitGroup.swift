@@ -10,6 +10,7 @@ import Foundation
 
 public class UnitGroup: NSObject {
     var peopleArray = NSMutableArray()
+    var deactivatedDemigods = [Demigod]()
     
     //Initialize unitGroup
     init(peopleNum: NSInteger) {
@@ -26,6 +27,10 @@ public class UnitGroup: NSObject {
         for u in peopleArray.reversed() {
             let singleUnit = u as! SingleUnit
             if singleUnit.dead {
+                if (singleUnit.character == Character.DEMIGOD) {
+                    let dg = singleUnit as! Demigod
+                    deactivatedDemigods.append(dg)
+                }
                 self.peopleArray.removeObject(identicalTo: singleUnit)
             }
         }
