@@ -33,7 +33,7 @@ public class City: Structure {
     public override func interact(selected: UnitGroupComponent?) {
         if(selected == nil) {
             dispatchUnitGroup(size: 10)
-        } else if(selected!.owner == owner.id!){
+        } else if(selected!.owner!.id == owner.id!){
             returnUnits(selected!)
         }
     }
@@ -62,6 +62,14 @@ public class City: Structure {
                 let unitGroupComponent = unitGroup.getComponent(type: UnitGroupComponent.self)!
                 unitGroupComponent.move(pos.x, pos.y)
                 unitGroupComponent.setOwner(owner)
+                
+                for _ in 0..<units {
+                    let singleUnit = SingleUnit.init()
+                    singleUnit.character = Character.PEOPLE
+                    unitGroupComponent.unitGroup.peopleArray.add(singleUnit)
+                }
+                
+                unitGroupComponent.updateModels()
                 
                 owner.addUnit(unit: unitGroupComponent)
                 owner._followers -= units

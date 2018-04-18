@@ -80,7 +80,7 @@ public class PlayerObject : GameObject, Subscriber{
     }
     
     public func removeUnit(unit: UnitGroupComponent) {
-        if (unit.owner == self.id!) {
+        if (unit.owner!.id == self.id!) {
             let ind = _unitList.index{$0 === unit};
             if (ind != nil) {
                 _unitList.remove(at: ind!)

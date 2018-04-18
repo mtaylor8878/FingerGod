@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public class UnitGroupManager : NSObject, Subscriber {
     public var unitGroups : [UnitGroupComponent] = []
@@ -24,6 +25,7 @@ public class UnitGroupManager : NSObject, Subscriber {
         EventDispatcher.subscribe("PowerTileGroup", self)
         EventDispatcher.subscribe("DamageUnit", self)
         EventDispatcher.subscribe("ChangeTile", self)
+        EventDispatcher.subscribe("SplitUnit", self)
     }
     
     func notify(_ eventName: String, _ params: [String : Any]) {
@@ -40,10 +42,20 @@ public class UnitGroupManager : NSObject, Subscriber {
             
             if (unitsAtNewPos.count > 0) {
                 for otherUnit in unitsAtNewPos {
-                    if (unit !== otherUnit && unit.owner == otherUnit.owner) {
+                    if (unit !== otherUnit && unit.owner!.id == otherUnit.owner!.id) {
                         // TODO: Ally Merge code
+                        for u in otherUnit.unitGroup.peopleArray{
+                            let newU = u as! SingleUnit
+                            unit.unitGroup.peopleArray.add(newU)
+                        }
+                        unit.updateModels()
+                        let index = unitGroups.index{$0 === otherUnit}
+                        if (index != nil) {
+                            unitGroups.remove(at: index!)
+                        }
+
                     }
-                    else if (unit.owner != otherUnit.owner) {
+                    else if (unit.owner!.id != otherUnit.owner!.id) {
                         print("BATTLE START")
                         startBattle(unit, otherUnit)
                     }
@@ -95,7 +107,7 @@ public class UnitGroupManager : NSObject, Subscriber {
             let owner = params["owner"] as! Int
             for c in (unitGroups) {
                 if Point2D(c.position) == tile.getAxial() {
-                    if (c.owner != owner) {
+                    if (c.owner!.id != owner) {
                         for u in (c.unitGroup.peopleArray) {
                             let unit = u as! SingleUnit
                             unit.hurt(damage)
@@ -116,7 +128,7 @@ public class UnitGroupManager : NSObject, Subscriber {
             let owner = params["owner"] as! Int
             for c in (unitGroups) {
                 if Point2D(c.position) == tile.getAxial() {
-                    if (c.owner != owner) {
+                    if (c.owner!.id != owner) {
                         for u in (c.unitGroup.peopleArray) {
                             let unit = u as! SingleUnit
                             unit.heal(heal)
@@ -126,6 +138,53 @@ public class UnitGroupManager : NSObject, Subscriber {
             }
             break
         
+        case "SplitUnit":
+            let tile = params["unitGroup"] as! UnitGroupComponent
+            let index = params["index"] as! Int
+            let btn = params["btn"] as! UIButton
+            var original = map.getTile(pos: Point2D(tile.position))!.getNeighbours()
+            var shuffled = [Tile]()
+            while(original.count > 0) {
+                let index = Int(arc4random_uniform(UInt32(original.count)))
+                if(original[index].type == Tile.types.vacant) {
+                    shuffled.append(original[index])
+                }
+                original.remove(at: index)
+            }
+            if(shuffled.count > 0) {
+                let place = shuffled[Int(arc4random_uniform(UInt32(shuffled.count)))]
+                let pos = place.getAxial()
+                
+                let unitGroup = GameObject()
+                unitGroup.addComponent(type: UnitGroupComponent.self)
+                game.addGameObject(gameObject: unitGroup)
+                
+                let unitGroupComponent = unitGroup.getComponent(type: UnitGroupComponent.self)
+                unitGroupComponent?.move(pos.x, pos.y)
+                unitGroupComponent?.setOwner(tile.owner!)
+                
+                let max = min((index + 1) * 5, tile.unitGroup.peopleArray.count)
+                let minI = index * 5
+                
+                for _ in (index * 5)..<max {
+                    let unit = tile.unitGroup.peopleArray[minI] as! SingleUnit
+                    tile.unitGroup.peopleArray.removeObject(at: minI)
+                    unitGroupComponent?.unitGroup.peopleArray.add(unit)
+                }
+                if(tile.unitGroup.peopleArray.count == 0) {
+                    tile.delete()
+                    let index = unitGroups.index{$0 === tile}
+                    if (index != nil) {
+                        unitGroups.remove(at: index!)
+                    }
+                }
+                unitGroups.append(unitGroupComponent!)
+                unitGroupComponent?.updateModels()
+                tile.updateModels()
+                btn.removeFromSuperview()
+            }
+            break
+            
         default:
             break
         }
