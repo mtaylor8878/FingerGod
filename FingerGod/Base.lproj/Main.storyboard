@@ -46,27 +46,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3kf-Lc-Kii" userLabel="onBtnClick" customClass="RoundButton" customModule="FingerGod" customModuleProvider="target">
-                                <rect key="frame" x="32" y="583" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="jni-iV-zQf"/>
-                                    <constraint firstAttribute="width" constant="50" id="oUD-kS-ueL"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" cocoaTouchSystemColor="darkTextColor"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="onButtonClick:" destination="9An-x6-OXA" eventType="touchUpInside" id="5wV-2q-OCL"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mana:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgz-sN-xVt">
                                 <rect key="frame" x="167" y="59" width="49" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -96,18 +75,39 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jFC-7R-NDb">
-                                <rect key="frame" x="287" y="593" width="70" height="30"/>
+                                <rect key="frame" x="257" y="591" width="70" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sound Off"/>
                                 <connections>
                                     <action selector="muteMusic:" destination="9An-x6-OXA" eventType="touchUpInside" id="LLj-q1-mCl"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3kf-Lc-Kii" userLabel="onBtnClick" customClass="RoundButton" customModule="FingerGod" customModuleProvider="target">
+                                <rect key="frame" x="50" y="567" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="CrP-0J-lcy"/>
+                                    <constraint firstAttribute="height" constant="50" id="caE-dF-SW8"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" cocoaTouchSystemColor="darkTextColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onButtonClick:" destination="9An-x6-OXA" eventType="touchUpInside" id="5wV-2q-OCL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="3kf-Lc-Kii" firstAttribute="centerX" secondItem="1a0-17-BEc" secondAttribute="centerX" constant="-130" id="5eB-FL-eV3"/>
-                            <constraint firstItem="3kf-Lc-Kii" firstAttribute="centerY" secondItem="1a0-17-BEc" secondAttribute="centerY" constant="275" id="iaR-9Z-sWY"/>
+                            <constraint firstItem="3kf-Lc-Kii" firstAttribute="leading" secondItem="OoA-aJ-EoG" secondAttribute="leading" constant="50" id="kPQ-cc-cIk"/>
+                            <constraint firstItem="OoA-aJ-EoG" firstAttribute="bottom" secondItem="3kf-Lc-Kii" secondAttribute="bottom" constant="50" id="ycD-Sm-8oW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OoA-aJ-EoG"/>
                         <connections>
@@ -151,6 +151,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Finger God" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ARp-z1-Xcy">
                                 <rect key="frame" x="51.5" y="69" width="273" height="71.5"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="52"/>
@@ -170,6 +171,7 @@
                                     <segue destination="9An-x6-OXA" kind="show" id="0rx-ip-6Ud"/>
                                 </connections>
                             </button>
+
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="O8a-KJ-uOf">
                                 <rect key="frame" x="100" y="405.5" width="175" height="225"/>
                                 <subviews>

@@ -23,6 +23,8 @@ public class FirePower : Power {
         _cost = 50
         
         _btn = RoundButton.init()
+        _btn?.setTitle("Fire", for: .normal)
+        _btn?.setTitleColor(UIColor.black, for: .normal)
         _btn?.cornerRadius = 25
         _btn?.borderWidth = 1
         _btn?.borderColor = UIColor.red
