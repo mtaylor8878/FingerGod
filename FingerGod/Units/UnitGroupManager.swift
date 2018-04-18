@@ -226,14 +226,18 @@ public class UnitGroupManager : NSObject, Subscriber {
                 let max = min((index + 1) * 5, tile.unitGroup.peopleArray.count)
                 let minI = index * 5
                 
-                for _ in (index * 5)..<max {
-                    let unit = tile.unitGroup.peopleArray[minI] as! SingleUnit
-                    tile.unitGroup.peopleArray.removeObject(at: minI)
-                    if (unit.modelInstance != nil) {
-                        Renderer.removeInstance(inst: unit.modelInstance!)
-                        unit.modelInstance = nil
+                print("max: " + String(max) + ", count: " + String(tile.unitGroup.peopleArray.count))
+                
+                if (index * 5 < max) {
+                    for _ in (index * 5)..<max {
+                        let unit = tile.unitGroup.peopleArray[minI] as! SingleUnit
+                        tile.unitGroup.peopleArray.removeObject(at: minI)
+                        if (unit.modelInstance != nil) {
+                            Renderer.removeInstance(inst: unit.modelInstance!)
+                            unit.modelInstance = nil
+                        }
+                        unitGroupComponent?.unitGroup.peopleArray.add(unit)
                     }
-                    unitGroupComponent?.unitGroup.peopleArray.add(unit)
                 }
                 if(tile.unitGroup.peopleArray.count == 0) {
                     EventDispatcher.publish("RemoveUnit", ("unit", tile))
