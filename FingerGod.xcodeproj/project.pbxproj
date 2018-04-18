@@ -60,6 +60,7 @@
 		99A4DA022087299700E47A71 /* Ifrit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A4DA012087299700E47A71 /* Ifrit.swift */; };
 		99A4DA04208729A800E47A71 /* Undine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A4DA03208729A800E47A71 /* Undine.swift */; };
 		99A4DA0620872A7F00E47A71 /* Onyxra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A4DA0520872A7F00E47A71 /* Onyxra.swift */; };
+		99A4DA08208746DD00E47A71 /* MergingPathFindingTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A4DA07208746DD00E47A71 /* MergingPathFindingTarget.swift */; };
 		99AACA2F2044FB23001262D0 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 99AACA2E2044FB23001262D0 /* Shader.vsh */; };
 		99AACA312044FB43001262D0 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 99AACA302044FB42001262D0 /* Shader.fsh */; };
 		99E1CF3B206B3A7400C7A04B /* BattleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E1CF3A206B3A7400C7A04B /* BattleComponent.swift */; };
@@ -169,6 +170,7 @@
 		99A4DA012087299700E47A71 /* Ifrit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ifrit.swift; sourceTree = "<group>"; };
 		99A4DA03208729A800E47A71 /* Undine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Undine.swift; sourceTree = "<group>"; };
 		99A4DA0520872A7F00E47A71 /* Onyxra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onyxra.swift; sourceTree = "<group>"; };
+		99A4DA07208746DD00E47A71 /* MergingPathFindingTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergingPathFindingTarget.swift; sourceTree = "<group>"; };
 		99AACA2E2044FB23001262D0 /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
 		99AACA302044FB42001262D0 /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
 		99E1CF3A206B3A7400C7A04B /* BattleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleComponent.swift; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 				9930FF5E2085A834007396FC /* PathFindingTarget.swift */,
 				9930FF602085AC1E007396FC /* TilePathFindingTarget.swift */,
 				9930FF622085B69F007396FC /* EnemyPathFindingTarget.swift */,
+				99A4DA07208746DD00E47A71 /* MergingPathFindingTarget.swift */,
 			);
 			name = TileSystem;
 			path = "New Group";
@@ -705,6 +708,7 @@
 				992762DB2036B9DD00C73599 /* GameObject.swift in Sources */,
 				99E1CF3F206B84B100C7A04B /* Alignment.swift in Sources */,
 				99E1CF3B206B3A7400C7A04B /* BattleComponent.swift in Sources */,
+				99A4DA08208746DD00E47A71 /* MergingPathFindingTarget.swift in Sources */,
 				99A4DA022087299700E47A71 /* Ifrit.swift in Sources */,
 				F24C46CB206B6B9200B8097D /* RoundButton.swift in Sources */,
 				F6DD7444206B236600868E57 /* UnitGroup.swift in Sources */,
