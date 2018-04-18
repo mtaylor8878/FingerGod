@@ -177,6 +177,7 @@ public class InputManager : Subscriber {
         
         if(!noSelect) {
             selected = Point2D(q,r)
+            print(selected)
             map.setTileColor(tile: selected!, color: SELECTION_COLOR)
         } else {
             selected = nil
