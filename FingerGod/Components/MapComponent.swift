@@ -73,6 +73,7 @@ public class MapComponent : Component, Subscriber {
             let str = params["structure"]! as! Structure
             let pos = params["coords"]! as! Point2D
             tileMap.getTile(pos)?.addStructure(str)
+            print("Added Structure: " + String(pos.x) + ", " + String(pos.y))
             break
             
         case "SetTileColor":
